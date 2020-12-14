@@ -1,0 +1,53 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateArticulosTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('articulos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('nombre');
+            $table->enum('tipo_comprobante', ['factura','recibo','nota']);
+            $table->string('num_comprobante');
+            $table->date('fecha')->nullable();
+            $table->string('cantidad');
+            $table->string('unidad');
+            $table->string('precio_compra')->nullable();
+            $table->string('precio_venta')->nullable();
+            $table->string('descripcion')->nullable();
+            $table->string('imagen')->nullable();
+            $table->string('user')->nullable();
+
+            $table->unsignedBigInteger('categoria_id')->unsigned();
+            $table->foreign('categoria_id')
+            ->references('id')->on('categorias')
+            ->onDelete('cascade');
+
+            $table->unsignedBigInteger('proveedors_id')->unsigned();
+            $table->foreign('proveedors_id')
+            ->references('id')->on('proveedors')
+            ->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('articulos');
+    }
+}

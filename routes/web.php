@@ -20,3 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('articulos', 'ArticuloController');
+Route::resource('categorias', 'CategoriaController');
+Route::resource('cliente', 'ClienteController');
+Route::resource('proveedor', 'ProveedorController');
+Route::resource('venta', 'VentaController');
+
