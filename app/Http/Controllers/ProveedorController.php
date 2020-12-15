@@ -12,9 +12,12 @@ class ProveedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request){
+
+        $nombre = $request->get('buscarpor');
+        $proveedor = Proveedor::where('nombre','like',"%$nombre%")->latest()->get();
+        
+        return view('proveedor.index', compact('proveedor'));
     }
 
     /**

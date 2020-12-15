@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Categoria;
+use Session;
 use Illuminate\Http\Request;
 
 class CategoriaController extends Controller
@@ -12,9 +13,12 @@ class CategoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(Request $request){
+        $nombre = $request->get('buscarpor');
+        
+        $categoria = Categoria::where('nombre','like',"%$nombre%")->latest()->get();
+        
+        return view('categoria.index', compact('categoria'));
     }
 
     /**
@@ -24,7 +28,7 @@ class CategoriaController extends Controller
      */
     public function create()
     {
-        //
+        return view('categoria.create');
     }
 
     /**
@@ -33,9 +37,22 @@ class CategoriaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        $request->validate([
+            'nombre' => 'required',
+            'descripcion' => 'nullable',
+            'user' => 'nullable',
+        ]);
+        
+        Categoria::create([
+            'nombre' => $request->nombre,
+            'descripcion' => $request->descripcion,
+            'user' => $request->user,
+        ]);
+        
+        Session::flash('message','Categoria creado exisitosamente!');
+        return redirect()->route('categorias.index');
     }
 
     /**
