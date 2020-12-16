@@ -8,24 +8,24 @@
                 <div class="col-md-12">
                     <div class="card card-dark">
                         <div class="card-header">
-                            <h3 class="card-title">Registro Proveedor</h3>
+                            <h3 class="card-title">Registro Cliente</h3>
                         </div>
-                        <form action="{{route('proveedor.store')}}" method="POST">
+                        <form action="{{route('cliente.store')}}" method="POST">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="nombre">Nombre Proveedor</label>
+                                            <label for="nombre">Nombre Cliente</label>
                                             <input type="text" class="form-control" id="nombre" name="nombre"
-                                                placeholder="Nombre Proveedor" required>
+                                                placeholder="Nombre Cliente" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="nit">NIT</label>
-                                            <input type="number" class="form-control" id="nit" name="nit"
-                                                placeholder="Numero de NIT" required>
+                                            <label for="nit">Número Carnet</label>
+                                            <input type="number" class="form-control" id="nit" name="num_carnet"
+                                                placeholder="Numero de Carnet" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -37,18 +37,25 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="nombre">Teléfono</label>
                                             <input type="number" class="form-control" id="nombre" name="telefono"
                                                 placeholder="Teléfono" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="whatsapp">Whatsapp</label>
+                                            <input type="number" class="form-control" id="whatsapp" name="whatsapp"
+                                                placeholder="Whatsapp" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="email">E-mail</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="E-mail">
+                                                placeholder="E-mail" required>
                                         </div>
                                     </div>
                                 </div>
@@ -68,7 +75,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{url('/proveedor')}}"><button class="btn btn-danger float-right">Cancelar</a>
+                                <a href="{{url('/cliente')}}"><button class="btn btn-danger float-right">Cancelar</a>
 
                                 <button type="submit" class="btn btn-primary float-right">Guardar</button>
                             </div>

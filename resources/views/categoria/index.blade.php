@@ -30,7 +30,6 @@
                     <th style="text-align:center;">Nombre</th>
                     <th style="text-align:center;">Descripción</th>
                     <th style="text-align:center;">Acciones</th>
-
                 </tr>
             </thead>
             <tbody>

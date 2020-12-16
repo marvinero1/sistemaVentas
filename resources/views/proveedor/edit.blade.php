@@ -8,31 +8,32 @@
                 <div class="col-md-12">
                     <div class="card card-dark">
                         <div class="card-header">
-                            <h3 class="card-title">Registro Proveedor</h3>
+                            <h3 class="card-title">Editar Proveedor</h3>
                         </div>
-                        <form action="{{route('proveedor.store')}}" method="POST">
+                        <form action="{{route('proveedor.update',$proveedor->id)}}" method="POST">
                             {{ csrf_field() }}
+                            @method('PATCH')
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="nombre">Nombre Proveedor</label>
                                             <input type="text" class="form-control" id="nombre" name="nombre"
-                                                placeholder="Nombre Proveedor" required>
+                                                placeholder="Nombre Proveedor" value="{{$proveedor->nombre}}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="nit">NIT</label>
                                             <input type="number" class="form-control" id="nit" name="nit"
-                                                placeholder="Numero de NIT" required>
+                                                placeholder="Numero de NIT" value="{{$proveedor->nit}}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="nombre">Dirección</label>
                                             <input type="text" class="form-control" id="nombre" name="direccion"
-                                                placeholder="Dirección" required>
+                                                placeholder="Dirección" value="{{$proveedor->direccion}}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -41,14 +42,14 @@
                                         <div class="form-group">
                                             <label for="nombre">Teléfono</label>
                                             <input type="number" class="form-control" id="nombre" name="telefono"
-                                                placeholder="Teléfono" required>
+                                                placeholder="Teléfono" value="{{$proveedor->telefono}}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="email">E-mail</label>
                                             <input type="email" class="form-control" id="email" name="email"
-                                                placeholder="E-mail">
+                                                placeholder="E-mail" value="{{$proveedor->email}}">
                                         </div>
                                     </div>
                                 </div>
@@ -57,8 +58,8 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="descripcion">Descripción</label>
-                                            <textarea class="form-control" id="descripcion" rows="3"
-                                                name="descripcion"></textarea>
+                                            <input class="form-control" id="descripcion" rows="3"
+                                                name="descripcion" value="{{$proveedor->descripcion}}">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -76,4 +77,5 @@
                     </div>
     </section>
 </div>
+
 @endsection

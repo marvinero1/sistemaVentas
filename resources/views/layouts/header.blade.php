@@ -171,7 +171,7 @@
                 </li>
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-truck"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>Personas
                             <i class="right fas fa-angle-left"></i>
                         </p>
@@ -207,13 +207,12 @@
                               <p>Ventas</p>
                           </a>
                       </li>
-                      <li class="nav-item">
+                      {{-- <li class="nav-item">
                           <a href="pages/charts/flot.html" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Clientes</p>
                           </a>
-                      </li>
-                     
+                      </li> --}} 
                   </ul>
               </li>
 
@@ -270,7 +269,7 @@
             </li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-users"></i>
+                  <i class="nav-icon fas fa-user"></i>
                   <p>Usuarios</p>  
               </a>
             </li>

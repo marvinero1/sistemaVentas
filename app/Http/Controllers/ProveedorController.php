@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Proveedor;
+use Session;
 use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
@@ -79,9 +80,9 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit($id)
     {
-        //
+        return view('proveedor.edit', ['proveedor' =>Proveedor::findOrFail($id)]);
     }
 
     /**
@@ -91,9 +92,32 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(Request $request, $id)
     {
-        //
+        //dd($request);
+
+        $request->validate([
+            'nombre' => 'required',
+            'nit' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'email' => 'nullable',
+            'descripcion' => 'nullable',
+            'user' => 'nullable',
+        ]);
+
+        $proveedor = Proveedor::findOrFail($id);
+
+        $proveedor->nombre = $request->get('nombre');
+        $proveedor->nit = $request->get('nit');
+        $proveedor->direccion = $request->get('direccion');
+        $proveedor->telefono = $request->get('telefono');
+        $proveedor->email = $request->get('email');
+        $proveedor->descripcion = $request->get('descripcion');
+        $proveedor->update(); 
+        
+        Session::flash('message','Proveedor Editado Exisitosamente!');
+        return redirect()->route('proveedor.index');
     }
 
     /**
@@ -102,8 +126,12 @@ class ProveedorController extends Controller
      * @param  \App\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedor)
-    {
-        //
+    public function destroy($id){
+
+        $proveedor = Proveedor::findOrFail($id);
+        $proveedor->delete();
+
+        Session::flash('message','Proveedor eliminado exitosamente!');
+        return redirect()->route('proveedor.index'); 
     }
 }
