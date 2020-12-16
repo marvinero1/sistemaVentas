@@ -25,9 +25,9 @@ class ProveedorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+
+        return view('proveedor.create');
     }
 
     /**
@@ -36,9 +36,30 @@ class ProveedorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        $request->validate([
+            'nombre' => 'required',
+            'nit' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            'email' => 'nullable',
+            'descripcion' => 'nullable',
+            'user' => 'nullable',
+        ]);
+        
+        Proveedor::create([
+            'nombre' => $request->nombre,
+            'nit' => $request->nit,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'email' => $request->email,
+            'descripcion' => $request->descripcion,
+            'user' => $request->user,
+        ]);
+        
+        Session::flash('message','Proveedor creado exisitosamente!');
+        return redirect()->route('proveedor.index');
     }
 
     /**
