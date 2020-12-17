@@ -19,7 +19,6 @@ class CreateProveedorsTable extends Migration
             $table->string('nit');
             $table->string('direccion');
             $table->string('telefono');
-            $table->string('whatsapp');
             $table->string('email');
             $table->string('descripcion')->nullable();
             $table->string('user')->nullable();

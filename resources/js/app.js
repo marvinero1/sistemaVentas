@@ -22,6 +22,11 @@ require('../template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.j
 require('../template/dist/js/adminlte.js');
 require('../template/dist/js/pages/dashboard.js');
 require('../template/dist/js/demo.js');
+require('../template/plugins/select2/js/select2.full.min.js');
+
+require('../template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js');
+require('../template/plugins/inputmask/min/jquery.inputmask.bundle.min.js');
+require('../template/plugins/bootstrap-switch/js/bootstrap-switch.min.js');
 
 window.Vue = require('vue');
 

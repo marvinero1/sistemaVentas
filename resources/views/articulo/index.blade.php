@@ -3,7 +3,7 @@
 @section('content')
 <div class="content-wrapper pt-3">
     <h1 style="text-align: center" class="mb-4">Artículos</h1>
-<div class="container mb-5">
+<div class="content">
     @if (Session::has('message'))
     <div class="alert alert-info">{{ Session::get('message') }}</div>
     @endif
@@ -26,43 +26,50 @@
         <table class="table table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
-                    {{--  <th>Id</th>  --}}
                     <th style="text-align:center;">Imagen</th>
                     <th style="text-align:center;">Nombre</th>
                     <th style="text-align:center;">Descripción</th>
-                    <th style="text-align:center;">Interés</th>
-                    <th style="text-align:center;">Dias Plazo</th>
-                    <th style="text-align:center;">Monto Maximo</th>
-                    <th style="text-align:center;">Monto Minimo</th>
+                    <th style="text-align:center;">Fecha</th>
+                    <th style="text-align:center;">Categoria</th>
+                    <th style="text-align:center;">Proveedor</th>
                     <th style="text-align:center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($articulo as $articulos)
+                    <tr>
             
-                <tr>
-        
-                  <td><a class="image-popup-vertical-fit" href="">
-                    <img img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF" height="100px"
-                        width="100px" style="display: block;margin: 0 auto;">
-                </a></td>  
-           
-                <td><a class="image-popup-vertical-fit" href="">
-                    <img src="" class="img-thumbnail" alt="DPF" height="100px"
-                        width="100px" style="display: block;margin: 0 auto;">
-                </a></td>
-
-                    <td style="text-align:center;"></td>
-                    <td style="text-align:center;"></td>
-                    <td style="text-align:center;"></td>
-                    <td style="text-align:center;"></td>
-                    <td style="text-align:center;"></td>
-                    <td style="text-align:center;"></td>
-
-                    <td style="text-align:center;">
-                    
-                            
-                    </td>
-                </tr>
+                    <td><a class="image-popup-vertical-fit" href="/{{  $articulos->imagen }}">
+                        <img img src="/{{ $articulos->imagen }}" class="img-thumbnail" alt="articulo" height="100px"
+                            width="100px" style="display: block;margin: 0 auto;">
+                    </a></td>  
+            
+                
+                        <td style="text-align:center;">{{ $articulos->nombre }}</td>
+                        <td style="text-align:center;">{{ $articulos->descripcion }}</td>
+                        <td style="text-align:center;">{{ $articulos->fecha }}</td>
+                        <td style="text-align:center;">{{ $articulos->categoria->nombre }}</td>
+                        <td style="text-align:center;">{{ $articulos->proveedor->nombre }}</td>
+                        <td style="text-align:center;">
+                            <a href="{{ route('articulos.show',$articulos->id ) }}">
+                                <button class="btn btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver
+                                </button></a>
+                            <!-- <a title="Edit" href="{{ route('articulos.edit',$articulos->id ) }}">
+                                        <button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
+                                                aria-hidden="true"></i>
+                                            Editar</button></a> -->
+                            <form action="{{ route('articulos.destroy',$articulos->id ) }}" method="POST" accept-charset="UTF-8"
+                                style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Image"
+                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fa-trash-o"
+                                        aria-hidden="true"></i> Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>    
+                @endforeach
+               
      
 
             </tbody>

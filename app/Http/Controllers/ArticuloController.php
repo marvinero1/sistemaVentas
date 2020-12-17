@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Articulo;
+use App\Categoria;
+use App\Proveedor;
+use File;
+use Session;
+use DB;
+use Image;
 use Illuminate\Http\Request;
 
 class ArticuloController extends Controller
@@ -13,8 +19,8 @@ class ArticuloController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
+
         $nombre = $request->get('buscarpor');
-        
         $articulo = Articulo::where('nombre','like',"%$nombre%")->latest()->get();
         
         return view('articulo.index', compact('articulo'));
@@ -26,8 +32,9 @@ class ArticuloController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-        
-        return view('articulo.create');
+        $categoria = Categoria::all()->sortBy('nombre');
+        $proveedor = Proveedor::all()->sortBy('nombre');
+        return view('articulo.create', compact('categoria','proveedor'));
     }
 
     /**
@@ -38,7 +45,61 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mensaje = "Articulo Registrado correctamente"; 
+        
+        $request->validate([
+             'nombre' => 'required',
+             'tipo_comprobante'=> 'required',
+             'num_comprobante' => 'required',
+             'fecha' => 'required',
+             'cantidad' => 'required',
+             'unidad' => 'required',
+             'precio_compra' => 'required', 
+             'precio_venta' => 'required',
+             'imagen' => 'nullable', 
+             'descripcion' => 'nullable', 
+             'categoria_id' => 'nullable', 
+             'proveedors_id' => 'nullable',
+             'user' => 'nullable',
+         ]);
+
+
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/articulos', mime_content_type('images/articulos'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/articulos';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje; 
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
+
+        $articulo = Articulo::create($requestData);
+
+        if($articulo){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+            return redirect()->route('articulos.index'); 
+        
     }
 
     /**

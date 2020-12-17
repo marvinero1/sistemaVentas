@@ -49758,6 +49758,14 @@ __webpack_require__(/*! ../template/dist/js/pages/dashboard.js */ "./resources/t
 
 __webpack_require__(/*! ../template/dist/js/demo.js */ "./resources/template/dist/js/demo.js");
 
+__webpack_require__(/*! ../template/plugins/select2/js/select2.full.min.js */ "./resources/template/plugins/select2/js/select2.full.min.js");
+
+__webpack_require__(/*! ../template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js */ "./resources/template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js");
+
+__webpack_require__(/*! ../template/plugins/inputmask/min/jquery.inputmask.bundle.min.js */ "./resources/template/plugins/inputmask/min/jquery.inputmask.bundle.min.js");
+
+__webpack_require__(/*! ../template/plugins/bootstrap-switch/js/bootstrap-switch.min.js */ "./resources/template/plugins/bootstrap-switch/js/bootstrap-switch.min.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
  * The following block of code may be used to automatically register your
@@ -52197,7 +52205,7 @@ $(function () {
   }); // bootstrap WYSIHTML5 - text editor
 
   $('.textarea').summernote();
-  $('.daterange').daterangepicker({
+  $('#daterange-btn').daterangepicker({
     ranges: {
       'Today': [moment(), moment()],
       'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
@@ -52209,7 +52217,7 @@ $(function () {
     startDate: moment().subtract(29, 'days'),
     endDate: moment()
   }, function (start, end) {
-    window.alert('You chose: ' + start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
   });
   /* jQueryKnob */
 
@@ -52426,6 +52434,427 @@ $(function () {
     data: salesGraphChartData,
     options: salesGraphChartOptions
   });
+});
+
+/***/ }),
+
+/***/ "./resources/template/plugins/bootstrap-switch/js/bootstrap-switch.min.js":
+/*!********************************************************************************!*\
+  !*** ./resources/template/plugins/bootstrap-switch/js/bootstrap-switch.min.js ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
+  * bootstrap-switch - Turn checkboxes and radio buttons into toggle switches.
+  *
+  * @version v3.3.4
+  * @homepage https://bttstrp.github.io/bootstrap-switch
+  * @author Mattia Larentis <mattia@larentis.eu> (http://larentis.eu)
+  * @license Apache-2.0
+  */
+(function (a, b) {
+  if (true) !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (b),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}
+})(this, function (a) {
+  'use strict';
+
+  function c(j, k) {
+    if (!(j instanceof k)) throw new TypeError('Cannot call a class as a function');
+  }
+
+  var d = function (j) {
+    return j && j.__esModule ? j : {
+      "default": j
+    };
+  }(a),
+      e = Object.assign || function (j) {
+    for (var l, k = 1; k < arguments.length; k++) {
+      for (var m in l = arguments[k], l) {
+        Object.prototype.hasOwnProperty.call(l, m) && (j[m] = l[m]);
+      }
+    }
+
+    return j;
+  },
+      f = function () {
+    function j(k, l) {
+      for (var n, m = 0; m < l.length; m++) {
+        n = l[m], n.enumerable = n.enumerable || !1, n.configurable = !0, 'value' in n && (n.writable = !0), Object.defineProperty(k, n.key, n);
+      }
+    }
+
+    return function (k, l, m) {
+      return l && j(k.prototype, l), m && j(k, m), k;
+    };
+  }(),
+      g = d["default"] || window.jQuery || window.$,
+      h = function () {
+    function j(k) {
+      var l = this,
+          m = 1 < arguments.length && void 0 !== arguments[1] ? arguments[1] : {};
+      c(this, j), this.$element = g(k), this.options = g.extend({}, g.fn.bootstrapSwitch.defaults, this._getElementOptions(), m), this.prevOptions = {}, this.$wrapper = g('<div>', {
+        "class": function _class() {
+          var o = [];
+          return o.push(l.options.state ? 'on' : 'off'), l.options.size && o.push(l.options.size), l.options.disabled && o.push('disabled'), l.options.readonly && o.push('readonly'), l.options.indeterminate && o.push('indeterminate'), l.options.inverse && o.push('inverse'), l.$element.attr('id') && o.push('id-' + l.$element.attr('id')), o.map(l._getClass.bind(l)).concat([l.options.baseClass], l._getClasses(l.options.wrapperClass)).join(' ');
+        }
+      }), this.$container = g('<div>', {
+        "class": this._getClass('container')
+      }), this.$on = g('<span>', {
+        html: this.options.onText,
+        "class": this._getClass('handle-on') + ' ' + this._getClass(this.options.onColor)
+      }), this.$off = g('<span>', {
+        html: this.options.offText,
+        "class": this._getClass('handle-off') + ' ' + this._getClass(this.options.offColor)
+      }), this.$label = g('<span>', {
+        html: this.options.labelText,
+        "class": this._getClass('label')
+      }), this.$element.on('init.bootstrapSwitch', this.options.onInit.bind(this, k)), this.$element.on('switchChange.bootstrapSwitch', function () {
+        for (var n = arguments.length, o = Array(n), p = 0; p < n; p++) {
+          o[p] = arguments[p];
+        }
+
+        !1 === l.options.onSwitchChange.apply(k, o) && (l.$element.is(':radio') ? g('[name="' + l.$element.attr('name') + '"]').trigger('previousState.bootstrapSwitch', !0) : l.$element.trigger('previousState.bootstrapSwitch', !0));
+      }), this.$container = this.$element.wrap(this.$container).parent(), this.$wrapper = this.$container.wrap(this.$wrapper).parent(), this.$element.before(this.options.inverse ? this.$off : this.$on).before(this.$label).before(this.options.inverse ? this.$on : this.$off), this.options.indeterminate && this.$element.prop('indeterminate', !0), this._init(), this._elementHandlers(), this._handleHandlers(), this._labelHandlers(), this._formHandler(), this._externalLabelHandler(), this.$element.trigger('init.bootstrapSwitch', this.options.state);
+    }
+
+    return f(j, [{
+      key: 'setPrevOptions',
+      value: function value() {
+        this.prevOptions = e({}, this.options);
+      }
+    }, {
+      key: 'state',
+      value: function value(l, m) {
+        return 'undefined' == typeof l ? this.options.state : this.options.disabled || this.options.readonly || this.options.state && !this.options.radioAllOff && this.$element.is(':radio') ? this.$element : (this.$element.is(':radio') ? g('[name="' + this.$element.attr('name') + '"]').trigger('setPreviousOptions.bootstrapSwitch') : this.$element.trigger('setPreviousOptions.bootstrapSwitch'), this.options.indeterminate && this.indeterminate(!1), this.$element.prop('checked', !!l).trigger('change.bootstrapSwitch', m), this.$element);
+      }
+    }, {
+      key: 'toggleState',
+      value: function value(l) {
+        return this.options.disabled || this.options.readonly ? this.$element : this.options.indeterminate ? (this.indeterminate(!1), this.state(!0)) : this.$element.prop('checked', !this.options.state).trigger('change.bootstrapSwitch', l);
+      }
+    }, {
+      key: 'size',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.size : (null != this.options.size && this.$wrapper.removeClass(this._getClass(this.options.size)), l && this.$wrapper.addClass(this._getClass(l)), this._width(), this._containerPosition(), this.options.size = l, this.$element);
+      }
+    }, {
+      key: 'animate',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.animate : this.options.animate === !!l ? this.$element : this.toggleAnimate();
+      }
+    }, {
+      key: 'toggleAnimate',
+      value: function value() {
+        return this.options.animate = !this.options.animate, this.$wrapper.toggleClass(this._getClass('animate')), this.$element;
+      }
+    }, {
+      key: 'disabled',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.disabled : this.options.disabled === !!l ? this.$element : this.toggleDisabled();
+      }
+    }, {
+      key: 'toggleDisabled',
+      value: function value() {
+        return this.options.disabled = !this.options.disabled, this.$element.prop('disabled', this.options.disabled), this.$wrapper.toggleClass(this._getClass('disabled')), this.$element;
+      }
+    }, {
+      key: 'readonly',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.readonly : this.options.readonly === !!l ? this.$element : this.toggleReadonly();
+      }
+    }, {
+      key: 'toggleReadonly',
+      value: function value() {
+        return this.options.readonly = !this.options.readonly, this.$element.prop('readonly', this.options.readonly), this.$wrapper.toggleClass(this._getClass('readonly')), this.$element;
+      }
+    }, {
+      key: 'indeterminate',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.indeterminate : this.options.indeterminate === !!l ? this.$element : this.toggleIndeterminate();
+      }
+    }, {
+      key: 'toggleIndeterminate',
+      value: function value() {
+        return this.options.indeterminate = !this.options.indeterminate, this.$element.prop('indeterminate', this.options.indeterminate), this.$wrapper.toggleClass(this._getClass('indeterminate')), this._containerPosition(), this.$element;
+      }
+    }, {
+      key: 'inverse',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.inverse : this.options.inverse === !!l ? this.$element : this.toggleInverse();
+      }
+    }, {
+      key: 'toggleInverse',
+      value: function value() {
+        this.$wrapper.toggleClass(this._getClass('inverse'));
+        var l = this.$on.clone(!0),
+            m = this.$off.clone(!0);
+        return this.$on.replaceWith(m), this.$off.replaceWith(l), this.$on = m, this.$off = l, this.options.inverse = !this.options.inverse, this.$element;
+      }
+    }, {
+      key: 'onColor',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.onColor : (this.options.onColor && this.$on.removeClass(this._getClass(this.options.onColor)), this.$on.addClass(this._getClass(l)), this.options.onColor = l, this.$element);
+      }
+    }, {
+      key: 'offColor',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.offColor : (this.options.offColor && this.$off.removeClass(this._getClass(this.options.offColor)), this.$off.addClass(this._getClass(l)), this.options.offColor = l, this.$element);
+      }
+    }, {
+      key: 'onText',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.onText : (this.$on.html(l), this._width(), this._containerPosition(), this.options.onText = l, this.$element);
+      }
+    }, {
+      key: 'offText',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.offText : (this.$off.html(l), this._width(), this._containerPosition(), this.options.offText = l, this.$element);
+      }
+    }, {
+      key: 'labelText',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.labelText : (this.$label.html(l), this._width(), this.options.labelText = l, this.$element);
+      }
+    }, {
+      key: 'handleWidth',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.handleWidth : (this.options.handleWidth = l, this._width(), this._containerPosition(), this.$element);
+      }
+    }, {
+      key: 'labelWidth',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.labelWidth : (this.options.labelWidth = l, this._width(), this._containerPosition(), this.$element);
+      }
+    }, {
+      key: 'baseClass',
+      value: function value() {
+        return this.options.baseClass;
+      }
+    }, {
+      key: 'wrapperClass',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.wrapperClass : (l || (l = g.fn.bootstrapSwitch.defaults.wrapperClass), this.$wrapper.removeClass(this._getClasses(this.options.wrapperClass).join(' ')), this.$wrapper.addClass(this._getClasses(l).join(' ')), this.options.wrapperClass = l, this.$element);
+      }
+    }, {
+      key: 'radioAllOff',
+      value: function value(l) {
+        if ('undefined' == typeof l) return this.options.radioAllOff;
+        var m = !!l;
+        return this.options.radioAllOff === m ? this.$element : (this.options.radioAllOff = m, this.$element);
+      }
+    }, {
+      key: 'onInit',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.onInit : (l || (l = g.fn.bootstrapSwitch.defaults.onInit), this.options.onInit = l, this.$element);
+      }
+    }, {
+      key: 'onSwitchChange',
+      value: function value(l) {
+        return 'undefined' == typeof l ? this.options.onSwitchChange : (l || (l = g.fn.bootstrapSwitch.defaults.onSwitchChange), this.options.onSwitchChange = l, this.$element);
+      }
+    }, {
+      key: 'destroy',
+      value: function value() {
+        var l = this.$element.closest('form');
+        return l.length && l.off('reset.bootstrapSwitch').removeData('bootstrap-switch'), this.$container.children().not(this.$element).remove(), this.$element.unwrap().unwrap().off('.bootstrapSwitch').removeData('bootstrap-switch'), this.$element;
+      }
+    }, {
+      key: '_getElementOptions',
+      value: function value() {
+        return {
+          state: this.$element.is(':checked'),
+          size: this.$element.data('size'),
+          animate: this.$element.data('animate'),
+          disabled: this.$element.is(':disabled'),
+          readonly: this.$element.is('[readonly]'),
+          indeterminate: this.$element.data('indeterminate'),
+          inverse: this.$element.data('inverse'),
+          radioAllOff: this.$element.data('radio-all-off'),
+          onColor: this.$element.data('on-color'),
+          offColor: this.$element.data('off-color'),
+          onText: this.$element.data('on-text'),
+          offText: this.$element.data('off-text'),
+          labelText: this.$element.data('label-text'),
+          handleWidth: this.$element.data('handle-width'),
+          labelWidth: this.$element.data('label-width'),
+          baseClass: this.$element.data('base-class'),
+          wrapperClass: this.$element.data('wrapper-class')
+        };
+      }
+    }, {
+      key: '_width',
+      value: function value() {
+        var l = this,
+            m = this.$on.add(this.$off).add(this.$label).css('width', ''),
+            n = 'auto' === this.options.handleWidth ? Math.round(Math.max(this.$on.width(), this.$off.width())) : this.options.handleWidth;
+        return m.width(n), this.$label.width(function (o, p) {
+          return 'auto' === l.options.labelWidth ? p < n ? n : p : l.options.labelWidth;
+        }), this._handleWidth = this.$on.outerWidth(), this._labelWidth = this.$label.outerWidth(), this.$container.width(2 * this._handleWidth + this._labelWidth), this.$wrapper.width(this._handleWidth + this._labelWidth);
+      }
+    }, {
+      key: '_containerPosition',
+      value: function value() {
+        var l = this,
+            m = 0 < arguments.length && void 0 !== arguments[0] ? arguments[0] : this.options.state,
+            n = arguments[1];
+        this.$container.css('margin-left', function () {
+          var o = [0, '-' + l._handleWidth + 'px'];
+          return l.options.indeterminate ? '-' + l._handleWidth / 2 + 'px' : m ? l.options.inverse ? o[1] : o[0] : l.options.inverse ? o[0] : o[1];
+        });
+      }
+    }, {
+      key: '_init',
+      value: function value() {
+        var l = this,
+            m = function m() {
+          l.setPrevOptions(), l._width(), l._containerPosition(), setTimeout(function () {
+            if (l.options.animate) return l.$wrapper.addClass(l._getClass('animate'));
+          }, 50);
+        };
+
+        if (this.$wrapper.is(':visible')) return void m();
+        var n = window.setInterval(function () {
+          if (l.$wrapper.is(':visible')) return m(), window.clearInterval(n);
+        }, 50);
+      }
+    }, {
+      key: '_elementHandlers',
+      value: function value() {
+        var l = this;
+        return this.$element.on({
+          'setPreviousOptions.bootstrapSwitch': this.setPrevOptions.bind(this),
+          'previousState.bootstrapSwitch': function previousStateBootstrapSwitch() {
+            l.options = l.prevOptions, l.options.indeterminate && l.$wrapper.addClass(l._getClass('indeterminate')), l.$element.prop('checked', l.options.state).trigger('change.bootstrapSwitch', !0);
+          },
+          'change.bootstrapSwitch': function changeBootstrapSwitch(n, o) {
+            n.preventDefault(), n.stopImmediatePropagation();
+            var p = l.$element.is(':checked');
+            l._containerPosition(p), p === l.options.state || (l.options.state = p, l.$wrapper.toggleClass(l._getClass('off')).toggleClass(l._getClass('on')), !o && (l.$element.is(':radio') && g('[name="' + l.$element.attr('name') + '"]').not(l.$element).prop('checked', !1).trigger('change.bootstrapSwitch', !0), l.$element.trigger('switchChange.bootstrapSwitch', [p])));
+          },
+          'focus.bootstrapSwitch': function focusBootstrapSwitch(n) {
+            n.preventDefault(), l.$wrapper.addClass(l._getClass('focused'));
+          },
+          'blur.bootstrapSwitch': function blurBootstrapSwitch(n) {
+            n.preventDefault(), l.$wrapper.removeClass(l._getClass('focused'));
+          },
+          'keydown.bootstrapSwitch': function keydownBootstrapSwitch(n) {
+            !n.which || l.options.disabled || l.options.readonly || (37 === n.which || 39 === n.which) && (n.preventDefault(), n.stopImmediatePropagation(), l.state(39 === n.which));
+          }
+        });
+      }
+    }, {
+      key: '_handleHandlers',
+      value: function value() {
+        var l = this;
+        return this.$on.on('click.bootstrapSwitch', function (m) {
+          return m.preventDefault(), m.stopPropagation(), l.state(!1), l.$element.trigger('focus.bootstrapSwitch');
+        }), this.$off.on('click.bootstrapSwitch', function (m) {
+          return m.preventDefault(), m.stopPropagation(), l.state(!0), l.$element.trigger('focus.bootstrapSwitch');
+        });
+      }
+    }, {
+      key: '_labelHandlers',
+      value: function value() {
+        var l = this;
+        this.$label.on({
+          click: function click(o) {
+            o.stopPropagation();
+          },
+          'mousedown.bootstrapSwitch touchstart.bootstrapSwitch': function mousedownBootstrapSwitchTouchstartBootstrapSwitch(o) {
+            l._dragStart || l.options.disabled || l.options.readonly || (o.preventDefault(), o.stopPropagation(), l._dragStart = (o.pageX || o.originalEvent.touches[0].pageX) - parseInt(l.$container.css('margin-left'), 10), l.options.animate && l.$wrapper.removeClass(l._getClass('animate')), l.$element.trigger('focus.bootstrapSwitch'));
+          },
+          'mousemove.bootstrapSwitch touchmove.bootstrapSwitch': function mousemoveBootstrapSwitchTouchmoveBootstrapSwitch(o) {
+            if (null != l._dragStart) {
+              var p = (o.pageX || o.originalEvent.touches[0].pageX) - l._dragStart;
+              o.preventDefault(), p < -l._handleWidth || 0 < p || (l._dragEnd = p, l.$container.css('margin-left', l._dragEnd + 'px'));
+            }
+          },
+          'mouseup.bootstrapSwitch touchend.bootstrapSwitch': function mouseupBootstrapSwitchTouchendBootstrapSwitch(o) {
+            if (l._dragStart) {
+              if (o.preventDefault(), l.options.animate && l.$wrapper.addClass(l._getClass('animate')), l._dragEnd) {
+                var p = l._dragEnd > -(l._handleWidth / 2);
+                l._dragEnd = !1, l.state(l.options.inverse ? !p : p);
+              } else l.state(!l.options.state);
+
+              l._dragStart = !1;
+            }
+          },
+          'mouseleave.bootstrapSwitch': function mouseleaveBootstrapSwitch() {
+            l.$label.trigger('mouseup.bootstrapSwitch');
+          }
+        });
+      }
+    }, {
+      key: '_externalLabelHandler',
+      value: function value() {
+        var l = this,
+            m = this.$element.closest('label');
+        m.on('click', function (n) {
+          n.preventDefault(), n.stopImmediatePropagation(), n.target === m[0] && l.toggleState();
+        });
+      }
+    }, {
+      key: '_formHandler',
+      value: function value() {
+        var l = this.$element.closest('form');
+        l.data('bootstrap-switch') || l.on('reset.bootstrapSwitch', function () {
+          window.setTimeout(function () {
+            l.find('input').filter(function () {
+              return g(this).data('bootstrap-switch');
+            }).each(function () {
+              return g(this).bootstrapSwitch('state', this.checked);
+            });
+          }, 1);
+        }).data('bootstrap-switch', !0);
+      }
+    }, {
+      key: '_getClass',
+      value: function value(l) {
+        return this.options.baseClass + '-' + l;
+      }
+    }, {
+      key: '_getClasses',
+      value: function value(l) {
+        return g.isArray(l) ? l.map(this._getClass.bind(this)) : [this._getClass(l)];
+      }
+    }]), j;
+  }();
+
+  g.fn.bootstrapSwitch = function (j) {
+    for (var l = arguments.length, m = Array(1 < l ? l - 1 : 0), n = 1; n < l; n++) {
+      m[n - 1] = arguments[n];
+    }
+
+    return Array.prototype.reduce.call(this, function (o, p) {
+      var q = g(p),
+          r = q.data('bootstrap-switch'),
+          s = r || new h(p, j);
+      return r || q.data('bootstrap-switch', s), 'string' == typeof j ? s[j].apply(s, m) : o;
+    }, this);
+  }, g.fn.bootstrapSwitch.Constructor = h, g.fn.bootstrapSwitch.defaults = {
+    state: !0,
+    size: null,
+    animate: !0,
+    disabled: !1,
+    readonly: !1,
+    indeterminate: !1,
+    inverse: !1,
+    radioAllOff: !1,
+    onColor: 'primary',
+    offColor: 'default',
+    onText: 'ON',
+    offText: 'OFF',
+    labelText: '&nbsp',
+    handleWidth: 'auto',
+    labelWidth: 'auto',
+    baseClass: 'bootstrap-switch',
+    wrapperClass: 'wrapper',
+    onInit: function onInit() {},
+    onSwitchChange: function onSwitchChange() {}
+  };
 });
 
 /***/ }),
@@ -55387,6 +55816,5144 @@ $(function () {
   });
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./resources/template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js":
+/*!***********************************************************************************************!*\
+  !*** ./resources/template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*
+ *  Bootstrap Duallistbox - v4.0.1
+ *  A responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
+ *  http://www.virtuosoft.eu/code/bootstrap-duallistbox/
+ *
+ *  Made by István Ujj-Mészáros
+ *  Under Apache License v2.0 License
+ */
+!function (n) {
+   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (n),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;
+}(function (a) {
+  var i = "bootstrapDualListbox",
+      n = {
+    filterTextClear: "show all",
+    filterPlaceHolder: "Filter",
+    moveSelectedLabel: "Move selected",
+    moveAllLabel: "Move all",
+    removeSelectedLabel: "Remove selected",
+    removeAllLabel: "Remove all",
+    moveOnSelect: !0,
+    moveOnDoubleClick: !0,
+    preserveSelectionOnMove: !1,
+    selectedListLabel: !1,
+    nonSelectedListLabel: !1,
+    helperSelectNamePostfix: "_helper",
+    selectorMinimalHeight: 100,
+    showFilterInputs: !0,
+    nonSelectedFilter: "",
+    selectedFilter: "",
+    infoText: "Showing all {0}",
+    infoTextFiltered: '<span class="badge badge-warning">Filtered</span> {0} from {1}',
+    infoTextEmpty: "Empty list",
+    filterOnValues: !1,
+    sortByInputOrder: !1,
+    eventMoveOverride: !1,
+    eventMoveAllOverride: !1,
+    eventRemoveOverride: !1,
+    eventRemoveAllOverride: !1,
+    btnClass: "btn-outline-secondary",
+    btnMoveText: "&gt;",
+    btnRemoveText: "&lt;",
+    btnMoveAllText: "&gt;&gt;",
+    btnRemoveAllText: "&lt;&lt;"
+  },
+      s = /android/i.test(navigator.userAgent.toLowerCase());
+
+  function l(e, t) {
+    this.element = a(e), this.settings = a.extend({}, n, t), this._defaults = n, this._name = i, this.init();
+  }
+
+  function t(e) {
+    e.element.trigger("change");
+  }
+
+  function o(s) {
+    s.element.find("option").each(function (e, t) {
+      var n = a(t);
+      void 0 === n.data("original-index") && n.data("original-index", s.elementCount++), void 0 === n.data("_selected") && n.data("_selected", !1);
+    });
+  }
+
+  function r(s, i, l) {
+    s.element.find("option").each(function (e, t) {
+      var n = a(t);
+      n.data("original-index") === i && (n.prop("selected", l), l ? (n.attr("data-sortindex", s.sortIndex), s.sortIndex++) : n.removeAttr("data-sortindex"));
+    });
+  }
+
+  function c(e, n) {
+    return console.log(e, n), e.replace(/{(\d+)}/g, function (e, t) {
+      return void 0 !== n[t] ? n[t] : e;
+    });
+  }
+
+  function h(e) {
+    if (e.settings.infoText) {
+      var t = e.elements.select1.find("option").length,
+          n = e.elements.select2.find("option").length,
+          s = e.element.find("option").length - e.selectedElements,
+          i = e.selectedElements,
+          l = "";
+      l = 0 === s ? e.settings.infoTextEmpty : c(t === s ? e.settings.infoText : e.settings.infoTextFiltered, [t, s]), e.elements.info1.html(l), e.elements.box1.toggleClass("filtered", !(t === s || 0 === s)), l = 0 === i ? e.settings.infoTextEmpty : c(n === i ? e.settings.infoText : e.settings.infoTextFiltered, [n, i]), e.elements.info2.html(l), e.elements.box2.toggleClass("filtered", !(n === i || 0 === i));
+    }
+  }
+
+  function m(s) {
+    s.selectedElements = 0, s.elements.select1.empty(), s.elements.select2.empty(), s.element.find("option").each(function (e, t) {
+      var n = a(t);
+      n.prop("selected") ? (s.selectedElements++, s.elements.select2.append(n.clone(!0).prop("selected", n.data("_selected")))) : s.elements.select1.append(n.clone(!0).prop("selected", n.data("_selected")));
+    }), s.settings.showFilterInputs && (e(s, 1), e(s, 2)), h(s);
+  }
+
+  function e(i, l) {
+    if (i.settings.showFilterInputs) {
+      d(i, l), i.elements["select" + l].empty().scrollTop(0);
+      var o,
+          r = i.element.find("option"),
+          e = i.element;
+      e = 1 === l ? r.not(":selected") : e.find("option:selected");
+
+      try {
+        o = new RegExp(a.trim(i.elements["filterInput" + l].val()), "gi");
+      } catch (e) {
+        o = new RegExp("/a^/", "gi");
+      }
+
+      e.each(function (e, t) {
+        var n = a(t),
+            s = !0;
+        (t.text.match(o) || i.settings.filterOnValues && n.attr("value").match(o)) && (s = !1, i.elements["select" + l].append(n.clone(!0).prop("selected", n.data("_selected")))), r.eq(n.data("original-index")).data("filtered" + l, s);
+      }), h(i);
+    }
+  }
+
+  function d(e, t) {
+    var s = e.element.find("option");
+    e.elements["select" + t].find("option").each(function (e, t) {
+      var n = a(t);
+      s.eq(n.data("original-index")).data("_selected", n.prop("selected"));
+    });
+  }
+
+  function u(e) {
+    var t = e.children("option");
+    t.sort(function (e, t) {
+      var n = parseInt(e.getAttribute("data-sortindex")),
+          s = parseInt(t.getAttribute("data-sortindex"));
+      return s < n ? 1 : n < s ? -1 : 0;
+    }), t.detach().appendTo(e);
+  }
+
+  function v(e) {
+    e.find("option").sort(function (e, t) {
+      return a(e).data("original-index") > a(t).data("original-index") ? 1 : -1;
+    }).appendTo(e);
+  }
+
+  function f(s) {
+    "all" !== s.settings.preserveSelectionOnMove || s.settings.moveOnSelect ? "moved" !== s.settings.preserveSelectionOnMove || s.settings.moveOnSelect || d(s, 1) : (d(s, 1), d(s, 2)), s.elements.select1.find("option:selected").each(function (e, t) {
+      var n = a(t);
+      n.data("filtered1") || r(s, n.data("original-index"), !0);
+    }), m(s), t(s), s.settings.sortByInputOrder ? u(s.elements.select2) : v(s.elements.select2);
+  }
+
+  function p(s) {
+    "all" !== s.settings.preserveSelectionOnMove || s.settings.moveOnSelect ? "moved" !== s.settings.preserveSelectionOnMove || s.settings.moveOnSelect || d(s, 2) : (d(s, 1), d(s, 2)), s.elements.select2.find("option:selected").each(function (e, t) {
+      var n = a(t);
+      n.data("filtered2") || r(s, n.data("original-index"), !1);
+    }), m(s), t(s), v(s.elements.select1), s.settings.sortByInputOrder && u(s.elements.select2);
+  }
+
+  function g(n) {
+    n.elements.form.submit(function (e) {
+      n.elements.filterInput1.is(":focus") ? (e.preventDefault(), n.elements.filterInput1.focusout()) : n.elements.filterInput2.is(":focus") && (e.preventDefault(), n.elements.filterInput2.focusout());
+    }), n.element.on("bootstrapDualListbox.refresh", function (e, t) {
+      n.refresh(t);
+    }), n.elements.filterClear1.on("click", function () {
+      n.setNonSelectedFilter("", !0);
+    }), n.elements.filterClear2.on("click", function () {
+      n.setSelectedFilter("", !0);
+    }), !1 === n.settings.eventMoveOverride && n.elements.moveButton.on("click", function () {
+      f(n);
+    }), !1 === n.settings.eventMoveAllOverride && n.elements.moveAllButton.on("click", function () {
+      var s;
+      "all" !== (s = n).settings.preserveSelectionOnMove || s.settings.moveOnSelect ? "moved" !== s.settings.preserveSelectionOnMove || s.settings.moveOnSelect || d(s, 1) : (d(s, 1), d(s, 2)), s.element.find("option").each(function (e, t) {
+        var n = a(t);
+        n.data("filtered1") || (n.prop("selected", !0), n.attr("data-sortindex", s.sortIndex), s.sortIndex++);
+      }), m(s), t(s);
+    }), !1 === n.settings.eventRemoveOverride && n.elements.removeButton.on("click", function () {
+      p(n);
+    }), !1 === n.settings.eventRemoveAllOverride && n.elements.removeAllButton.on("click", function () {
+      var e;
+      "all" !== (e = n).settings.preserveSelectionOnMove || e.settings.moveOnSelect ? "moved" !== e.settings.preserveSelectionOnMove || e.settings.moveOnSelect || d(e, 2) : (d(e, 1), d(e, 2)), e.element.find("option").each(function (e, t) {
+        var n = a(t);
+        n.data("filtered2") || (n.prop("selected", !1), n.removeAttr("data-sortindex"));
+      }), m(e), t(e);
+    }), n.elements.filterInput1.on("change keyup", function () {
+      e(n, 1);
+    }), n.elements.filterInput2.on("change keyup", function () {
+      e(n, 2);
+    });
+  }
+
+  l.prototype = {
+    init: function init() {
+      this.container = a('<div class="bootstrap-duallistbox-container row"> <div class="box1 col-md-6">   <label></label>   <span class="info-container">     <span class="info"></span>     <button type="button" class="btn btn-sm clear1" style="float:right!important;"></button>   </span>   <input class="form-control filter" type="text">   <div class="btn-group buttons">     <button type="button" class="btn moveall"></button>     <button type="button" class="btn move"></button>   </div>   <select multiple="multiple"></select> </div> <div class="box2 col-md-6">   <label></label>   <span class="info-container">     <span class="info"></span>     <button type="button" class="btn btn-sm clear2" style="float:right!important;"></button>   </span>   <input class="form-control filter" type="text">   <div class="btn-group buttons">     <button type="button" class="btn remove"></button>     <button type="button" class="btn removeall"></button>   </div>   <select multiple="multiple"></select> </div></div>').insertBefore(this.element), this.elements = {
+        originalSelect: this.element,
+        box1: a(".box1", this.container),
+        box2: a(".box2", this.container),
+        filterInput1: a(".box1 .filter", this.container),
+        filterInput2: a(".box2 .filter", this.container),
+        filterClear1: a(".box1 .clear1", this.container),
+        filterClear2: a(".box2 .clear2", this.container),
+        label1: a(".box1 > label", this.container),
+        label2: a(".box2 > label", this.container),
+        info1: a(".box1 .info", this.container),
+        info2: a(".box2 .info", this.container),
+        select1: a(".box1 select", this.container),
+        select2: a(".box2 select", this.container),
+        moveButton: a(".box1 .move", this.container),
+        removeButton: a(".box2 .remove", this.container),
+        moveAllButton: a(".box1 .moveall", this.container),
+        removeAllButton: a(".box2 .removeall", this.container),
+        form: a(a(".box1 .filter", this.container)[0].form)
+      }, this.originalSelectName = this.element.attr("name") || "";
+      var e = "bootstrap-duallistbox-nonselected-list_" + this.originalSelectName,
+          t = "bootstrap-duallistbox-selected-list_" + this.originalSelectName;
+      return this.elements.select1.attr("id", e), this.elements.select2.attr("id", t), this.elements.label1.attr("for", e), this.elements.label2.attr("for", t), this.selectedElements = 0, this.sortIndex = 0, this.elementCount = 0, this.setFilterTextClear(this.settings.filterTextClear), this.setFilterPlaceHolder(this.settings.filterPlaceHolder), this.setMoveSelectedLabel(this.settings.moveSelectedLabel), this.setMoveAllLabel(this.settings.moveAllLabel), this.setRemoveSelectedLabel(this.settings.removeSelectedLabel), this.setRemoveAllLabel(this.settings.removeAllLabel), this.setMoveOnSelect(this.settings.moveOnSelect), this.setMoveOnDoubleClick(this.settings.moveOnDoubleClick), this.setPreserveSelectionOnMove(this.settings.preserveSelectionOnMove), this.setSelectedListLabel(this.settings.selectedListLabel), this.setNonSelectedListLabel(this.settings.nonSelectedListLabel), this.setHelperSelectNamePostfix(this.settings.helperSelectNamePostfix), this.setSelectOrMinimalHeight(this.settings.selectorMinimalHeight), o(this), this.setShowFilterInputs(this.settings.showFilterInputs), this.setNonSelectedFilter(this.settings.nonSelectedFilter), this.setSelectedFilter(this.settings.selectedFilter), this.setInfoText(this.settings.infoText), this.setInfoTextFiltered(this.settings.infoTextFiltered), this.setInfoTextEmpty(this.settings.infoTextEmpty), this.setFilterOnValues(this.settings.filterOnValues), this.setSortByInputOrder(this.settings.sortByInputOrder), this.setEventMoveOverride(this.settings.eventMoveOverride), this.setEventMoveAllOverride(this.settings.eventMoveAllOverride), this.setEventRemoveOverride(this.settings.eventRemoveOverride), this.setEventRemoveAllOverride(this.settings.eventRemoveAllOverride), this.setBtnClass(this.settings.btnClass), this.setBtnMoveText(this.settings.btnMoveText), this.setBtnRemoveText(this.settings.btnRemoveText), this.setBtnMoveAllText(this.settings.btnMoveAllText), this.setBtnRemoveAllText(this.settings.btnRemoveAllText), this.element.hide(), g(this), m(this), this.element;
+    },
+    setFilterTextClear: function setFilterTextClear(e, t) {
+      return this.settings.filterTextClear = e, this.elements.filterClear1.html(e), this.elements.filterClear2.html(e), t && m(this), this.element;
+    },
+    setFilterPlaceHolder: function setFilterPlaceHolder(e, t) {
+      return this.settings.filterPlaceHolder = e, this.elements.filterInput1.attr("placeholder", e), this.elements.filterInput2.attr("placeholder", e), t && m(this), this.element;
+    },
+    setMoveSelectedLabel: function setMoveSelectedLabel(e, t) {
+      return this.settings.moveSelectedLabel = e, this.elements.moveButton.attr("title", e), t && m(this), this.element;
+    },
+    setMoveAllLabel: function setMoveAllLabel(e, t) {
+      return this.settings.moveAllLabel = e, this.elements.moveAllButton.attr("title", e), t && m(this), this.element;
+    },
+    setRemoveSelectedLabel: function setRemoveSelectedLabel(e, t) {
+      return this.settings.removeSelectedLabel = e, this.elements.removeButton.attr("title", e), t && m(this), this.element;
+    },
+    setRemoveAllLabel: function setRemoveAllLabel(e, t) {
+      return this.settings.removeAllLabel = e, this.elements.removeAllButton.attr("title", e), t && m(this), this.element;
+    },
+    setMoveOnSelect: function setMoveOnSelect(e, t) {
+      if (s && (e = !0), this.settings.moveOnSelect = e, this.settings.moveOnSelect) {
+        this.container.addClass("moveonselect");
+        var n = this;
+        this.elements.select1.on("change", function () {
+          f(n);
+        }), this.elements.select2.on("change", function () {
+          p(n);
+        }), this.elements.moveButton.detach(), this.elements.removeButton.detach();
+      } else this.container.removeClass("moveonselect"), this.elements.select1.off("change"), this.elements.select2.off("change"), this.elements.moveButton.insertAfter(this.elements.moveAllButton), this.elements.removeButton.insertBefore(this.elements.removeAllButton);
+
+      return t && m(this), this.element;
+    },
+    setMoveOnDoubleClick: function setMoveOnDoubleClick(e, t) {
+      if (s && (e = !1), this.settings.moveOnDoubleClick = e, this.settings.moveOnDoubleClick) {
+        this.container.addClass("moveondoubleclick");
+        var n = this;
+        this.elements.select1.on("dblclick", function () {
+          f(n);
+        }), this.elements.select2.on("dblclick", function () {
+          p(n);
+        });
+      } else this.container.removeClass("moveondoubleclick"), this.elements.select1.off("dblclick"), this.elements.select2.off("dblclick");
+
+      return t && m(this), this.element;
+    },
+    setPreserveSelectionOnMove: function setPreserveSelectionOnMove(e, t) {
+      return s && (e = !1), this.settings.preserveSelectionOnMove = e, t && m(this), this.element;
+    },
+    setSelectedListLabel: function setSelectedListLabel(e, t) {
+      return (this.settings.selectedListLabel = e) ? this.elements.label2.show().html(e) : this.elements.label2.hide().html(e), t && m(this), this.element;
+    },
+    setNonSelectedListLabel: function setNonSelectedListLabel(e, t) {
+      return (this.settings.nonSelectedListLabel = e) ? this.elements.label1.show().html(e) : this.elements.label1.hide().html(e), t && m(this), this.element;
+    },
+    setHelperSelectNamePostfix: function setHelperSelectNamePostfix(e, t) {
+      return (this.settings.helperSelectNamePostfix = e) ? (this.elements.select1.attr("name", this.originalSelectName + e + "1"), this.elements.select2.attr("name", this.originalSelectName + e + "2")) : (this.elements.select1.removeAttr("name"), this.elements.select2.removeAttr("name")), t && m(this), this.element;
+    },
+    setSelectOrMinimalHeight: function setSelectOrMinimalHeight(e, t) {
+      this.settings.selectorMinimalHeight = e;
+      var n = this.element.height();
+      return this.element.height() < e && (n = e), this.elements.select1.height(n), this.elements.select2.height(n), t && m(this), this.element;
+    },
+    setShowFilterInputs: function setShowFilterInputs(e, t) {
+      return e ? (this.elements.filterInput1.show(), this.elements.filterInput2.show()) : (this.setNonSelectedFilter(""), this.setSelectedFilter(""), m(this), this.elements.filterInput1.hide(), this.elements.filterInput2.hide()), this.settings.showFilterInputs = e, t && m(this), this.element;
+    },
+    setNonSelectedFilter: function setNonSelectedFilter(e, t) {
+      if (this.settings.showFilterInputs) return this.settings.nonSelectedFilter = e, this.elements.filterInput1.val(e), t && m(this), this.element;
+    },
+    setSelectedFilter: function setSelectedFilter(e, t) {
+      if (this.settings.showFilterInputs) return this.settings.selectedFilter = e, this.elements.filterInput2.val(e), t && m(this), this.element;
+    },
+    setInfoText: function setInfoText(e, t) {
+      return (this.settings.infoText = e) ? (this.elements.info1.show(), this.elements.info2.show()) : (this.elements.info1.hide(), this.elements.info2.hide()), t && m(this), this.element;
+    },
+    setInfoTextFiltered: function setInfoTextFiltered(e, t) {
+      return this.settings.infoTextFiltered = e, t && m(this), this.element;
+    },
+    setInfoTextEmpty: function setInfoTextEmpty(e, t) {
+      return this.settings.infoTextEmpty = e, t && m(this), this.element;
+    },
+    setFilterOnValues: function setFilterOnValues(e, t) {
+      return this.settings.filterOnValues = e, t && m(this), this.element;
+    },
+    setSortByInputOrder: function setSortByInputOrder(e, t) {
+      return this.settings.sortByInputOrder = e, t && m(this), this.element;
+    },
+    setEventMoveOverride: function setEventMoveOverride(e, t) {
+      return this.settings.eventMoveOverride = e, t && m(this), this.element;
+    },
+    setEventMoveAllOverride: function setEventMoveAllOverride(e, t) {
+      return this.settings.eventMoveAllOverride = e, t && m(this), this.element;
+    },
+    setEventRemoveOverride: function setEventRemoveOverride(e, t) {
+      return this.settings.eventRemoveOverride = e, t && m(this), this.element;
+    },
+    setEventRemoveAllOverride: function setEventRemoveAllOverride(e, t) {
+      return this.settings.eventRemoveAllOverride = e, t && m(this), this.element;
+    },
+    setBtnClass: function setBtnClass(e, t) {
+      return this.settings.btnClass = e, this.elements.moveButton.attr("class", "btn move").addClass(e), this.elements.removeButton.attr("class", "btn remove").addClass(e), this.elements.moveAllButton.attr("class", "btn moveall").addClass(e), this.elements.removeAllButton.attr("class", "btn removeall").addClass(e), t && m(this), this.element;
+    },
+    setBtnMoveText: function setBtnMoveText(e, t) {
+      return this.settings.btnMoveText = e, this.elements.moveButton.html(e), t && m(this), this.element;
+    },
+    setBtnRemoveText: function setBtnRemoveText(e, t) {
+      return this.settings.btnMoveText = e, this.elements.removeButton.html(e), t && m(this), this.element;
+    },
+    setBtnMoveAllText: function setBtnMoveAllText(e, t) {
+      return this.settings.btnMoveText = e, this.elements.moveAllButton.html(e), t && m(this), this.element;
+    },
+    setBtnRemoveAllText: function setBtnRemoveAllText(e, t) {
+      return this.settings.btnMoveText = e, this.elements.removeAllButton.html(e), t && m(this), this.element;
+    },
+    getContainer: function getContainer() {
+      return this.container;
+    },
+    refresh: function refresh(e) {
+      var t;
+      o(this), e ? (t = this).elements.select1.find("option").each(function () {
+        t.element.find("option").data("_selected", !1);
+      }) : (d(this, 1), d(this, 2)), m(this);
+    },
+    destroy: function destroy() {
+      return this.container.remove(), this.element.show(), a.data(this, "plugin_" + i, null), this.element;
+    }
+  }, a.fn[i] = function (n) {
+    var t,
+        s = arguments;
+    return void 0 === n || "object" == _typeof(n) ? this.each(function () {
+      a(this).is("select") ? a.data(this, "plugin_" + i) || a.data(this, "plugin_" + i, new l(this, n)) : a(this).find("select").each(function (e, t) {
+        a(t).bootstrapDualListbox(n);
+      });
+    }) : "string" == typeof n && "_" !== n[0] && "init" !== n ? (this.each(function () {
+      var e = a.data(this, "plugin_" + i);
+      e instanceof l && "function" == typeof e[n] && (t = e[n].apply(e, Array.prototype.slice.call(s, 1)));
+    }), void 0 !== t ? t : this) : void 0;
+  };
+});
+
+/***/ }),
+
+/***/ "./resources/template/plugins/inputmask/min/jquery.inputmask.bundle.min.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/template/plugins/inputmask/min/jquery.inputmask.bundle.min.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+function _typeof2(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+/*!
+* jquery.inputmask.bundle.js
+* https://github.com/RobinHerbots/Inputmask
+* Copyright (c) 2010 - 2019 Robin Herbots
+* Licensed under the MIT license (http://www.opensource.org/licenses/mit-license.php)
+* Version: 4.0.9
+*/
+(function (modules) {
+  var installedModules = {};
+
+  function __webpack_require__(moduleId) {
+    if (installedModules[moduleId]) {
+      return installedModules[moduleId].exports;
+    }
+
+    var module = installedModules[moduleId] = {
+      i: moduleId,
+      l: false,
+      exports: {}
+    };
+    modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+    module.l = true;
+    return module.exports;
+  }
+
+  __webpack_require__.m = modules;
+  __webpack_require__.c = installedModules;
+
+  __webpack_require__.d = function (exports, name, getter) {
+    if (!__webpack_require__.o(exports, name)) {
+      Object.defineProperty(exports, name, {
+        enumerable: true,
+        get: getter
+      });
+    }
+  };
+
+  __webpack_require__.r = function (exports) {
+    if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
+      Object.defineProperty(exports, Symbol.toStringTag, {
+        value: "Module"
+      });
+    }
+
+    Object.defineProperty(exports, "__esModule", {
+      value: true
+    });
+  };
+
+  __webpack_require__.t = function (value, mode) {
+    if (mode & 1) value = __webpack_require__(value);
+    if (mode & 8) return value;
+    if (mode & 4 && _typeof2(value) === "object" && value && value.__esModule) return value;
+    var ns = Object.create(null);
+
+    __webpack_require__.r(ns);
+
+    Object.defineProperty(ns, "default", {
+      enumerable: true,
+      value: value
+    });
+    if (mode & 2 && typeof value != "string") for (var key in value) {
+      __webpack_require__.d(ns, key, function (key) {
+        return value[key];
+      }.bind(null, key));
+    }
+    return ns;
+  };
+
+  __webpack_require__.n = function (module) {
+    var getter = module && module.__esModule ? function getDefault() {
+      return module["default"];
+    } : function getModuleExports() {
+      return module;
+    };
+
+    __webpack_require__.d(getter, "a", getter);
+
+    return getter;
+  };
+
+  __webpack_require__.o = function (object, property) {
+    return Object.prototype.hasOwnProperty.call(object, property);
+  };
+
+  __webpack_require__.p = "";
+  return __webpack_require__(__webpack_require__.s = 0);
+})([function (module, exports, __webpack_require__) {
+  "use strict";
+
+  __webpack_require__(1);
+
+  __webpack_require__(6);
+
+  __webpack_require__(7);
+
+  var _inputmask = __webpack_require__(2);
+
+  var _inputmask2 = _interopRequireDefault(_inputmask);
+
+  var _inputmask3 = __webpack_require__(3);
+
+  var _inputmask4 = _interopRequireDefault(_inputmask3);
+
+  var _jquery = __webpack_require__(4);
+
+  var _jquery2 = _interopRequireDefault(_jquery);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      "default": obj
+    };
+  }
+
+  if (_inputmask4["default"] === _jquery2["default"]) {
+    __webpack_require__(8);
+  }
+
+  window.Inputmask = _inputmask2["default"];
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  (function (factory) {
+    if (true) {
+      !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+  })(function (Inputmask) {
+    Inputmask.extendDefinitions({
+      A: {
+        validator: "[A-Za-z\u0410-\u044F\u0401\u0451\xC0-\xFF\xB5]",
+        casing: "upper"
+      },
+      "&": {
+        validator: "[0-9A-Za-z\u0410-\u044F\u0401\u0451\xC0-\xFF\xB5]",
+        casing: "upper"
+      },
+      "#": {
+        validator: "[0-9A-Fa-f]",
+        casing: "upper"
+      }
+    });
+    Inputmask.extendAliases({
+      cssunit: {
+        regex: "[+-]?[0-9]+\\.?([0-9]+)?(px|em|rem|ex|%|in|cm|mm|pt|pc)"
+      },
+      url: {
+        regex: "(https?|ftp)//.*",
+        autoUnmask: false
+      },
+      ip: {
+        mask: "i[i[i]].i[i[i]].i[i[i]].i[i[i]]",
+        definitions: {
+          i: {
+            validator: function validator(chrs, maskset, pos, strict, opts) {
+              if (pos - 1 > -1 && maskset.buffer[pos - 1] !== ".") {
+                chrs = maskset.buffer[pos - 1] + chrs;
+
+                if (pos - 2 > -1 && maskset.buffer[pos - 2] !== ".") {
+                  chrs = maskset.buffer[pos - 2] + chrs;
+                } else chrs = "0" + chrs;
+              } else chrs = "00" + chrs;
+
+              return new RegExp("25[0-5]|2[0-4][0-9]|[01][0-9][0-9]").test(chrs);
+            }
+          }
+        },
+        onUnMask: function onUnMask(maskedValue, unmaskedValue, opts) {
+          return maskedValue;
+        },
+        inputmode: "numeric"
+      },
+      email: {
+        mask: "*{1,64}[.*{1,64}][.*{1,64}][.*{1,63}]@-{1,63}.-{1,63}[.-{1,63}][.-{1,63}]",
+        greedy: false,
+        casing: "lower",
+        onBeforePaste: function onBeforePaste(pastedValue, opts) {
+          pastedValue = pastedValue.toLowerCase();
+          return pastedValue.replace("mailto:", "");
+        },
+        definitions: {
+          "*": {
+            validator: "[0-9\uFF11-\uFF19A-Za-z\u0410-\u044F\u0401\u0451\xC0-\xFF\xB5!#$%&'*+/=?^_`{|}~-]"
+          },
+          "-": {
+            validator: "[0-9A-Za-z-]"
+          }
+        },
+        onUnMask: function onUnMask(maskedValue, unmaskedValue, opts) {
+          return maskedValue;
+        },
+        inputmode: "email"
+      },
+      mac: {
+        mask: "##:##:##:##:##:##"
+      },
+      vin: {
+        mask: "V{13}9{4}",
+        definitions: {
+          V: {
+            validator: "[A-HJ-NPR-Za-hj-npr-z\\d]",
+            casing: "upper"
+          }
+        },
+        clearIncomplete: true,
+        autoUnmask: true
+      }
+    });
+    return Inputmask;
+  });
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  (function (factory) {
+    if (true) {
+      !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(3), __webpack_require__(5)], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+  })(function ($, window, undefined) {
+    var document = window.document,
+        ua = navigator.userAgent,
+        ie = ua.indexOf("MSIE ") > 0 || ua.indexOf("Trident/") > 0,
+        mobile = isInputEventSupported("touchstart"),
+        iemobile = /iemobile/i.test(ua),
+        iphone = /iphone/i.test(ua) && !iemobile;
+
+    function Inputmask(alias, options, internal) {
+      if (!(this instanceof Inputmask)) {
+        return new Inputmask(alias, options, internal);
+      }
+
+      this.el = undefined;
+      this.events = {};
+      this.maskset = undefined;
+      this.refreshValue = false;
+
+      if (internal !== true) {
+        if ($.isPlainObject(alias)) {
+          options = alias;
+        } else {
+          options = options || {};
+          if (alias) options.alias = alias;
+        }
+
+        this.opts = $.extend(true, {}, this.defaults, options);
+        this.noMasksCache = options && options.definitions !== undefined;
+        this.userOptions = options || {};
+        this.isRTL = this.opts.numericInput;
+        resolveAlias(this.opts.alias, options, this.opts);
+      }
+    }
+
+    Inputmask.prototype = {
+      dataAttribute: "data-inputmask",
+      defaults: {
+        placeholder: "_",
+        optionalmarker: ["[", "]"],
+        quantifiermarker: ["{", "}"],
+        groupmarker: ["(", ")"],
+        alternatormarker: "|",
+        escapeChar: "\\",
+        mask: null,
+        regex: null,
+        oncomplete: $.noop,
+        onincomplete: $.noop,
+        oncleared: $.noop,
+        repeat: 0,
+        greedy: false,
+        autoUnmask: false,
+        removeMaskOnSubmit: false,
+        clearMaskOnLostFocus: true,
+        insertMode: true,
+        clearIncomplete: false,
+        alias: null,
+        onKeyDown: $.noop,
+        onBeforeMask: null,
+        onBeforePaste: function onBeforePaste(pastedValue, opts) {
+          return $.isFunction(opts.onBeforeMask) ? opts.onBeforeMask.call(this, pastedValue, opts) : pastedValue;
+        },
+        onBeforeWrite: null,
+        onUnMask: null,
+        showMaskOnFocus: true,
+        showMaskOnHover: true,
+        onKeyValidation: $.noop,
+        skipOptionalPartCharacter: " ",
+        numericInput: false,
+        rightAlign: false,
+        undoOnEscape: true,
+        radixPoint: "",
+        _radixDance: false,
+        groupSeparator: "",
+        keepStatic: null,
+        positionCaretOnTab: true,
+        tabThrough: false,
+        supportsInputType: ["text", "tel", "url", "password", "search"],
+        ignorables: [8, 9, 13, 19, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 0, 229],
+        isComplete: null,
+        preValidation: null,
+        postValidation: null,
+        staticDefinitionSymbol: undefined,
+        jitMasking: false,
+        nullable: true,
+        inputEventOnly: false,
+        noValuePatching: false,
+        positionCaretOnClick: "lvp",
+        casing: null,
+        inputmode: "verbatim",
+        colorMask: false,
+        disablePredictiveText: false,
+        importDataAttributes: true,
+        shiftPositions: true
+      },
+      definitions: {
+        9: {
+          validator: "[0-9\uFF11-\uFF19]",
+          definitionSymbol: "*"
+        },
+        a: {
+          validator: "[A-Za-z\u0410-\u044F\u0401\u0451\xC0-\xFF\xB5]",
+          definitionSymbol: "*"
+        },
+        "*": {
+          validator: "[0-9\uFF11-\uFF19A-Za-z\u0410-\u044F\u0401\u0451\xC0-\xFF\xB5]"
+        }
+      },
+      aliases: {},
+      masksCache: {},
+      mask: function mask(elems) {
+        var that = this;
+
+        function importAttributeOptions(npt, opts, userOptions, dataAttribute) {
+          if (opts.importDataAttributes === true) {
+            var attrOptions = npt.getAttribute(dataAttribute),
+                option,
+                dataoptions,
+                optionData,
+                p;
+
+            var importOption = function importOption(option, optionData) {
+              optionData = optionData !== undefined ? optionData : npt.getAttribute(dataAttribute + "-" + option);
+
+              if (optionData !== null) {
+                if (typeof optionData === "string") {
+                  if (option.indexOf("on") === 0) optionData = window[optionData];else if (optionData === "false") optionData = false;else if (optionData === "true") optionData = true;
+                }
+
+                userOptions[option] = optionData;
+              }
+            };
+
+            if (attrOptions && attrOptions !== "") {
+              attrOptions = attrOptions.replace(/'/g, '"');
+              dataoptions = JSON.parse("{" + attrOptions + "}");
+            }
+
+            if (dataoptions) {
+              optionData = undefined;
+
+              for (p in dataoptions) {
+                if (p.toLowerCase() === "alias") {
+                  optionData = dataoptions[p];
+                  break;
+                }
+              }
+            }
+
+            importOption("alias", optionData);
+
+            if (userOptions.alias) {
+              resolveAlias(userOptions.alias, userOptions, opts);
+            }
+
+            for (option in opts) {
+              if (dataoptions) {
+                optionData = undefined;
+
+                for (p in dataoptions) {
+                  if (p.toLowerCase() === option.toLowerCase()) {
+                    optionData = dataoptions[p];
+                    break;
+                  }
+                }
+              }
+
+              importOption(option, optionData);
+            }
+          }
+
+          $.extend(true, opts, userOptions);
+
+          if (npt.dir === "rtl" || opts.rightAlign) {
+            npt.style.textAlign = "right";
+          }
+
+          if (npt.dir === "rtl" || opts.numericInput) {
+            npt.dir = "ltr";
+            npt.removeAttribute("dir");
+            opts.isRTL = true;
+          }
+
+          return Object.keys(userOptions).length;
+        }
+
+        if (typeof elems === "string") {
+          elems = document.getElementById(elems) || document.querySelectorAll(elems);
+        }
+
+        elems = elems.nodeName ? [elems] : elems;
+        $.each(elems, function (ndx, el) {
+          var scopedOpts = $.extend(true, {}, that.opts);
+
+          if (importAttributeOptions(el, scopedOpts, $.extend(true, {}, that.userOptions), that.dataAttribute)) {
+            var maskset = generateMaskSet(scopedOpts, that.noMasksCache);
+
+            if (maskset !== undefined) {
+              if (el.inputmask !== undefined) {
+                el.inputmask.opts.autoUnmask = true;
+                el.inputmask.remove();
+              }
+
+              el.inputmask = new Inputmask(undefined, undefined, true);
+              el.inputmask.opts = scopedOpts;
+              el.inputmask.noMasksCache = that.noMasksCache;
+              el.inputmask.userOptions = $.extend(true, {}, that.userOptions);
+              el.inputmask.isRTL = scopedOpts.isRTL || scopedOpts.numericInput;
+              el.inputmask.el = el;
+              el.inputmask.maskset = maskset;
+              $.data(el, "_inputmask_opts", scopedOpts);
+              maskScope.call(el.inputmask, {
+                action: "mask"
+              });
+            }
+          }
+        });
+        return elems && elems[0] ? elems[0].inputmask || this : this;
+      },
+      option: function option(options, noremask) {
+        if (typeof options === "string") {
+          return this.opts[options];
+        } else if ((typeof options === "undefined" ? "undefined" : _typeof(options)) === "object") {
+          $.extend(this.userOptions, options);
+
+          if (this.el && noremask !== true) {
+            this.mask(this.el);
+          }
+
+          return this;
+        }
+      },
+      unmaskedvalue: function unmaskedvalue(value) {
+        this.maskset = this.maskset || generateMaskSet(this.opts, this.noMasksCache);
+        return maskScope.call(this, {
+          action: "unmaskedvalue",
+          value: value
+        });
+      },
+      remove: function remove() {
+        return maskScope.call(this, {
+          action: "remove"
+        });
+      },
+      getemptymask: function getemptymask() {
+        this.maskset = this.maskset || generateMaskSet(this.opts, this.noMasksCache);
+        return maskScope.call(this, {
+          action: "getemptymask"
+        });
+      },
+      hasMaskedValue: function hasMaskedValue() {
+        return !this.opts.autoUnmask;
+      },
+      isComplete: function isComplete() {
+        this.maskset = this.maskset || generateMaskSet(this.opts, this.noMasksCache);
+        return maskScope.call(this, {
+          action: "isComplete"
+        });
+      },
+      getmetadata: function getmetadata() {
+        this.maskset = this.maskset || generateMaskSet(this.opts, this.noMasksCache);
+        return maskScope.call(this, {
+          action: "getmetadata"
+        });
+      },
+      isValid: function isValid(value) {
+        this.maskset = this.maskset || generateMaskSet(this.opts, this.noMasksCache);
+        return maskScope.call(this, {
+          action: "isValid",
+          value: value
+        });
+      },
+      format: function format(value, metadata) {
+        this.maskset = this.maskset || generateMaskSet(this.opts, this.noMasksCache);
+        return maskScope.call(this, {
+          action: "format",
+          value: value,
+          metadata: metadata
+        });
+      },
+      setValue: function setValue(value) {
+        if (this.el) {
+          $(this.el).trigger("setvalue", [value]);
+        }
+      },
+      analyseMask: function analyseMask(mask, regexMask, opts) {
+        var tokenizer = /(?:[?*+]|\{[0-9\+\*]+(?:,[0-9\+\*]*)?(?:\|[0-9\+\*]*)?\})|[^.?*+^${[]()|\\]+|./g,
+            regexTokenizer = /\[\^?]?(?:[^\\\]]+|\\[\S\s]?)*]?|\\(?:0(?:[0-3][0-7]{0,2}|[4-7][0-7]?)?|[1-9][0-9]*|x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|c[A-Za-z]|[\S\s]?)|\((?:\?[:=!]?)?|(?:[?*+]|\{[0-9]+(?:,[0-9]*)?\})\??|[^.?*+^${[()|\\]+|./g,
+            escaped = false,
+            currentToken = new MaskToken(),
+            match,
+            m,
+            openenings = [],
+            maskTokens = [],
+            openingToken,
+            currentOpeningToken,
+            alternator,
+            lastMatch,
+            groupToken;
+
+        function MaskToken(isGroup, isOptional, isQuantifier, isAlternator) {
+          this.matches = [];
+          this.openGroup = isGroup || false;
+          this.alternatorGroup = false;
+          this.isGroup = isGroup || false;
+          this.isOptional = isOptional || false;
+          this.isQuantifier = isQuantifier || false;
+          this.isAlternator = isAlternator || false;
+          this.quantifier = {
+            min: 1,
+            max: 1
+          };
+        }
+
+        function insertTestDefinition(mtoken, element, position) {
+          position = position !== undefined ? position : mtoken.matches.length;
+          var prevMatch = mtoken.matches[position - 1];
+
+          if (regexMask) {
+            if (element.indexOf("[") === 0 || escaped && /\\d|\\s|\\w]/i.test(element) || element === ".") {
+              mtoken.matches.splice(position++, 0, {
+                fn: new RegExp(element, opts.casing ? "i" : ""),
+                optionality: false,
+                newBlockMarker: prevMatch === undefined ? "master" : prevMatch.def !== element,
+                casing: null,
+                def: element,
+                placeholder: undefined,
+                nativeDef: element
+              });
+            } else {
+              if (escaped) element = element[element.length - 1];
+              $.each(element.split(""), function (ndx, lmnt) {
+                prevMatch = mtoken.matches[position - 1];
+                mtoken.matches.splice(position++, 0, {
+                  fn: null,
+                  optionality: false,
+                  newBlockMarker: prevMatch === undefined ? "master" : prevMatch.def !== lmnt && prevMatch.fn !== null,
+                  casing: null,
+                  def: opts.staticDefinitionSymbol || lmnt,
+                  placeholder: opts.staticDefinitionSymbol !== undefined ? lmnt : undefined,
+                  nativeDef: (escaped ? "'" : "") + lmnt
+                });
+              });
+            }
+
+            escaped = false;
+          } else {
+            var maskdef = (opts.definitions ? opts.definitions[element] : undefined) || Inputmask.prototype.definitions[element];
+
+            if (maskdef && !escaped) {
+              mtoken.matches.splice(position++, 0, {
+                fn: maskdef.validator ? typeof maskdef.validator == "string" ? new RegExp(maskdef.validator, opts.casing ? "i" : "") : new function () {
+                  this.test = maskdef.validator;
+                }() : new RegExp("."),
+                optionality: false,
+                newBlockMarker: prevMatch === undefined ? "master" : prevMatch.def !== (maskdef.definitionSymbol || element),
+                casing: maskdef.casing,
+                def: maskdef.definitionSymbol || element,
+                placeholder: maskdef.placeholder,
+                nativeDef: element
+              });
+            } else {
+              mtoken.matches.splice(position++, 0, {
+                fn: null,
+                optionality: false,
+                newBlockMarker: prevMatch === undefined ? "master" : prevMatch.def !== element && prevMatch.fn !== null,
+                casing: null,
+                def: opts.staticDefinitionSymbol || element,
+                placeholder: opts.staticDefinitionSymbol !== undefined ? element : undefined,
+                nativeDef: (escaped ? "'" : "") + element
+              });
+              escaped = false;
+            }
+          }
+        }
+
+        function verifyGroupMarker(maskToken) {
+          if (maskToken && maskToken.matches) {
+            $.each(maskToken.matches, function (ndx, token) {
+              var nextToken = maskToken.matches[ndx + 1];
+
+              if ((nextToken === undefined || nextToken.matches === undefined || nextToken.isQuantifier === false) && token && token.isGroup) {
+                token.isGroup = false;
+
+                if (!regexMask) {
+                  insertTestDefinition(token, opts.groupmarker[0], 0);
+
+                  if (token.openGroup !== true) {
+                    insertTestDefinition(token, opts.groupmarker[1]);
+                  }
+                }
+              }
+
+              verifyGroupMarker(token);
+            });
+          }
+        }
+
+        function defaultCase() {
+          if (openenings.length > 0) {
+            currentOpeningToken = openenings[openenings.length - 1];
+            insertTestDefinition(currentOpeningToken, m);
+
+            if (currentOpeningToken.isAlternator) {
+              alternator = openenings.pop();
+
+              for (var mndx = 0; mndx < alternator.matches.length; mndx++) {
+                if (alternator.matches[mndx].isGroup) alternator.matches[mndx].isGroup = false;
+              }
+
+              if (openenings.length > 0) {
+                currentOpeningToken = openenings[openenings.length - 1];
+                currentOpeningToken.matches.push(alternator);
+              } else {
+                currentToken.matches.push(alternator);
+              }
+            }
+          } else {
+            insertTestDefinition(currentToken, m);
+          }
+        }
+
+        function reverseTokens(maskToken) {
+          function reverseStatic(st) {
+            if (st === opts.optionalmarker[0]) st = opts.optionalmarker[1];else if (st === opts.optionalmarker[1]) st = opts.optionalmarker[0];else if (st === opts.groupmarker[0]) st = opts.groupmarker[1];else if (st === opts.groupmarker[1]) st = opts.groupmarker[0];
+            return st;
+          }
+
+          maskToken.matches = maskToken.matches.reverse();
+
+          for (var match in maskToken.matches) {
+            if (maskToken.matches.hasOwnProperty(match)) {
+              var intMatch = parseInt(match);
+
+              if (maskToken.matches[match].isQuantifier && maskToken.matches[intMatch + 1] && maskToken.matches[intMatch + 1].isGroup) {
+                var qt = maskToken.matches[match];
+                maskToken.matches.splice(match, 1);
+                maskToken.matches.splice(intMatch + 1, 0, qt);
+              }
+
+              if (maskToken.matches[match].matches !== undefined) {
+                maskToken.matches[match] = reverseTokens(maskToken.matches[match]);
+              } else {
+                maskToken.matches[match] = reverseStatic(maskToken.matches[match]);
+              }
+            }
+          }
+
+          return maskToken;
+        }
+
+        function groupify(matches) {
+          var groupToken = new MaskToken(true);
+          groupToken.openGroup = false;
+          groupToken.matches = matches;
+          return groupToken;
+        }
+
+        if (regexMask) {
+          opts.optionalmarker[0] = undefined;
+          opts.optionalmarker[1] = undefined;
+        }
+
+        while (match = regexMask ? regexTokenizer.exec(mask) : tokenizer.exec(mask)) {
+          m = match[0];
+
+          if (regexMask) {
+            switch (m.charAt(0)) {
+              case "?":
+                m = "{0,1}";
+                break;
+
+              case "+":
+              case "*":
+                m = "{" + m + "}";
+                break;
+            }
+          }
+
+          if (escaped) {
+            defaultCase();
+            continue;
+          }
+
+          switch (m.charAt(0)) {
+            case "(?=":
+              break;
+
+            case "(?!":
+              break;
+
+            case "(?<=":
+              break;
+
+            case "(?<!":
+              break;
+
+            case opts.escapeChar:
+              escaped = true;
+
+              if (regexMask) {
+                defaultCase();
+              }
+
+              break;
+
+            case opts.optionalmarker[1]:
+            case opts.groupmarker[1]:
+              openingToken = openenings.pop();
+              openingToken.openGroup = false;
+
+              if (openingToken !== undefined) {
+                if (openenings.length > 0) {
+                  currentOpeningToken = openenings[openenings.length - 1];
+                  currentOpeningToken.matches.push(openingToken);
+
+                  if (currentOpeningToken.isAlternator) {
+                    alternator = openenings.pop();
+
+                    for (var mndx = 0; mndx < alternator.matches.length; mndx++) {
+                      alternator.matches[mndx].isGroup = false;
+                      alternator.matches[mndx].alternatorGroup = false;
+                    }
+
+                    if (openenings.length > 0) {
+                      currentOpeningToken = openenings[openenings.length - 1];
+                      currentOpeningToken.matches.push(alternator);
+                    } else {
+                      currentToken.matches.push(alternator);
+                    }
+                  }
+                } else {
+                  currentToken.matches.push(openingToken);
+                }
+              } else defaultCase();
+
+              break;
+
+            case opts.optionalmarker[0]:
+              openenings.push(new MaskToken(false, true));
+              break;
+
+            case opts.groupmarker[0]:
+              openenings.push(new MaskToken(true));
+              break;
+
+            case opts.quantifiermarker[0]:
+              var quantifier = new MaskToken(false, false, true);
+              m = m.replace(/[{}]/g, "");
+              var mqj = m.split("|"),
+                  mq = mqj[0].split(","),
+                  mq0 = isNaN(mq[0]) ? mq[0] : parseInt(mq[0]),
+                  mq1 = mq.length === 1 ? mq0 : isNaN(mq[1]) ? mq[1] : parseInt(mq[1]);
+
+              if (mq0 === "*" || mq0 === "+") {
+                mq0 = mq1 === "*" ? 0 : 1;
+              }
+
+              quantifier.quantifier = {
+                min: mq0,
+                max: mq1,
+                jit: mqj[1]
+              };
+              var matches = openenings.length > 0 ? openenings[openenings.length - 1].matches : currentToken.matches;
+              match = matches.pop();
+
+              if (match.isAlternator) {
+                matches.push(match);
+                matches = match.matches;
+                var groupToken = new MaskToken(true);
+                var tmpMatch = matches.pop();
+                matches.push(groupToken);
+                matches = groupToken.matches;
+                match = tmpMatch;
+              }
+
+              if (!match.isGroup) {
+                match = groupify([match]);
+              }
+
+              matches.push(match);
+              matches.push(quantifier);
+              break;
+
+            case opts.alternatormarker:
+              var groupQuantifier = function groupQuantifier(matches) {
+                var lastMatch = matches.pop();
+
+                if (lastMatch.isQuantifier) {
+                  lastMatch = groupify([matches.pop(), lastMatch]);
+                }
+
+                return lastMatch;
+              };
+
+              if (openenings.length > 0) {
+                currentOpeningToken = openenings[openenings.length - 1];
+                var subToken = currentOpeningToken.matches[currentOpeningToken.matches.length - 1];
+
+                if (currentOpeningToken.openGroup && (subToken.matches === undefined || subToken.isGroup === false && subToken.isAlternator === false)) {
+                  lastMatch = openenings.pop();
+                } else {
+                  lastMatch = groupQuantifier(currentOpeningToken.matches);
+                }
+              } else {
+                lastMatch = groupQuantifier(currentToken.matches);
+              }
+
+              if (lastMatch.isAlternator) {
+                openenings.push(lastMatch);
+              } else {
+                if (lastMatch.alternatorGroup) {
+                  alternator = openenings.pop();
+                  lastMatch.alternatorGroup = false;
+                } else {
+                  alternator = new MaskToken(false, false, false, true);
+                }
+
+                alternator.matches.push(lastMatch);
+                openenings.push(alternator);
+
+                if (lastMatch.openGroup) {
+                  lastMatch.openGroup = false;
+                  var alternatorGroup = new MaskToken(true);
+                  alternatorGroup.alternatorGroup = true;
+                  openenings.push(alternatorGroup);
+                }
+              }
+
+              break;
+
+            default:
+              defaultCase();
+          }
+        }
+
+        while (openenings.length > 0) {
+          openingToken = openenings.pop();
+          currentToken.matches.push(openingToken);
+        }
+
+        if (currentToken.matches.length > 0) {
+          verifyGroupMarker(currentToken);
+          maskTokens.push(currentToken);
+        }
+
+        if (opts.numericInput || opts.isRTL) {
+          reverseTokens(maskTokens[0]);
+        }
+
+        return maskTokens;
+      },
+      positionColorMask: function positionColorMask(input, template) {
+        input.style.left = template.offsetLeft + "px";
+      }
+    };
+
+    Inputmask.extendDefaults = function (options) {
+      $.extend(true, Inputmask.prototype.defaults, options);
+    };
+
+    Inputmask.extendDefinitions = function (definition) {
+      $.extend(true, Inputmask.prototype.definitions, definition);
+    };
+
+    Inputmask.extendAliases = function (alias) {
+      $.extend(true, Inputmask.prototype.aliases, alias);
+    };
+
+    Inputmask.format = function (value, options, metadata) {
+      return Inputmask(options).format(value, metadata);
+    };
+
+    Inputmask.unmask = function (value, options) {
+      return Inputmask(options).unmaskedvalue(value);
+    };
+
+    Inputmask.isValid = function (value, options) {
+      return Inputmask(options).isValid(value);
+    };
+
+    Inputmask.remove = function (elems) {
+      if (typeof elems === "string") {
+        elems = document.getElementById(elems) || document.querySelectorAll(elems);
+      }
+
+      elems = elems.nodeName ? [elems] : elems;
+      $.each(elems, function (ndx, el) {
+        if (el.inputmask) el.inputmask.remove();
+      });
+    };
+
+    Inputmask.setValue = function (elems, value) {
+      if (typeof elems === "string") {
+        elems = document.getElementById(elems) || document.querySelectorAll(elems);
+      }
+
+      elems = elems.nodeName ? [elems] : elems;
+      $.each(elems, function (ndx, el) {
+        if (el.inputmask) el.inputmask.setValue(value);else $(el).trigger("setvalue", [value]);
+      });
+    };
+
+    Inputmask.escapeRegex = function (str) {
+      var specials = ["/", ".", "*", "+", "?", "|", "(", ")", "[", "]", "{", "}", "\\", "$", "^"];
+      return str.replace(new RegExp("(\\" + specials.join("|\\") + ")", "gim"), "\\$1");
+    };
+
+    Inputmask.keyCode = {
+      BACKSPACE: 8,
+      BACKSPACE_SAFARI: 127,
+      DELETE: 46,
+      DOWN: 40,
+      END: 35,
+      ENTER: 13,
+      ESCAPE: 27,
+      HOME: 36,
+      INSERT: 45,
+      LEFT: 37,
+      PAGE_DOWN: 34,
+      PAGE_UP: 33,
+      RIGHT: 39,
+      SPACE: 32,
+      TAB: 9,
+      UP: 38,
+      X: 88,
+      CONTROL: 17
+    };
+    Inputmask.dependencyLib = $;
+
+    function resolveAlias(aliasStr, options, opts) {
+      var aliasDefinition = Inputmask.prototype.aliases[aliasStr];
+
+      if (aliasDefinition) {
+        if (aliasDefinition.alias) resolveAlias(aliasDefinition.alias, undefined, opts);
+        $.extend(true, opts, aliasDefinition);
+        $.extend(true, opts, options);
+        return true;
+      } else if (opts.mask === null) {
+        opts.mask = aliasStr;
+      }
+
+      return false;
+    }
+
+    function generateMaskSet(opts, nocache) {
+      function generateMask(mask, metadata, opts) {
+        var regexMask = false;
+
+        if (mask === null || mask === "") {
+          regexMask = opts.regex !== null;
+
+          if (regexMask) {
+            mask = opts.regex;
+            mask = mask.replace(/^(\^)(.*)(\$)$/, "$2");
+          } else {
+            regexMask = true;
+            mask = ".*";
+          }
+        }
+
+        if (mask.length === 1 && opts.greedy === false && opts.repeat !== 0) {
+          opts.placeholder = "";
+        }
+
+        if (opts.repeat > 0 || opts.repeat === "*" || opts.repeat === "+") {
+          var repeatStart = opts.repeat === "*" ? 0 : opts.repeat === "+" ? 1 : opts.repeat;
+          mask = opts.groupmarker[0] + mask + opts.groupmarker[1] + opts.quantifiermarker[0] + repeatStart + "," + opts.repeat + opts.quantifiermarker[1];
+        }
+
+        var masksetDefinition,
+            maskdefKey = regexMask ? "regex_" + opts.regex : opts.numericInput ? mask.split("").reverse().join("") : mask;
+
+        if (Inputmask.prototype.masksCache[maskdefKey] === undefined || nocache === true) {
+          masksetDefinition = {
+            mask: mask,
+            maskToken: Inputmask.prototype.analyseMask(mask, regexMask, opts),
+            validPositions: {},
+            _buffer: undefined,
+            buffer: undefined,
+            tests: {},
+            excludes: {},
+            metadata: metadata,
+            maskLength: undefined,
+            jitOffset: {}
+          };
+
+          if (nocache !== true) {
+            Inputmask.prototype.masksCache[maskdefKey] = masksetDefinition;
+            masksetDefinition = $.extend(true, {}, Inputmask.prototype.masksCache[maskdefKey]);
+          }
+        } else masksetDefinition = $.extend(true, {}, Inputmask.prototype.masksCache[maskdefKey]);
+
+        return masksetDefinition;
+      }
+
+      var ms;
+
+      if ($.isFunction(opts.mask)) {
+        opts.mask = opts.mask(opts);
+      }
+
+      if ($.isArray(opts.mask)) {
+        if (opts.mask.length > 1) {
+          if (opts.keepStatic === null) {
+            opts.keepStatic = "auto";
+
+            for (var i = 0; i < opts.mask.length; i++) {
+              if (opts.mask[i].charAt(0) !== opts.mask[0].charAt(0)) {
+                opts.keepStatic = true;
+                break;
+              }
+            }
+          }
+
+          var altMask = opts.groupmarker[0];
+          $.each(opts.isRTL ? opts.mask.reverse() : opts.mask, function (ndx, msk) {
+            if (altMask.length > 1) {
+              altMask += opts.groupmarker[1] + opts.alternatormarker + opts.groupmarker[0];
+            }
+
+            if (msk.mask !== undefined && !$.isFunction(msk.mask)) {
+              altMask += msk.mask;
+            } else {
+              altMask += msk;
+            }
+          });
+          altMask += opts.groupmarker[1];
+          return generateMask(altMask, opts.mask, opts);
+        } else opts.mask = opts.mask.pop();
+      }
+
+      if (opts.mask && opts.mask.mask !== undefined && !$.isFunction(opts.mask.mask)) {
+        ms = generateMask(opts.mask.mask, opts.mask, opts);
+      } else {
+        ms = generateMask(opts.mask, opts.mask, opts);
+      }
+
+      return ms;
+    }
+
+    function isInputEventSupported(eventName) {
+      var el = document.createElement("input"),
+          evName = "on" + eventName,
+          isSupported = (evName in el);
+
+      if (!isSupported) {
+        el.setAttribute(evName, "return;");
+        isSupported = typeof el[evName] === "function";
+      }
+
+      el = null;
+      return isSupported;
+    }
+
+    function maskScope(actionObj, maskset, opts) {
+      maskset = maskset || this.maskset;
+      opts = opts || this.opts;
+      var inputmask = this,
+          el = this.el,
+          isRTL = this.isRTL,
+          undoValue,
+          $el,
+          skipKeyPressEvent = false,
+          skipInputEvent = false,
+          ignorable = false,
+          maxLength,
+          mouseEnter = false,
+          colorMask,
+          originalPlaceholder;
+
+      var getMaskTemplate = function getMaskTemplate(baseOnInput, minimalPos, includeMode, noJit, clearOptionalTail) {
+        var greedy = opts.greedy;
+        if (clearOptionalTail) opts.greedy = false;
+        minimalPos = minimalPos || 0;
+        var maskTemplate = [],
+            ndxIntlzr,
+            pos = 0,
+            test,
+            testPos,
+            lvp = getLastValidPosition();
+
+        do {
+          if (baseOnInput === true && getMaskSet().validPositions[pos]) {
+            testPos = clearOptionalTail && getMaskSet().validPositions[pos].match.optionality === true && getMaskSet().validPositions[pos + 1] === undefined && (getMaskSet().validPositions[pos].generatedInput === true || getMaskSet().validPositions[pos].input == opts.skipOptionalPartCharacter && pos > 0) ? determineTestTemplate(pos, getTests(pos, ndxIntlzr, pos - 1)) : getMaskSet().validPositions[pos];
+            test = testPos.match;
+            ndxIntlzr = testPos.locator.slice();
+            maskTemplate.push(includeMode === true ? testPos.input : includeMode === false ? test.nativeDef : getPlaceholder(pos, test));
+          } else {
+            testPos = getTestTemplate(pos, ndxIntlzr, pos - 1);
+            test = testPos.match;
+            ndxIntlzr = testPos.locator.slice();
+            var jitMasking = noJit === true ? false : opts.jitMasking !== false ? opts.jitMasking : test.jit;
+
+            if (jitMasking === false || jitMasking === undefined || typeof jitMasking === "number" && isFinite(jitMasking) && jitMasking > pos) {
+              maskTemplate.push(includeMode === false ? test.nativeDef : getPlaceholder(pos, test));
+            }
+          }
+
+          if (opts.keepStatic === "auto") {
+            if (test.newBlockMarker && test.fn !== null) {
+              opts.keepStatic = pos - 1;
+            }
+          }
+
+          pos++;
+        } while ((maxLength === undefined || pos < maxLength) && (test.fn !== null || test.def !== "") || minimalPos > pos);
+
+        if (maskTemplate[maskTemplate.length - 1] === "") {
+          maskTemplate.pop();
+        }
+
+        if (includeMode !== false || getMaskSet().maskLength === undefined) getMaskSet().maskLength = pos - 1;
+        opts.greedy = greedy;
+        return maskTemplate;
+      };
+
+      function getMaskSet() {
+        return maskset;
+      }
+
+      function resetMaskSet(soft) {
+        var maskset = getMaskSet();
+        maskset.buffer = undefined;
+
+        if (soft !== true) {
+          maskset.validPositions = {};
+          maskset.p = 0;
+        }
+      }
+
+      function getLastValidPosition(closestTo, strict, validPositions) {
+        var before = -1,
+            after = -1,
+            valids = validPositions || getMaskSet().validPositions;
+        if (closestTo === undefined) closestTo = -1;
+
+        for (var posNdx in valids) {
+          var psNdx = parseInt(posNdx);
+
+          if (valids[psNdx] && (strict || valids[psNdx].generatedInput !== true)) {
+            if (psNdx <= closestTo) before = psNdx;
+            if (psNdx >= closestTo) after = psNdx;
+          }
+        }
+
+        return before === -1 || before == closestTo ? after : after == -1 ? before : closestTo - before < after - closestTo ? before : after;
+      }
+
+      function getDecisionTaker(tst) {
+        var decisionTaker = tst.locator[tst.alternation];
+
+        if (typeof decisionTaker == "string" && decisionTaker.length > 0) {
+          decisionTaker = decisionTaker.split(",")[0];
+        }
+
+        return decisionTaker !== undefined ? decisionTaker.toString() : "";
+      }
+
+      function getLocator(tst, align) {
+        var locator = (tst.alternation != undefined ? tst.mloc[getDecisionTaker(tst)] : tst.locator).join("");
+        if (locator !== "") while (locator.length < align) {
+          locator += "0";
+        }
+        return locator;
+      }
+
+      function determineTestTemplate(pos, tests) {
+        pos = pos > 0 ? pos - 1 : 0;
+        var altTest = getTest(pos),
+            targetLocator = getLocator(altTest),
+            tstLocator,
+            closest,
+            bestMatch;
+
+        for (var ndx = 0; ndx < tests.length; ndx++) {
+          var tst = tests[ndx];
+          tstLocator = getLocator(tst, targetLocator.length);
+          var distance = Math.abs(tstLocator - targetLocator);
+
+          if (closest === undefined || tstLocator !== "" && distance < closest || bestMatch && !opts.greedy && bestMatch.match.optionality && bestMatch.match.newBlockMarker === "master" && (!tst.match.optionality || !tst.match.newBlockMarker) || bestMatch && bestMatch.match.optionalQuantifier && !tst.match.optionalQuantifier) {
+            closest = distance;
+            bestMatch = tst;
+          }
+        }
+
+        return bestMatch;
+      }
+
+      function getTestTemplate(pos, ndxIntlzr, tstPs) {
+        return getMaskSet().validPositions[pos] || determineTestTemplate(pos, getTests(pos, ndxIntlzr ? ndxIntlzr.slice() : ndxIntlzr, tstPs));
+      }
+
+      function getTest(pos, tests) {
+        if (getMaskSet().validPositions[pos]) {
+          return getMaskSet().validPositions[pos];
+        }
+
+        return (tests || getTests(pos))[0];
+      }
+
+      function positionCanMatchDefinition(pos, def) {
+        var valid = false,
+            tests = getTests(pos);
+
+        for (var tndx = 0; tndx < tests.length; tndx++) {
+          if (tests[tndx].match && tests[tndx].match.def === def) {
+            valid = true;
+            break;
+          }
+        }
+
+        return valid;
+      }
+
+      function getTests(pos, ndxIntlzr, tstPs) {
+        var maskTokens = getMaskSet().maskToken,
+            testPos = ndxIntlzr ? tstPs : 0,
+            ndxInitializer = ndxIntlzr ? ndxIntlzr.slice() : [0],
+            matches = [],
+            insertStop = false,
+            latestMatch,
+            cacheDependency = ndxIntlzr ? ndxIntlzr.join("") : "";
+
+        function resolveTestFromToken(maskToken, ndxInitializer, loopNdx, quantifierRecurse) {
+          function handleMatch(match, loopNdx, quantifierRecurse) {
+            function isFirstMatch(latestMatch, tokenGroup) {
+              var firstMatch = $.inArray(latestMatch, tokenGroup.matches) === 0;
+
+              if (!firstMatch) {
+                $.each(tokenGroup.matches, function (ndx, match) {
+                  if (match.isQuantifier === true) firstMatch = isFirstMatch(latestMatch, tokenGroup.matches[ndx - 1]);else if (match.hasOwnProperty("matches")) firstMatch = isFirstMatch(latestMatch, match);
+                  if (firstMatch) return false;
+                });
+              }
+
+              return firstMatch;
+            }
+
+            function resolveNdxInitializer(pos, alternateNdx, targetAlternation) {
+              var bestMatch, indexPos;
+
+              if (getMaskSet().tests[pos] || getMaskSet().validPositions[pos]) {
+                $.each(getMaskSet().tests[pos] || [getMaskSet().validPositions[pos]], function (ndx, lmnt) {
+                  if (lmnt.mloc[alternateNdx]) {
+                    bestMatch = lmnt;
+                    return false;
+                  }
+
+                  var alternation = targetAlternation !== undefined ? targetAlternation : lmnt.alternation,
+                      ndxPos = lmnt.locator[alternation] !== undefined ? lmnt.locator[alternation].toString().indexOf(alternateNdx) : -1;
+
+                  if ((indexPos === undefined || ndxPos < indexPos) && ndxPos !== -1) {
+                    bestMatch = lmnt;
+                    indexPos = ndxPos;
+                  }
+                });
+              }
+
+              if (bestMatch) {
+                var bestMatchAltIndex = bestMatch.locator[bestMatch.alternation];
+                var locator = bestMatch.mloc[alternateNdx] || bestMatch.mloc[bestMatchAltIndex] || bestMatch.locator;
+                return locator.slice((targetAlternation !== undefined ? targetAlternation : bestMatch.alternation) + 1);
+              } else {
+                return targetAlternation !== undefined ? resolveNdxInitializer(pos, alternateNdx) : undefined;
+              }
+            }
+
+            function isSubsetOf(source, target) {
+              function expand(pattern) {
+                var expanded = [],
+                    start,
+                    end;
+
+                for (var i = 0, l = pattern.length; i < l; i++) {
+                  if (pattern.charAt(i) === "-") {
+                    end = pattern.charCodeAt(i + 1);
+
+                    while (++start < end) {
+                      expanded.push(String.fromCharCode(start));
+                    }
+                  } else {
+                    start = pattern.charCodeAt(i);
+                    expanded.push(pattern.charAt(i));
+                  }
+                }
+
+                return expanded.join("");
+              }
+
+              if (opts.regex && source.match.fn !== null && target.match.fn !== null) {
+                return expand(target.match.def.replace(/[\[\]]/g, "")).indexOf(expand(source.match.def.replace(/[\[\]]/g, ""))) !== -1;
+              }
+
+              return source.match.def === target.match.nativeDef;
+            }
+
+            function staticCanMatchDefinition(source, target) {
+              var sloc = source.locator.slice(source.alternation).join(""),
+                  tloc = target.locator.slice(target.alternation).join(""),
+                  canMatch = sloc == tloc;
+              canMatch = canMatch && source.match.fn === null && target.match.fn !== null ? target.match.fn.test(source.match.def, getMaskSet(), pos, false, opts, false) : false;
+              return canMatch;
+            }
+
+            function setMergeLocators(targetMatch, altMatch) {
+              if (altMatch === undefined || targetMatch.alternation === altMatch.alternation && targetMatch.locator[targetMatch.alternation].toString().indexOf(altMatch.locator[altMatch.alternation]) === -1) {
+                targetMatch.mloc = targetMatch.mloc || {};
+                var locNdx = targetMatch.locator[targetMatch.alternation];
+                if (locNdx === undefined) targetMatch.alternation = undefined;else {
+                  if (typeof locNdx === "string") locNdx = locNdx.split(",")[0];
+                  if (targetMatch.mloc[locNdx] === undefined) targetMatch.mloc[locNdx] = targetMatch.locator.slice();
+
+                  if (altMatch !== undefined) {
+                    for (var ndx in altMatch.mloc) {
+                      if (typeof ndx === "string") ndx = ndx.split(",")[0];
+                      if (targetMatch.mloc[ndx] === undefined) targetMatch.mloc[ndx] = altMatch.mloc[ndx];
+                    }
+
+                    targetMatch.locator[targetMatch.alternation] = Object.keys(targetMatch.mloc).join(",");
+                  }
+
+                  return true;
+                }
+              }
+
+              return false;
+            }
+
+            if (testPos > 500 && quantifierRecurse !== undefined) {
+              throw "Inputmask: There is probably an error in your mask definition or in the code. Create an issue on github with an example of the mask you are using. " + getMaskSet().mask;
+            }
+
+            if (testPos === pos && match.matches === undefined) {
+              matches.push({
+                match: match,
+                locator: loopNdx.reverse(),
+                cd: cacheDependency,
+                mloc: {}
+              });
+              return true;
+            } else if (match.matches !== undefined) {
+              if (match.isGroup && quantifierRecurse !== match) {
+                match = handleMatch(maskToken.matches[$.inArray(match, maskToken.matches) + 1], loopNdx, quantifierRecurse);
+                if (match) return true;
+              } else if (match.isOptional) {
+                var optionalToken = match;
+                match = resolveTestFromToken(match, ndxInitializer, loopNdx, quantifierRecurse);
+
+                if (match) {
+                  $.each(matches, function (ndx, mtch) {
+                    mtch.match.optionality = true;
+                  });
+                  latestMatch = matches[matches.length - 1].match;
+
+                  if (quantifierRecurse === undefined && isFirstMatch(latestMatch, optionalToken)) {
+                    insertStop = true;
+                    testPos = pos;
+                  } else return true;
+                }
+              } else if (match.isAlternator) {
+                var alternateToken = match,
+                    malternateMatches = [],
+                    maltMatches,
+                    currentMatches = matches.slice(),
+                    loopNdxCnt = loopNdx.length;
+                var altIndex = ndxInitializer.length > 0 ? ndxInitializer.shift() : -1;
+
+                if (altIndex === -1 || typeof altIndex === "string") {
+                  var currentPos = testPos,
+                      ndxInitializerClone = ndxInitializer.slice(),
+                      altIndexArr = [],
+                      amndx;
+
+                  if (typeof altIndex == "string") {
+                    altIndexArr = altIndex.split(",");
+                  } else {
+                    for (amndx = 0; amndx < alternateToken.matches.length; amndx++) {
+                      altIndexArr.push(amndx.toString());
+                    }
+                  }
+
+                  if (getMaskSet().excludes[pos]) {
+                    var altIndexArrClone = altIndexArr.slice();
+
+                    for (var i = 0, el = getMaskSet().excludes[pos].length; i < el; i++) {
+                      altIndexArr.splice(altIndexArr.indexOf(getMaskSet().excludes[pos][i].toString()), 1);
+                    }
+
+                    if (altIndexArr.length === 0) {
+                      getMaskSet().excludes[pos] = undefined;
+                      altIndexArr = altIndexArrClone;
+                    }
+                  }
+
+                  if (opts.keepStatic === true || isFinite(parseInt(opts.keepStatic)) && currentPos >= opts.keepStatic) altIndexArr = altIndexArr.slice(0, 1);
+                  var unMatchedAlternation = false;
+
+                  for (var ndx = 0; ndx < altIndexArr.length; ndx++) {
+                    amndx = parseInt(altIndexArr[ndx]);
+                    matches = [];
+                    ndxInitializer = typeof altIndex === "string" ? resolveNdxInitializer(testPos, amndx, loopNdxCnt) || ndxInitializerClone.slice() : ndxInitializerClone.slice();
+                    if (alternateToken.matches[amndx] && handleMatch(alternateToken.matches[amndx], [amndx].concat(loopNdx), quantifierRecurse)) match = true;else if (ndx === 0) {
+                      unMatchedAlternation = true;
+                    }
+                    maltMatches = matches.slice();
+                    testPos = currentPos;
+                    matches = [];
+
+                    for (var ndx1 = 0; ndx1 < maltMatches.length; ndx1++) {
+                      var altMatch = maltMatches[ndx1],
+                          dropMatch = false;
+                      altMatch.match.jit = altMatch.match.jit || unMatchedAlternation;
+                      altMatch.alternation = altMatch.alternation || loopNdxCnt;
+                      setMergeLocators(altMatch);
+
+                      for (var ndx2 = 0; ndx2 < malternateMatches.length; ndx2++) {
+                        var altMatch2 = malternateMatches[ndx2];
+
+                        if (typeof altIndex !== "string" || altMatch.alternation !== undefined && $.inArray(altMatch.locator[altMatch.alternation].toString(), altIndexArr) !== -1) {
+                          if (altMatch.match.nativeDef === altMatch2.match.nativeDef) {
+                            dropMatch = true;
+                            setMergeLocators(altMatch2, altMatch);
+                            break;
+                          } else if (isSubsetOf(altMatch, altMatch2)) {
+                            if (setMergeLocators(altMatch, altMatch2)) {
+                              dropMatch = true;
+                              malternateMatches.splice(malternateMatches.indexOf(altMatch2), 0, altMatch);
+                            }
+
+                            break;
+                          } else if (isSubsetOf(altMatch2, altMatch)) {
+                            setMergeLocators(altMatch2, altMatch);
+                            break;
+                          } else if (staticCanMatchDefinition(altMatch, altMatch2)) {
+                            if (setMergeLocators(altMatch, altMatch2)) {
+                              dropMatch = true;
+                              malternateMatches.splice(malternateMatches.indexOf(altMatch2), 0, altMatch);
+                            }
+
+                            break;
+                          }
+                        }
+                      }
+
+                      if (!dropMatch) {
+                        malternateMatches.push(altMatch);
+                      }
+                    }
+                  }
+
+                  matches = currentMatches.concat(malternateMatches);
+                  testPos = pos;
+                  insertStop = matches.length > 0;
+                  match = malternateMatches.length > 0;
+                  ndxInitializer = ndxInitializerClone.slice();
+                } else match = handleMatch(alternateToken.matches[altIndex] || maskToken.matches[altIndex], [altIndex].concat(loopNdx), quantifierRecurse);
+
+                if (match) return true;
+              } else if (match.isQuantifier && quantifierRecurse !== maskToken.matches[$.inArray(match, maskToken.matches) - 1]) {
+                var qt = match;
+
+                for (var qndx = ndxInitializer.length > 0 ? ndxInitializer.shift() : 0; qndx < (isNaN(qt.quantifier.max) ? qndx + 1 : qt.quantifier.max) && testPos <= pos; qndx++) {
+                  var tokenGroup = maskToken.matches[$.inArray(qt, maskToken.matches) - 1];
+                  match = handleMatch(tokenGroup, [qndx].concat(loopNdx), tokenGroup);
+
+                  if (match) {
+                    latestMatch = matches[matches.length - 1].match;
+                    latestMatch.optionalQuantifier = qndx >= qt.quantifier.min;
+                    latestMatch.jit = (qndx || 1) * tokenGroup.matches.indexOf(latestMatch) >= qt.quantifier.jit;
+
+                    if (latestMatch.optionalQuantifier && isFirstMatch(latestMatch, tokenGroup)) {
+                      insertStop = true;
+                      testPos = pos;
+                      break;
+                    }
+
+                    if (latestMatch.jit) {
+                      getMaskSet().jitOffset[pos] = tokenGroup.matches.indexOf(latestMatch);
+                    }
+
+                    return true;
+                  }
+                }
+              } else {
+                match = resolveTestFromToken(match, ndxInitializer, loopNdx, quantifierRecurse);
+                if (match) return true;
+              }
+            } else {
+              testPos++;
+            }
+          }
+
+          for (var tndx = ndxInitializer.length > 0 ? ndxInitializer.shift() : 0; tndx < maskToken.matches.length; tndx++) {
+            if (maskToken.matches[tndx].isQuantifier !== true) {
+              var match = handleMatch(maskToken.matches[tndx], [tndx].concat(loopNdx), quantifierRecurse);
+
+              if (match && testPos === pos) {
+                return match;
+              } else if (testPos > pos) {
+                break;
+              }
+            }
+          }
+        }
+
+        function mergeLocators(pos, tests) {
+          var locator = [];
+          if (!$.isArray(tests)) tests = [tests];
+
+          if (tests.length > 0) {
+            if (tests[0].alternation === undefined) {
+              locator = determineTestTemplate(pos, tests.slice()).locator.slice();
+              if (locator.length === 0) locator = tests[0].locator.slice();
+            } else {
+              $.each(tests, function (ndx, tst) {
+                if (tst.def !== "") {
+                  if (locator.length === 0) locator = tst.locator.slice();else {
+                    for (var i = 0; i < locator.length; i++) {
+                      if (tst.locator[i] && locator[i].toString().indexOf(tst.locator[i]) === -1) {
+                        locator[i] += "," + tst.locator[i];
+                      }
+                    }
+                  }
+                }
+              });
+            }
+          }
+
+          return locator;
+        }
+
+        if (pos > -1) {
+          if (ndxIntlzr === undefined) {
+            var previousPos = pos - 1,
+                test;
+
+            while ((test = getMaskSet().validPositions[previousPos] || getMaskSet().tests[previousPos]) === undefined && previousPos > -1) {
+              previousPos--;
+            }
+
+            if (test !== undefined && previousPos > -1) {
+              ndxInitializer = mergeLocators(previousPos, test);
+              cacheDependency = ndxInitializer.join("");
+              testPos = previousPos;
+            }
+          }
+
+          if (getMaskSet().tests[pos] && getMaskSet().tests[pos][0].cd === cacheDependency) {
+            return getMaskSet().tests[pos];
+          }
+
+          for (var mtndx = ndxInitializer.shift(); mtndx < maskTokens.length; mtndx++) {
+            var match = resolveTestFromToken(maskTokens[mtndx], ndxInitializer, [mtndx]);
+
+            if (match && testPos === pos || testPos > pos) {
+              break;
+            }
+          }
+        }
+
+        if (matches.length === 0 || insertStop) {
+          matches.push({
+            match: {
+              fn: null,
+              optionality: false,
+              casing: null,
+              def: "",
+              placeholder: ""
+            },
+            locator: [],
+            mloc: {},
+            cd: cacheDependency
+          });
+        }
+
+        if (ndxIntlzr !== undefined && getMaskSet().tests[pos]) {
+          return $.extend(true, [], matches);
+        }
+
+        getMaskSet().tests[pos] = $.extend(true, [], matches);
+        return getMaskSet().tests[pos];
+      }
+
+      function getBufferTemplate() {
+        if (getMaskSet()._buffer === undefined) {
+          getMaskSet()._buffer = getMaskTemplate(false, 1);
+          if (getMaskSet().buffer === undefined) getMaskSet().buffer = getMaskSet()._buffer.slice();
+        }
+
+        return getMaskSet()._buffer;
+      }
+
+      function getBuffer(noCache) {
+        if (getMaskSet().buffer === undefined || noCache === true) {
+          getMaskSet().buffer = getMaskTemplate(true, getLastValidPosition(), true);
+          if (getMaskSet()._buffer === undefined) getMaskSet()._buffer = getMaskSet().buffer.slice();
+        }
+
+        return getMaskSet().buffer;
+      }
+
+      function refreshFromBuffer(start, end, buffer) {
+        var i, p;
+
+        if (start === true) {
+          resetMaskSet();
+          start = 0;
+          end = buffer.length;
+        } else {
+          for (i = start; i < end; i++) {
+            delete getMaskSet().validPositions[i];
+          }
+        }
+
+        p = start;
+
+        for (i = start; i < end; i++) {
+          resetMaskSet(true);
+
+          if (buffer[i] !== opts.skipOptionalPartCharacter) {
+            var valResult = isValid(p, buffer[i], true, true);
+
+            if (valResult !== false) {
+              resetMaskSet(true);
+              p = valResult.caret !== undefined ? valResult.caret : valResult.pos + 1;
+            }
+          }
+        }
+      }
+
+      function casing(elem, test, pos) {
+        switch (opts.casing || test.casing) {
+          case "upper":
+            elem = elem.toUpperCase();
+            break;
+
+          case "lower":
+            elem = elem.toLowerCase();
+            break;
+
+          case "title":
+            var posBefore = getMaskSet().validPositions[pos - 1];
+
+            if (pos === 0 || posBefore && posBefore.input === String.fromCharCode(Inputmask.keyCode.SPACE)) {
+              elem = elem.toUpperCase();
+            } else {
+              elem = elem.toLowerCase();
+            }
+
+            break;
+
+          default:
+            if ($.isFunction(opts.casing)) {
+              var args = Array.prototype.slice.call(arguments);
+              args.push(getMaskSet().validPositions);
+              elem = opts.casing.apply(this, args);
+            }
+
+        }
+
+        return elem;
+      }
+
+      function checkAlternationMatch(altArr1, altArr2, na) {
+        var altArrC = opts.greedy ? altArr2 : altArr2.slice(0, 1),
+            isMatch = false,
+            naArr = na !== undefined ? na.split(",") : [],
+            naNdx;
+
+        for (var i = 0; i < naArr.length; i++) {
+          if ((naNdx = altArr1.indexOf(naArr[i])) !== -1) {
+            altArr1.splice(naNdx, 1);
+          }
+        }
+
+        for (var alndx = 0; alndx < altArr1.length; alndx++) {
+          if ($.inArray(altArr1[alndx], altArrC) !== -1) {
+            isMatch = true;
+            break;
+          }
+        }
+
+        return isMatch;
+      }
+
+      function alternate(pos, c, strict, fromSetValid, rAltPos) {
+        var validPsClone = $.extend(true, {}, getMaskSet().validPositions),
+            lastAlt,
+            alternation,
+            isValidRslt = false,
+            altPos,
+            prevAltPos,
+            i,
+            validPos,
+            decisionPos,
+            lAltPos = rAltPos !== undefined ? rAltPos : getLastValidPosition();
+
+        if (lAltPos === -1 && rAltPos === undefined) {
+          lastAlt = 0;
+          prevAltPos = getTest(lastAlt);
+          alternation = prevAltPos.alternation;
+        } else {
+          for (; lAltPos >= 0; lAltPos--) {
+            altPos = getMaskSet().validPositions[lAltPos];
+
+            if (altPos && altPos.alternation !== undefined) {
+              if (prevAltPos && prevAltPos.locator[altPos.alternation] !== altPos.locator[altPos.alternation]) {
+                break;
+              }
+
+              lastAlt = lAltPos;
+              alternation = getMaskSet().validPositions[lastAlt].alternation;
+              prevAltPos = altPos;
+            }
+          }
+        }
+
+        if (alternation !== undefined) {
+          decisionPos = parseInt(lastAlt);
+          getMaskSet().excludes[decisionPos] = getMaskSet().excludes[decisionPos] || [];
+
+          if (pos !== true) {
+            getMaskSet().excludes[decisionPos].push(getDecisionTaker(prevAltPos));
+          }
+
+          var validInputsClone = [],
+              staticInputsBeforePos = 0;
+
+          for (i = decisionPos; i < getLastValidPosition(undefined, true) + 1; i++) {
+            validPos = getMaskSet().validPositions[i];
+
+            if (validPos && validPos.generatedInput !== true) {
+              validInputsClone.push(validPos.input);
+            } else if (i < pos) staticInputsBeforePos++;
+
+            delete getMaskSet().validPositions[i];
+          }
+
+          while (getMaskSet().excludes[decisionPos] && getMaskSet().excludes[decisionPos].length < 10) {
+            var posOffset = staticInputsBeforePos * -1,
+                validInputs = validInputsClone.slice();
+            getMaskSet().tests[decisionPos] = undefined;
+            resetMaskSet(true);
+            isValidRslt = true;
+
+            while (validInputs.length > 0) {
+              var input = validInputs.shift();
+
+              if (!(isValidRslt = isValid(getLastValidPosition(undefined, true) + 1, input, false, fromSetValid, true))) {
+                break;
+              }
+            }
+
+            if (isValidRslt && c !== undefined) {
+              var targetLvp = getLastValidPosition(pos) + 1;
+
+              for (i = decisionPos; i < getLastValidPosition() + 1; i++) {
+                validPos = getMaskSet().validPositions[i];
+
+                if ((validPos === undefined || validPos.match.fn == null) && i < pos + posOffset) {
+                  posOffset++;
+                }
+              }
+
+              pos = pos + posOffset;
+              isValidRslt = isValid(pos > targetLvp ? targetLvp : pos, c, strict, fromSetValid, true);
+            }
+
+            if (!isValidRslt) {
+              resetMaskSet();
+              prevAltPos = getTest(decisionPos);
+              getMaskSet().validPositions = $.extend(true, {}, validPsClone);
+
+              if (getMaskSet().excludes[decisionPos]) {
+                var decisionTaker = getDecisionTaker(prevAltPos);
+
+                if (getMaskSet().excludes[decisionPos].indexOf(decisionTaker) !== -1) {
+                  isValidRslt = alternate(pos, c, strict, fromSetValid, decisionPos - 1);
+                  break;
+                }
+
+                getMaskSet().excludes[decisionPos].push(decisionTaker);
+
+                for (i = decisionPos; i < getLastValidPosition(undefined, true) + 1; i++) {
+                  delete getMaskSet().validPositions[i];
+                }
+              } else {
+                isValidRslt = alternate(pos, c, strict, fromSetValid, decisionPos - 1);
+                break;
+              }
+            } else break;
+          }
+        }
+
+        getMaskSet().excludes[decisionPos] = undefined;
+        return isValidRslt;
+      }
+
+      function isValid(pos, c, strict, fromSetValid, fromAlternate, validateOnly) {
+        function isSelection(posObj) {
+          return isRTL ? posObj.begin - posObj.end > 1 || posObj.begin - posObj.end === 1 : posObj.end - posObj.begin > 1 || posObj.end - posObj.begin === 1;
+        }
+
+        strict = strict === true;
+        var maskPos = pos;
+
+        if (pos.begin !== undefined) {
+          maskPos = isRTL ? pos.end : pos.begin;
+        }
+
+        function _isValid(position, c, strict) {
+          var rslt = false;
+          $.each(getTests(position), function (ndx, tst) {
+            var test = tst.match;
+            getBuffer(true);
+            rslt = test.fn != null ? test.fn.test(c, getMaskSet(), position, strict, opts, isSelection(pos)) : (c === test.def || c === opts.skipOptionalPartCharacter) && test.def !== "" ? {
+              c: getPlaceholder(position, test, true) || test.def,
+              pos: position
+            } : false;
+
+            if (rslt !== false) {
+              var elem = rslt.c !== undefined ? rslt.c : c,
+                  validatedPos = position;
+              elem = elem === opts.skipOptionalPartCharacter && test.fn === null ? getPlaceholder(position, test, true) || test.def : elem;
+
+              if (rslt.remove !== undefined) {
+                if (!$.isArray(rslt.remove)) rslt.remove = [rslt.remove];
+                $.each(rslt.remove.sort(function (a, b) {
+                  return b - a;
+                }), function (ndx, lmnt) {
+                  revalidateMask({
+                    begin: lmnt,
+                    end: lmnt + 1
+                  });
+                });
+              }
+
+              if (rslt.insert !== undefined) {
+                if (!$.isArray(rslt.insert)) rslt.insert = [rslt.insert];
+                $.each(rslt.insert.sort(function (a, b) {
+                  return a - b;
+                }), function (ndx, lmnt) {
+                  isValid(lmnt.pos, lmnt.c, true, fromSetValid);
+                });
+              }
+
+              if (rslt !== true && rslt.pos !== undefined && rslt.pos !== position) {
+                validatedPos = rslt.pos;
+              }
+
+              if (rslt !== true && rslt.pos === undefined && rslt.c === undefined) {
+                return false;
+              }
+
+              if (!revalidateMask(pos, $.extend({}, tst, {
+                input: casing(elem, test, validatedPos)
+              }), fromSetValid, validatedPos)) {
+                rslt = false;
+              }
+
+              return false;
+            }
+          });
+          return rslt;
+        }
+
+        var result = true,
+            positionsClone = $.extend(true, {}, getMaskSet().validPositions);
+
+        if ($.isFunction(opts.preValidation) && !strict && fromSetValid !== true && validateOnly !== true) {
+          result = opts.preValidation(getBuffer(), maskPos, c, isSelection(pos), opts, getMaskSet());
+        }
+
+        if (result === true) {
+          trackbackPositions(undefined, maskPos, true);
+
+          if (maxLength === undefined || maskPos < maxLength) {
+            result = _isValid(maskPos, c, strict);
+
+            if ((!strict || fromSetValid === true) && result === false && validateOnly !== true) {
+              var currentPosValid = getMaskSet().validPositions[maskPos];
+
+              if (currentPosValid && currentPosValid.match.fn === null && (currentPosValid.match.def === c || c === opts.skipOptionalPartCharacter)) {
+                result = {
+                  caret: seekNext(maskPos)
+                };
+              } else {
+                if ((opts.insertMode || getMaskSet().validPositions[seekNext(maskPos)] === undefined) && (!isMask(maskPos, true) || getMaskSet().jitOffset[maskPos])) {
+                  if (getMaskSet().jitOffset[maskPos] && getMaskSet().validPositions[seekNext(maskPos)] === undefined) {
+                    result = isValid(maskPos + getMaskSet().jitOffset[maskPos], c, strict);
+                    if (result !== false) result.caret = maskPos;
+                  } else for (var nPos = maskPos + 1, snPos = seekNext(maskPos); nPos <= snPos; nPos++) {
+                    result = _isValid(nPos, c, strict);
+
+                    if (result !== false) {
+                      result = trackbackPositions(maskPos, result.pos !== undefined ? result.pos : nPos) || result;
+                      maskPos = nPos;
+                      break;
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          if (result === false && opts.keepStatic !== false && (opts.regex == null || isComplete(getBuffer())) && !strict && fromAlternate !== true) {
+            result = alternate(maskPos, c, strict, fromSetValid);
+          }
+
+          if (result === true) {
+            result = {
+              pos: maskPos
+            };
+          }
+        }
+
+        if ($.isFunction(opts.postValidation) && result !== false && !strict && fromSetValid !== true && validateOnly !== true) {
+          var postResult = opts.postValidation(getBuffer(true), pos.begin !== undefined ? isRTL ? pos.end : pos.begin : pos, result, opts);
+
+          if (postResult !== undefined) {
+            if (postResult.refreshFromBuffer && postResult.buffer) {
+              var refresh = postResult.refreshFromBuffer;
+              refreshFromBuffer(refresh === true ? refresh : refresh.start, refresh.end, postResult.buffer);
+            }
+
+            result = postResult === true ? result : postResult;
+          }
+        }
+
+        if (result && result.pos === undefined) {
+          result.pos = maskPos;
+        }
+
+        if (result === false || validateOnly === true) {
+          resetMaskSet(true);
+          getMaskSet().validPositions = $.extend(true, {}, positionsClone);
+        }
+
+        return result;
+      }
+
+      function trackbackPositions(originalPos, newPos, fillOnly) {
+        var result;
+
+        if (originalPos === undefined) {
+          for (originalPos = newPos - 1; originalPos > 0; originalPos--) {
+            if (getMaskSet().validPositions[originalPos]) break;
+          }
+        }
+
+        for (var ps = originalPos; ps < newPos; ps++) {
+          if (getMaskSet().validPositions[ps] === undefined && !isMask(ps, true)) {
+            var vp = ps == 0 ? getTest(ps) : getMaskSet().validPositions[ps - 1];
+
+            if (vp) {
+              var tests = getTests(ps).slice();
+              if (tests[tests.length - 1].match.def === "") tests.pop();
+              var bestMatch = determineTestTemplate(ps, tests);
+              bestMatch = $.extend({}, bestMatch, {
+                input: getPlaceholder(ps, bestMatch.match, true) || bestMatch.match.def
+              });
+              bestMatch.generatedInput = true;
+              revalidateMask(ps, bestMatch, true);
+
+              if (fillOnly !== true) {
+                var cvpInput = getMaskSet().validPositions[newPos].input;
+                getMaskSet().validPositions[newPos] = undefined;
+                result = isValid(newPos, cvpInput, true, true);
+              }
+            }
+          }
+        }
+
+        return result;
+      }
+
+      function revalidateMask(pos, validTest, fromSetValid, validatedPos) {
+        function IsEnclosedStatic(pos, valids, selection) {
+          var posMatch = valids[pos];
+
+          if (posMatch !== undefined && (posMatch.match.fn === null && posMatch.match.optionality !== true || posMatch.input === opts.radixPoint)) {
+            var prevMatch = selection.begin <= pos - 1 ? valids[pos - 1] && valids[pos - 1].match.fn === null && valids[pos - 1] : valids[pos - 1],
+                nextMatch = selection.end > pos + 1 ? valids[pos + 1] && valids[pos + 1].match.fn === null && valids[pos + 1] : valids[pos + 1];
+            return prevMatch && nextMatch;
+          }
+
+          return false;
+        }
+
+        var begin = pos.begin !== undefined ? pos.begin : pos,
+            end = pos.end !== undefined ? pos.end : pos;
+
+        if (pos.begin > pos.end) {
+          begin = pos.end;
+          end = pos.begin;
+        }
+
+        validatedPos = validatedPos !== undefined ? validatedPos : begin;
+
+        if (begin !== end || opts.insertMode && getMaskSet().validPositions[validatedPos] !== undefined && fromSetValid === undefined) {
+          var positionsClone = $.extend(true, {}, getMaskSet().validPositions),
+              lvp = getLastValidPosition(undefined, true),
+              i;
+          getMaskSet().p = begin;
+
+          for (i = lvp; i >= begin; i--) {
+            if (getMaskSet().validPositions[i] && getMaskSet().validPositions[i].match.nativeDef === "+") {
+              opts.isNegative = false;
+            }
+
+            delete getMaskSet().validPositions[i];
+          }
+
+          var valid = true,
+              j = validatedPos,
+              vps = getMaskSet().validPositions,
+              needsValidation = false,
+              posMatch = j,
+              i = j;
+
+          if (validTest) {
+            getMaskSet().validPositions[validatedPos] = $.extend(true, {}, validTest);
+            posMatch++;
+            j++;
+            if (begin < end) i++;
+          }
+
+          for (; i <= lvp; i++) {
+            var t = positionsClone[i];
+
+            if (t !== undefined && (i >= end || i >= begin && t.generatedInput !== true && IsEnclosedStatic(i, positionsClone, {
+              begin: begin,
+              end: end
+            }))) {
+              while (getTest(posMatch).match.def !== "") {
+                if (needsValidation === false && positionsClone[posMatch] && positionsClone[posMatch].match.nativeDef === t.match.nativeDef) {
+                  getMaskSet().validPositions[posMatch] = $.extend(true, {}, positionsClone[posMatch]);
+                  getMaskSet().validPositions[posMatch].input = t.input;
+                  trackbackPositions(undefined, posMatch, true);
+                  j = posMatch + 1;
+                  valid = true;
+                } else if (opts.shiftPositions && positionCanMatchDefinition(posMatch, t.match.def)) {
+                  var result = isValid(posMatch, t.input, true, true);
+                  valid = result !== false;
+                  j = result.caret || result.insert ? getLastValidPosition() : posMatch + 1;
+                  needsValidation = true;
+                } else {
+                  valid = t.generatedInput === true || t.input === opts.radixPoint && opts.numericInput === true;
+                }
+
+                if (valid) break;
+
+                if (!valid && posMatch > end && isMask(posMatch, true) && (t.match.fn !== null || posMatch > getMaskSet().maskLength)) {
+                  break;
+                }
+
+                posMatch++;
+              }
+
+              if (getTest(posMatch).match.def == "") valid = false;
+              posMatch = j;
+            }
+
+            if (!valid) break;
+          }
+
+          if (!valid) {
+            getMaskSet().validPositions = $.extend(true, {}, positionsClone);
+            resetMaskSet(true);
+            return false;
+          }
+        } else if (validTest) {
+          getMaskSet().validPositions[validatedPos] = $.extend(true, {}, validTest);
+        }
+
+        resetMaskSet(true);
+        return true;
+      }
+
+      function isMask(pos, strict) {
+        var test = getTestTemplate(pos).match;
+        if (test.def === "") test = getTest(pos).match;
+
+        if (test.fn != null) {
+          return test.fn;
+        }
+
+        if (strict !== true && pos > -1) {
+          var tests = getTests(pos);
+          return tests.length > 1 + (tests[tests.length - 1].match.def === "" ? 1 : 0);
+        }
+
+        return false;
+      }
+
+      function seekNext(pos, newBlock) {
+        var position = pos + 1;
+
+        while (getTest(position).match.def !== "" && (newBlock === true && (getTest(position).match.newBlockMarker !== true || !isMask(position)) || newBlock !== true && !isMask(position))) {
+          position++;
+        }
+
+        return position;
+      }
+
+      function seekPrevious(pos, newBlock) {
+        var position = pos,
+            tests;
+        if (position <= 0) return 0;
+
+        while (--position > 0 && (newBlock === true && getTest(position).match.newBlockMarker !== true || newBlock !== true && !isMask(position) && (tests = getTests(position), tests.length < 2 || tests.length === 2 && tests[1].match.def === ""))) {}
+
+        return position;
+      }
+
+      function writeBuffer(input, buffer, caretPos, event, triggerEvents) {
+        if (event && $.isFunction(opts.onBeforeWrite)) {
+          var result = opts.onBeforeWrite.call(inputmask, event, buffer, caretPos, opts);
+
+          if (result) {
+            if (result.refreshFromBuffer) {
+              var refresh = result.refreshFromBuffer;
+              refreshFromBuffer(refresh === true ? refresh : refresh.start, refresh.end, result.buffer || buffer);
+              buffer = getBuffer(true);
+            }
+
+            if (caretPos !== undefined) caretPos = result.caret !== undefined ? result.caret : caretPos;
+          }
+        }
+
+        if (input !== undefined) {
+          input.inputmask._valueSet(buffer.join(""));
+
+          if (caretPos !== undefined && (event === undefined || event.type !== "blur")) {
+            caret(input, caretPos);
+          } else renderColorMask(input, caretPos, buffer.length === 0);
+
+          if (triggerEvents === true) {
+            var $input = $(input),
+                nptVal = input.inputmask._valueGet();
+
+            skipInputEvent = true;
+            $input.trigger("input");
+            setTimeout(function () {
+              if (nptVal === getBufferTemplate().join("")) {
+                $input.trigger("cleared");
+              } else if (isComplete(buffer) === true) {
+                $input.trigger("complete");
+              }
+            }, 0);
+          }
+        }
+      }
+
+      function getPlaceholder(pos, test, returnPL) {
+        test = test || getTest(pos).match;
+
+        if (test.placeholder !== undefined || returnPL === true) {
+          return $.isFunction(test.placeholder) ? test.placeholder(opts) : test.placeholder;
+        } else if (test.fn === null) {
+          if (pos > -1 && getMaskSet().validPositions[pos] === undefined) {
+            var tests = getTests(pos),
+                staticAlternations = [],
+                prevTest;
+
+            if (tests.length > 1 + (tests[tests.length - 1].match.def === "" ? 1 : 0)) {
+              for (var i = 0; i < tests.length; i++) {
+                if (tests[i].match.optionality !== true && tests[i].match.optionalQuantifier !== true && (tests[i].match.fn === null || prevTest === undefined || tests[i].match.fn.test(prevTest.match.def, getMaskSet(), pos, true, opts) !== false)) {
+                  staticAlternations.push(tests[i]);
+                  if (tests[i].match.fn === null) prevTest = tests[i];
+
+                  if (staticAlternations.length > 1) {
+                    if (/[0-9a-bA-Z]/.test(staticAlternations[0].match.def)) {
+                      return opts.placeholder.charAt(pos % opts.placeholder.length);
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          return test.def;
+        }
+
+        return opts.placeholder.charAt(pos % opts.placeholder.length);
+      }
+
+      function HandleNativePlaceholder(npt, value) {
+        if (ie) {
+          if (npt.inputmask._valueGet() !== value && (npt.placeholder !== value || npt.placeholder === "")) {
+            var buffer = getBuffer().slice(),
+                nptValue = npt.inputmask._valueGet();
+
+            if (nptValue !== value) {
+              var lvp = getLastValidPosition();
+
+              if (lvp === -1 && nptValue === getBufferTemplate().join("")) {
+                buffer = [];
+              } else if (lvp !== -1) {
+                clearOptionalTail(buffer);
+              }
+
+              writeBuffer(npt, buffer);
+            }
+          }
+        } else if (npt.placeholder !== value) {
+          npt.placeholder = value;
+          if (npt.placeholder === "") npt.removeAttribute("placeholder");
+        }
+      }
+
+      var EventRuler = {
+        on: function on(input, eventName, eventHandler) {
+          var ev = function ev(e) {
+            var that = this;
+
+            if (that.inputmask === undefined && this.nodeName !== "FORM") {
+              var imOpts = $.data(that, "_inputmask_opts");
+              if (imOpts) new Inputmask(imOpts).mask(that);else EventRuler.off(that);
+            } else if (e.type !== "setvalue" && this.nodeName !== "FORM" && (that.disabled || that.readOnly && !(e.type === "keydown" && e.ctrlKey && e.keyCode === 67 || opts.tabThrough === false && e.keyCode === Inputmask.keyCode.TAB))) {
+              e.preventDefault();
+            } else {
+              switch (e.type) {
+                case "input":
+                  if (skipInputEvent === true) {
+                    skipInputEvent = false;
+                    return e.preventDefault();
+                  }
+
+                  if (mobile) {
+                    var args = arguments;
+                    setTimeout(function () {
+                      eventHandler.apply(that, args);
+                      caret(that, that.inputmask.caretPos, undefined, true);
+                    }, 0);
+                    return false;
+                  }
+
+                  break;
+
+                case "keydown":
+                  skipKeyPressEvent = false;
+                  skipInputEvent = false;
+                  break;
+
+                case "keypress":
+                  if (skipKeyPressEvent === true) {
+                    return e.preventDefault();
+                  }
+
+                  skipKeyPressEvent = true;
+                  break;
+
+                case "click":
+                  if (iemobile || iphone) {
+                    var args = arguments;
+                    setTimeout(function () {
+                      eventHandler.apply(that, args);
+                    }, 0);
+                    return false;
+                  }
+
+                  break;
+              }
+
+              var returnVal = eventHandler.apply(that, arguments);
+
+              if (returnVal === false) {
+                e.preventDefault();
+                e.stopPropagation();
+              }
+
+              return returnVal;
+            }
+          };
+
+          input.inputmask.events[eventName] = input.inputmask.events[eventName] || [];
+          input.inputmask.events[eventName].push(ev);
+
+          if ($.inArray(eventName, ["submit", "reset"]) !== -1) {
+            if (input.form !== null) $(input.form).on(eventName, ev);
+          } else {
+            $(input).on(eventName, ev);
+          }
+        },
+        off: function off(input, event) {
+          if (input.inputmask && input.inputmask.events) {
+            var events;
+
+            if (event) {
+              events = [];
+              events[event] = input.inputmask.events[event];
+            } else {
+              events = input.inputmask.events;
+            }
+
+            $.each(events, function (eventName, evArr) {
+              while (evArr.length > 0) {
+                var ev = evArr.pop();
+
+                if ($.inArray(eventName, ["submit", "reset"]) !== -1) {
+                  if (input.form !== null) $(input.form).off(eventName, ev);
+                } else {
+                  $(input).off(eventName, ev);
+                }
+              }
+
+              delete input.inputmask.events[eventName];
+            });
+          }
+        }
+      };
+      var EventHandlers = {
+        keydownEvent: function keydownEvent(e) {
+          var input = this,
+              $input = $(input),
+              k = e.keyCode,
+              pos = caret(input);
+
+          if (k === Inputmask.keyCode.BACKSPACE || k === Inputmask.keyCode.DELETE || iphone && k === Inputmask.keyCode.BACKSPACE_SAFARI || e.ctrlKey && k === Inputmask.keyCode.X && !isInputEventSupported("cut")) {
+            e.preventDefault();
+            handleRemove(input, k, pos);
+            writeBuffer(input, getBuffer(true), getMaskSet().p, e, input.inputmask._valueGet() !== getBuffer().join(""));
+          } else if (k === Inputmask.keyCode.END || k === Inputmask.keyCode.PAGE_DOWN) {
+            e.preventDefault();
+            var caretPos = seekNext(getLastValidPosition());
+            caret(input, e.shiftKey ? pos.begin : caretPos, caretPos, true);
+          } else if (k === Inputmask.keyCode.HOME && !e.shiftKey || k === Inputmask.keyCode.PAGE_UP) {
+            e.preventDefault();
+            caret(input, 0, e.shiftKey ? pos.begin : 0, true);
+          } else if ((opts.undoOnEscape && k === Inputmask.keyCode.ESCAPE || k === 90 && e.ctrlKey) && e.altKey !== true) {
+            checkVal(input, true, false, undoValue.split(""));
+            $input.trigger("click");
+          } else if (k === Inputmask.keyCode.INSERT && !(e.shiftKey || e.ctrlKey)) {
+            opts.insertMode = !opts.insertMode;
+            input.setAttribute("im-insert", opts.insertMode);
+          } else if (opts.tabThrough === true && k === Inputmask.keyCode.TAB) {
+            if (e.shiftKey === true) {
+              if (getTest(pos.begin).match.fn === null) {
+                pos.begin = seekNext(pos.begin);
+              }
+
+              pos.end = seekPrevious(pos.begin, true);
+              pos.begin = seekPrevious(pos.end, true);
+            } else {
+              pos.begin = seekNext(pos.begin, true);
+              pos.end = seekNext(pos.begin, true);
+              if (pos.end < getMaskSet().maskLength) pos.end--;
+            }
+
+            if (pos.begin < getMaskSet().maskLength) {
+              e.preventDefault();
+              caret(input, pos.begin, pos.end);
+            }
+          }
+
+          opts.onKeyDown.call(this, e, getBuffer(), caret(input).begin, opts);
+          ignorable = $.inArray(k, opts.ignorables) !== -1;
+        },
+        keypressEvent: function keypressEvent(e, checkval, writeOut, strict, ndx) {
+          var input = this,
+              $input = $(input),
+              k = e.which || e.charCode || e.keyCode;
+
+          if (checkval !== true && !(e.ctrlKey && e.altKey) && (e.ctrlKey || e.metaKey || ignorable)) {
+            if (k === Inputmask.keyCode.ENTER && undoValue !== getBuffer().join("")) {
+              undoValue = getBuffer().join("");
+              setTimeout(function () {
+                $input.trigger("change");
+              }, 0);
+            }
+
+            return true;
+          } else {
+            if (k) {
+              if (k === 46 && e.shiftKey === false && opts.radixPoint !== "") k = opts.radixPoint.charCodeAt(0);
+              var pos = checkval ? {
+                begin: ndx,
+                end: ndx
+              } : caret(input),
+                  forwardPosition,
+                  c = String.fromCharCode(k),
+                  offset = 0;
+
+              if (opts._radixDance && opts.numericInput) {
+                var caretPos = getBuffer().indexOf(opts.radixPoint.charAt(0)) + 1;
+
+                if (pos.begin <= caretPos) {
+                  if (k === opts.radixPoint.charCodeAt(0)) offset = 1;
+                  pos.begin -= 1;
+                  pos.end -= 1;
+                }
+              }
+
+              getMaskSet().writeOutBuffer = true;
+              var valResult = isValid(pos, c, strict);
+
+              if (valResult !== false) {
+                resetMaskSet(true);
+                forwardPosition = valResult.caret !== undefined ? valResult.caret : seekNext(valResult.pos.begin ? valResult.pos.begin : valResult.pos);
+                getMaskSet().p = forwardPosition;
+              }
+
+              forwardPosition = (opts.numericInput && valResult.caret === undefined ? seekPrevious(forwardPosition) : forwardPosition) + offset;
+
+              if (writeOut !== false) {
+                setTimeout(function () {
+                  opts.onKeyValidation.call(input, k, valResult, opts);
+                }, 0);
+
+                if (getMaskSet().writeOutBuffer && valResult !== false) {
+                  var buffer = getBuffer();
+                  writeBuffer(input, buffer, forwardPosition, e, checkval !== true);
+                }
+              }
+
+              e.preventDefault();
+
+              if (checkval) {
+                if (valResult !== false) valResult.forwardPosition = forwardPosition;
+                return valResult;
+              }
+            }
+          }
+        },
+        pasteEvent: function pasteEvent(e) {
+          var input = this,
+              ev = e.originalEvent || e,
+              $input = $(input),
+              inputValue = input.inputmask._valueGet(true),
+              caretPos = caret(input),
+              tempValue;
+
+          if (isRTL) {
+            tempValue = caretPos.end;
+            caretPos.end = caretPos.begin;
+            caretPos.begin = tempValue;
+          }
+
+          var valueBeforeCaret = inputValue.substr(0, caretPos.begin),
+              valueAfterCaret = inputValue.substr(caretPos.end, inputValue.length);
+          if (valueBeforeCaret === (isRTL ? getBufferTemplate().reverse() : getBufferTemplate()).slice(0, caretPos.begin).join("")) valueBeforeCaret = "";
+          if (valueAfterCaret === (isRTL ? getBufferTemplate().reverse() : getBufferTemplate()).slice(caretPos.end).join("")) valueAfterCaret = "";
+
+          if (window.clipboardData && window.clipboardData.getData) {
+            inputValue = valueBeforeCaret + window.clipboardData.getData("Text") + valueAfterCaret;
+          } else if (ev.clipboardData && ev.clipboardData.getData) {
+            inputValue = valueBeforeCaret + ev.clipboardData.getData("text/plain") + valueAfterCaret;
+          } else return true;
+
+          var pasteValue = inputValue;
+
+          if ($.isFunction(opts.onBeforePaste)) {
+            pasteValue = opts.onBeforePaste.call(inputmask, inputValue, opts);
+
+            if (pasteValue === false) {
+              return e.preventDefault();
+            }
+
+            if (!pasteValue) {
+              pasteValue = inputValue;
+            }
+          }
+
+          checkVal(input, false, false, pasteValue.toString().split(""));
+          writeBuffer(input, getBuffer(), seekNext(getLastValidPosition()), e, undoValue !== getBuffer().join(""));
+          return e.preventDefault();
+        },
+        inputFallBackEvent: function inputFallBackEvent(e) {
+          function radixPointHandler(input, inputValue, caretPos) {
+            if (inputValue.charAt(caretPos.begin - 1) === "." && opts.radixPoint !== "") {
+              inputValue = inputValue.split("");
+              inputValue[caretPos.begin - 1] = opts.radixPoint.charAt(0);
+              inputValue = inputValue.join("");
+            }
+
+            return inputValue;
+          }
+
+          function ieMobileHandler(input, inputValue, caretPos) {
+            if (iemobile) {
+              var inputChar = inputValue.replace(getBuffer().join(""), "");
+
+              if (inputChar.length === 1) {
+                var iv = inputValue.split("");
+                iv.splice(caretPos.begin, 0, inputChar);
+                inputValue = iv.join("");
+              }
+            }
+
+            return inputValue;
+          }
+
+          var input = this,
+              inputValue = input.inputmask._valueGet();
+
+          if (getBuffer().join("") !== inputValue) {
+            var caretPos = caret(input);
+            inputValue = radixPointHandler(input, inputValue, caretPos);
+            inputValue = ieMobileHandler(input, inputValue, caretPos);
+
+            if (getBuffer().join("") !== inputValue) {
+              var buffer = getBuffer().join(""),
+                  offset = !opts.numericInput && inputValue.length > buffer.length ? -1 : 0,
+                  frontPart = inputValue.substr(0, caretPos.begin),
+                  backPart = inputValue.substr(caretPos.begin),
+                  frontBufferPart = buffer.substr(0, caretPos.begin + offset),
+                  backBufferPart = buffer.substr(caretPos.begin + offset);
+              var selection = caretPos,
+                  entries = "",
+                  isEntry = false;
+
+              if (frontPart !== frontBufferPart) {
+                var fpl = (isEntry = frontPart.length >= frontBufferPart.length) ? frontPart.length : frontBufferPart.length,
+                    i;
+
+                for (i = 0; frontPart.charAt(i) === frontBufferPart.charAt(i) && i < fpl; i++) {}
+
+                if (isEntry) {
+                  selection.begin = i - offset;
+                  entries += frontPart.slice(i, selection.end);
+                }
+              }
+
+              if (backPart !== backBufferPart) {
+                if (backPart.length > backBufferPart.length) {
+                  entries += backPart.slice(0, 1);
+                } else {
+                  if (backPart.length < backBufferPart.length) {
+                    selection.end += backBufferPart.length - backPart.length;
+
+                    if (!isEntry && opts.radixPoint !== "" && backPart === "" && frontPart.charAt(selection.begin + offset - 1) === opts.radixPoint) {
+                      selection.begin--;
+                      entries = opts.radixPoint;
+                    }
+                  }
+                }
+              }
+
+              writeBuffer(input, getBuffer(), {
+                begin: selection.begin + offset,
+                end: selection.end + offset
+              });
+
+              if (entries.length > 0) {
+                $.each(entries.split(""), function (ndx, entry) {
+                  var keypress = new $.Event("keypress");
+                  keypress.which = entry.charCodeAt(0);
+                  ignorable = false;
+                  EventHandlers.keypressEvent.call(input, keypress);
+                });
+              } else {
+                if (selection.begin === selection.end - 1) {
+                  selection.begin = seekPrevious(selection.begin + 1);
+
+                  if (selection.begin === selection.end - 1) {
+                    caret(input, selection.begin);
+                  } else {
+                    caret(input, selection.begin, selection.end);
+                  }
+                }
+
+                var keydown = new $.Event("keydown");
+                keydown.keyCode = opts.numericInput ? Inputmask.keyCode.BACKSPACE : Inputmask.keyCode.DELETE;
+                EventHandlers.keydownEvent.call(input, keydown);
+              }
+
+              e.preventDefault();
+            }
+          }
+        },
+        beforeInputEvent: function beforeInputEvent(e) {
+          if (e.cancelable) {
+            var input = this;
+
+            switch (e.inputType) {
+              case "insertText":
+                $.each(e.data.split(""), function (ndx, entry) {
+                  var keypress = new $.Event("keypress");
+                  keypress.which = entry.charCodeAt(0);
+                  ignorable = false;
+                  EventHandlers.keypressEvent.call(input, keypress);
+                });
+                return e.preventDefault();
+
+              case "deleteContentBackward":
+                var keydown = new $.Event("keydown");
+                keydown.keyCode = Inputmask.keyCode.BACKSPACE;
+                EventHandlers.keydownEvent.call(input, keydown);
+                return e.preventDefault();
+
+              case "deleteContentForward":
+                var keydown = new $.Event("keydown");
+                keydown.keyCode = Inputmask.keyCode.DELETE;
+                EventHandlers.keydownEvent.call(input, keydown);
+                return e.preventDefault();
+            }
+          }
+        },
+        setValueEvent: function setValueEvent(e) {
+          this.inputmask.refreshValue = false;
+
+          var input = this,
+              value = e && e.detail ? e.detail[0] : arguments[1],
+              value = value || input.inputmask._valueGet(true);
+
+          if ($.isFunction(opts.onBeforeMask)) value = opts.onBeforeMask.call(inputmask, value, opts) || value;
+          value = value.toString().split("");
+          checkVal(input, true, false, value);
+          undoValue = getBuffer().join("");
+
+          if ((opts.clearMaskOnLostFocus || opts.clearIncomplete) && input.inputmask._valueGet() === getBufferTemplate().join("")) {
+            input.inputmask._valueSet("");
+          }
+        },
+        focusEvent: function focusEvent(e) {
+          var input = this,
+              nptValue = input.inputmask._valueGet();
+
+          if (opts.showMaskOnFocus) {
+            if (nptValue !== getBuffer().join("")) {
+              writeBuffer(input, getBuffer(), seekNext(getLastValidPosition()));
+            } else if (mouseEnter === false) {
+              caret(input, seekNext(getLastValidPosition()));
+            }
+          }
+
+          if (opts.positionCaretOnTab === true && mouseEnter === false) {
+            EventHandlers.clickEvent.apply(input, [e, true]);
+          }
+
+          undoValue = getBuffer().join("");
+        },
+        mouseleaveEvent: function mouseleaveEvent(e) {
+          var input = this;
+          mouseEnter = false;
+
+          if (opts.clearMaskOnLostFocus && document.activeElement !== input) {
+            HandleNativePlaceholder(input, originalPlaceholder);
+          }
+        },
+        clickEvent: function clickEvent(e, tabbed) {
+          function doRadixFocus(clickPos) {
+            if (opts.radixPoint !== "") {
+              var vps = getMaskSet().validPositions;
+
+              if (vps[clickPos] === undefined || vps[clickPos].input === getPlaceholder(clickPos)) {
+                if (clickPos < seekNext(-1)) return true;
+                var radixPos = $.inArray(opts.radixPoint, getBuffer());
+
+                if (radixPos !== -1) {
+                  for (var vp in vps) {
+                    if (radixPos < vp && vps[vp].input !== getPlaceholder(vp)) {
+                      return false;
+                    }
+                  }
+
+                  return true;
+                }
+              }
+            }
+
+            return false;
+          }
+
+          var input = this;
+          setTimeout(function () {
+            if (document.activeElement === input) {
+              var selectedCaret = caret(input);
+
+              if (tabbed) {
+                if (isRTL) {
+                  selectedCaret.end = selectedCaret.begin;
+                } else {
+                  selectedCaret.begin = selectedCaret.end;
+                }
+              }
+
+              if (selectedCaret.begin === selectedCaret.end) {
+                switch (opts.positionCaretOnClick) {
+                  case "none":
+                    break;
+
+                  case "select":
+                    caret(input, 0, getBuffer().length);
+                    break;
+
+                  case "ignore":
+                    caret(input, seekNext(getLastValidPosition()));
+                    break;
+
+                  case "radixFocus":
+                    if (doRadixFocus(selectedCaret.begin)) {
+                      var radixPos = getBuffer().join("").indexOf(opts.radixPoint);
+                      caret(input, opts.numericInput ? seekNext(radixPos) : radixPos);
+                      break;
+                    }
+
+                  default:
+                    var clickPosition = selectedCaret.begin,
+                        lvclickPosition = getLastValidPosition(clickPosition, true),
+                        lastPosition = seekNext(lvclickPosition);
+
+                    if (clickPosition < lastPosition) {
+                      caret(input, !isMask(clickPosition, true) && !isMask(clickPosition - 1, true) ? seekNext(clickPosition) : clickPosition);
+                    } else {
+                      var lvp = getMaskSet().validPositions[lvclickPosition],
+                          tt = getTestTemplate(lastPosition, lvp ? lvp.match.locator : undefined, lvp),
+                          placeholder = getPlaceholder(lastPosition, tt.match);
+
+                      if (placeholder !== "" && getBuffer()[lastPosition] !== placeholder && tt.match.optionalQuantifier !== true && tt.match.newBlockMarker !== true || !isMask(lastPosition, opts.keepStatic) && tt.match.def === placeholder) {
+                        var newPos = seekNext(lastPosition);
+
+                        if (clickPosition >= newPos || clickPosition === lastPosition) {
+                          lastPosition = newPos;
+                        }
+                      }
+
+                      caret(input, lastPosition);
+                    }
+
+                    break;
+                }
+              }
+            }
+          }, 0);
+        },
+        cutEvent: function cutEvent(e) {
+          var input = this,
+              $input = $(input),
+              pos = caret(input),
+              ev = e.originalEvent || e;
+          var clipboardData = window.clipboardData || ev.clipboardData,
+              clipData = isRTL ? getBuffer().slice(pos.end, pos.begin) : getBuffer().slice(pos.begin, pos.end);
+          clipboardData.setData("text", isRTL ? clipData.reverse().join("") : clipData.join(""));
+          if (document.execCommand) document.execCommand("copy");
+          handleRemove(input, Inputmask.keyCode.DELETE, pos);
+          writeBuffer(input, getBuffer(), getMaskSet().p, e, undoValue !== getBuffer().join(""));
+        },
+        blurEvent: function blurEvent(e) {
+          var $input = $(this),
+              input = this;
+
+          if (input.inputmask) {
+            HandleNativePlaceholder(input, originalPlaceholder);
+
+            var nptValue = input.inputmask._valueGet(),
+                buffer = getBuffer().slice();
+
+            if (nptValue !== "" || colorMask !== undefined) {
+              if (opts.clearMaskOnLostFocus) {
+                if (getLastValidPosition() === -1 && nptValue === getBufferTemplate().join("")) {
+                  buffer = [];
+                } else {
+                  clearOptionalTail(buffer);
+                }
+              }
+
+              if (isComplete(buffer) === false) {
+                setTimeout(function () {
+                  $input.trigger("incomplete");
+                }, 0);
+
+                if (opts.clearIncomplete) {
+                  resetMaskSet();
+
+                  if (opts.clearMaskOnLostFocus) {
+                    buffer = [];
+                  } else {
+                    buffer = getBufferTemplate().slice();
+                  }
+                }
+              }
+
+              writeBuffer(input, buffer, undefined, e);
+            }
+
+            if (undoValue !== getBuffer().join("")) {
+              undoValue = buffer.join("");
+              $input.trigger("change");
+            }
+          }
+        },
+        mouseenterEvent: function mouseenterEvent(e) {
+          var input = this;
+          mouseEnter = true;
+
+          if (document.activeElement !== input && opts.showMaskOnHover) {
+            HandleNativePlaceholder(input, (isRTL ? getBuffer().slice().reverse() : getBuffer()).join(""));
+          }
+        },
+        submitEvent: function submitEvent(e) {
+          if (undoValue !== getBuffer().join("")) {
+            $el.trigger("change");
+          }
+
+          if (opts.clearMaskOnLostFocus && getLastValidPosition() === -1 && el.inputmask._valueGet && el.inputmask._valueGet() === getBufferTemplate().join("")) {
+            el.inputmask._valueSet("");
+          }
+
+          if (opts.clearIncomplete && isComplete(getBuffer()) === false) {
+            el.inputmask._valueSet("");
+          }
+
+          if (opts.removeMaskOnSubmit) {
+            el.inputmask._valueSet(el.inputmask.unmaskedvalue(), true);
+
+            setTimeout(function () {
+              writeBuffer(el, getBuffer());
+            }, 0);
+          }
+        },
+        resetEvent: function resetEvent(e) {
+          el.inputmask.refreshValue = true;
+          setTimeout(function () {
+            $el.trigger("setvalue");
+          }, 0);
+        }
+      };
+
+      function checkVal(input, writeOut, strict, nptvl, initiatingEvent) {
+        var inputmask = this || input.inputmask,
+            inputValue = nptvl.slice(),
+            charCodes = "",
+            initialNdx = -1,
+            result = undefined;
+
+        function isTemplateMatch(ndx, charCodes) {
+          var charCodeNdx = getMaskTemplate(true, 0, false).slice(ndx, seekNext(ndx)).join("").replace(/'/g, "").indexOf(charCodes);
+          return charCodeNdx !== -1 && !isMask(ndx) && (getTest(ndx).match.nativeDef === charCodes.charAt(0) || getTest(ndx).match.fn === null && getTest(ndx).match.nativeDef === "'" + charCodes.charAt(0) || getTest(ndx).match.nativeDef === " " && (getTest(ndx + 1).match.nativeDef === charCodes.charAt(0) || getTest(ndx + 1).match.fn === null && getTest(ndx + 1).match.nativeDef === "'" + charCodes.charAt(0)));
+        }
+
+        resetMaskSet();
+
+        if (!strict && opts.autoUnmask !== true) {
+          var staticInput = getBufferTemplate().slice(0, seekNext(-1)).join(""),
+              matches = inputValue.join("").match(new RegExp("^" + Inputmask.escapeRegex(staticInput), "g"));
+
+          if (matches && matches.length > 0) {
+            inputValue.splice(0, matches.length * staticInput.length);
+            initialNdx = seekNext(initialNdx);
+          }
+        } else {
+          initialNdx = seekNext(initialNdx);
+        }
+
+        if (initialNdx === -1) {
+          getMaskSet().p = seekNext(initialNdx);
+          initialNdx = 0;
+        } else getMaskSet().p = initialNdx;
+
+        inputmask.caretPos = {
+          begin: initialNdx
+        };
+        $.each(inputValue, function (ndx, charCode) {
+          if (charCode !== undefined) {
+            if (getMaskSet().validPositions[ndx] === undefined && inputValue[ndx] === getPlaceholder(ndx) && isMask(ndx, true) && isValid(ndx, inputValue[ndx], true, undefined, undefined, true) === false) {
+              getMaskSet().p++;
+            } else {
+              var keypress = new $.Event("_checkval");
+              keypress.which = charCode.charCodeAt(0);
+              charCodes += charCode;
+              var lvp = getLastValidPosition(undefined, true);
+
+              if (!isTemplateMatch(initialNdx, charCodes)) {
+                result = EventHandlers.keypressEvent.call(input, keypress, true, false, strict, inputmask.caretPos.begin);
+
+                if (result) {
+                  initialNdx = inputmask.caretPos.begin + 1;
+                  charCodes = "";
+                }
+              } else {
+                result = EventHandlers.keypressEvent.call(input, keypress, true, false, strict, lvp + 1);
+              }
+
+              if (result) {
+                writeBuffer(undefined, getBuffer(), result.forwardPosition, keypress, false);
+                inputmask.caretPos = {
+                  begin: result.forwardPosition,
+                  end: result.forwardPosition
+                };
+              }
+            }
+          }
+        });
+        if (writeOut) writeBuffer(input, getBuffer(), result ? result.forwardPosition : undefined, initiatingEvent || new $.Event("checkval"), initiatingEvent && initiatingEvent.type === "input");
+      }
+
+      function unmaskedvalue(input) {
+        if (input) {
+          if (input.inputmask === undefined) {
+            return input.value;
+          }
+
+          if (input.inputmask && input.inputmask.refreshValue) {
+            EventHandlers.setValueEvent.call(input);
+          }
+        }
+
+        var umValue = [],
+            vps = getMaskSet().validPositions;
+
+        for (var pndx in vps) {
+          if (vps[pndx].match && vps[pndx].match.fn != null) {
+            umValue.push(vps[pndx].input);
+          }
+        }
+
+        var unmaskedValue = umValue.length === 0 ? "" : (isRTL ? umValue.reverse() : umValue).join("");
+
+        if ($.isFunction(opts.onUnMask)) {
+          var bufferValue = (isRTL ? getBuffer().slice().reverse() : getBuffer()).join("");
+          unmaskedValue = opts.onUnMask.call(inputmask, bufferValue, unmaskedValue, opts);
+        }
+
+        return unmaskedValue;
+      }
+
+      function caret(input, begin, end, notranslate) {
+        function translatePosition(pos) {
+          if (isRTL && typeof pos === "number" && (!opts.greedy || opts.placeholder !== "") && el) {
+            pos = el.inputmask._valueGet().length - pos;
+          }
+
+          return pos;
+        }
+
+        var range;
+
+        if (begin !== undefined) {
+          if ($.isArray(begin)) {
+            end = isRTL ? begin[0] : begin[1];
+            begin = isRTL ? begin[1] : begin[0];
+          }
+
+          if (begin.begin !== undefined) {
+            end = isRTL ? begin.begin : begin.end;
+            begin = isRTL ? begin.end : begin.begin;
+          }
+
+          if (typeof begin === "number") {
+            begin = notranslate ? begin : translatePosition(begin);
+            end = notranslate ? end : translatePosition(end);
+            end = typeof end == "number" ? end : begin;
+            var scrollCalc = parseInt(((input.ownerDocument.defaultView || window).getComputedStyle ? (input.ownerDocument.defaultView || window).getComputedStyle(input, null) : input.currentStyle).fontSize) * end;
+            input.scrollLeft = scrollCalc > input.scrollWidth ? scrollCalc : 0;
+            input.inputmask.caretPos = {
+              begin: begin,
+              end: end
+            };
+
+            if (input === document.activeElement) {
+              if ("selectionStart" in input) {
+                input.selectionStart = begin;
+                input.selectionEnd = end;
+              } else if (window.getSelection) {
+                range = document.createRange();
+
+                if (input.firstChild === undefined || input.firstChild === null) {
+                  var textNode = document.createTextNode("");
+                  input.appendChild(textNode);
+                }
+
+                range.setStart(input.firstChild, begin < input.inputmask._valueGet().length ? begin : input.inputmask._valueGet().length);
+                range.setEnd(input.firstChild, end < input.inputmask._valueGet().length ? end : input.inputmask._valueGet().length);
+                range.collapse(true);
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+              } else if (input.createTextRange) {
+                range = input.createTextRange();
+                range.collapse(true);
+                range.moveEnd("character", end);
+                range.moveStart("character", begin);
+                range.select();
+              }
+
+              renderColorMask(input, {
+                begin: begin,
+                end: end
+              });
+            }
+          }
+        } else {
+          if ("selectionStart" in input) {
+            begin = input.selectionStart;
+            end = input.selectionEnd;
+          } else if (window.getSelection) {
+            range = window.getSelection().getRangeAt(0);
+
+            if (range.commonAncestorContainer.parentNode === input || range.commonAncestorContainer === input) {
+              begin = range.startOffset;
+              end = range.endOffset;
+            }
+          } else if (document.selection && document.selection.createRange) {
+            range = document.selection.createRange();
+            begin = 0 - range.duplicate().moveStart("character", -input.inputmask._valueGet().length);
+            end = begin + range.text.length;
+          }
+
+          return {
+            begin: notranslate ? begin : translatePosition(begin),
+            end: notranslate ? end : translatePosition(end)
+          };
+        }
+      }
+
+      function determineLastRequiredPosition(returnDefinition) {
+        var buffer = getMaskTemplate(true, getLastValidPosition(), true, true),
+            bl = buffer.length,
+            pos,
+            lvp = getLastValidPosition(),
+            positions = {},
+            lvTest = getMaskSet().validPositions[lvp],
+            ndxIntlzr = lvTest !== undefined ? lvTest.locator.slice() : undefined,
+            testPos;
+
+        for (pos = lvp + 1; pos < buffer.length; pos++) {
+          testPos = getTestTemplate(pos, ndxIntlzr, pos - 1);
+          ndxIntlzr = testPos.locator.slice();
+          positions[pos] = $.extend(true, {}, testPos);
+        }
+
+        var lvTestAlt = lvTest && lvTest.alternation !== undefined ? lvTest.locator[lvTest.alternation] : undefined;
+
+        for (pos = bl - 1; pos > lvp; pos--) {
+          testPos = positions[pos];
+
+          if ((testPos.match.optionality || testPos.match.optionalQuantifier && testPos.match.newBlockMarker || lvTestAlt && (lvTestAlt !== positions[pos].locator[lvTest.alternation] && testPos.match.fn != null || testPos.match.fn === null && testPos.locator[lvTest.alternation] && checkAlternationMatch(testPos.locator[lvTest.alternation].toString().split(","), lvTestAlt.toString().split(",")) && getTests(pos)[0].def !== "")) && buffer[pos] === getPlaceholder(pos, testPos.match)) {
+            bl--;
+          } else break;
+        }
+
+        return returnDefinition ? {
+          l: bl,
+          def: positions[bl] ? positions[bl].match : undefined
+        } : bl;
+      }
+
+      function clearOptionalTail(buffer) {
+        buffer.length = 0;
+        var template = getMaskTemplate(true, 0, true, undefined, true),
+            lmnt,
+            validPos;
+
+        while (lmnt = template.shift(), lmnt !== undefined) {
+          buffer.push(lmnt);
+        }
+
+        return buffer;
+      }
+
+      function isComplete(buffer) {
+        if ($.isFunction(opts.isComplete)) return opts.isComplete(buffer, opts);
+        if (opts.repeat === "*") return undefined;
+        var complete = false,
+            lrp = determineLastRequiredPosition(true),
+            aml = seekPrevious(lrp.l);
+
+        if (lrp.def === undefined || lrp.def.newBlockMarker || lrp.def.optionality || lrp.def.optionalQuantifier) {
+          complete = true;
+
+          for (var i = 0; i <= aml; i++) {
+            var test = getTestTemplate(i).match;
+
+            if (test.fn !== null && getMaskSet().validPositions[i] === undefined && test.optionality !== true && test.optionalQuantifier !== true || test.fn === null && buffer[i] !== getPlaceholder(i, test)) {
+              complete = false;
+              break;
+            }
+          }
+        }
+
+        return complete;
+      }
+
+      function handleRemove(input, k, pos, strict, fromIsValid) {
+        if (opts.numericInput || isRTL) {
+          if (k === Inputmask.keyCode.BACKSPACE) {
+            k = Inputmask.keyCode.DELETE;
+          } else if (k === Inputmask.keyCode.DELETE) {
+            k = Inputmask.keyCode.BACKSPACE;
+          }
+
+          if (isRTL) {
+            var pend = pos.end;
+            pos.end = pos.begin;
+            pos.begin = pend;
+          }
+        }
+
+        if (k === Inputmask.keyCode.BACKSPACE && pos.end - pos.begin < 1) {
+          pos.begin = seekPrevious(pos.begin);
+
+          if (getMaskSet().validPositions[pos.begin] !== undefined && getMaskSet().validPositions[pos.begin].input === opts.groupSeparator) {
+            pos.begin--;
+          }
+        } else if (k === Inputmask.keyCode.DELETE && pos.begin === pos.end) {
+          pos.end = isMask(pos.end, true) && getMaskSet().validPositions[pos.end] && getMaskSet().validPositions[pos.end].input !== opts.radixPoint ? pos.end + 1 : seekNext(pos.end) + 1;
+
+          if (getMaskSet().validPositions[pos.begin] !== undefined && getMaskSet().validPositions[pos.begin].input === opts.groupSeparator) {
+            pos.end++;
+          }
+        }
+
+        revalidateMask(pos);
+
+        if (strict !== true && opts.keepStatic !== false || opts.regex !== null) {
+          var result = alternate(true);
+
+          if (result) {
+            var newPos = result.caret !== undefined ? result.caret : result.pos ? seekNext(result.pos.begin ? result.pos.begin : result.pos) : getLastValidPosition(-1, true);
+
+            if (k !== Inputmask.keyCode.DELETE || pos.begin > newPos) {
+              pos.begin == newPos;
+            }
+          }
+        }
+
+        var lvp = getLastValidPosition(pos.begin, true);
+
+        if (lvp < pos.begin || pos.begin === -1) {
+          getMaskSet().p = seekNext(lvp);
+        } else if (strict !== true) {
+          getMaskSet().p = pos.begin;
+
+          if (fromIsValid !== true) {
+            while (getMaskSet().p < lvp && getMaskSet().validPositions[getMaskSet().p] === undefined) {
+              getMaskSet().p++;
+            }
+          }
+        }
+      }
+
+      function initializeColorMask(input) {
+        var computedStyle = (input.ownerDocument.defaultView || window).getComputedStyle(input, null);
+
+        function findCaretPos(clientx) {
+          var e = document.createElement("span"),
+              caretPos;
+
+          for (var style in computedStyle) {
+            if (isNaN(style) && style.indexOf("font") !== -1) {
+              e.style[style] = computedStyle[style];
+            }
+          }
+
+          e.style.textTransform = computedStyle.textTransform;
+          e.style.letterSpacing = computedStyle.letterSpacing;
+          e.style.position = "absolute";
+          e.style.height = "auto";
+          e.style.width = "auto";
+          e.style.visibility = "hidden";
+          e.style.whiteSpace = "nowrap";
+          document.body.appendChild(e);
+
+          var inputText = input.inputmask._valueGet(),
+              previousWidth = 0,
+              itl;
+
+          for (caretPos = 0, itl = inputText.length; caretPos <= itl; caretPos++) {
+            e.innerHTML += inputText.charAt(caretPos) || "_";
+
+            if (e.offsetWidth >= clientx) {
+              var offset1 = clientx - previousWidth;
+              var offset2 = e.offsetWidth - clientx;
+              e.innerHTML = inputText.charAt(caretPos);
+              offset1 -= e.offsetWidth / 3;
+              caretPos = offset1 < offset2 ? caretPos - 1 : caretPos;
+              break;
+            }
+
+            previousWidth = e.offsetWidth;
+          }
+
+          document.body.removeChild(e);
+          return caretPos;
+        }
+
+        var template = document.createElement("div");
+        template.style.width = computedStyle.width;
+        template.style.textAlign = computedStyle.textAlign;
+        colorMask = document.createElement("div");
+        input.inputmask.colorMask = colorMask;
+        colorMask.className = "im-colormask";
+        input.parentNode.insertBefore(colorMask, input);
+        input.parentNode.removeChild(input);
+        colorMask.appendChild(input);
+        colorMask.appendChild(template);
+        input.style.left = template.offsetLeft + "px";
+        $(colorMask).on("mouseleave", function (e) {
+          return EventHandlers.mouseleaveEvent.call(input, [e]);
+        });
+        $(colorMask).on("mouseenter", function (e) {
+          return EventHandlers.mouseenterEvent.call(input, [e]);
+        });
+        $(colorMask).on("click", function (e) {
+          caret(input, findCaretPos(e.clientX));
+          return EventHandlers.clickEvent.call(input, [e]);
+        });
+      }
+
+      function renderColorMask(input, caretPos, clear) {
+        var maskTemplate = [],
+            isStatic = false,
+            test,
+            testPos,
+            ndxIntlzr,
+            pos = 0;
+
+        function setEntry(entry) {
+          if (entry === undefined) entry = "";
+
+          if (!isStatic && (test.fn === null || testPos.input === undefined)) {
+            isStatic = true;
+            maskTemplate.push("<span class='im-static'>" + entry);
+          } else if (isStatic && (test.fn !== null && testPos.input !== undefined || test.def === "")) {
+            isStatic = false;
+            var mtl = maskTemplate.length;
+            maskTemplate[mtl - 1] = maskTemplate[mtl - 1] + "</span>";
+            maskTemplate.push(entry);
+          } else maskTemplate.push(entry);
+        }
+
+        function setCaret() {
+          if (document.activeElement === input) {
+            maskTemplate.splice(caretPos.begin, 0, caretPos.begin === caretPos.end || caretPos.end > getMaskSet().maskLength ? '<mark class="im-caret" style="border-right-width: 1px;border-right-style: solid;">' : '<mark class="im-caret-select">');
+            maskTemplate.splice(caretPos.end + 1, 0, "</mark>");
+          }
+        }
+
+        if (colorMask !== undefined) {
+          var buffer = getBuffer();
+
+          if (caretPos === undefined) {
+            caretPos = caret(input);
+          } else if (caretPos.begin === undefined) {
+            caretPos = {
+              begin: caretPos,
+              end: caretPos
+            };
+          }
+
+          if (clear !== true) {
+            var lvp = getLastValidPosition();
+
+            do {
+              if (getMaskSet().validPositions[pos]) {
+                testPos = getMaskSet().validPositions[pos];
+                test = testPos.match;
+                ndxIntlzr = testPos.locator.slice();
+                setEntry(buffer[pos]);
+              } else {
+                testPos = getTestTemplate(pos, ndxIntlzr, pos - 1);
+                test = testPos.match;
+                ndxIntlzr = testPos.locator.slice();
+
+                if (opts.jitMasking === false || pos < lvp || typeof opts.jitMasking === "number" && isFinite(opts.jitMasking) && opts.jitMasking > pos) {
+                  setEntry(getPlaceholder(pos, test));
+                } else isStatic = false;
+              }
+
+              pos++;
+            } while ((maxLength === undefined || pos < maxLength) && (test.fn !== null || test.def !== "") || lvp > pos || isStatic);
+
+            if (isStatic) setEntry();
+            setCaret();
+          }
+
+          var template = colorMask.getElementsByTagName("div")[0];
+          template.innerHTML = maskTemplate.join("");
+          input.inputmask.positionColorMask(input, template);
+        }
+      }
+
+      function mask(elem) {
+        function isElementTypeSupported(input, opts) {
+          function patchValueProperty(npt) {
+            var valueGet;
+            var valueSet;
+
+            function patchValhook(type) {
+              if ($.valHooks && ($.valHooks[type] === undefined || $.valHooks[type].inputmaskpatch !== true)) {
+                var valhookGet = $.valHooks[type] && $.valHooks[type].get ? $.valHooks[type].get : function (elem) {
+                  return elem.value;
+                };
+                var valhookSet = $.valHooks[type] && $.valHooks[type].set ? $.valHooks[type].set : function (elem, value) {
+                  elem.value = value;
+                  return elem;
+                };
+                $.valHooks[type] = {
+                  get: function get(elem) {
+                    if (elem.inputmask) {
+                      if (elem.inputmask.opts.autoUnmask) {
+                        return elem.inputmask.unmaskedvalue();
+                      } else {
+                        var result = valhookGet(elem);
+                        return getLastValidPosition(undefined, undefined, elem.inputmask.maskset.validPositions) !== -1 || opts.nullable !== true ? result : "";
+                      }
+                    } else return valhookGet(elem);
+                  },
+                  set: function set(elem, value) {
+                    var $elem = $(elem),
+                        result;
+                    result = valhookSet(elem, value);
+
+                    if (elem.inputmask) {
+                      $elem.trigger("setvalue", [value]);
+                    }
+
+                    return result;
+                  },
+                  inputmaskpatch: true
+                };
+              }
+            }
+
+            function getter() {
+              if (this.inputmask) {
+                return this.inputmask.opts.autoUnmask ? this.inputmask.unmaskedvalue() : getLastValidPosition() !== -1 || opts.nullable !== true ? document.activeElement === this && opts.clearMaskOnLostFocus ? (isRTL ? clearOptionalTail(getBuffer().slice()).reverse() : clearOptionalTail(getBuffer().slice())).join("") : valueGet.call(this) : "";
+              } else return valueGet.call(this);
+            }
+
+            function setter(value) {
+              valueSet.call(this, value);
+
+              if (this.inputmask) {
+                $(this).trigger("setvalue", [value]);
+              }
+            }
+
+            function installNativeValueSetFallback(npt) {
+              EventRuler.on(npt, "mouseenter", function (event) {
+                var $input = $(this),
+                    input = this,
+                    value = input.inputmask._valueGet();
+
+                if (value !== getBuffer().join("")) {
+                  $input.trigger("setvalue");
+                }
+              });
+            }
+
+            if (!npt.inputmask.__valueGet) {
+              if (opts.noValuePatching !== true) {
+                if (Object.getOwnPropertyDescriptor) {
+                  if (typeof Object.getPrototypeOf !== "function") {
+                    Object.getPrototypeOf = _typeof("test".__proto__) === "object" ? function (object) {
+                      return object.__proto__;
+                    } : function (object) {
+                      return object.constructor.prototype;
+                    };
+                  }
+
+                  var valueProperty = Object.getPrototypeOf ? Object.getOwnPropertyDescriptor(Object.getPrototypeOf(npt), "value") : undefined;
+
+                  if (valueProperty && valueProperty.get && valueProperty.set) {
+                    valueGet = valueProperty.get;
+                    valueSet = valueProperty.set;
+                    Object.defineProperty(npt, "value", {
+                      get: getter,
+                      set: setter,
+                      configurable: true
+                    });
+                  } else if (npt.tagName !== "INPUT") {
+                    valueGet = function valueGet() {
+                      return this.textContent;
+                    };
+
+                    valueSet = function valueSet(value) {
+                      this.textContent = value;
+                    };
+
+                    Object.defineProperty(npt, "value", {
+                      get: getter,
+                      set: setter,
+                      configurable: true
+                    });
+                  }
+                } else if (document.__lookupGetter__ && npt.__lookupGetter__("value")) {
+                  valueGet = npt.__lookupGetter__("value");
+                  valueSet = npt.__lookupSetter__("value");
+
+                  npt.__defineGetter__("value", getter);
+
+                  npt.__defineSetter__("value", setter);
+                }
+
+                npt.inputmask.__valueGet = valueGet;
+                npt.inputmask.__valueSet = valueSet;
+              }
+
+              npt.inputmask._valueGet = function (overruleRTL) {
+                return isRTL && overruleRTL !== true ? valueGet.call(this.el).split("").reverse().join("") : valueGet.call(this.el);
+              };
+
+              npt.inputmask._valueSet = function (value, overruleRTL) {
+                valueSet.call(this.el, value === null || value === undefined ? "" : overruleRTL !== true && isRTL ? value.split("").reverse().join("") : value);
+              };
+
+              if (valueGet === undefined) {
+                valueGet = function valueGet() {
+                  return this.value;
+                };
+
+                valueSet = function valueSet(value) {
+                  this.value = value;
+                };
+
+                patchValhook(npt.type);
+                installNativeValueSetFallback(npt);
+              }
+            }
+          }
+
+          var elementType = input.getAttribute("type");
+          var isSupported = input.tagName === "INPUT" && $.inArray(elementType, opts.supportsInputType) !== -1 || input.isContentEditable || input.tagName === "TEXTAREA";
+
+          if (!isSupported) {
+            if (input.tagName === "INPUT") {
+              var el = document.createElement("input");
+              el.setAttribute("type", elementType);
+              isSupported = el.type === "text";
+              el = null;
+            } else isSupported = "partial";
+          }
+
+          if (isSupported !== false) {
+            patchValueProperty(input);
+          } else input.inputmask = undefined;
+
+          return isSupported;
+        }
+
+        EventRuler.off(elem);
+        var isSupported = isElementTypeSupported(elem, opts);
+
+        if (isSupported !== false) {
+          el = elem;
+          $el = $(el);
+          originalPlaceholder = el.placeholder;
+          maxLength = el !== undefined ? el.maxLength : undefined;
+          if (maxLength === -1) maxLength = undefined;
+
+          if (opts.colorMask === true) {
+            initializeColorMask(el);
+          }
+
+          if (mobile) {
+            if ("inputMode" in el) {
+              el.inputmode = opts.inputmode;
+              el.setAttribute("inputmode", opts.inputmode);
+            }
+
+            if (opts.disablePredictiveText === true) {
+              if ("autocorrect" in el) {
+                el.autocorrect = false;
+              } else {
+                if (opts.colorMask !== true) {
+                  initializeColorMask(el);
+                }
+
+                el.type = "password";
+              }
+            }
+          }
+
+          if (isSupported === true) {
+            el.setAttribute("im-insert", opts.insertMode);
+            EventRuler.on(el, "submit", EventHandlers.submitEvent);
+            EventRuler.on(el, "reset", EventHandlers.resetEvent);
+            EventRuler.on(el, "blur", EventHandlers.blurEvent);
+            EventRuler.on(el, "focus", EventHandlers.focusEvent);
+
+            if (opts.colorMask !== true) {
+              EventRuler.on(el, "click", EventHandlers.clickEvent);
+              EventRuler.on(el, "mouseleave", EventHandlers.mouseleaveEvent);
+              EventRuler.on(el, "mouseenter", EventHandlers.mouseenterEvent);
+            }
+
+            EventRuler.on(el, "paste", EventHandlers.pasteEvent);
+            EventRuler.on(el, "cut", EventHandlers.cutEvent);
+            EventRuler.on(el, "complete", opts.oncomplete);
+            EventRuler.on(el, "incomplete", opts.onincomplete);
+            EventRuler.on(el, "cleared", opts.oncleared);
+
+            if (!mobile && opts.inputEventOnly !== true) {
+              EventRuler.on(el, "keydown", EventHandlers.keydownEvent);
+              EventRuler.on(el, "keypress", EventHandlers.keypressEvent);
+            } else {
+              el.removeAttribute("maxLength");
+            }
+
+            EventRuler.on(el, "input", EventHandlers.inputFallBackEvent);
+            EventRuler.on(el, "beforeinput", EventHandlers.beforeInputEvent);
+          }
+
+          EventRuler.on(el, "setvalue", EventHandlers.setValueEvent);
+          undoValue = getBufferTemplate().join("");
+
+          if (el.inputmask._valueGet(true) !== "" || opts.clearMaskOnLostFocus === false || document.activeElement === el) {
+            var initialValue = $.isFunction(opts.onBeforeMask) ? opts.onBeforeMask.call(inputmask, el.inputmask._valueGet(true), opts) || el.inputmask._valueGet(true) : el.inputmask._valueGet(true);
+            if (initialValue !== "") checkVal(el, true, false, initialValue.split(""));
+            var buffer = getBuffer().slice();
+            undoValue = buffer.join("");
+
+            if (isComplete(buffer) === false) {
+              if (opts.clearIncomplete) {
+                resetMaskSet();
+              }
+            }
+
+            if (opts.clearMaskOnLostFocus && document.activeElement !== el) {
+              if (getLastValidPosition() === -1) {
+                buffer = [];
+              } else {
+                clearOptionalTail(buffer);
+              }
+            }
+
+            if (opts.clearMaskOnLostFocus === false || opts.showMaskOnFocus && document.activeElement === el || el.inputmask._valueGet(true) !== "") writeBuffer(el, buffer);
+
+            if (document.activeElement === el) {
+              caret(el, seekNext(getLastValidPosition()));
+            }
+          }
+        }
+      }
+
+      var valueBuffer;
+
+      if (actionObj !== undefined) {
+        switch (actionObj.action) {
+          case "isComplete":
+            el = actionObj.el;
+            return isComplete(getBuffer());
+
+          case "unmaskedvalue":
+            if (el === undefined || actionObj.value !== undefined) {
+              valueBuffer = actionObj.value;
+              valueBuffer = ($.isFunction(opts.onBeforeMask) ? opts.onBeforeMask.call(inputmask, valueBuffer, opts) || valueBuffer : valueBuffer).split("");
+              checkVal.call(this, undefined, false, false, valueBuffer);
+              if ($.isFunction(opts.onBeforeWrite)) opts.onBeforeWrite.call(inputmask, undefined, getBuffer(), 0, opts);
+            }
+
+            return unmaskedvalue(el);
+
+          case "mask":
+            mask(el);
+            break;
+
+          case "format":
+            valueBuffer = ($.isFunction(opts.onBeforeMask) ? opts.onBeforeMask.call(inputmask, actionObj.value, opts) || actionObj.value : actionObj.value).split("");
+            checkVal.call(this, undefined, true, false, valueBuffer);
+
+            if (actionObj.metadata) {
+              return {
+                value: isRTL ? getBuffer().slice().reverse().join("") : getBuffer().join(""),
+                metadata: maskScope.call(this, {
+                  action: "getmetadata"
+                }, maskset, opts)
+              };
+            }
+
+            return isRTL ? getBuffer().slice().reverse().join("") : getBuffer().join("");
+
+          case "isValid":
+            if (actionObj.value) {
+              valueBuffer = actionObj.value.split("");
+              checkVal.call(this, undefined, true, true, valueBuffer);
+            } else {
+              actionObj.value = getBuffer().join("");
+            }
+
+            var buffer = getBuffer();
+            var rl = determineLastRequiredPosition(),
+                lmib = buffer.length - 1;
+
+            for (; lmib > rl; lmib--) {
+              if (isMask(lmib)) break;
+            }
+
+            buffer.splice(rl, lmib + 1 - rl);
+            return isComplete(buffer) && actionObj.value === getBuffer().join("");
+
+          case "getemptymask":
+            return getBufferTemplate().join("");
+
+          case "remove":
+            if (el && el.inputmask) {
+              $.data(el, "_inputmask_opts", null);
+              $el = $(el);
+
+              el.inputmask._valueSet(opts.autoUnmask ? unmaskedvalue(el) : el.inputmask._valueGet(true));
+
+              EventRuler.off(el);
+
+              if (el.inputmask.colorMask) {
+                colorMask = el.inputmask.colorMask;
+                colorMask.removeChild(el);
+                colorMask.parentNode.insertBefore(el, colorMask);
+                colorMask.parentNode.removeChild(colorMask);
+              }
+
+              var valueProperty;
+
+              if (Object.getOwnPropertyDescriptor && Object.getPrototypeOf) {
+                valueProperty = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(el), "value");
+
+                if (valueProperty) {
+                  if (el.inputmask.__valueGet) {
+                    Object.defineProperty(el, "value", {
+                      get: el.inputmask.__valueGet,
+                      set: el.inputmask.__valueSet,
+                      configurable: true
+                    });
+                  }
+                }
+              } else if (document.__lookupGetter__ && el.__lookupGetter__("value")) {
+                if (el.inputmask.__valueGet) {
+                  el.__defineGetter__("value", el.inputmask.__valueGet);
+
+                  el.__defineSetter__("value", el.inputmask.__valueSet);
+                }
+              }
+
+              el.inputmask = undefined;
+            }
+
+            return el;
+            break;
+
+          case "getmetadata":
+            if ($.isArray(maskset.metadata)) {
+              var maskTarget = getMaskTemplate(true, 0, false).join("");
+              $.each(maskset.metadata, function (ndx, mtdt) {
+                if (mtdt.mask === maskTarget) {
+                  maskTarget = mtdt;
+                  return false;
+                }
+              });
+              return maskTarget;
+            }
+
+            return maskset.metadata;
+        }
+      }
+    }
+
+    return Inputmask;
+  });
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  (function (factory) {
+    if (true) {
+      !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4)], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+  })(function ($) {
+    return $;
+  });
+}, function (module, exports) {
+  module.exports = jQuery;
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  if (true) !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+    return typeof window !== "undefined" ? window : new (eval("require('jsdom').JSDOM"))("").window;
+  }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));else {}
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  (function (factory) {
+    if (true) {
+      !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+  })(function (Inputmask) {
+    var $ = Inputmask.dependencyLib;
+    var formatCode = {
+      d: ["[1-9]|[12][0-9]|3[01]", Date.prototype.setDate, "day", Date.prototype.getDate],
+      dd: ["0[1-9]|[12][0-9]|3[01]", Date.prototype.setDate, "day", function () {
+        return pad(Date.prototype.getDate.call(this), 2);
+      }],
+      ddd: [""],
+      dddd: [""],
+      m: ["[1-9]|1[012]", Date.prototype.setMonth, "month", function () {
+        return Date.prototype.getMonth.call(this) + 1;
+      }],
+      mm: ["0[1-9]|1[012]", Date.prototype.setMonth, "month", function () {
+        return pad(Date.prototype.getMonth.call(this) + 1, 2);
+      }],
+      mmm: [""],
+      mmmm: [""],
+      yy: ["[0-9]{2}", Date.prototype.setFullYear, "year", function () {
+        return pad(Date.prototype.getFullYear.call(this), 2);
+      }],
+      yyyy: ["[0-9]{4}", Date.prototype.setFullYear, "year", function () {
+        return pad(Date.prototype.getFullYear.call(this), 4);
+      }],
+      h: ["[1-9]|1[0-2]", Date.prototype.setHours, "hours", Date.prototype.getHours],
+      hh: ["0[1-9]|1[0-2]", Date.prototype.setHours, "hours", function () {
+        return pad(Date.prototype.getHours.call(this), 2);
+      }],
+      hhh: ["[0-9]+", Date.prototype.setHours, "hours", Date.prototype.getHours],
+      H: ["1?[0-9]|2[0-3]", Date.prototype.setHours, "hours", Date.prototype.getHours],
+      HH: ["0[0-9]|1[0-9]|2[0-3]", Date.prototype.setHours, "hours", function () {
+        return pad(Date.prototype.getHours.call(this), 2);
+      }],
+      HHH: ["[0-9]+", Date.prototype.setHours, "hours", Date.prototype.getHours],
+      M: ["[1-5]?[0-9]", Date.prototype.setMinutes, "minutes", Date.prototype.getMinutes],
+      MM: ["0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]", Date.prototype.setMinutes, "minutes", function () {
+        return pad(Date.prototype.getMinutes.call(this), 2);
+      }],
+      ss: ["[0-5][0-9]", Date.prototype.setSeconds, "seconds", function () {
+        return pad(Date.prototype.getSeconds.call(this), 2);
+      }],
+      l: ["[0-9]{3}", Date.prototype.setMilliseconds, "milliseconds", function () {
+        return pad(Date.prototype.getMilliseconds.call(this), 3);
+      }],
+      L: ["[0-9]{2}", Date.prototype.setMilliseconds, "milliseconds", function () {
+        return pad(Date.prototype.getMilliseconds.call(this), 2);
+      }],
+      t: ["[ap]"],
+      tt: ["[ap]m"],
+      T: ["[AP]"],
+      TT: ["[AP]M"],
+      Z: [""],
+      o: [""],
+      S: [""]
+    },
+        formatAlias = {
+      isoDate: "yyyy-mm-dd",
+      isoTime: "HH:MM:ss",
+      isoDateTime: "yyyy-mm-dd'T'HH:MM:ss",
+      isoUtcDateTime: "UTC:yyyy-mm-dd'T'HH:MM:ss'Z'"
+    };
+
+    function getTokenizer(opts) {
+      if (!opts.tokenizer) {
+        var tokens = [];
+
+        for (var ndx in formatCode) {
+          if (tokens.indexOf(ndx[0]) === -1) tokens.push(ndx[0]);
+        }
+
+        opts.tokenizer = "(" + tokens.join("+|") + ")+?|.";
+        opts.tokenizer = new RegExp(opts.tokenizer, "g");
+      }
+
+      return opts.tokenizer;
+    }
+
+    function isValidDate(dateParts, currentResult) {
+      return !isFinite(dateParts.rawday) || dateParts.day == "29" && !isFinite(dateParts.rawyear) || new Date(dateParts.date.getFullYear(), isFinite(dateParts.rawmonth) ? dateParts.month : dateParts.date.getMonth() + 1, 0).getDate() >= dateParts.day ? currentResult : false;
+    }
+
+    function isDateInRange(dateParts, opts) {
+      var result = true;
+
+      if (opts.min) {
+        if (dateParts["rawyear"]) {
+          var rawYear = dateParts["rawyear"].replace(/[^0-9]/g, ""),
+              minYear = opts.min.year.substr(0, rawYear.length);
+          result = minYear <= rawYear;
+        }
+
+        if (dateParts["year"] === dateParts["rawyear"]) {
+          if (opts.min.date.getTime() === opts.min.date.getTime()) {
+            result = opts.min.date.getTime() <= dateParts.date.getTime();
+          }
+        }
+      }
+
+      if (result && opts.max && opts.max.date.getTime() === opts.max.date.getTime()) {
+        result = opts.max.date.getTime() >= dateParts.date.getTime();
+      }
+
+      return result;
+    }
+
+    function parse(format, dateObjValue, opts, raw) {
+      var mask = "",
+          match;
+
+      while (match = getTokenizer(opts).exec(format)) {
+        if (dateObjValue === undefined) {
+          if (formatCode[match[0]]) {
+            mask += "(" + formatCode[match[0]][0] + ")";
+          } else {
+            switch (match[0]) {
+              case "[":
+                mask += "(";
+                break;
+
+              case "]":
+                mask += ")?";
+                break;
+
+              default:
+                mask += Inputmask.escapeRegex(match[0]);
+            }
+          }
+        } else {
+          if (formatCode[match[0]]) {
+            if (raw !== true && formatCode[match[0]][3]) {
+              var getFn = formatCode[match[0]][3];
+              mask += getFn.call(dateObjValue.date);
+            } else if (formatCode[match[0]][2]) mask += dateObjValue["raw" + formatCode[match[0]][2]];else mask += match[0];
+          } else mask += match[0];
+        }
+      }
+
+      return mask;
+    }
+
+    function pad(val, len) {
+      val = String(val);
+      len = len || 2;
+
+      while (val.length < len) {
+        val = "0" + val;
+      }
+
+      return val;
+    }
+
+    function analyseMask(maskString, format, opts) {
+      var dateObj = {
+        date: new Date(1, 0, 1)
+      },
+          targetProp,
+          mask = maskString,
+          match,
+          dateOperation,
+          targetValidator;
+
+      function extendProperty(value) {
+        var correctedValue = value.replace(/[^0-9]/g, "0");
+
+        if (correctedValue != value) {
+          var enteredPart = value.replace(/[^0-9]/g, ""),
+              min = (opts.min && opts.min[targetProp] || value).toString(),
+              max = (opts.max && opts.max[targetProp] || value).toString();
+          correctedValue = enteredPart + (enteredPart < min.slice(0, enteredPart.length) ? min.slice(enteredPart.length) : enteredPart > max.slice(0, enteredPart.length) ? max.slice(enteredPart.length) : correctedValue.toString().slice(enteredPart.length));
+        }
+
+        return correctedValue;
+      }
+
+      function setValue(dateObj, value, opts) {
+        dateObj[targetProp] = extendProperty(value);
+        dateObj["raw" + targetProp] = value;
+        if (dateOperation !== undefined) dateOperation.call(dateObj.date, targetProp == "month" ? parseInt(dateObj[targetProp]) - 1 : dateObj[targetProp]);
+      }
+
+      if (typeof mask === "string") {
+        while (match = getTokenizer(opts).exec(format)) {
+          var value = mask.slice(0, match[0].length);
+
+          if (formatCode.hasOwnProperty(match[0])) {
+            targetValidator = formatCode[match[0]][0];
+            targetProp = formatCode[match[0]][2];
+            dateOperation = formatCode[match[0]][1];
+            setValue(dateObj, value, opts);
+          }
+
+          mask = mask.slice(value.length);
+        }
+
+        return dateObj;
+      } else if (mask && (typeof mask === "undefined" ? "undefined" : _typeof(mask)) === "object" && mask.hasOwnProperty("date")) {
+        return mask;
+      }
+
+      return undefined;
+    }
+
+    Inputmask.extendAliases({
+      datetime: {
+        mask: function mask(opts) {
+          formatCode.S = opts.i18n.ordinalSuffix.join("|");
+          opts.inputFormat = formatAlias[opts.inputFormat] || opts.inputFormat;
+          opts.displayFormat = formatAlias[opts.displayFormat] || opts.displayFormat || opts.inputFormat;
+          opts.outputFormat = formatAlias[opts.outputFormat] || opts.outputFormat || opts.inputFormat;
+          opts.placeholder = opts.placeholder !== "" ? opts.placeholder : opts.inputFormat.replace(/[\[\]]/, "");
+          opts.regex = parse(opts.inputFormat, undefined, opts);
+          return null;
+        },
+        placeholder: "",
+        inputFormat: "isoDateTime",
+        displayFormat: undefined,
+        outputFormat: undefined,
+        min: null,
+        max: null,
+        i18n: {
+          dayNames: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+          ordinalSuffix: ["st", "nd", "rd", "th"]
+        },
+        postValidation: function postValidation(buffer, pos, currentResult, opts) {
+          opts.min = analyseMask(opts.min, opts.inputFormat, opts);
+          opts.max = analyseMask(opts.max, opts.inputFormat, opts);
+          var result = currentResult,
+              dateParts = analyseMask(buffer.join(""), opts.inputFormat, opts);
+
+          if (result && dateParts.date.getTime() === dateParts.date.getTime()) {
+            result = isValidDate(dateParts, result);
+            result = result && isDateInRange(dateParts, opts);
+          }
+
+          if (pos && result && currentResult.pos !== pos) {
+            return {
+              buffer: parse(opts.inputFormat, dateParts, opts),
+              refreshFromBuffer: {
+                start: pos,
+                end: currentResult.pos
+              }
+            };
+          }
+
+          return result;
+        },
+        onKeyDown: function onKeyDown(e, buffer, caretPos, opts) {
+          var input = this;
+
+          if (e.ctrlKey && e.keyCode === Inputmask.keyCode.RIGHT) {
+            var today = new Date(),
+                match,
+                date = "";
+
+            while (match = getTokenizer(opts).exec(opts.inputFormat)) {
+              if (match[0].charAt(0) === "d") {
+                date += pad(today.getDate(), match[0].length);
+              } else if (match[0].charAt(0) === "m") {
+                date += pad(today.getMonth() + 1, match[0].length);
+              } else if (match[0] === "yyyy") {
+                date += today.getFullYear().toString();
+              } else if (match[0].charAt(0) === "y") {
+                date += pad(today.getYear(), match[0].length);
+              }
+            }
+
+            input.inputmask._valueSet(date);
+
+            $(input).trigger("setvalue");
+          }
+        },
+        onUnMask: function onUnMask(maskedValue, unmaskedValue, opts) {
+          return parse(opts.outputFormat, analyseMask(maskedValue, opts.inputFormat, opts), opts, true);
+        },
+        casing: function casing(elem, test, pos, validPositions) {
+          if (test.nativeDef.indexOf("[ap]") == 0) return elem.toLowerCase();
+          if (test.nativeDef.indexOf("[AP]") == 0) return elem.toUpperCase();
+          return elem;
+        },
+        insertMode: false,
+        shiftPositions: false
+      }
+    });
+    return Inputmask;
+  });
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  (function (factory) {
+    if (true) {
+      !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+  })(function (Inputmask) {
+    var $ = Inputmask.dependencyLib;
+
+    function autoEscape(txt, opts) {
+      var escapedTxt = "";
+
+      for (var i = 0; i < txt.length; i++) {
+        if (Inputmask.prototype.definitions[txt.charAt(i)] || opts.definitions[txt.charAt(i)] || opts.optionalmarker.start === txt.charAt(i) || opts.optionalmarker.end === txt.charAt(i) || opts.quantifiermarker.start === txt.charAt(i) || opts.quantifiermarker.end === txt.charAt(i) || opts.groupmarker.start === txt.charAt(i) || opts.groupmarker.end === txt.charAt(i) || opts.alternatormarker === txt.charAt(i)) {
+          escapedTxt += "\\" + txt.charAt(i);
+        } else escapedTxt += txt.charAt(i);
+      }
+
+      return escapedTxt;
+    }
+
+    function alignDigits(buffer, digits, opts) {
+      if (digits > 0) {
+        var radixPosition = $.inArray(opts.radixPoint, buffer);
+
+        if (radixPosition === -1) {
+          buffer.push(opts.radixPoint);
+          radixPosition = buffer.length - 1;
+        }
+
+        for (var i = 1; i <= digits; i++) {
+          buffer[radixPosition + i] = buffer[radixPosition + i] || "0";
+        }
+      }
+
+      return buffer;
+    }
+
+    Inputmask.extendAliases({
+      numeric: {
+        mask: function mask(opts) {
+          if (opts.repeat !== 0 && isNaN(opts.integerDigits)) {
+            opts.integerDigits = opts.repeat;
+          }
+
+          opts.repeat = 0;
+
+          if (opts.groupSeparator === opts.radixPoint && opts.digits && opts.digits !== "0") {
+            if (opts.radixPoint === ".") {
+              opts.groupSeparator = ",";
+            } else if (opts.radixPoint === ",") {
+              opts.groupSeparator = ".";
+            } else opts.groupSeparator = "";
+          }
+
+          if (opts.groupSeparator === " ") {
+            opts.skipOptionalPartCharacter = undefined;
+          }
+
+          opts.autoGroup = opts.autoGroup && opts.groupSeparator !== "";
+
+          if (opts.autoGroup) {
+            if (typeof opts.groupSize == "string" && isFinite(opts.groupSize)) opts.groupSize = parseInt(opts.groupSize);
+
+            if (isFinite(opts.integerDigits)) {
+              var seps = Math.floor(opts.integerDigits / opts.groupSize);
+              var mod = opts.integerDigits % opts.groupSize;
+              opts.integerDigits = parseInt(opts.integerDigits) + (mod === 0 ? seps - 1 : seps);
+
+              if (opts.integerDigits < 1) {
+                opts.integerDigits = "*";
+              }
+            }
+          }
+
+          if (opts.placeholder.length > 1) {
+            opts.placeholder = opts.placeholder.charAt(0);
+          }
+
+          if (opts.positionCaretOnClick === "radixFocus" && opts.placeholder === "" && opts.integerOptional === false) {
+            opts.positionCaretOnClick = "lvp";
+          }
+
+          opts.definitions[";"] = opts.definitions["~"];
+          opts.definitions[";"].definitionSymbol = "~";
+
+          if (opts.numericInput === true) {
+            opts.positionCaretOnClick = opts.positionCaretOnClick === "radixFocus" ? "lvp" : opts.positionCaretOnClick;
+            opts.digitsOptional = false;
+            if (isNaN(opts.digits)) opts.digits = 2;
+            opts.decimalProtect = false;
+          }
+
+          var mask = "[+]";
+          mask += autoEscape(opts.prefix, opts);
+
+          if (opts.integerOptional === true) {
+            mask += "~{1," + opts.integerDigits + "}";
+          } else mask += "~{" + opts.integerDigits + "}";
+
+          if (opts.digits !== undefined) {
+            var radixDef = opts.decimalProtect ? ":" : opts.radixPoint;
+            var dq = opts.digits.toString().split(",");
+
+            if (isFinite(dq[0]) && dq[1] && isFinite(dq[1])) {
+              mask += radixDef + ";{" + opts.digits + "}";
+            } else if (isNaN(opts.digits) || parseInt(opts.digits) > 0) {
+              if (opts.digitsOptional) {
+                mask += "[" + radixDef + ";{1," + opts.digits + "}]";
+              } else mask += radixDef + ";{" + opts.digits + "}";
+            }
+          }
+
+          mask += autoEscape(opts.suffix, opts);
+          mask += "[-]";
+          opts.greedy = false;
+          return mask;
+        },
+        placeholder: "",
+        greedy: false,
+        digits: "*",
+        digitsOptional: true,
+        enforceDigitsOnBlur: false,
+        radixPoint: ".",
+        positionCaretOnClick: "radixFocus",
+        groupSize: 3,
+        groupSeparator: "",
+        autoGroup: false,
+        allowMinus: true,
+        negationSymbol: {
+          front: "-",
+          back: ""
+        },
+        integerDigits: "+",
+        integerOptional: true,
+        prefix: "",
+        suffix: "",
+        rightAlign: true,
+        decimalProtect: true,
+        min: null,
+        max: null,
+        step: 1,
+        insertMode: true,
+        autoUnmask: false,
+        unmaskAsNumber: false,
+        inputType: "text",
+        inputmode: "numeric",
+        preValidation: function preValidation(buffer, pos, c, isSelection, opts, maskset) {
+          if (c === "-" || c === opts.negationSymbol.front) {
+            if (opts.allowMinus !== true) return false;
+            opts.isNegative = opts.isNegative === undefined ? true : !opts.isNegative;
+            if (buffer.join("") === "") return true;
+            return {
+              caret: maskset.validPositions[pos] ? pos : undefined,
+              dopost: true
+            };
+          }
+
+          if (isSelection === false && c === opts.radixPoint && opts.digits !== undefined && (isNaN(opts.digits) || parseInt(opts.digits) > 0)) {
+            var radixPos = $.inArray(opts.radixPoint, buffer);
+
+            if (radixPos !== -1 && maskset.validPositions[radixPos] !== undefined) {
+              if (opts.numericInput === true) {
+                return pos === radixPos;
+              }
+
+              return {
+                caret: radixPos + 1
+              };
+            }
+          }
+
+          return true;
+        },
+        postValidation: function postValidation(buffer, pos, currentResult, opts) {
+          function buildPostMask(buffer, opts) {
+            var postMask = "";
+            postMask += "(" + opts.groupSeparator + "*{" + opts.groupSize + "}){*}";
+
+            if (opts.radixPoint !== "") {
+              var radixSplit = buffer.join("").split(opts.radixPoint);
+
+              if (radixSplit[1]) {
+                postMask += opts.radixPoint + "*{" + radixSplit[1].match(/^\d*\??\d*/)[0].length + "}";
+              }
+            }
+
+            return postMask;
+          }
+
+          var suffix = opts.suffix.split(""),
+              prefix = opts.prefix.split("");
+          if (currentResult.pos === undefined && currentResult.caret !== undefined && currentResult.dopost !== true) return currentResult;
+          var caretPos = currentResult.caret !== undefined ? currentResult.caret : currentResult.pos;
+          var maskedValue = buffer.slice();
+
+          if (opts.numericInput) {
+            caretPos = maskedValue.length - caretPos - 1;
+            maskedValue = maskedValue.reverse();
+          }
+
+          var charAtPos = maskedValue[caretPos];
+
+          if (charAtPos === opts.groupSeparator) {
+            caretPos += 1;
+            charAtPos = maskedValue[caretPos];
+          }
+
+          if (caretPos === maskedValue.length - opts.suffix.length - 1 && charAtPos === opts.radixPoint) return currentResult;
+
+          if (charAtPos !== undefined) {
+            if (charAtPos !== opts.radixPoint && charAtPos !== opts.negationSymbol.front && charAtPos !== opts.negationSymbol.back) {
+              maskedValue[caretPos] = "?";
+
+              if (opts.prefix.length > 0 && caretPos >= (opts.isNegative === false ? 1 : 0) && caretPos < opts.prefix.length - 1 + (opts.isNegative === false ? 1 : 0)) {
+                prefix[caretPos - (opts.isNegative === false ? 1 : 0)] = "?";
+              } else if (opts.suffix.length > 0 && caretPos >= maskedValue.length - opts.suffix.length - (opts.isNegative === false ? 1 : 0)) {
+                suffix[caretPos - (maskedValue.length - opts.suffix.length - (opts.isNegative === false ? 1 : 0))] = "?";
+              }
+            }
+          }
+
+          prefix = prefix.join("");
+          suffix = suffix.join("");
+          var processValue = maskedValue.join("").replace(prefix, "");
+          processValue = processValue.replace(suffix, "");
+          processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(opts.groupSeparator), "g"), "");
+          processValue = processValue.replace(new RegExp("[-" + Inputmask.escapeRegex(opts.negationSymbol.front) + "]", "g"), "");
+          processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(opts.negationSymbol.back) + "$"), "");
+
+          if (isNaN(opts.placeholder)) {
+            processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(opts.placeholder), "g"), "");
+          }
+
+          if (processValue.length > 1 && processValue.indexOf(opts.radixPoint) !== 1) {
+            if (charAtPos === "0") {
+              processValue = processValue.replace(/^\?/g, "");
+            }
+
+            processValue = processValue.replace(/^0/g, "");
+          }
+
+          if (processValue.charAt(0) === opts.radixPoint && opts.radixPoint !== "" && opts.numericInput !== true) {
+            processValue = "0" + processValue;
+          }
+
+          if (processValue !== "") {
+            processValue = processValue.split("");
+
+            if ((!opts.digitsOptional || opts.enforceDigitsOnBlur && currentResult.event === "blur") && isFinite(opts.digits)) {
+              var radixPosition = $.inArray(opts.radixPoint, processValue);
+              var rpb = $.inArray(opts.radixPoint, maskedValue);
+
+              if (radixPosition === -1) {
+                processValue.push(opts.radixPoint);
+                radixPosition = processValue.length - 1;
+              }
+
+              for (var i = 1; i <= opts.digits; i++) {
+                if ((!opts.digitsOptional || opts.enforceDigitsOnBlur && currentResult.event === "blur") && (processValue[radixPosition + i] === undefined || processValue[radixPosition + i] === opts.placeholder.charAt(0))) {
+                  processValue[radixPosition + i] = currentResult.placeholder || opts.placeholder.charAt(0);
+                } else if (rpb !== -1 && maskedValue[rpb + i] !== undefined) {
+                  processValue[radixPosition + i] = processValue[radixPosition + i] || maskedValue[rpb + i];
+                }
+              }
+            }
+
+            if (opts.autoGroup === true && opts.groupSeparator !== "" && (charAtPos !== opts.radixPoint || currentResult.pos !== undefined || currentResult.dopost)) {
+              var addRadix = processValue[processValue.length - 1] === opts.radixPoint && currentResult.c === opts.radixPoint;
+              processValue = Inputmask(buildPostMask(processValue, opts), {
+                numericInput: true,
+                jitMasking: true,
+                definitions: {
+                  "*": {
+                    validator: "[0-9?]",
+                    cardinality: 1
+                  }
+                }
+              }).format(processValue.join(""));
+              if (addRadix) processValue += opts.radixPoint;
+
+              if (processValue.charAt(0) === opts.groupSeparator) {
+                processValue.substr(1);
+              }
+            } else processValue = processValue.join("");
+          }
+
+          if (opts.isNegative && currentResult.event === "blur") {
+            opts.isNegative = processValue !== "0";
+          }
+
+          processValue = prefix + processValue;
+          processValue += suffix;
+
+          if (opts.isNegative) {
+            processValue = opts.negationSymbol.front + processValue;
+            processValue += opts.negationSymbol.back;
+          }
+
+          processValue = processValue.split("");
+
+          if (charAtPos !== undefined) {
+            if (charAtPos !== opts.radixPoint && charAtPos !== opts.negationSymbol.front && charAtPos !== opts.negationSymbol.back) {
+              caretPos = $.inArray("?", processValue);
+
+              if (caretPos > -1) {
+                processValue[caretPos] = charAtPos;
+              } else caretPos = currentResult.caret || 0;
+            } else if (charAtPos === opts.radixPoint || charAtPos === opts.negationSymbol.front || charAtPos === opts.negationSymbol.back) {
+              var newCaretPos = $.inArray(charAtPos, processValue);
+              if (newCaretPos !== -1) caretPos = newCaretPos;
+            }
+          }
+
+          if (opts.numericInput) {
+            caretPos = processValue.length - caretPos - 1;
+            processValue = processValue.reverse();
+          }
+
+          var rslt = {
+            caret: (charAtPos === undefined || currentResult.pos !== undefined) && caretPos !== undefined ? caretPos + (opts.numericInput ? -1 : 1) : caretPos,
+            buffer: processValue,
+            refreshFromBuffer: currentResult.dopost || buffer.join("") !== processValue.join("")
+          };
+          return rslt.refreshFromBuffer ? rslt : currentResult;
+        },
+        onBeforeWrite: function onBeforeWrite(e, buffer, caretPos, opts) {
+          function parseMinMaxOptions(opts) {
+            if (opts.parseMinMaxOptions === undefined) {
+              if (opts.min !== null) {
+                opts.min = opts.min.toString().replace(new RegExp(Inputmask.escapeRegex(opts.groupSeparator), "g"), "");
+                if (opts.radixPoint === ",") opts.min = opts.min.replace(opts.radixPoint, ".");
+                opts.min = isFinite(opts.min) ? parseFloat(opts.min) : NaN;
+                if (isNaN(opts.min)) opts.min = Number.MIN_VALUE;
+              }
+
+              if (opts.max !== null) {
+                opts.max = opts.max.toString().replace(new RegExp(Inputmask.escapeRegex(opts.groupSeparator), "g"), "");
+                if (opts.radixPoint === ",") opts.max = opts.max.replace(opts.radixPoint, ".");
+                opts.max = isFinite(opts.max) ? parseFloat(opts.max) : NaN;
+                if (isNaN(opts.max)) opts.max = Number.MAX_VALUE;
+              }
+
+              opts.parseMinMaxOptions = "done";
+            }
+          }
+
+          if (e) {
+            switch (e.type) {
+              case "keydown":
+                return opts.postValidation(buffer, caretPos, {
+                  caret: caretPos,
+                  dopost: true
+                }, opts);
+
+              case "blur":
+              case "checkval":
+                var unmasked;
+                parseMinMaxOptions(opts);
+
+                if (opts.min !== null || opts.max !== null) {
+                  unmasked = opts.onUnMask(buffer.join(""), undefined, $.extend({}, opts, {
+                    unmaskAsNumber: true
+                  }));
+
+                  if (opts.min !== null && unmasked < opts.min) {
+                    opts.isNegative = opts.min < 0;
+                    return opts.postValidation(opts.min.toString().replace(".", opts.radixPoint).split(""), caretPos, {
+                      caret: caretPos,
+                      dopost: true,
+                      placeholder: "0"
+                    }, opts);
+                  } else if (opts.max !== null && unmasked > opts.max) {
+                    opts.isNegative = opts.max < 0;
+                    return opts.postValidation(opts.max.toString().replace(".", opts.radixPoint).split(""), caretPos, {
+                      caret: caretPos,
+                      dopost: true,
+                      placeholder: "0"
+                    }, opts);
+                  }
+                }
+
+                return opts.postValidation(buffer, caretPos, {
+                  caret: caretPos,
+                  placeholder: "0",
+                  event: "blur"
+                }, opts);
+
+              case "_checkval":
+                return {
+                  caret: caretPos
+                };
+
+              default:
+                break;
+            }
+          }
+        },
+        regex: {
+          integerPart: function integerPart(opts, emptyCheck) {
+            return emptyCheck ? new RegExp("[" + Inputmask.escapeRegex(opts.negationSymbol.front) + "+]?") : new RegExp("[" + Inputmask.escapeRegex(opts.negationSymbol.front) + "+]?\\d+");
+          },
+          integerNPart: function integerNPart(opts) {
+            return new RegExp("[\\d" + Inputmask.escapeRegex(opts.groupSeparator) + Inputmask.escapeRegex(opts.placeholder.charAt(0)) + "]+");
+          }
+        },
+        definitions: {
+          "~": {
+            validator: function validator(chrs, maskset, pos, strict, opts, isSelection) {
+              var isValid, l;
+
+              if (chrs === "k" || chrs === "m") {
+                isValid = {
+                  insert: [],
+                  c: 0
+                };
+
+                for (var i = 0, l = chrs === "k" ? 2 : 5; i < l; i++) {
+                  isValid.insert.push({
+                    pos: pos + i,
+                    c: 0
+                  });
+                }
+
+                isValid.pos = pos + l;
+                return isValid;
+              }
+
+              isValid = strict ? new RegExp("[0-9" + Inputmask.escapeRegex(opts.groupSeparator) + "]").test(chrs) : new RegExp("[0-9]").test(chrs);
+
+              if (isValid === true) {
+                if (opts.numericInput !== true && maskset.validPositions[pos] !== undefined && maskset.validPositions[pos].match.def === "~" && !isSelection) {
+                  var processValue = maskset.buffer.join("");
+                  processValue = processValue.replace(new RegExp("[-" + Inputmask.escapeRegex(opts.negationSymbol.front) + "]", "g"), "");
+                  processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(opts.negationSymbol.back) + "$"), "");
+                  var pvRadixSplit = processValue.split(opts.radixPoint);
+
+                  if (pvRadixSplit.length > 1) {
+                    pvRadixSplit[1] = pvRadixSplit[1].replace(/0/g, opts.placeholder.charAt(0));
+                  }
+
+                  if (pvRadixSplit[0] === "0") {
+                    pvRadixSplit[0] = pvRadixSplit[0].replace(/0/g, opts.placeholder.charAt(0));
+                  }
+
+                  processValue = pvRadixSplit[0] + opts.radixPoint + pvRadixSplit[1] || "";
+
+                  var bufferTemplate = maskset._buffer.join("");
+
+                  if (processValue === opts.radixPoint) {
+                    processValue = bufferTemplate;
+                  }
+
+                  while (processValue.match(Inputmask.escapeRegex(bufferTemplate) + "$") === null) {
+                    bufferTemplate = bufferTemplate.slice(1);
+                  }
+
+                  processValue = processValue.replace(bufferTemplate, "");
+                  processValue = processValue.split("");
+
+                  if (processValue[pos] === undefined) {
+                    isValid = {
+                      pos: pos,
+                      remove: pos
+                    };
+                  } else {
+                    isValid = {
+                      pos: pos
+                    };
+                  }
+                }
+              } else if (!strict && chrs === opts.radixPoint && maskset.validPositions[pos - 1] === undefined) {
+                isValid = {
+                  insert: {
+                    pos: pos,
+                    c: 0
+                  },
+                  pos: pos + 1
+                };
+              }
+
+              return isValid;
+            },
+            cardinality: 1
+          },
+          "+": {
+            validator: function validator(chrs, maskset, pos, strict, opts) {
+              return opts.allowMinus && (chrs === "-" || chrs === opts.negationSymbol.front);
+            },
+            cardinality: 1,
+            placeholder: ""
+          },
+          "-": {
+            validator: function validator(chrs, maskset, pos, strict, opts) {
+              return opts.allowMinus && chrs === opts.negationSymbol.back;
+            },
+            cardinality: 1,
+            placeholder: ""
+          },
+          ":": {
+            validator: function validator(chrs, maskset, pos, strict, opts) {
+              var radix = "[" + Inputmask.escapeRegex(opts.radixPoint) + "]";
+              var isValid = new RegExp(radix).test(chrs);
+
+              if (isValid && maskset.validPositions[pos] && maskset.validPositions[pos].match.placeholder === opts.radixPoint) {
+                isValid = {
+                  caret: pos + 1
+                };
+              }
+
+              return isValid;
+            },
+            cardinality: 1,
+            placeholder: function placeholder(opts) {
+              return opts.radixPoint;
+            }
+          }
+        },
+        onUnMask: function onUnMask(maskedValue, unmaskedValue, opts) {
+          if (unmaskedValue === "" && opts.nullable === true) {
+            return unmaskedValue;
+          }
+
+          var processValue = maskedValue.replace(opts.prefix, "");
+          processValue = processValue.replace(opts.suffix, "");
+          processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(opts.groupSeparator), "g"), "");
+
+          if (opts.placeholder.charAt(0) !== "") {
+            processValue = processValue.replace(new RegExp(opts.placeholder.charAt(0), "g"), "0");
+          }
+
+          if (opts.unmaskAsNumber) {
+            if (opts.radixPoint !== "" && processValue.indexOf(opts.radixPoint) !== -1) processValue = processValue.replace(Inputmask.escapeRegex.call(this, opts.radixPoint), ".");
+            processValue = processValue.replace(new RegExp("^" + Inputmask.escapeRegex(opts.negationSymbol.front)), "-");
+            processValue = processValue.replace(new RegExp(Inputmask.escapeRegex(opts.negationSymbol.back) + "$"), "");
+            return Number(processValue);
+          }
+
+          return processValue;
+        },
+        isComplete: function isComplete(buffer, opts) {
+          var maskedValue = (opts.numericInput ? buffer.slice().reverse() : buffer).join("");
+          maskedValue = maskedValue.replace(new RegExp("^" + Inputmask.escapeRegex(opts.negationSymbol.front)), "-");
+          maskedValue = maskedValue.replace(new RegExp(Inputmask.escapeRegex(opts.negationSymbol.back) + "$"), "");
+          maskedValue = maskedValue.replace(opts.prefix, "");
+          maskedValue = maskedValue.replace(opts.suffix, "");
+          maskedValue = maskedValue.replace(new RegExp(Inputmask.escapeRegex(opts.groupSeparator) + "([0-9]{3})", "g"), "$1");
+          if (opts.radixPoint === ",") maskedValue = maskedValue.replace(Inputmask.escapeRegex(opts.radixPoint), ".");
+          return isFinite(maskedValue);
+        },
+        onBeforeMask: function onBeforeMask(initialValue, opts) {
+          opts.isNegative = undefined;
+          var radixPoint = opts.radixPoint || ",";
+
+          if ((typeof initialValue == "number" || opts.inputType === "number") && radixPoint !== "") {
+            initialValue = initialValue.toString().replace(".", radixPoint);
+          }
+
+          var valueParts = initialValue.split(radixPoint),
+              integerPart = valueParts[0].replace(/[^\-0-9]/g, ""),
+              decimalPart = valueParts.length > 1 ? valueParts[1].replace(/[^0-9]/g, "") : "";
+          initialValue = integerPart + (decimalPart !== "" ? radixPoint + decimalPart : decimalPart);
+          var digits = 0;
+
+          if (radixPoint !== "") {
+            digits = decimalPart.length;
+
+            if (decimalPart !== "") {
+              var digitsFactor = Math.pow(10, digits || 1);
+
+              if (isFinite(opts.digits)) {
+                digits = parseInt(opts.digits);
+                digitsFactor = Math.pow(10, digits);
+              }
+
+              initialValue = initialValue.replace(Inputmask.escapeRegex(radixPoint), ".");
+              if (isFinite(initialValue)) initialValue = Math.round(parseFloat(initialValue) * digitsFactor) / digitsFactor;
+              initialValue = initialValue.toString().replace(".", radixPoint);
+            }
+          }
+
+          if (opts.digits === 0 && initialValue.indexOf(Inputmask.escapeRegex(radixPoint)) !== -1) {
+            initialValue = initialValue.substring(0, initialValue.indexOf(Inputmask.escapeRegex(radixPoint)));
+          }
+
+          return alignDigits(initialValue.toString().split(""), digits, opts).join("");
+        },
+        onKeyDown: function onKeyDown(e, buffer, caretPos, opts) {
+          var $input = $(this);
+
+          if (e.ctrlKey) {
+            switch (e.keyCode) {
+              case Inputmask.keyCode.UP:
+                $input.val(parseFloat(this.inputmask.unmaskedvalue()) + parseInt(opts.step));
+                $input.trigger("setvalue");
+                break;
+
+              case Inputmask.keyCode.DOWN:
+                $input.val(parseFloat(this.inputmask.unmaskedvalue()) - parseInt(opts.step));
+                $input.trigger("setvalue");
+                break;
+            }
+          }
+        }
+      },
+      currency: {
+        prefix: "$ ",
+        groupSeparator: ",",
+        alias: "numeric",
+        placeholder: "0",
+        autoGroup: true,
+        digits: 2,
+        digitsOptional: false,
+        clearMaskOnLostFocus: false
+      },
+      decimal: {
+        alias: "numeric"
+      },
+      integer: {
+        alias: "numeric",
+        digits: 0,
+        radixPoint: ""
+      },
+      percentage: {
+        alias: "numeric",
+        digits: 2,
+        digitsOptional: true,
+        radixPoint: ".",
+        placeholder: "0",
+        autoGroup: false,
+        min: 0,
+        max: 100,
+        suffix: " %",
+        allowMinus: false
+      }
+    });
+    return Inputmask;
+  });
+}, function (module, exports, __webpack_require__) {
+  "use strict";
+
+  var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+  };
+
+  (function (factory) {
+    if (true) {
+      !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(4), __webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = factory, __WEBPACK_AMD_DEFINE_RESULT__ = typeof __WEBPACK_AMD_DEFINE_FACTORY__ === "function" ? __WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__) : __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+    } else {}
+  })(function ($, Inputmask) {
+    if ($.fn.inputmask === undefined) {
+      $.fn.inputmask = function (fn, options) {
+        var nptmask,
+            input = this[0];
+        if (options === undefined) options = {};
+
+        if (typeof fn === "string") {
+          switch (fn) {
+            case "unmaskedvalue":
+              return input && input.inputmask ? input.inputmask.unmaskedvalue() : $(input).val();
+
+            case "remove":
+              return this.each(function () {
+                if (this.inputmask) this.inputmask.remove();
+              });
+
+            case "getemptymask":
+              return input && input.inputmask ? input.inputmask.getemptymask() : "";
+
+            case "hasMaskedValue":
+              return input && input.inputmask ? input.inputmask.hasMaskedValue() : false;
+
+            case "isComplete":
+              return input && input.inputmask ? input.inputmask.isComplete() : true;
+
+            case "getmetadata":
+              return input && input.inputmask ? input.inputmask.getmetadata() : undefined;
+
+            case "setvalue":
+              Inputmask.setValue(input, options);
+              break;
+
+            case "option":
+              if (typeof options === "string") {
+                if (input && input.inputmask !== undefined) {
+                  return input.inputmask.option(options);
+                }
+              } else {
+                return this.each(function () {
+                  if (this.inputmask !== undefined) {
+                    return this.inputmask.option(options);
+                  }
+                });
+              }
+
+              break;
+
+            default:
+              options.alias = fn;
+              nptmask = new Inputmask(options);
+              return this.each(function () {
+                nptmask.mask(this);
+              });
+          }
+        } else if (Array.isArray(fn)) {
+          options.alias = fn;
+          nptmask = new Inputmask(options);
+          return this.each(function () {
+            nptmask.mask(this);
+          });
+        } else if ((typeof fn === "undefined" ? "undefined" : _typeof(fn)) == "object") {
+          nptmask = new Inputmask(fn);
+
+          if (fn.mask === undefined && fn.alias === undefined) {
+            return this.each(function () {
+              if (this.inputmask !== undefined) {
+                return this.inputmask.option(fn);
+              } else nptmask.mask(this);
+            });
+          } else {
+            return this.each(function () {
+              nptmask.mask(this);
+            });
+          }
+        } else if (fn === undefined) {
+          return this.each(function () {
+            nptmask = new Inputmask(options);
+            nptmask.mask(this);
+          });
+        }
+      };
+    }
+
+    return $.fn.inputmask;
+  });
+}]);
 
 /***/ }),
 
@@ -70716,6 +76283,3084 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof
       w(this, n, t);
     }), this) : w(this, n);
   }), w;
+});
+
+/***/ }),
+
+/***/ "./resources/template/plugins/select2/js/select2.full.min.js":
+/*!*******************************************************************!*\
+  !*** ./resources/template/plugins/select2/js/select2.full.min.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*! Select2 4.0.13 | https://github.com/select2/select2/blob/master/LICENSE.md */
+!function (n) {
+   true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (n),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : undefined;
+}(function (d) {
+  var e = function () {
+    if (d && d.fn && d.fn.select2 && d.fn.select2.amd) var e = d.fn.select2.amd;
+
+    var t, n, i, h, o, _s, f, g, m, v, y, _, r, a, w, l;
+
+    function b(e, t) {
+      return r.call(e, t);
+    }
+
+    function c(e, t) {
+      var n,
+          i,
+          r,
+          o,
+          s,
+          a,
+          l,
+          c,
+          u,
+          d,
+          p,
+          h = t && t.split("/"),
+          f = y.map,
+          g = f && f["*"] || {};
+
+      if (e) {
+        for (s = (e = e.split("/")).length - 1, y.nodeIdCompat && w.test(e[s]) && (e[s] = e[s].replace(w, "")), "." === e[0].charAt(0) && h && (e = h.slice(0, h.length - 1).concat(e)), u = 0; u < e.length; u++) {
+          if ("." === (p = e[u])) e.splice(u, 1), --u;else if (".." === p) {
+            if (0 === u || 1 === u && ".." === e[2] || ".." === e[u - 1]) continue;
+            0 < u && (e.splice(u - 1, 2), u -= 2);
+          }
+        }
+
+        e = e.join("/");
+      }
+
+      if ((h || g) && f) {
+        for (u = (n = e.split("/")).length; 0 < u; --u) {
+          if (i = n.slice(0, u).join("/"), h) for (d = h.length; 0 < d; --d) {
+            if (r = (r = f[h.slice(0, d).join("/")]) && r[i]) {
+              o = r, a = u;
+              break;
+            }
+          }
+          if (o) break;
+          !l && g && g[i] && (l = g[i], c = u);
+        }
+
+        !o && l && (o = l, a = c), o && (n.splice(0, a, o), e = n.join("/"));
+      }
+
+      return e;
+    }
+
+    function A(t, n) {
+      return function () {
+        var e = a.call(arguments, 0);
+        return "string" != typeof e[0] && 1 === e.length && e.push(null), _s.apply(h, e.concat([t, n]));
+      };
+    }
+
+    function x(t) {
+      return function (e) {
+        m[t] = e;
+      };
+    }
+
+    function D(e) {
+      if (b(v, e)) {
+        var t = v[e];
+        delete v[e], _[e] = !0, o.apply(h, t);
+      }
+
+      if (!b(m, e) && !b(_, e)) throw new Error("No " + e);
+      return m[e];
+    }
+
+    function u(e) {
+      var t,
+          n = e ? e.indexOf("!") : -1;
+      return -1 < n && (t = e.substring(0, n), e = e.substring(n + 1, e.length)), [t, e];
+    }
+
+    function S(e) {
+      return e ? u(e) : [];
+    }
+
+    return e && e.requirejs || (e ? n = e : e = {}, m = {}, v = {}, y = {}, _ = {}, r = Object.prototype.hasOwnProperty, a = [].slice, w = /\.js$/, f = function f(e, t) {
+      var n,
+          i,
+          r = u(e),
+          o = r[0],
+          s = t[1];
+      return e = r[1], o && (n = D(o = c(o, s))), o ? e = n && n.normalize ? n.normalize(e, (i = s, function (e) {
+        return c(e, i);
+      })) : c(e, s) : (o = (r = u(e = c(e, s)))[0], e = r[1], o && (n = D(o))), {
+        f: o ? o + "!" + e : e,
+        n: e,
+        pr: o,
+        p: n
+      };
+    }, g = {
+      require: function require(e) {
+        return A(e);
+      },
+      exports: function exports(e) {
+        var t = m[e];
+        return void 0 !== t ? t : m[e] = {};
+      },
+      module: function module(e) {
+        return {
+          id: e,
+          uri: "",
+          exports: m[e],
+          config: (t = e, function () {
+            return y && y.config && y.config[t] || {};
+          })
+        };
+        var t;
+      }
+    }, o = function o(e, t, n, i) {
+      var r,
+          o,
+          s,
+          a,
+          l,
+          c,
+          u,
+          d = [],
+          p = _typeof(n);
+
+      if (c = S(i = i || e), "undefined" == p || "function" == p) {
+        for (t = !t.length && n.length ? ["require", "exports", "module"] : t, l = 0; l < t.length; l += 1) {
+          if ("require" === (o = (a = f(t[l], c)).f)) d[l] = g.require(e);else if ("exports" === o) d[l] = g.exports(e), u = !0;else if ("module" === o) r = d[l] = g.module(e);else if (b(m, o) || b(v, o) || b(_, o)) d[l] = D(o);else {
+            if (!a.p) throw new Error(e + " missing " + o);
+            a.p.load(a.n, A(i, !0), x(o), {}), d[l] = m[o];
+          }
+        }
+
+        s = n ? n.apply(m[e], d) : void 0, e && (r && r.exports !== h && r.exports !== m[e] ? m[e] = r.exports : s === h && u || (m[e] = s));
+      } else e && (m[e] = n);
+    }, t = n = _s = function s(e, t, n, i, r) {
+      if ("string" == typeof e) return g[e] ? g[e](t) : D(f(e, S(t)).f);
+
+      if (!e.splice) {
+        if ((y = e).deps && _s(y.deps, y.callback), !t) return;
+        t.splice ? (e = t, t = n, n = null) : e = h;
+      }
+
+      return t = t || function () {}, "function" == typeof n && (n = i, i = r), i ? o(h, e, t, n) : setTimeout(function () {
+        o(h, e, t, n);
+      }, 4), _s;
+    }, _s.config = function (e) {
+      return _s(e);
+    }, t._defined = m, (i = function i(e, t, n) {
+      if ("string" != typeof e) throw new Error("See almond README: incorrect module build, no module name");
+      t.splice || (n = t, t = []), b(m, e) || b(v, e) || (v[e] = [e, t, n]);
+    }).amd = {
+      jQuery: !0
+    }, e.requirejs = t, e.require = n, e.define = i), e.define("almond", function () {}), e.define("jquery", [], function () {
+      var e = d || $;
+      return null == e && console && console.error && console.error("Select2: An instance of jQuery or a jQuery-compatible library was not found. Make sure that you are including jQuery before Select2 on your web page."), e;
+    }), e.define("select2/utils", ["jquery"], function (o) {
+      var r = {};
+
+      function u(e) {
+        var t = e.prototype,
+            n = [];
+
+        for (var i in t) {
+          "function" == typeof t[i] && "constructor" !== i && n.push(i);
+        }
+
+        return n;
+      }
+
+      r.Extend = function (e, t) {
+        var n = {}.hasOwnProperty;
+
+        function i() {
+          this.constructor = e;
+        }
+
+        for (var r in t) {
+          n.call(t, r) && (e[r] = t[r]);
+        }
+
+        return i.prototype = t.prototype, e.prototype = new i(), e.__super__ = t.prototype, e;
+      }, r.Decorate = function (i, r) {
+        var e = u(r),
+            t = u(i);
+
+        function o() {
+          var e = Array.prototype.unshift,
+              t = r.prototype.constructor.length,
+              n = i.prototype.constructor;
+          0 < t && (e.call(arguments, i.prototype.constructor), n = r.prototype.constructor), n.apply(this, arguments);
+        }
+
+        r.displayName = i.displayName, o.prototype = new function () {
+          this.constructor = o;
+        }();
+
+        for (var n = 0; n < t.length; n++) {
+          var s = t[n];
+          o.prototype[s] = i.prototype[s];
+        }
+
+        function a(e) {
+          var t = function t() {};
+
+          e in o.prototype && (t = o.prototype[e]);
+          var n = r.prototype[e];
+          return function () {
+            return Array.prototype.unshift.call(arguments, t), n.apply(this, arguments);
+          };
+        }
+
+        for (var l = 0; l < e.length; l++) {
+          var c = e[l];
+          o.prototype[c] = a(c);
+        }
+
+        return o;
+      };
+
+      function e() {
+        this.listeners = {};
+      }
+
+      e.prototype.on = function (e, t) {
+        this.listeners = this.listeners || {}, e in this.listeners ? this.listeners[e].push(t) : this.listeners[e] = [t];
+      }, e.prototype.trigger = function (e) {
+        var t = Array.prototype.slice,
+            n = t.call(arguments, 1);
+        this.listeners = this.listeners || {}, null == n && (n = []), 0 === n.length && n.push({}), (n[0]._type = e) in this.listeners && this.invoke(this.listeners[e], t.call(arguments, 1)), "*" in this.listeners && this.invoke(this.listeners["*"], arguments);
+      }, e.prototype.invoke = function (e, t) {
+        for (var n = 0, i = e.length; n < i; n++) {
+          e[n].apply(this, t);
+        }
+      }, r.Observable = e, r.generateChars = function (e) {
+        for (var t = "", n = 0; n < e; n++) {
+          t += Math.floor(36 * Math.random()).toString(36);
+        }
+
+        return t;
+      }, r.bind = function (e, t) {
+        return function () {
+          e.apply(t, arguments);
+        };
+      }, r._convertData = function (e) {
+        for (var t in e) {
+          var n = t.split("-"),
+              i = e;
+
+          if (1 !== n.length) {
+            for (var r = 0; r < n.length; r++) {
+              var o = n[r];
+              (o = o.substring(0, 1).toLowerCase() + o.substring(1)) in i || (i[o] = {}), r == n.length - 1 && (i[o] = e[t]), i = i[o];
+            }
+
+            delete e[t];
+          }
+        }
+
+        return e;
+      }, r.hasScroll = function (e, t) {
+        var n = o(t),
+            i = t.style.overflowX,
+            r = t.style.overflowY;
+        return (i !== r || "hidden" !== r && "visible" !== r) && ("scroll" === i || "scroll" === r || n.innerHeight() < t.scrollHeight || n.innerWidth() < t.scrollWidth);
+      }, r.escapeMarkup = function (e) {
+        var t = {
+          "\\": "&#92;",
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+          "/": "&#47;"
+        };
+        return "string" != typeof e ? e : String(e).replace(/[&<>"'\/\\]/g, function (e) {
+          return t[e];
+        });
+      }, r.appendMany = function (e, t) {
+        if ("1.7" === o.fn.jquery.substr(0, 3)) {
+          var n = o();
+          o.map(t, function (e) {
+            n = n.add(e);
+          }), t = n;
+        }
+
+        e.append(t);
+      }, r.__cache = {};
+      var n = 0;
+      return r.GetUniqueElementId = function (e) {
+        var t = e.getAttribute("data-select2-id");
+        return null == t && (e.id ? (t = e.id, e.setAttribute("data-select2-id", t)) : (e.setAttribute("data-select2-id", ++n), t = n.toString())), t;
+      }, r.StoreData = function (e, t, n) {
+        var i = r.GetUniqueElementId(e);
+        r.__cache[i] || (r.__cache[i] = {}), r.__cache[i][t] = n;
+      }, r.GetData = function (e, t) {
+        var n = r.GetUniqueElementId(e);
+        return t ? r.__cache[n] && null != r.__cache[n][t] ? r.__cache[n][t] : o(e).data(t) : r.__cache[n];
+      }, r.RemoveData = function (e) {
+        var t = r.GetUniqueElementId(e);
+        null != r.__cache[t] && delete r.__cache[t], e.removeAttribute("data-select2-id");
+      }, r;
+    }), e.define("select2/results", ["jquery", "./utils"], function (h, f) {
+      function i(e, t, n) {
+        this.$element = e, this.data = n, this.options = t, i.__super__.constructor.call(this);
+      }
+
+      return f.Extend(i, f.Observable), i.prototype.render = function () {
+        var e = h('<ul class="select2-results__options" role="listbox"></ul>');
+        return this.options.get("multiple") && e.attr("aria-multiselectable", "true"), this.$results = e;
+      }, i.prototype.clear = function () {
+        this.$results.empty();
+      }, i.prototype.displayMessage = function (e) {
+        var t = this.options.get("escapeMarkup");
+        this.clear(), this.hideLoading();
+        var n = h('<li role="alert" aria-live="assertive" class="select2-results__option"></li>'),
+            i = this.options.get("translations").get(e.message);
+        n.append(t(i(e.args))), n[0].className += " select2-results__message", this.$results.append(n);
+      }, i.prototype.hideMessages = function () {
+        this.$results.find(".select2-results__message").remove();
+      }, i.prototype.append = function (e) {
+        this.hideLoading();
+        var t = [];
+
+        if (null != e.results && 0 !== e.results.length) {
+          e.results = this.sort(e.results);
+
+          for (var n = 0; n < e.results.length; n++) {
+            var i = e.results[n],
+                r = this.option(i);
+            t.push(r);
+          }
+
+          this.$results.append(t);
+        } else 0 === this.$results.children().length && this.trigger("results:message", {
+          message: "noResults"
+        });
+      }, i.prototype.position = function (e, t) {
+        t.find(".select2-results").append(e);
+      }, i.prototype.sort = function (e) {
+        return this.options.get("sorter")(e);
+      }, i.prototype.highlightFirstItem = function () {
+        var e = this.$results.find(".select2-results__option[aria-selected]"),
+            t = e.filter("[aria-selected=true]");
+        0 < t.length ? t.first().trigger("mouseenter") : e.first().trigger("mouseenter"), this.ensureHighlightVisible();
+      }, i.prototype.setClasses = function () {
+        var t = this;
+        this.data.current(function (e) {
+          var i = h.map(e, function (e) {
+            return e.id.toString();
+          });
+          t.$results.find(".select2-results__option[aria-selected]").each(function () {
+            var e = h(this),
+                t = f.GetData(this, "data"),
+                n = "" + t.id;
+            null != t.element && t.element.selected || null == t.element && -1 < h.inArray(n, i) ? e.attr("aria-selected", "true") : e.attr("aria-selected", "false");
+          });
+        });
+      }, i.prototype.showLoading = function (e) {
+        this.hideLoading();
+        var t = {
+          disabled: !0,
+          loading: !0,
+          text: this.options.get("translations").get("searching")(e)
+        },
+            n = this.option(t);
+        n.className += " loading-results", this.$results.prepend(n);
+      }, i.prototype.hideLoading = function () {
+        this.$results.find(".loading-results").remove();
+      }, i.prototype.option = function (e) {
+        var t = document.createElement("li");
+        t.className = "select2-results__option";
+        var n = {
+          role: "option",
+          "aria-selected": "false"
+        },
+            i = window.Element.prototype.matches || window.Element.prototype.msMatchesSelector || window.Element.prototype.webkitMatchesSelector;
+
+        for (var r in (null != e.element && i.call(e.element, ":disabled") || null == e.element && e.disabled) && (delete n["aria-selected"], n["aria-disabled"] = "true"), null == e.id && delete n["aria-selected"], null != e._resultId && (t.id = e._resultId), e.title && (t.title = e.title), e.children && (n.role = "group", n["aria-label"] = e.text, delete n["aria-selected"]), n) {
+          var o = n[r];
+          t.setAttribute(r, o);
+        }
+
+        if (e.children) {
+          var s = h(t),
+              a = document.createElement("strong");
+          a.className = "select2-results__group";
+          h(a);
+          this.template(e, a);
+
+          for (var l = [], c = 0; c < e.children.length; c++) {
+            var u = e.children[c],
+                d = this.option(u);
+            l.push(d);
+          }
+
+          var p = h("<ul></ul>", {
+            "class": "select2-results__options select2-results__options--nested"
+          });
+          p.append(l), s.append(a), s.append(p);
+        } else this.template(e, t);
+
+        return f.StoreData(t, "data", e), t;
+      }, i.prototype.bind = function (t, e) {
+        var l = this,
+            n = t.id + "-results";
+        this.$results.attr("id", n), t.on("results:all", function (e) {
+          l.clear(), l.append(e.data), t.isOpen() && (l.setClasses(), l.highlightFirstItem());
+        }), t.on("results:append", function (e) {
+          l.append(e.data), t.isOpen() && l.setClasses();
+        }), t.on("query", function (e) {
+          l.hideMessages(), l.showLoading(e);
+        }), t.on("select", function () {
+          t.isOpen() && (l.setClasses(), l.options.get("scrollAfterSelect") && l.highlightFirstItem());
+        }), t.on("unselect", function () {
+          t.isOpen() && (l.setClasses(), l.options.get("scrollAfterSelect") && l.highlightFirstItem());
+        }), t.on("open", function () {
+          l.$results.attr("aria-expanded", "true"), l.$results.attr("aria-hidden", "false"), l.setClasses(), l.ensureHighlightVisible();
+        }), t.on("close", function () {
+          l.$results.attr("aria-expanded", "false"), l.$results.attr("aria-hidden", "true"), l.$results.removeAttr("aria-activedescendant");
+        }), t.on("results:toggle", function () {
+          var e = l.getHighlightedResults();
+          0 !== e.length && e.trigger("mouseup");
+        }), t.on("results:select", function () {
+          var e = l.getHighlightedResults();
+
+          if (0 !== e.length) {
+            var t = f.GetData(e[0], "data");
+            "true" == e.attr("aria-selected") ? l.trigger("close", {}) : l.trigger("select", {
+              data: t
+            });
+          }
+        }), t.on("results:previous", function () {
+          var e = l.getHighlightedResults(),
+              t = l.$results.find("[aria-selected]"),
+              n = t.index(e);
+
+          if (!(n <= 0)) {
+            var i = n - 1;
+            0 === e.length && (i = 0);
+            var r = t.eq(i);
+            r.trigger("mouseenter");
+            var o = l.$results.offset().top,
+                s = r.offset().top,
+                a = l.$results.scrollTop() + (s - o);
+            0 === i ? l.$results.scrollTop(0) : s - o < 0 && l.$results.scrollTop(a);
+          }
+        }), t.on("results:next", function () {
+          var e = l.getHighlightedResults(),
+              t = l.$results.find("[aria-selected]"),
+              n = t.index(e) + 1;
+
+          if (!(n >= t.length)) {
+            var i = t.eq(n);
+            i.trigger("mouseenter");
+            var r = l.$results.offset().top + l.$results.outerHeight(!1),
+                o = i.offset().top + i.outerHeight(!1),
+                s = l.$results.scrollTop() + o - r;
+            0 === n ? l.$results.scrollTop(0) : r < o && l.$results.scrollTop(s);
+          }
+        }), t.on("results:focus", function (e) {
+          e.element.addClass("select2-results__option--highlighted");
+        }), t.on("results:message", function (e) {
+          l.displayMessage(e);
+        }), h.fn.mousewheel && this.$results.on("mousewheel", function (e) {
+          var t = l.$results.scrollTop(),
+              n = l.$results.get(0).scrollHeight - t + e.deltaY,
+              i = 0 < e.deltaY && t - e.deltaY <= 0,
+              r = e.deltaY < 0 && n <= l.$results.height();
+          i ? (l.$results.scrollTop(0), e.preventDefault(), e.stopPropagation()) : r && (l.$results.scrollTop(l.$results.get(0).scrollHeight - l.$results.height()), e.preventDefault(), e.stopPropagation());
+        }), this.$results.on("mouseup", ".select2-results__option[aria-selected]", function (e) {
+          var t = h(this),
+              n = f.GetData(this, "data");
+          "true" !== t.attr("aria-selected") ? l.trigger("select", {
+            originalEvent: e,
+            data: n
+          }) : l.options.get("multiple") ? l.trigger("unselect", {
+            originalEvent: e,
+            data: n
+          }) : l.trigger("close", {});
+        }), this.$results.on("mouseenter", ".select2-results__option[aria-selected]", function (e) {
+          var t = f.GetData(this, "data");
+          l.getHighlightedResults().removeClass("select2-results__option--highlighted"), l.trigger("results:focus", {
+            data: t,
+            element: h(this)
+          });
+        });
+      }, i.prototype.getHighlightedResults = function () {
+        return this.$results.find(".select2-results__option--highlighted");
+      }, i.prototype.destroy = function () {
+        this.$results.remove();
+      }, i.prototype.ensureHighlightVisible = function () {
+        var e = this.getHighlightedResults();
+
+        if (0 !== e.length) {
+          var t = this.$results.find("[aria-selected]").index(e),
+              n = this.$results.offset().top,
+              i = e.offset().top,
+              r = this.$results.scrollTop() + (i - n),
+              o = i - n;
+          r -= 2 * e.outerHeight(!1), t <= 2 ? this.$results.scrollTop(0) : (o > this.$results.outerHeight() || o < 0) && this.$results.scrollTop(r);
+        }
+      }, i.prototype.template = function (e, t) {
+        var n = this.options.get("templateResult"),
+            i = this.options.get("escapeMarkup"),
+            r = n(e, t);
+        null == r ? t.style.display = "none" : "string" == typeof r ? t.innerHTML = i(r) : h(t).append(r);
+      }, i;
+    }), e.define("select2/keys", [], function () {
+      return {
+        BACKSPACE: 8,
+        TAB: 9,
+        ENTER: 13,
+        SHIFT: 16,
+        CTRL: 17,
+        ALT: 18,
+        ESC: 27,
+        SPACE: 32,
+        PAGE_UP: 33,
+        PAGE_DOWN: 34,
+        END: 35,
+        HOME: 36,
+        LEFT: 37,
+        UP: 38,
+        RIGHT: 39,
+        DOWN: 40,
+        DELETE: 46
+      };
+    }), e.define("select2/selection/base", ["jquery", "../utils", "../keys"], function (n, i, r) {
+      function o(e, t) {
+        this.$element = e, this.options = t, o.__super__.constructor.call(this);
+      }
+
+      return i.Extend(o, i.Observable), o.prototype.render = function () {
+        var e = n('<span class="select2-selection" role="combobox"  aria-haspopup="true" aria-expanded="false"></span>');
+        return this._tabindex = 0, null != i.GetData(this.$element[0], "old-tabindex") ? this._tabindex = i.GetData(this.$element[0], "old-tabindex") : null != this.$element.attr("tabindex") && (this._tabindex = this.$element.attr("tabindex")), e.attr("title", this.$element.attr("title")), e.attr("tabindex", this._tabindex), e.attr("aria-disabled", "false"), this.$selection = e;
+      }, o.prototype.bind = function (e, t) {
+        var n = this,
+            i = e.id + "-results";
+        this.container = e, this.$selection.on("focus", function (e) {
+          n.trigger("focus", e);
+        }), this.$selection.on("blur", function (e) {
+          n._handleBlur(e);
+        }), this.$selection.on("keydown", function (e) {
+          n.trigger("keypress", e), e.which === r.SPACE && e.preventDefault();
+        }), e.on("results:focus", function (e) {
+          n.$selection.attr("aria-activedescendant", e.data._resultId);
+        }), e.on("selection:update", function (e) {
+          n.update(e.data);
+        }), e.on("open", function () {
+          n.$selection.attr("aria-expanded", "true"), n.$selection.attr("aria-owns", i), n._attachCloseHandler(e);
+        }), e.on("close", function () {
+          n.$selection.attr("aria-expanded", "false"), n.$selection.removeAttr("aria-activedescendant"), n.$selection.removeAttr("aria-owns"), n.$selection.trigger("focus"), n._detachCloseHandler(e);
+        }), e.on("enable", function () {
+          n.$selection.attr("tabindex", n._tabindex), n.$selection.attr("aria-disabled", "false");
+        }), e.on("disable", function () {
+          n.$selection.attr("tabindex", "-1"), n.$selection.attr("aria-disabled", "true");
+        });
+      }, o.prototype._handleBlur = function (e) {
+        var t = this;
+        window.setTimeout(function () {
+          document.activeElement == t.$selection[0] || n.contains(t.$selection[0], document.activeElement) || t.trigger("blur", e);
+        }, 1);
+      }, o.prototype._attachCloseHandler = function (e) {
+        n(document.body).on("mousedown.select2." + e.id, function (e) {
+          var t = n(e.target).closest(".select2");
+          n(".select2.select2-container--open").each(function () {
+            this != t[0] && i.GetData(this, "element").select2("close");
+          });
+        });
+      }, o.prototype._detachCloseHandler = function (e) {
+        n(document.body).off("mousedown.select2." + e.id);
+      }, o.prototype.position = function (e, t) {
+        t.find(".selection").append(e);
+      }, o.prototype.destroy = function () {
+        this._detachCloseHandler(this.container);
+      }, o.prototype.update = function (e) {
+        throw new Error("The `update` method must be defined in child classes.");
+      }, o.prototype.isEnabled = function () {
+        return !this.isDisabled();
+      }, o.prototype.isDisabled = function () {
+        return this.options.get("disabled");
+      }, o;
+    }), e.define("select2/selection/single", ["jquery", "./base", "../utils", "../keys"], function (e, t, n, i) {
+      function r() {
+        r.__super__.constructor.apply(this, arguments);
+      }
+
+      return n.Extend(r, t), r.prototype.render = function () {
+        var e = r.__super__.render.call(this);
+
+        return e.addClass("select2-selection--single"), e.html('<span class="select2-selection__rendered"></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>'), e;
+      }, r.prototype.bind = function (t, e) {
+        var n = this;
+
+        r.__super__.bind.apply(this, arguments);
+
+        var i = t.id + "-container";
+        this.$selection.find(".select2-selection__rendered").attr("id", i).attr("role", "textbox").attr("aria-readonly", "true"), this.$selection.attr("aria-labelledby", i), this.$selection.on("mousedown", function (e) {
+          1 === e.which && n.trigger("toggle", {
+            originalEvent: e
+          });
+        }), this.$selection.on("focus", function (e) {}), this.$selection.on("blur", function (e) {}), t.on("focus", function (e) {
+          t.isOpen() || n.$selection.trigger("focus");
+        });
+      }, r.prototype.clear = function () {
+        var e = this.$selection.find(".select2-selection__rendered");
+        e.empty(), e.removeAttr("title");
+      }, r.prototype.display = function (e, t) {
+        var n = this.options.get("templateSelection");
+        return this.options.get("escapeMarkup")(n(e, t));
+      }, r.prototype.selectionContainer = function () {
+        return e("<span></span>");
+      }, r.prototype.update = function (e) {
+        if (0 !== e.length) {
+          var t = e[0],
+              n = this.$selection.find(".select2-selection__rendered"),
+              i = this.display(t, n);
+          n.empty().append(i);
+          var r = t.title || t.text;
+          r ? n.attr("title", r) : n.removeAttr("title");
+        } else this.clear();
+      }, r;
+    }), e.define("select2/selection/multiple", ["jquery", "./base", "../utils"], function (r, e, l) {
+      function n(e, t) {
+        n.__super__.constructor.apply(this, arguments);
+      }
+
+      return l.Extend(n, e), n.prototype.render = function () {
+        var e = n.__super__.render.call(this);
+
+        return e.addClass("select2-selection--multiple"), e.html('<ul class="select2-selection__rendered"></ul>'), e;
+      }, n.prototype.bind = function (e, t) {
+        var i = this;
+        n.__super__.bind.apply(this, arguments), this.$selection.on("click", function (e) {
+          i.trigger("toggle", {
+            originalEvent: e
+          });
+        }), this.$selection.on("click", ".select2-selection__choice__remove", function (e) {
+          if (!i.isDisabled()) {
+            var t = r(this).parent(),
+                n = l.GetData(t[0], "data");
+            i.trigger("unselect", {
+              originalEvent: e,
+              data: n
+            });
+          }
+        });
+      }, n.prototype.clear = function () {
+        var e = this.$selection.find(".select2-selection__rendered");
+        e.empty(), e.removeAttr("title");
+      }, n.prototype.display = function (e, t) {
+        var n = this.options.get("templateSelection");
+        return this.options.get("escapeMarkup")(n(e, t));
+      }, n.prototype.selectionContainer = function () {
+        return r('<li class="select2-selection__choice"><span class="select2-selection__choice__remove" role="presentation">&times;</span></li>');
+      }, n.prototype.update = function (e) {
+        if (this.clear(), 0 !== e.length) {
+          for (var t = [], n = 0; n < e.length; n++) {
+            var i = e[n],
+                r = this.selectionContainer(),
+                o = this.display(i, r);
+            r.append(o);
+            var s = i.title || i.text;
+            s && r.attr("title", s), l.StoreData(r[0], "data", i), t.push(r);
+          }
+
+          var a = this.$selection.find(".select2-selection__rendered");
+          l.appendMany(a, t);
+        }
+      }, n;
+    }), e.define("select2/selection/placeholder", ["../utils"], function (e) {
+      function t(e, t, n) {
+        this.placeholder = this.normalizePlaceholder(n.get("placeholder")), e.call(this, t, n);
+      }
+
+      return t.prototype.normalizePlaceholder = function (e, t) {
+        return "string" == typeof t && (t = {
+          id: "",
+          text: t
+        }), t;
+      }, t.prototype.createPlaceholder = function (e, t) {
+        var n = this.selectionContainer();
+        return n.html(this.display(t)), n.addClass("select2-selection__placeholder").removeClass("select2-selection__choice"), n;
+      }, t.prototype.update = function (e, t) {
+        var n = 1 == t.length && t[0].id != this.placeholder.id;
+        if (1 < t.length || n) return e.call(this, t);
+        this.clear();
+        var i = this.createPlaceholder(this.placeholder);
+        this.$selection.find(".select2-selection__rendered").append(i);
+      }, t;
+    }), e.define("select2/selection/allowClear", ["jquery", "../keys", "../utils"], function (r, i, a) {
+      function e() {}
+
+      return e.prototype.bind = function (e, t, n) {
+        var i = this;
+        e.call(this, t, n), null == this.placeholder && this.options.get("debug") && window.console && console.error && console.error("Select2: The `allowClear` option should be used in combination with the `placeholder` option."), this.$selection.on("mousedown", ".select2-selection__clear", function (e) {
+          i._handleClear(e);
+        }), t.on("keypress", function (e) {
+          i._handleKeyboardClear(e, t);
+        });
+      }, e.prototype._handleClear = function (e, t) {
+        if (!this.isDisabled()) {
+          var n = this.$selection.find(".select2-selection__clear");
+
+          if (0 !== n.length) {
+            t.stopPropagation();
+            var i = a.GetData(n[0], "data"),
+                r = this.$element.val();
+            this.$element.val(this.placeholder.id);
+            var o = {
+              data: i
+            };
+            if (this.trigger("clear", o), o.prevented) this.$element.val(r);else {
+              for (var s = 0; s < i.length; s++) {
+                if (o = {
+                  data: i[s]
+                }, this.trigger("unselect", o), o.prevented) return void this.$element.val(r);
+              }
+
+              this.$element.trigger("input").trigger("change"), this.trigger("toggle", {});
+            }
+          }
+        }
+      }, e.prototype._handleKeyboardClear = function (e, t, n) {
+        n.isOpen() || t.which != i.DELETE && t.which != i.BACKSPACE || this._handleClear(t);
+      }, e.prototype.update = function (e, t) {
+        if (e.call(this, t), !(0 < this.$selection.find(".select2-selection__placeholder").length || 0 === t.length)) {
+          var n = this.options.get("translations").get("removeAllItems"),
+              i = r('<span class="select2-selection__clear" title="' + n() + '">&times;</span>');
+          a.StoreData(i[0], "data", t), this.$selection.find(".select2-selection__rendered").prepend(i);
+        }
+      }, e;
+    }), e.define("select2/selection/search", ["jquery", "../utils", "../keys"], function (i, a, l) {
+      function e(e, t, n) {
+        e.call(this, t, n);
+      }
+
+      return e.prototype.render = function (e) {
+        var t = i('<li class="select2-search select2-search--inline"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="searchbox" aria-autocomplete="list" /></li>');
+        this.$searchContainer = t, this.$search = t.find("input");
+        var n = e.call(this);
+        return this._transferTabIndex(), n;
+      }, e.prototype.bind = function (e, t, n) {
+        var i = this,
+            r = t.id + "-results";
+        e.call(this, t, n), t.on("open", function () {
+          i.$search.attr("aria-controls", r), i.$search.trigger("focus");
+        }), t.on("close", function () {
+          i.$search.val(""), i.$search.removeAttr("aria-controls"), i.$search.removeAttr("aria-activedescendant"), i.$search.trigger("focus");
+        }), t.on("enable", function () {
+          i.$search.prop("disabled", !1), i._transferTabIndex();
+        }), t.on("disable", function () {
+          i.$search.prop("disabled", !0);
+        }), t.on("focus", function (e) {
+          i.$search.trigger("focus");
+        }), t.on("results:focus", function (e) {
+          e.data._resultId ? i.$search.attr("aria-activedescendant", e.data._resultId) : i.$search.removeAttr("aria-activedescendant");
+        }), this.$selection.on("focusin", ".select2-search--inline", function (e) {
+          i.trigger("focus", e);
+        }), this.$selection.on("focusout", ".select2-search--inline", function (e) {
+          i._handleBlur(e);
+        }), this.$selection.on("keydown", ".select2-search--inline", function (e) {
+          if (e.stopPropagation(), i.trigger("keypress", e), i._keyUpPrevented = e.isDefaultPrevented(), e.which === l.BACKSPACE && "" === i.$search.val()) {
+            var t = i.$searchContainer.prev(".select2-selection__choice");
+
+            if (0 < t.length) {
+              var n = a.GetData(t[0], "data");
+              i.searchRemoveChoice(n), e.preventDefault();
+            }
+          }
+        }), this.$selection.on("click", ".select2-search--inline", function (e) {
+          i.$search.val() && e.stopPropagation();
+        });
+        var o = document.documentMode,
+            s = o && o <= 11;
+        this.$selection.on("input.searchcheck", ".select2-search--inline", function (e) {
+          s ? i.$selection.off("input.search input.searchcheck") : i.$selection.off("keyup.search");
+        }), this.$selection.on("keyup.search input.search", ".select2-search--inline", function (e) {
+          if (s && "input" === e.type) i.$selection.off("input.search input.searchcheck");else {
+            var t = e.which;
+            t != l.SHIFT && t != l.CTRL && t != l.ALT && t != l.TAB && i.handleSearch(e);
+          }
+        });
+      }, e.prototype._transferTabIndex = function (e) {
+        this.$search.attr("tabindex", this.$selection.attr("tabindex")), this.$selection.attr("tabindex", "-1");
+      }, e.prototype.createPlaceholder = function (e, t) {
+        this.$search.attr("placeholder", t.text);
+      }, e.prototype.update = function (e, t) {
+        var n = this.$search[0] == document.activeElement;
+        this.$search.attr("placeholder", ""), e.call(this, t), this.$selection.find(".select2-selection__rendered").append(this.$searchContainer), this.resizeSearch(), n && this.$search.trigger("focus");
+      }, e.prototype.handleSearch = function () {
+        if (this.resizeSearch(), !this._keyUpPrevented) {
+          var e = this.$search.val();
+          this.trigger("query", {
+            term: e
+          });
+        }
+
+        this._keyUpPrevented = !1;
+      }, e.prototype.searchRemoveChoice = function (e, t) {
+        this.trigger("unselect", {
+          data: t
+        }), this.$search.val(t.text), this.handleSearch();
+      }, e.prototype.resizeSearch = function () {
+        this.$search.css("width", "25px");
+        var e = "";
+        "" !== this.$search.attr("placeholder") ? e = this.$selection.find(".select2-selection__rendered").width() : e = .75 * (this.$search.val().length + 1) + "em";
+        this.$search.css("width", e);
+      }, e;
+    }), e.define("select2/selection/eventRelay", ["jquery"], function (s) {
+      function e() {}
+
+      return e.prototype.bind = function (e, t, n) {
+        var i = this,
+            r = ["open", "opening", "close", "closing", "select", "selecting", "unselect", "unselecting", "clear", "clearing"],
+            o = ["opening", "closing", "selecting", "unselecting", "clearing"];
+        e.call(this, t, n), t.on("*", function (e, t) {
+          if (-1 !== s.inArray(e, r)) {
+            t = t || {};
+            var n = s.Event("select2:" + e, {
+              params: t
+            });
+            i.$element.trigger(n), -1 !== s.inArray(e, o) && (t.prevented = n.isDefaultPrevented());
+          }
+        });
+      }, e;
+    }), e.define("select2/translation", ["jquery", "require"], function (t, n) {
+      function i(e) {
+        this.dict = e || {};
+      }
+
+      return i.prototype.all = function () {
+        return this.dict;
+      }, i.prototype.get = function (e) {
+        return this.dict[e];
+      }, i.prototype.extend = function (e) {
+        this.dict = t.extend({}, e.all(), this.dict);
+      }, i._cache = {}, i.loadPath = function (e) {
+        if (!(e in i._cache)) {
+          var t = n(e);
+          i._cache[e] = t;
+        }
+
+        return new i(i._cache[e]);
+      }, i;
+    }), e.define("select2/diacritics", [], function () {
+      return {
+        "Ⓐ": "A",
+        "Ａ": "A",
+        "À": "A",
+        "Á": "A",
+        "Â": "A",
+        "Ầ": "A",
+        "Ấ": "A",
+        "Ẫ": "A",
+        "Ẩ": "A",
+        "Ã": "A",
+        "Ā": "A",
+        "Ă": "A",
+        "Ằ": "A",
+        "Ắ": "A",
+        "Ẵ": "A",
+        "Ẳ": "A",
+        "Ȧ": "A",
+        "Ǡ": "A",
+        "Ä": "A",
+        "Ǟ": "A",
+        "Ả": "A",
+        "Å": "A",
+        "Ǻ": "A",
+        "Ǎ": "A",
+        "Ȁ": "A",
+        "Ȃ": "A",
+        "Ạ": "A",
+        "Ậ": "A",
+        "Ặ": "A",
+        "Ḁ": "A",
+        "Ą": "A",
+        "Ⱥ": "A",
+        "Ɐ": "A",
+        "Ꜳ": "AA",
+        "Æ": "AE",
+        "Ǽ": "AE",
+        "Ǣ": "AE",
+        "Ꜵ": "AO",
+        "Ꜷ": "AU",
+        "Ꜹ": "AV",
+        "Ꜻ": "AV",
+        "Ꜽ": "AY",
+        "Ⓑ": "B",
+        "Ｂ": "B",
+        "Ḃ": "B",
+        "Ḅ": "B",
+        "Ḇ": "B",
+        "Ƀ": "B",
+        "Ƃ": "B",
+        "Ɓ": "B",
+        "Ⓒ": "C",
+        "Ｃ": "C",
+        "Ć": "C",
+        "Ĉ": "C",
+        "Ċ": "C",
+        "Č": "C",
+        "Ç": "C",
+        "Ḉ": "C",
+        "Ƈ": "C",
+        "Ȼ": "C",
+        "Ꜿ": "C",
+        "Ⓓ": "D",
+        "Ｄ": "D",
+        "Ḋ": "D",
+        "Ď": "D",
+        "Ḍ": "D",
+        "Ḑ": "D",
+        "Ḓ": "D",
+        "Ḏ": "D",
+        "Đ": "D",
+        "Ƌ": "D",
+        "Ɗ": "D",
+        "Ɖ": "D",
+        "Ꝺ": "D",
+        "Ǳ": "DZ",
+        "Ǆ": "DZ",
+        "ǲ": "Dz",
+        "ǅ": "Dz",
+        "Ⓔ": "E",
+        "Ｅ": "E",
+        "È": "E",
+        "É": "E",
+        "Ê": "E",
+        "Ề": "E",
+        "Ế": "E",
+        "Ễ": "E",
+        "Ể": "E",
+        "Ẽ": "E",
+        "Ē": "E",
+        "Ḕ": "E",
+        "Ḗ": "E",
+        "Ĕ": "E",
+        "Ė": "E",
+        "Ë": "E",
+        "Ẻ": "E",
+        "Ě": "E",
+        "Ȅ": "E",
+        "Ȇ": "E",
+        "Ẹ": "E",
+        "Ệ": "E",
+        "Ȩ": "E",
+        "Ḝ": "E",
+        "Ę": "E",
+        "Ḙ": "E",
+        "Ḛ": "E",
+        "Ɛ": "E",
+        "Ǝ": "E",
+        "Ⓕ": "F",
+        "Ｆ": "F",
+        "Ḟ": "F",
+        "Ƒ": "F",
+        "Ꝼ": "F",
+        "Ⓖ": "G",
+        "Ｇ": "G",
+        "Ǵ": "G",
+        "Ĝ": "G",
+        "Ḡ": "G",
+        "Ğ": "G",
+        "Ġ": "G",
+        "Ǧ": "G",
+        "Ģ": "G",
+        "Ǥ": "G",
+        "Ɠ": "G",
+        "Ꞡ": "G",
+        "Ᵹ": "G",
+        "Ꝿ": "G",
+        "Ⓗ": "H",
+        "Ｈ": "H",
+        "Ĥ": "H",
+        "Ḣ": "H",
+        "Ḧ": "H",
+        "Ȟ": "H",
+        "Ḥ": "H",
+        "Ḩ": "H",
+        "Ḫ": "H",
+        "Ħ": "H",
+        "Ⱨ": "H",
+        "Ⱶ": "H",
+        "Ɥ": "H",
+        "Ⓘ": "I",
+        "Ｉ": "I",
+        "Ì": "I",
+        "Í": "I",
+        "Î": "I",
+        "Ĩ": "I",
+        "Ī": "I",
+        "Ĭ": "I",
+        "İ": "I",
+        "Ï": "I",
+        "Ḯ": "I",
+        "Ỉ": "I",
+        "Ǐ": "I",
+        "Ȉ": "I",
+        "Ȋ": "I",
+        "Ị": "I",
+        "Į": "I",
+        "Ḭ": "I",
+        "Ɨ": "I",
+        "Ⓙ": "J",
+        "Ｊ": "J",
+        "Ĵ": "J",
+        "Ɉ": "J",
+        "Ⓚ": "K",
+        "Ｋ": "K",
+        "Ḱ": "K",
+        "Ǩ": "K",
+        "Ḳ": "K",
+        "Ķ": "K",
+        "Ḵ": "K",
+        "Ƙ": "K",
+        "Ⱪ": "K",
+        "Ꝁ": "K",
+        "Ꝃ": "K",
+        "Ꝅ": "K",
+        "Ꞣ": "K",
+        "Ⓛ": "L",
+        "Ｌ": "L",
+        "Ŀ": "L",
+        "Ĺ": "L",
+        "Ľ": "L",
+        "Ḷ": "L",
+        "Ḹ": "L",
+        "Ļ": "L",
+        "Ḽ": "L",
+        "Ḻ": "L",
+        "Ł": "L",
+        "Ƚ": "L",
+        "Ɫ": "L",
+        "Ⱡ": "L",
+        "Ꝉ": "L",
+        "Ꝇ": "L",
+        "Ꞁ": "L",
+        "Ǉ": "LJ",
+        "ǈ": "Lj",
+        "Ⓜ": "M",
+        "Ｍ": "M",
+        "Ḿ": "M",
+        "Ṁ": "M",
+        "Ṃ": "M",
+        "Ɱ": "M",
+        "Ɯ": "M",
+        "Ⓝ": "N",
+        "Ｎ": "N",
+        "Ǹ": "N",
+        "Ń": "N",
+        "Ñ": "N",
+        "Ṅ": "N",
+        "Ň": "N",
+        "Ṇ": "N",
+        "Ņ": "N",
+        "Ṋ": "N",
+        "Ṉ": "N",
+        "Ƞ": "N",
+        "Ɲ": "N",
+        "Ꞑ": "N",
+        "Ꞥ": "N",
+        "Ǌ": "NJ",
+        "ǋ": "Nj",
+        "Ⓞ": "O",
+        "Ｏ": "O",
+        "Ò": "O",
+        "Ó": "O",
+        "Ô": "O",
+        "Ồ": "O",
+        "Ố": "O",
+        "Ỗ": "O",
+        "Ổ": "O",
+        "Õ": "O",
+        "Ṍ": "O",
+        "Ȭ": "O",
+        "Ṏ": "O",
+        "Ō": "O",
+        "Ṑ": "O",
+        "Ṓ": "O",
+        "Ŏ": "O",
+        "Ȯ": "O",
+        "Ȱ": "O",
+        "Ö": "O",
+        "Ȫ": "O",
+        "Ỏ": "O",
+        "Ő": "O",
+        "Ǒ": "O",
+        "Ȍ": "O",
+        "Ȏ": "O",
+        "Ơ": "O",
+        "Ờ": "O",
+        "Ớ": "O",
+        "Ỡ": "O",
+        "Ở": "O",
+        "Ợ": "O",
+        "Ọ": "O",
+        "Ộ": "O",
+        "Ǫ": "O",
+        "Ǭ": "O",
+        "Ø": "O",
+        "Ǿ": "O",
+        "Ɔ": "O",
+        "Ɵ": "O",
+        "Ꝋ": "O",
+        "Ꝍ": "O",
+        "Œ": "OE",
+        "Ƣ": "OI",
+        "Ꝏ": "OO",
+        "Ȣ": "OU",
+        "Ⓟ": "P",
+        "Ｐ": "P",
+        "Ṕ": "P",
+        "Ṗ": "P",
+        "Ƥ": "P",
+        "Ᵽ": "P",
+        "Ꝑ": "P",
+        "Ꝓ": "P",
+        "Ꝕ": "P",
+        "Ⓠ": "Q",
+        "Ｑ": "Q",
+        "Ꝗ": "Q",
+        "Ꝙ": "Q",
+        "Ɋ": "Q",
+        "Ⓡ": "R",
+        "Ｒ": "R",
+        "Ŕ": "R",
+        "Ṙ": "R",
+        "Ř": "R",
+        "Ȑ": "R",
+        "Ȓ": "R",
+        "Ṛ": "R",
+        "Ṝ": "R",
+        "Ŗ": "R",
+        "Ṟ": "R",
+        "Ɍ": "R",
+        "Ɽ": "R",
+        "Ꝛ": "R",
+        "Ꞧ": "R",
+        "Ꞃ": "R",
+        "Ⓢ": "S",
+        "Ｓ": "S",
+        "ẞ": "S",
+        "Ś": "S",
+        "Ṥ": "S",
+        "Ŝ": "S",
+        "Ṡ": "S",
+        "Š": "S",
+        "Ṧ": "S",
+        "Ṣ": "S",
+        "Ṩ": "S",
+        "Ș": "S",
+        "Ş": "S",
+        "Ȿ": "S",
+        "Ꞩ": "S",
+        "Ꞅ": "S",
+        "Ⓣ": "T",
+        "Ｔ": "T",
+        "Ṫ": "T",
+        "Ť": "T",
+        "Ṭ": "T",
+        "Ț": "T",
+        "Ţ": "T",
+        "Ṱ": "T",
+        "Ṯ": "T",
+        "Ŧ": "T",
+        "Ƭ": "T",
+        "Ʈ": "T",
+        "Ⱦ": "T",
+        "Ꞇ": "T",
+        "Ꜩ": "TZ",
+        "Ⓤ": "U",
+        "Ｕ": "U",
+        "Ù": "U",
+        "Ú": "U",
+        "Û": "U",
+        "Ũ": "U",
+        "Ṹ": "U",
+        "Ū": "U",
+        "Ṻ": "U",
+        "Ŭ": "U",
+        "Ü": "U",
+        "Ǜ": "U",
+        "Ǘ": "U",
+        "Ǖ": "U",
+        "Ǚ": "U",
+        "Ủ": "U",
+        "Ů": "U",
+        "Ű": "U",
+        "Ǔ": "U",
+        "Ȕ": "U",
+        "Ȗ": "U",
+        "Ư": "U",
+        "Ừ": "U",
+        "Ứ": "U",
+        "Ữ": "U",
+        "Ử": "U",
+        "Ự": "U",
+        "Ụ": "U",
+        "Ṳ": "U",
+        "Ų": "U",
+        "Ṷ": "U",
+        "Ṵ": "U",
+        "Ʉ": "U",
+        "Ⓥ": "V",
+        "Ｖ": "V",
+        "Ṽ": "V",
+        "Ṿ": "V",
+        "Ʋ": "V",
+        "Ꝟ": "V",
+        "Ʌ": "V",
+        "Ꝡ": "VY",
+        "Ⓦ": "W",
+        "Ｗ": "W",
+        "Ẁ": "W",
+        "Ẃ": "W",
+        "Ŵ": "W",
+        "Ẇ": "W",
+        "Ẅ": "W",
+        "Ẉ": "W",
+        "Ⱳ": "W",
+        "Ⓧ": "X",
+        "Ｘ": "X",
+        "Ẋ": "X",
+        "Ẍ": "X",
+        "Ⓨ": "Y",
+        "Ｙ": "Y",
+        "Ỳ": "Y",
+        "Ý": "Y",
+        "Ŷ": "Y",
+        "Ỹ": "Y",
+        "Ȳ": "Y",
+        "Ẏ": "Y",
+        "Ÿ": "Y",
+        "Ỷ": "Y",
+        "Ỵ": "Y",
+        "Ƴ": "Y",
+        "Ɏ": "Y",
+        "Ỿ": "Y",
+        "Ⓩ": "Z",
+        "Ｚ": "Z",
+        "Ź": "Z",
+        "Ẑ": "Z",
+        "Ż": "Z",
+        "Ž": "Z",
+        "Ẓ": "Z",
+        "Ẕ": "Z",
+        "Ƶ": "Z",
+        "Ȥ": "Z",
+        "Ɀ": "Z",
+        "Ⱬ": "Z",
+        "Ꝣ": "Z",
+        "ⓐ": "a",
+        "ａ": "a",
+        "ẚ": "a",
+        "à": "a",
+        "á": "a",
+        "â": "a",
+        "ầ": "a",
+        "ấ": "a",
+        "ẫ": "a",
+        "ẩ": "a",
+        "ã": "a",
+        "ā": "a",
+        "ă": "a",
+        "ằ": "a",
+        "ắ": "a",
+        "ẵ": "a",
+        "ẳ": "a",
+        "ȧ": "a",
+        "ǡ": "a",
+        "ä": "a",
+        "ǟ": "a",
+        "ả": "a",
+        "å": "a",
+        "ǻ": "a",
+        "ǎ": "a",
+        "ȁ": "a",
+        "ȃ": "a",
+        "ạ": "a",
+        "ậ": "a",
+        "ặ": "a",
+        "ḁ": "a",
+        "ą": "a",
+        "ⱥ": "a",
+        "ɐ": "a",
+        "ꜳ": "aa",
+        "æ": "ae",
+        "ǽ": "ae",
+        "ǣ": "ae",
+        "ꜵ": "ao",
+        "ꜷ": "au",
+        "ꜹ": "av",
+        "ꜻ": "av",
+        "ꜽ": "ay",
+        "ⓑ": "b",
+        "ｂ": "b",
+        "ḃ": "b",
+        "ḅ": "b",
+        "ḇ": "b",
+        "ƀ": "b",
+        "ƃ": "b",
+        "ɓ": "b",
+        "ⓒ": "c",
+        "ｃ": "c",
+        "ć": "c",
+        "ĉ": "c",
+        "ċ": "c",
+        "č": "c",
+        "ç": "c",
+        "ḉ": "c",
+        "ƈ": "c",
+        "ȼ": "c",
+        "ꜿ": "c",
+        "ↄ": "c",
+        "ⓓ": "d",
+        "ｄ": "d",
+        "ḋ": "d",
+        "ď": "d",
+        "ḍ": "d",
+        "ḑ": "d",
+        "ḓ": "d",
+        "ḏ": "d",
+        "đ": "d",
+        "ƌ": "d",
+        "ɖ": "d",
+        "ɗ": "d",
+        "ꝺ": "d",
+        "ǳ": "dz",
+        "ǆ": "dz",
+        "ⓔ": "e",
+        "ｅ": "e",
+        "è": "e",
+        "é": "e",
+        "ê": "e",
+        "ề": "e",
+        "ế": "e",
+        "ễ": "e",
+        "ể": "e",
+        "ẽ": "e",
+        "ē": "e",
+        "ḕ": "e",
+        "ḗ": "e",
+        "ĕ": "e",
+        "ė": "e",
+        "ë": "e",
+        "ẻ": "e",
+        "ě": "e",
+        "ȅ": "e",
+        "ȇ": "e",
+        "ẹ": "e",
+        "ệ": "e",
+        "ȩ": "e",
+        "ḝ": "e",
+        "ę": "e",
+        "ḙ": "e",
+        "ḛ": "e",
+        "ɇ": "e",
+        "ɛ": "e",
+        "ǝ": "e",
+        "ⓕ": "f",
+        "ｆ": "f",
+        "ḟ": "f",
+        "ƒ": "f",
+        "ꝼ": "f",
+        "ⓖ": "g",
+        "ｇ": "g",
+        "ǵ": "g",
+        "ĝ": "g",
+        "ḡ": "g",
+        "ğ": "g",
+        "ġ": "g",
+        "ǧ": "g",
+        "ģ": "g",
+        "ǥ": "g",
+        "ɠ": "g",
+        "ꞡ": "g",
+        "ᵹ": "g",
+        "ꝿ": "g",
+        "ⓗ": "h",
+        "ｈ": "h",
+        "ĥ": "h",
+        "ḣ": "h",
+        "ḧ": "h",
+        "ȟ": "h",
+        "ḥ": "h",
+        "ḩ": "h",
+        "ḫ": "h",
+        "ẖ": "h",
+        "ħ": "h",
+        "ⱨ": "h",
+        "ⱶ": "h",
+        "ɥ": "h",
+        "ƕ": "hv",
+        "ⓘ": "i",
+        "ｉ": "i",
+        "ì": "i",
+        "í": "i",
+        "î": "i",
+        "ĩ": "i",
+        "ī": "i",
+        "ĭ": "i",
+        "ï": "i",
+        "ḯ": "i",
+        "ỉ": "i",
+        "ǐ": "i",
+        "ȉ": "i",
+        "ȋ": "i",
+        "ị": "i",
+        "į": "i",
+        "ḭ": "i",
+        "ɨ": "i",
+        "ı": "i",
+        "ⓙ": "j",
+        "ｊ": "j",
+        "ĵ": "j",
+        "ǰ": "j",
+        "ɉ": "j",
+        "ⓚ": "k",
+        "ｋ": "k",
+        "ḱ": "k",
+        "ǩ": "k",
+        "ḳ": "k",
+        "ķ": "k",
+        "ḵ": "k",
+        "ƙ": "k",
+        "ⱪ": "k",
+        "ꝁ": "k",
+        "ꝃ": "k",
+        "ꝅ": "k",
+        "ꞣ": "k",
+        "ⓛ": "l",
+        "ｌ": "l",
+        "ŀ": "l",
+        "ĺ": "l",
+        "ľ": "l",
+        "ḷ": "l",
+        "ḹ": "l",
+        "ļ": "l",
+        "ḽ": "l",
+        "ḻ": "l",
+        "ſ": "l",
+        "ł": "l",
+        "ƚ": "l",
+        "ɫ": "l",
+        "ⱡ": "l",
+        "ꝉ": "l",
+        "ꞁ": "l",
+        "ꝇ": "l",
+        "ǉ": "lj",
+        "ⓜ": "m",
+        "ｍ": "m",
+        "ḿ": "m",
+        "ṁ": "m",
+        "ṃ": "m",
+        "ɱ": "m",
+        "ɯ": "m",
+        "ⓝ": "n",
+        "ｎ": "n",
+        "ǹ": "n",
+        "ń": "n",
+        "ñ": "n",
+        "ṅ": "n",
+        "ň": "n",
+        "ṇ": "n",
+        "ņ": "n",
+        "ṋ": "n",
+        "ṉ": "n",
+        "ƞ": "n",
+        "ɲ": "n",
+        "ŉ": "n",
+        "ꞑ": "n",
+        "ꞥ": "n",
+        "ǌ": "nj",
+        "ⓞ": "o",
+        "ｏ": "o",
+        "ò": "o",
+        "ó": "o",
+        "ô": "o",
+        "ồ": "o",
+        "ố": "o",
+        "ỗ": "o",
+        "ổ": "o",
+        "õ": "o",
+        "ṍ": "o",
+        "ȭ": "o",
+        "ṏ": "o",
+        "ō": "o",
+        "ṑ": "o",
+        "ṓ": "o",
+        "ŏ": "o",
+        "ȯ": "o",
+        "ȱ": "o",
+        "ö": "o",
+        "ȫ": "o",
+        "ỏ": "o",
+        "ő": "o",
+        "ǒ": "o",
+        "ȍ": "o",
+        "ȏ": "o",
+        "ơ": "o",
+        "ờ": "o",
+        "ớ": "o",
+        "ỡ": "o",
+        "ở": "o",
+        "ợ": "o",
+        "ọ": "o",
+        "ộ": "o",
+        "ǫ": "o",
+        "ǭ": "o",
+        "ø": "o",
+        "ǿ": "o",
+        "ɔ": "o",
+        "ꝋ": "o",
+        "ꝍ": "o",
+        "ɵ": "o",
+        "œ": "oe",
+        "ƣ": "oi",
+        "ȣ": "ou",
+        "ꝏ": "oo",
+        "ⓟ": "p",
+        "ｐ": "p",
+        "ṕ": "p",
+        "ṗ": "p",
+        "ƥ": "p",
+        "ᵽ": "p",
+        "ꝑ": "p",
+        "ꝓ": "p",
+        "ꝕ": "p",
+        "ⓠ": "q",
+        "ｑ": "q",
+        "ɋ": "q",
+        "ꝗ": "q",
+        "ꝙ": "q",
+        "ⓡ": "r",
+        "ｒ": "r",
+        "ŕ": "r",
+        "ṙ": "r",
+        "ř": "r",
+        "ȑ": "r",
+        "ȓ": "r",
+        "ṛ": "r",
+        "ṝ": "r",
+        "ŗ": "r",
+        "ṟ": "r",
+        "ɍ": "r",
+        "ɽ": "r",
+        "ꝛ": "r",
+        "ꞧ": "r",
+        "ꞃ": "r",
+        "ⓢ": "s",
+        "ｓ": "s",
+        "ß": "s",
+        "ś": "s",
+        "ṥ": "s",
+        "ŝ": "s",
+        "ṡ": "s",
+        "š": "s",
+        "ṧ": "s",
+        "ṣ": "s",
+        "ṩ": "s",
+        "ș": "s",
+        "ş": "s",
+        "ȿ": "s",
+        "ꞩ": "s",
+        "ꞅ": "s",
+        "ẛ": "s",
+        "ⓣ": "t",
+        "ｔ": "t",
+        "ṫ": "t",
+        "ẗ": "t",
+        "ť": "t",
+        "ṭ": "t",
+        "ț": "t",
+        "ţ": "t",
+        "ṱ": "t",
+        "ṯ": "t",
+        "ŧ": "t",
+        "ƭ": "t",
+        "ʈ": "t",
+        "ⱦ": "t",
+        "ꞇ": "t",
+        "ꜩ": "tz",
+        "ⓤ": "u",
+        "ｕ": "u",
+        "ù": "u",
+        "ú": "u",
+        "û": "u",
+        "ũ": "u",
+        "ṹ": "u",
+        "ū": "u",
+        "ṻ": "u",
+        "ŭ": "u",
+        "ü": "u",
+        "ǜ": "u",
+        "ǘ": "u",
+        "ǖ": "u",
+        "ǚ": "u",
+        "ủ": "u",
+        "ů": "u",
+        "ű": "u",
+        "ǔ": "u",
+        "ȕ": "u",
+        "ȗ": "u",
+        "ư": "u",
+        "ừ": "u",
+        "ứ": "u",
+        "ữ": "u",
+        "ử": "u",
+        "ự": "u",
+        "ụ": "u",
+        "ṳ": "u",
+        "ų": "u",
+        "ṷ": "u",
+        "ṵ": "u",
+        "ʉ": "u",
+        "ⓥ": "v",
+        "ｖ": "v",
+        "ṽ": "v",
+        "ṿ": "v",
+        "ʋ": "v",
+        "ꝟ": "v",
+        "ʌ": "v",
+        "ꝡ": "vy",
+        "ⓦ": "w",
+        "ｗ": "w",
+        "ẁ": "w",
+        "ẃ": "w",
+        "ŵ": "w",
+        "ẇ": "w",
+        "ẅ": "w",
+        "ẘ": "w",
+        "ẉ": "w",
+        "ⱳ": "w",
+        "ⓧ": "x",
+        "ｘ": "x",
+        "ẋ": "x",
+        "ẍ": "x",
+        "ⓨ": "y",
+        "ｙ": "y",
+        "ỳ": "y",
+        "ý": "y",
+        "ŷ": "y",
+        "ỹ": "y",
+        "ȳ": "y",
+        "ẏ": "y",
+        "ÿ": "y",
+        "ỷ": "y",
+        "ẙ": "y",
+        "ỵ": "y",
+        "ƴ": "y",
+        "ɏ": "y",
+        "ỿ": "y",
+        "ⓩ": "z",
+        "ｚ": "z",
+        "ź": "z",
+        "ẑ": "z",
+        "ż": "z",
+        "ž": "z",
+        "ẓ": "z",
+        "ẕ": "z",
+        "ƶ": "z",
+        "ȥ": "z",
+        "ɀ": "z",
+        "ⱬ": "z",
+        "ꝣ": "z",
+        "Ά": "Α",
+        "Έ": "Ε",
+        "Ή": "Η",
+        "Ί": "Ι",
+        "Ϊ": "Ι",
+        "Ό": "Ο",
+        "Ύ": "Υ",
+        "Ϋ": "Υ",
+        "Ώ": "Ω",
+        "ά": "α",
+        "έ": "ε",
+        "ή": "η",
+        "ί": "ι",
+        "ϊ": "ι",
+        "ΐ": "ι",
+        "ό": "ο",
+        "ύ": "υ",
+        "ϋ": "υ",
+        "ΰ": "υ",
+        "ώ": "ω",
+        "ς": "σ",
+        "’": "'"
+      };
+    }), e.define("select2/data/base", ["../utils"], function (i) {
+      function n(e, t) {
+        n.__super__.constructor.call(this);
+      }
+
+      return i.Extend(n, i.Observable), n.prototype.current = function (e) {
+        throw new Error("The `current` method must be defined in child classes.");
+      }, n.prototype.query = function (e, t) {
+        throw new Error("The `query` method must be defined in child classes.");
+      }, n.prototype.bind = function (e, t) {}, n.prototype.destroy = function () {}, n.prototype.generateResultId = function (e, t) {
+        var n = e.id + "-result-";
+        return n += i.generateChars(4), null != t.id ? n += "-" + t.id.toString() : n += "-" + i.generateChars(4), n;
+      }, n;
+    }), e.define("select2/data/select", ["./base", "../utils", "jquery"], function (e, a, l) {
+      function n(e, t) {
+        this.$element = e, this.options = t, n.__super__.constructor.call(this);
+      }
+
+      return a.Extend(n, e), n.prototype.current = function (e) {
+        var n = [],
+            i = this;
+        this.$element.find(":selected").each(function () {
+          var e = l(this),
+              t = i.item(e);
+          n.push(t);
+        }), e(n);
+      }, n.prototype.select = function (r) {
+        var o = this;
+        if (r.selected = !0, l(r.element).is("option")) return r.element.selected = !0, void this.$element.trigger("input").trigger("change");
+        if (this.$element.prop("multiple")) this.current(function (e) {
+          var t = [];
+          (r = [r]).push.apply(r, e);
+
+          for (var n = 0; n < r.length; n++) {
+            var i = r[n].id;
+            -1 === l.inArray(i, t) && t.push(i);
+          }
+
+          o.$element.val(t), o.$element.trigger("input").trigger("change");
+        });else {
+          var e = r.id;
+          this.$element.val(e), this.$element.trigger("input").trigger("change");
+        }
+      }, n.prototype.unselect = function (r) {
+        var o = this;
+
+        if (this.$element.prop("multiple")) {
+          if (r.selected = !1, l(r.element).is("option")) return r.element.selected = !1, void this.$element.trigger("input").trigger("change");
+          this.current(function (e) {
+            for (var t = [], n = 0; n < e.length; n++) {
+              var i = e[n].id;
+              i !== r.id && -1 === l.inArray(i, t) && t.push(i);
+            }
+
+            o.$element.val(t), o.$element.trigger("input").trigger("change");
+          });
+        }
+      }, n.prototype.bind = function (e, t) {
+        var n = this;
+        (this.container = e).on("select", function (e) {
+          n.select(e.data);
+        }), e.on("unselect", function (e) {
+          n.unselect(e.data);
+        });
+      }, n.prototype.destroy = function () {
+        this.$element.find("*").each(function () {
+          a.RemoveData(this);
+        });
+      }, n.prototype.query = function (i, e) {
+        var r = [],
+            o = this;
+        this.$element.children().each(function () {
+          var e = l(this);
+
+          if (e.is("option") || e.is("optgroup")) {
+            var t = o.item(e),
+                n = o.matches(i, t);
+            null !== n && r.push(n);
+          }
+        }), e({
+          results: r
+        });
+      }, n.prototype.addOptions = function (e) {
+        a.appendMany(this.$element, e);
+      }, n.prototype.option = function (e) {
+        var t;
+        e.children ? (t = document.createElement("optgroup")).label = e.text : void 0 !== (t = document.createElement("option")).textContent ? t.textContent = e.text : t.innerText = e.text, void 0 !== e.id && (t.value = e.id), e.disabled && (t.disabled = !0), e.selected && (t.selected = !0), e.title && (t.title = e.title);
+
+        var n = l(t),
+            i = this._normalizeItem(e);
+
+        return i.element = t, a.StoreData(t, "data", i), n;
+      }, n.prototype.item = function (e) {
+        var t = {};
+        if (null != (t = a.GetData(e[0], "data"))) return t;
+        if (e.is("option")) t = {
+          id: e.val(),
+          text: e.text(),
+          disabled: e.prop("disabled"),
+          selected: e.prop("selected"),
+          title: e.prop("title")
+        };else if (e.is("optgroup")) {
+          t = {
+            text: e.prop("label"),
+            children: [],
+            title: e.prop("title")
+          };
+
+          for (var n = e.children("option"), i = [], r = 0; r < n.length; r++) {
+            var o = l(n[r]),
+                s = this.item(o);
+            i.push(s);
+          }
+
+          t.children = i;
+        }
+        return (t = this._normalizeItem(t)).element = e[0], a.StoreData(e[0], "data", t), t;
+      }, n.prototype._normalizeItem = function (e) {
+        e !== Object(e) && (e = {
+          id: e,
+          text: e
+        });
+        return null != (e = l.extend({}, {
+          text: ""
+        }, e)).id && (e.id = e.id.toString()), null != e.text && (e.text = e.text.toString()), null == e._resultId && e.id && null != this.container && (e._resultId = this.generateResultId(this.container, e)), l.extend({}, {
+          selected: !1,
+          disabled: !1
+        }, e);
+      }, n.prototype.matches = function (e, t) {
+        return this.options.get("matcher")(e, t);
+      }, n;
+    }), e.define("select2/data/array", ["./select", "../utils", "jquery"], function (e, f, g) {
+      function i(e, t) {
+        this._dataToConvert = t.get("data") || [], i.__super__.constructor.call(this, e, t);
+      }
+
+      return f.Extend(i, e), i.prototype.bind = function (e, t) {
+        i.__super__.bind.call(this, e, t), this.addOptions(this.convertToOptions(this._dataToConvert));
+      }, i.prototype.select = function (n) {
+        var e = this.$element.find("option").filter(function (e, t) {
+          return t.value == n.id.toString();
+        });
+        0 === e.length && (e = this.option(n), this.addOptions(e)), i.__super__.select.call(this, n);
+      }, i.prototype.convertToOptions = function (e) {
+        var t = this,
+            n = this.$element.find("option"),
+            i = n.map(function () {
+          return t.item(g(this)).id;
+        }).get(),
+            r = [];
+
+        function o(e) {
+          return function () {
+            return g(this).val() == e.id;
+          };
+        }
+
+        for (var s = 0; s < e.length; s++) {
+          var a = this._normalizeItem(e[s]);
+
+          if (0 <= g.inArray(a.id, i)) {
+            var l = n.filter(o(a)),
+                c = this.item(l),
+                u = g.extend(!0, {}, a, c),
+                d = this.option(u);
+            l.replaceWith(d);
+          } else {
+            var p = this.option(a);
+
+            if (a.children) {
+              var h = this.convertToOptions(a.children);
+              f.appendMany(p, h);
+            }
+
+            r.push(p);
+          }
+        }
+
+        return r;
+      }, i;
+    }), e.define("select2/data/ajax", ["./array", "../utils", "jquery"], function (e, t, o) {
+      function n(e, t) {
+        this.ajaxOptions = this._applyDefaults(t.get("ajax")), null != this.ajaxOptions.processResults && (this.processResults = this.ajaxOptions.processResults), n.__super__.constructor.call(this, e, t);
+      }
+
+      return t.Extend(n, e), n.prototype._applyDefaults = function (e) {
+        var t = {
+          data: function data(e) {
+            return o.extend({}, e, {
+              q: e.term
+            });
+          },
+          transport: function transport(e, t, n) {
+            var i = o.ajax(e);
+            return i.then(t), i.fail(n), i;
+          }
+        };
+        return o.extend({}, t, e, !0);
+      }, n.prototype.processResults = function (e) {
+        return e;
+      }, n.prototype.query = function (n, i) {
+        var r = this;
+        null != this._request && (o.isFunction(this._request.abort) && this._request.abort(), this._request = null);
+        var t = o.extend({
+          type: "GET"
+        }, this.ajaxOptions);
+
+        function e() {
+          var e = t.transport(t, function (e) {
+            var t = r.processResults(e, n);
+            r.options.get("debug") && window.console && console.error && (t && t.results && o.isArray(t.results) || console.error("Select2: The AJAX results did not return an array in the `results` key of the response.")), i(t);
+          }, function () {
+            "status" in e && (0 === e.status || "0" === e.status) || r.trigger("results:message", {
+              message: "errorLoading"
+            });
+          });
+          r._request = e;
+        }
+
+        "function" == typeof t.url && (t.url = t.url.call(this.$element, n)), "function" == typeof t.data && (t.data = t.data.call(this.$element, n)), this.ajaxOptions.delay && null != n.term ? (this._queryTimeout && window.clearTimeout(this._queryTimeout), this._queryTimeout = window.setTimeout(e, this.ajaxOptions.delay)) : e();
+      }, n;
+    }), e.define("select2/data/tags", ["jquery"], function (u) {
+      function e(e, t, n) {
+        var i = n.get("tags"),
+            r = n.get("createTag");
+        void 0 !== r && (this.createTag = r);
+        var o = n.get("insertTag");
+        if (void 0 !== o && (this.insertTag = o), e.call(this, t, n), u.isArray(i)) for (var s = 0; s < i.length; s++) {
+          var a = i[s],
+              l = this._normalizeItem(a),
+              c = this.option(l);
+
+          this.$element.append(c);
+        }
+      }
+
+      return e.prototype.query = function (e, c, u) {
+        var d = this;
+        this._removeOldTags(), null != c.term && null == c.page ? e.call(this, c, function e(t, n) {
+          for (var i = t.results, r = 0; r < i.length; r++) {
+            var o = i[r],
+                s = null != o.children && !e({
+              results: o.children
+            }, !0);
+            if ((o.text || "").toUpperCase() === (c.term || "").toUpperCase() || s) return !n && (t.data = i, void u(t));
+          }
+
+          if (n) return !0;
+          var a = d.createTag(c);
+
+          if (null != a) {
+            var l = d.option(a);
+            l.attr("data-select2-tag", !0), d.addOptions([l]), d.insertTag(i, a);
+          }
+
+          t.results = i, u(t);
+        }) : e.call(this, c, u);
+      }, e.prototype.createTag = function (e, t) {
+        var n = u.trim(t.term);
+        return "" === n ? null : {
+          id: n,
+          text: n
+        };
+      }, e.prototype.insertTag = function (e, t, n) {
+        t.unshift(n);
+      }, e.prototype._removeOldTags = function (e) {
+        this.$element.find("option[data-select2-tag]").each(function () {
+          this.selected || u(this).remove();
+        });
+      }, e;
+    }), e.define("select2/data/tokenizer", ["jquery"], function (d) {
+      function e(e, t, n) {
+        var i = n.get("tokenizer");
+        void 0 !== i && (this.tokenizer = i), e.call(this, t, n);
+      }
+
+      return e.prototype.bind = function (e, t, n) {
+        e.call(this, t, n), this.$search = t.dropdown.$search || t.selection.$search || n.find(".select2-search__field");
+      }, e.prototype.query = function (e, t, n) {
+        var r = this;
+        t.term = t.term || "";
+        var i = this.tokenizer(t, this.options, function (e) {
+          var t,
+              n = r._normalizeItem(e);
+
+          if (!r.$element.find("option").filter(function () {
+            return d(this).val() === n.id;
+          }).length) {
+            var i = r.option(n);
+            i.attr("data-select2-tag", !0), r._removeOldTags(), r.addOptions([i]);
+          }
+
+          t = n, r.trigger("select", {
+            data: t
+          });
+        });
+        i.term !== t.term && (this.$search.length && (this.$search.val(i.term), this.$search.trigger("focus")), t.term = i.term), e.call(this, t, n);
+      }, e.prototype.tokenizer = function (e, t, n, i) {
+        for (var r = n.get("tokenSeparators") || [], o = t.term, s = 0, a = this.createTag || function (e) {
+          return {
+            id: e.term,
+            text: e.term
+          };
+        }; s < o.length;) {
+          var l = o[s];
+
+          if (-1 !== d.inArray(l, r)) {
+            var c = o.substr(0, s),
+                u = a(d.extend({}, t, {
+              term: c
+            }));
+            null != u ? (i(u), o = o.substr(s + 1) || "", s = 0) : s++;
+          } else s++;
+        }
+
+        return {
+          term: o
+        };
+      }, e;
+    }), e.define("select2/data/minimumInputLength", [], function () {
+      function e(e, t, n) {
+        this.minimumInputLength = n.get("minimumInputLength"), e.call(this, t, n);
+      }
+
+      return e.prototype.query = function (e, t, n) {
+        t.term = t.term || "", t.term.length < this.minimumInputLength ? this.trigger("results:message", {
+          message: "inputTooShort",
+          args: {
+            minimum: this.minimumInputLength,
+            input: t.term,
+            params: t
+          }
+        }) : e.call(this, t, n);
+      }, e;
+    }), e.define("select2/data/maximumInputLength", [], function () {
+      function e(e, t, n) {
+        this.maximumInputLength = n.get("maximumInputLength"), e.call(this, t, n);
+      }
+
+      return e.prototype.query = function (e, t, n) {
+        t.term = t.term || "", 0 < this.maximumInputLength && t.term.length > this.maximumInputLength ? this.trigger("results:message", {
+          message: "inputTooLong",
+          args: {
+            maximum: this.maximumInputLength,
+            input: t.term,
+            params: t
+          }
+        }) : e.call(this, t, n);
+      }, e;
+    }), e.define("select2/data/maximumSelectionLength", [], function () {
+      function e(e, t, n) {
+        this.maximumSelectionLength = n.get("maximumSelectionLength"), e.call(this, t, n);
+      }
+
+      return e.prototype.bind = function (e, t, n) {
+        var i = this;
+        e.call(this, t, n), t.on("select", function () {
+          i._checkIfMaximumSelected();
+        });
+      }, e.prototype.query = function (e, t, n) {
+        var i = this;
+
+        this._checkIfMaximumSelected(function () {
+          e.call(i, t, n);
+        });
+      }, e.prototype._checkIfMaximumSelected = function (e, n) {
+        var i = this;
+        this.current(function (e) {
+          var t = null != e ? e.length : 0;
+          0 < i.maximumSelectionLength && t >= i.maximumSelectionLength ? i.trigger("results:message", {
+            message: "maximumSelected",
+            args: {
+              maximum: i.maximumSelectionLength
+            }
+          }) : n && n();
+        });
+      }, e;
+    }), e.define("select2/dropdown", ["jquery", "./utils"], function (t, e) {
+      function n(e, t) {
+        this.$element = e, this.options = t, n.__super__.constructor.call(this);
+      }
+
+      return e.Extend(n, e.Observable), n.prototype.render = function () {
+        var e = t('<span class="select2-dropdown"><span class="select2-results"></span></span>');
+        return e.attr("dir", this.options.get("dir")), this.$dropdown = e;
+      }, n.prototype.bind = function () {}, n.prototype.position = function (e, t) {}, n.prototype.destroy = function () {
+        this.$dropdown.remove();
+      }, n;
+    }), e.define("select2/dropdown/search", ["jquery", "../utils"], function (o, e) {
+      function t() {}
+
+      return t.prototype.render = function (e) {
+        var t = e.call(this),
+            n = o('<span class="select2-search select2-search--dropdown"><input class="select2-search__field" type="search" tabindex="-1" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" role="searchbox" aria-autocomplete="list" /></span>');
+        return this.$searchContainer = n, this.$search = n.find("input"), t.prepend(n), t;
+      }, t.prototype.bind = function (e, t, n) {
+        var i = this,
+            r = t.id + "-results";
+        e.call(this, t, n), this.$search.on("keydown", function (e) {
+          i.trigger("keypress", e), i._keyUpPrevented = e.isDefaultPrevented();
+        }), this.$search.on("input", function (e) {
+          o(this).off("keyup");
+        }), this.$search.on("keyup input", function (e) {
+          i.handleSearch(e);
+        }), t.on("open", function () {
+          i.$search.attr("tabindex", 0), i.$search.attr("aria-controls", r), i.$search.trigger("focus"), window.setTimeout(function () {
+            i.$search.trigger("focus");
+          }, 0);
+        }), t.on("close", function () {
+          i.$search.attr("tabindex", -1), i.$search.removeAttr("aria-controls"), i.$search.removeAttr("aria-activedescendant"), i.$search.val(""), i.$search.trigger("blur");
+        }), t.on("focus", function () {
+          t.isOpen() || i.$search.trigger("focus");
+        }), t.on("results:all", function (e) {
+          null != e.query.term && "" !== e.query.term || (i.showSearch(e) ? i.$searchContainer.removeClass("select2-search--hide") : i.$searchContainer.addClass("select2-search--hide"));
+        }), t.on("results:focus", function (e) {
+          e.data._resultId ? i.$search.attr("aria-activedescendant", e.data._resultId) : i.$search.removeAttr("aria-activedescendant");
+        });
+      }, t.prototype.handleSearch = function (e) {
+        if (!this._keyUpPrevented) {
+          var t = this.$search.val();
+          this.trigger("query", {
+            term: t
+          });
+        }
+
+        this._keyUpPrevented = !1;
+      }, t.prototype.showSearch = function (e, t) {
+        return !0;
+      }, t;
+    }), e.define("select2/dropdown/hidePlaceholder", [], function () {
+      function e(e, t, n, i) {
+        this.placeholder = this.normalizePlaceholder(n.get("placeholder")), e.call(this, t, n, i);
+      }
+
+      return e.prototype.append = function (e, t) {
+        t.results = this.removePlaceholder(t.results), e.call(this, t);
+      }, e.prototype.normalizePlaceholder = function (e, t) {
+        return "string" == typeof t && (t = {
+          id: "",
+          text: t
+        }), t;
+      }, e.prototype.removePlaceholder = function (e, t) {
+        for (var n = t.slice(0), i = t.length - 1; 0 <= i; i--) {
+          var r = t[i];
+          this.placeholder.id === r.id && n.splice(i, 1);
+        }
+
+        return n;
+      }, e;
+    }), e.define("select2/dropdown/infiniteScroll", ["jquery"], function (n) {
+      function e(e, t, n, i) {
+        this.lastParams = {}, e.call(this, t, n, i), this.$loadingMore = this.createLoadingMore(), this.loading = !1;
+      }
+
+      return e.prototype.append = function (e, t) {
+        this.$loadingMore.remove(), this.loading = !1, e.call(this, t), this.showLoadingMore(t) && (this.$results.append(this.$loadingMore), this.loadMoreIfNeeded());
+      }, e.prototype.bind = function (e, t, n) {
+        var i = this;
+        e.call(this, t, n), t.on("query", function (e) {
+          i.lastParams = e, i.loading = !0;
+        }), t.on("query:append", function (e) {
+          i.lastParams = e, i.loading = !0;
+        }), this.$results.on("scroll", this.loadMoreIfNeeded.bind(this));
+      }, e.prototype.loadMoreIfNeeded = function () {
+        var e = n.contains(document.documentElement, this.$loadingMore[0]);
+
+        if (!this.loading && e) {
+          var t = this.$results.offset().top + this.$results.outerHeight(!1);
+          this.$loadingMore.offset().top + this.$loadingMore.outerHeight(!1) <= t + 50 && this.loadMore();
+        }
+      }, e.prototype.loadMore = function () {
+        this.loading = !0;
+        var e = n.extend({}, {
+          page: 1
+        }, this.lastParams);
+        e.page++, this.trigger("query:append", e);
+      }, e.prototype.showLoadingMore = function (e, t) {
+        return t.pagination && t.pagination.more;
+      }, e.prototype.createLoadingMore = function () {
+        var e = n('<li class="select2-results__option select2-results__option--load-more"role="option" aria-disabled="true"></li>'),
+            t = this.options.get("translations").get("loadingMore");
+        return e.html(t(this.lastParams)), e;
+      }, e;
+    }), e.define("select2/dropdown/attachBody", ["jquery", "../utils"], function (f, a) {
+      function e(e, t, n) {
+        this.$dropdownParent = f(n.get("dropdownParent") || document.body), e.call(this, t, n);
+      }
+
+      return e.prototype.bind = function (e, t, n) {
+        var i = this;
+        e.call(this, t, n), t.on("open", function () {
+          i._showDropdown(), i._attachPositioningHandler(t), i._bindContainerResultHandlers(t);
+        }), t.on("close", function () {
+          i._hideDropdown(), i._detachPositioningHandler(t);
+        }), this.$dropdownContainer.on("mousedown", function (e) {
+          e.stopPropagation();
+        });
+      }, e.prototype.destroy = function (e) {
+        e.call(this), this.$dropdownContainer.remove();
+      }, e.prototype.position = function (e, t, n) {
+        t.attr("class", n.attr("class")), t.removeClass("select2"), t.addClass("select2-container--open"), t.css({
+          position: "absolute",
+          top: -999999
+        }), this.$container = n;
+      }, e.prototype.render = function (e) {
+        var t = f("<span></span>"),
+            n = e.call(this);
+        return t.append(n), this.$dropdownContainer = t;
+      }, e.prototype._hideDropdown = function (e) {
+        this.$dropdownContainer.detach();
+      }, e.prototype._bindContainerResultHandlers = function (e, t) {
+        if (!this._containerResultsHandlersBound) {
+          var n = this;
+          t.on("results:all", function () {
+            n._positionDropdown(), n._resizeDropdown();
+          }), t.on("results:append", function () {
+            n._positionDropdown(), n._resizeDropdown();
+          }), t.on("results:message", function () {
+            n._positionDropdown(), n._resizeDropdown();
+          }), t.on("select", function () {
+            n._positionDropdown(), n._resizeDropdown();
+          }), t.on("unselect", function () {
+            n._positionDropdown(), n._resizeDropdown();
+          }), this._containerResultsHandlersBound = !0;
+        }
+      }, e.prototype._attachPositioningHandler = function (e, t) {
+        var n = this,
+            i = "scroll.select2." + t.id,
+            r = "resize.select2." + t.id,
+            o = "orientationchange.select2." + t.id,
+            s = this.$container.parents().filter(a.hasScroll);
+        s.each(function () {
+          a.StoreData(this, "select2-scroll-position", {
+            x: f(this).scrollLeft(),
+            y: f(this).scrollTop()
+          });
+        }), s.on(i, function (e) {
+          var t = a.GetData(this, "select2-scroll-position");
+          f(this).scrollTop(t.y);
+        }), f(window).on(i + " " + r + " " + o, function (e) {
+          n._positionDropdown(), n._resizeDropdown();
+        });
+      }, e.prototype._detachPositioningHandler = function (e, t) {
+        var n = "scroll.select2." + t.id,
+            i = "resize.select2." + t.id,
+            r = "orientationchange.select2." + t.id;
+        this.$container.parents().filter(a.hasScroll).off(n), f(window).off(n + " " + i + " " + r);
+      }, e.prototype._positionDropdown = function () {
+        var e = f(window),
+            t = this.$dropdown.hasClass("select2-dropdown--above"),
+            n = this.$dropdown.hasClass("select2-dropdown--below"),
+            i = null,
+            r = this.$container.offset();
+        r.bottom = r.top + this.$container.outerHeight(!1);
+        var o = {
+          height: this.$container.outerHeight(!1)
+        };
+        o.top = r.top, o.bottom = r.top + o.height;
+        var s = this.$dropdown.outerHeight(!1),
+            a = e.scrollTop(),
+            l = e.scrollTop() + e.height(),
+            c = a < r.top - s,
+            u = l > r.bottom + s,
+            d = {
+          left: r.left,
+          top: o.bottom
+        },
+            p = this.$dropdownParent;
+        "static" === p.css("position") && (p = p.offsetParent());
+        var h = {
+          top: 0,
+          left: 0
+        };
+        (f.contains(document.body, p[0]) || p[0].isConnected) && (h = p.offset()), d.top -= h.top, d.left -= h.left, t || n || (i = "below"), u || !c || t ? !c && u && t && (i = "below") : i = "above", ("above" == i || t && "below" !== i) && (d.top = o.top - h.top - s), null != i && (this.$dropdown.removeClass("select2-dropdown--below select2-dropdown--above").addClass("select2-dropdown--" + i), this.$container.removeClass("select2-container--below select2-container--above").addClass("select2-container--" + i)), this.$dropdownContainer.css(d);
+      }, e.prototype._resizeDropdown = function () {
+        var e = {
+          width: this.$container.outerWidth(!1) + "px"
+        };
+        this.options.get("dropdownAutoWidth") && (e.minWidth = e.width, e.position = "relative", e.width = "auto"), this.$dropdown.css(e);
+      }, e.prototype._showDropdown = function (e) {
+        this.$dropdownContainer.appendTo(this.$dropdownParent), this._positionDropdown(), this._resizeDropdown();
+      }, e;
+    }), e.define("select2/dropdown/minimumResultsForSearch", [], function () {
+      function e(e, t, n, i) {
+        this.minimumResultsForSearch = n.get("minimumResultsForSearch"), this.minimumResultsForSearch < 0 && (this.minimumResultsForSearch = 1 / 0), e.call(this, t, n, i);
+      }
+
+      return e.prototype.showSearch = function (e, t) {
+        return !(function e(t) {
+          for (var n = 0, i = 0; i < t.length; i++) {
+            var r = t[i];
+            r.children ? n += e(r.children) : n++;
+          }
+
+          return n;
+        }(t.data.results) < this.minimumResultsForSearch) && e.call(this, t);
+      }, e;
+    }), e.define("select2/dropdown/selectOnClose", ["../utils"], function (o) {
+      function e() {}
+
+      return e.prototype.bind = function (e, t, n) {
+        var i = this;
+        e.call(this, t, n), t.on("close", function (e) {
+          i._handleSelectOnClose(e);
+        });
+      }, e.prototype._handleSelectOnClose = function (e, t) {
+        if (t && null != t.originalSelect2Event) {
+          var n = t.originalSelect2Event;
+          if ("select" === n._type || "unselect" === n._type) return;
+        }
+
+        var i = this.getHighlightedResults();
+
+        if (!(i.length < 1)) {
+          var r = o.GetData(i[0], "data");
+          null != r.element && r.element.selected || null == r.element && r.selected || this.trigger("select", {
+            data: r
+          });
+        }
+      }, e;
+    }), e.define("select2/dropdown/closeOnSelect", [], function () {
+      function e() {}
+
+      return e.prototype.bind = function (e, t, n) {
+        var i = this;
+        e.call(this, t, n), t.on("select", function (e) {
+          i._selectTriggered(e);
+        }), t.on("unselect", function (e) {
+          i._selectTriggered(e);
+        });
+      }, e.prototype._selectTriggered = function (e, t) {
+        var n = t.originalEvent;
+        n && (n.ctrlKey || n.metaKey) || this.trigger("close", {
+          originalEvent: n,
+          originalSelect2Event: t
+        });
+      }, e;
+    }), e.define("select2/i18n/en", [], function () {
+      return {
+        errorLoading: function errorLoading() {
+          return "The results could not be loaded.";
+        },
+        inputTooLong: function inputTooLong(e) {
+          var t = e.input.length - e.maximum,
+              n = "Please delete " + t + " character";
+          return 1 != t && (n += "s"), n;
+        },
+        inputTooShort: function inputTooShort(e) {
+          return "Please enter " + (e.minimum - e.input.length) + " or more characters";
+        },
+        loadingMore: function loadingMore() {
+          return "Loading more results…";
+        },
+        maximumSelected: function maximumSelected(e) {
+          var t = "You can only select " + e.maximum + " item";
+          return 1 != e.maximum && (t += "s"), t;
+        },
+        noResults: function noResults() {
+          return "No results found";
+        },
+        searching: function searching() {
+          return "Searching…";
+        },
+        removeAllItems: function removeAllItems() {
+          return "Remove all items";
+        }
+      };
+    }), e.define("select2/defaults", ["jquery", "require", "./results", "./selection/single", "./selection/multiple", "./selection/placeholder", "./selection/allowClear", "./selection/search", "./selection/eventRelay", "./utils", "./translation", "./diacritics", "./data/select", "./data/array", "./data/ajax", "./data/tags", "./data/tokenizer", "./data/minimumInputLength", "./data/maximumInputLength", "./data/maximumSelectionLength", "./dropdown", "./dropdown/search", "./dropdown/hidePlaceholder", "./dropdown/infiniteScroll", "./dropdown/attachBody", "./dropdown/minimumResultsForSearch", "./dropdown/selectOnClose", "./dropdown/closeOnSelect", "./i18n/en"], function (c, u, d, p, h, f, g, m, v, y, s, t, _, w, $, b, A, x, D, S, C, E, O, T, q, j, L, I, e) {
+      function n() {
+        this.reset();
+      }
+
+      return n.prototype.apply = function (e) {
+        if (null == (e = c.extend(!0, {}, this.defaults, e)).dataAdapter) {
+          if (null != e.ajax ? e.dataAdapter = $ : null != e.data ? e.dataAdapter = w : e.dataAdapter = _, 0 < e.minimumInputLength && (e.dataAdapter = y.Decorate(e.dataAdapter, x)), 0 < e.maximumInputLength && (e.dataAdapter = y.Decorate(e.dataAdapter, D)), 0 < e.maximumSelectionLength && (e.dataAdapter = y.Decorate(e.dataAdapter, S)), e.tags && (e.dataAdapter = y.Decorate(e.dataAdapter, b)), null == e.tokenSeparators && null == e.tokenizer || (e.dataAdapter = y.Decorate(e.dataAdapter, A)), null != e.query) {
+            var t = u(e.amdBase + "compat/query");
+            e.dataAdapter = y.Decorate(e.dataAdapter, t);
+          }
+
+          if (null != e.initSelection) {
+            var n = u(e.amdBase + "compat/initSelection");
+            e.dataAdapter = y.Decorate(e.dataAdapter, n);
+          }
+        }
+
+        if (null == e.resultsAdapter && (e.resultsAdapter = d, null != e.ajax && (e.resultsAdapter = y.Decorate(e.resultsAdapter, T)), null != e.placeholder && (e.resultsAdapter = y.Decorate(e.resultsAdapter, O)), e.selectOnClose && (e.resultsAdapter = y.Decorate(e.resultsAdapter, L))), null == e.dropdownAdapter) {
+          if (e.multiple) e.dropdownAdapter = C;else {
+            var i = y.Decorate(C, E);
+            e.dropdownAdapter = i;
+          }
+
+          if (0 !== e.minimumResultsForSearch && (e.dropdownAdapter = y.Decorate(e.dropdownAdapter, j)), e.closeOnSelect && (e.dropdownAdapter = y.Decorate(e.dropdownAdapter, I)), null != e.dropdownCssClass || null != e.dropdownCss || null != e.adaptDropdownCssClass) {
+            var r = u(e.amdBase + "compat/dropdownCss");
+            e.dropdownAdapter = y.Decorate(e.dropdownAdapter, r);
+          }
+
+          e.dropdownAdapter = y.Decorate(e.dropdownAdapter, q);
+        }
+
+        if (null == e.selectionAdapter) {
+          if (e.multiple ? e.selectionAdapter = h : e.selectionAdapter = p, null != e.placeholder && (e.selectionAdapter = y.Decorate(e.selectionAdapter, f)), e.allowClear && (e.selectionAdapter = y.Decorate(e.selectionAdapter, g)), e.multiple && (e.selectionAdapter = y.Decorate(e.selectionAdapter, m)), null != e.containerCssClass || null != e.containerCss || null != e.adaptContainerCssClass) {
+            var o = u(e.amdBase + "compat/containerCss");
+            e.selectionAdapter = y.Decorate(e.selectionAdapter, o);
+          }
+
+          e.selectionAdapter = y.Decorate(e.selectionAdapter, v);
+        }
+
+        e.language = this._resolveLanguage(e.language), e.language.push("en");
+
+        for (var s = [], a = 0; a < e.language.length; a++) {
+          var l = e.language[a];
+          -1 === s.indexOf(l) && s.push(l);
+        }
+
+        return e.language = s, e.translations = this._processTranslations(e.language, e.debug), e;
+      }, n.prototype.reset = function () {
+        function a(e) {
+          return e.replace(/[^\u0000-\u007E]/g, function (e) {
+            return t[e] || e;
+          });
+        }
+
+        this.defaults = {
+          amdBase: "./",
+          amdLanguageBase: "./i18n/",
+          closeOnSelect: !0,
+          debug: !1,
+          dropdownAutoWidth: !1,
+          escapeMarkup: y.escapeMarkup,
+          language: {},
+          matcher: function e(t, n) {
+            if ("" === c.trim(t.term)) return n;
+
+            if (n.children && 0 < n.children.length) {
+              for (var i = c.extend(!0, {}, n), r = n.children.length - 1; 0 <= r; r--) {
+                null == e(t, n.children[r]) && i.children.splice(r, 1);
+              }
+
+              return 0 < i.children.length ? i : e(t, i);
+            }
+
+            var o = a(n.text).toUpperCase(),
+                s = a(t.term).toUpperCase();
+            return -1 < o.indexOf(s) ? n : null;
+          },
+          minimumInputLength: 0,
+          maximumInputLength: 0,
+          maximumSelectionLength: 0,
+          minimumResultsForSearch: 0,
+          selectOnClose: !1,
+          scrollAfterSelect: !1,
+          sorter: function sorter(e) {
+            return e;
+          },
+          templateResult: function templateResult(e) {
+            return e.text;
+          },
+          templateSelection: function templateSelection(e) {
+            return e.text;
+          },
+          theme: "default",
+          width: "resolve"
+        };
+      }, n.prototype.applyFromElement = function (e, t) {
+        var n = e.language,
+            i = this.defaults.language,
+            r = t.prop("lang"),
+            o = t.closest("[lang]").prop("lang"),
+            s = Array.prototype.concat.call(this._resolveLanguage(r), this._resolveLanguage(n), this._resolveLanguage(i), this._resolveLanguage(o));
+        return e.language = s, e;
+      }, n.prototype._resolveLanguage = function (e) {
+        if (!e) return [];
+        if (c.isEmptyObject(e)) return [];
+        if (c.isPlainObject(e)) return [e];
+        var t;
+        t = c.isArray(e) ? e : [e];
+
+        for (var n = [], i = 0; i < t.length; i++) {
+          if (n.push(t[i]), "string" == typeof t[i] && 0 < t[i].indexOf("-")) {
+            var r = t[i].split("-")[0];
+            n.push(r);
+          }
+        }
+
+        return n;
+      }, n.prototype._processTranslations = function (e, t) {
+        for (var n = new s(), i = 0; i < e.length; i++) {
+          var r = new s(),
+              o = e[i];
+          if ("string" == typeof o) try {
+            r = s.loadPath(o);
+          } catch (e) {
+            try {
+              o = this.defaults.amdLanguageBase + o, r = s.loadPath(o);
+            } catch (e) {
+              t && window.console && console.warn && console.warn('Select2: The language file for "' + o + '" could not be automatically loaded. A fallback will be used instead.');
+            }
+          } else r = c.isPlainObject(o) ? new s(o) : o;
+          n.extend(r);
+        }
+
+        return n;
+      }, n.prototype.set = function (e, t) {
+        var n = {};
+        n[c.camelCase(e)] = t;
+
+        var i = y._convertData(n);
+
+        c.extend(!0, this.defaults, i);
+      }, new n();
+    }), e.define("select2/options", ["require", "jquery", "./defaults", "./utils"], function (i, d, r, p) {
+      function e(e, t) {
+        if (this.options = e, null != t && this.fromElement(t), null != t && (this.options = r.applyFromElement(this.options, t)), this.options = r.apply(this.options), t && t.is("input")) {
+          var n = i(this.get("amdBase") + "compat/inputData");
+          this.options.dataAdapter = p.Decorate(this.options.dataAdapter, n);
+        }
+      }
+
+      return e.prototype.fromElement = function (e) {
+        var t = ["select2"];
+        null == this.options.multiple && (this.options.multiple = e.prop("multiple")), null == this.options.disabled && (this.options.disabled = e.prop("disabled")), null == this.options.dir && (e.prop("dir") ? this.options.dir = e.prop("dir") : e.closest("[dir]").prop("dir") ? this.options.dir = e.closest("[dir]").prop("dir") : this.options.dir = "ltr"), e.prop("disabled", this.options.disabled), e.prop("multiple", this.options.multiple), p.GetData(e[0], "select2Tags") && (this.options.debug && window.console && console.warn && console.warn('Select2: The `data-select2-tags` attribute has been changed to use the `data-data` and `data-tags="true"` attributes and will be removed in future versions of Select2.'), p.StoreData(e[0], "data", p.GetData(e[0], "select2Tags")), p.StoreData(e[0], "tags", !0)), p.GetData(e[0], "ajaxUrl") && (this.options.debug && window.console && console.warn && console.warn("Select2: The `data-ajax-url` attribute has been changed to `data-ajax--url` and support for the old attribute will be removed in future versions of Select2."), e.attr("ajax--url", p.GetData(e[0], "ajaxUrl")), p.StoreData(e[0], "ajax-Url", p.GetData(e[0], "ajaxUrl")));
+        var n = {};
+
+        function i(e, t) {
+          return t.toUpperCase();
+        }
+
+        for (var r = 0; r < e[0].attributes.length; r++) {
+          var o = e[0].attributes[r].name,
+              s = "data-";
+
+          if (o.substr(0, s.length) == s) {
+            var a = o.substring(s.length),
+                l = p.GetData(e[0], a);
+            n[a.replace(/-([a-z])/g, i)] = l;
+          }
+        }
+
+        d.fn.jquery && "1." == d.fn.jquery.substr(0, 2) && e[0].dataset && (n = d.extend(!0, {}, e[0].dataset, n));
+        var c = d.extend(!0, {}, p.GetData(e[0]), n);
+
+        for (var u in c = p._convertData(c)) {
+          -1 < d.inArray(u, t) || (d.isPlainObject(this.options[u]) ? d.extend(this.options[u], c[u]) : this.options[u] = c[u]);
+        }
+
+        return this;
+      }, e.prototype.get = function (e) {
+        return this.options[e];
+      }, e.prototype.set = function (e, t) {
+        this.options[e] = t;
+      }, e;
+    }), e.define("select2/core", ["jquery", "./options", "./utils", "./keys"], function (o, c, u, i) {
+      var d = function d(e, t) {
+        null != u.GetData(e[0], "select2") && u.GetData(e[0], "select2").destroy(), this.$element = e, this.id = this._generateId(e), t = t || {}, this.options = new c(t, e), d.__super__.constructor.call(this);
+        var n = e.attr("tabindex") || 0;
+        u.StoreData(e[0], "old-tabindex", n), e.attr("tabindex", "-1");
+        var i = this.options.get("dataAdapter");
+        this.dataAdapter = new i(e, this.options);
+        var r = this.render();
+
+        this._placeContainer(r);
+
+        var o = this.options.get("selectionAdapter");
+        this.selection = new o(e, this.options), this.$selection = this.selection.render(), this.selection.position(this.$selection, r);
+        var s = this.options.get("dropdownAdapter");
+        this.dropdown = new s(e, this.options), this.$dropdown = this.dropdown.render(), this.dropdown.position(this.$dropdown, r);
+        var a = this.options.get("resultsAdapter");
+        this.results = new a(e, this.options, this.dataAdapter), this.$results = this.results.render(), this.results.position(this.$results, this.$dropdown);
+        var l = this;
+        this._bindAdapters(), this._registerDomEvents(), this._registerDataEvents(), this._registerSelectionEvents(), this._registerDropdownEvents(), this._registerResultsEvents(), this._registerEvents(), this.dataAdapter.current(function (e) {
+          l.trigger("selection:update", {
+            data: e
+          });
+        }), e.addClass("select2-hidden-accessible"), e.attr("aria-hidden", "true"), this._syncAttributes(), u.StoreData(e[0], "select2", this), e.data("select2", this);
+      };
+
+      return u.Extend(d, u.Observable), d.prototype._generateId = function (e) {
+        return "select2-" + (null != e.attr("id") ? e.attr("id") : null != e.attr("name") ? e.attr("name") + "-" + u.generateChars(2) : u.generateChars(4)).replace(/(:|\.|\[|\]|,)/g, "");
+      }, d.prototype._placeContainer = function (e) {
+        e.insertAfter(this.$element);
+
+        var t = this._resolveWidth(this.$element, this.options.get("width"));
+
+        null != t && e.css("width", t);
+      }, d.prototype._resolveWidth = function (e, t) {
+        var n = /^width:(([-+]?([0-9]*\.)?[0-9]+)(px|em|ex|%|in|cm|mm|pt|pc))/i;
+
+        if ("resolve" == t) {
+          var i = this._resolveWidth(e, "style");
+
+          return null != i ? i : this._resolveWidth(e, "element");
+        }
+
+        if ("element" == t) {
+          var r = e.outerWidth(!1);
+          return r <= 0 ? "auto" : r + "px";
+        }
+
+        if ("style" != t) return "computedstyle" != t ? t : window.getComputedStyle(e[0]).width;
+        var o = e.attr("style");
+        if ("string" != typeof o) return null;
+
+        for (var s = o.split(";"), a = 0, l = s.length; a < l; a += 1) {
+          var c = s[a].replace(/\s/g, "").match(n);
+          if (null !== c && 1 <= c.length) return c[1];
+        }
+
+        return null;
+      }, d.prototype._bindAdapters = function () {
+        this.dataAdapter.bind(this, this.$container), this.selection.bind(this, this.$container), this.dropdown.bind(this, this.$container), this.results.bind(this, this.$container);
+      }, d.prototype._registerDomEvents = function () {
+        var t = this;
+        this.$element.on("change.select2", function () {
+          t.dataAdapter.current(function (e) {
+            t.trigger("selection:update", {
+              data: e
+            });
+          });
+        }), this.$element.on("focus.select2", function (e) {
+          t.trigger("focus", e);
+        }), this._syncA = u.bind(this._syncAttributes, this), this._syncS = u.bind(this._syncSubtree, this), this.$element[0].attachEvent && this.$element[0].attachEvent("onpropertychange", this._syncA);
+        var e = window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver;
+        null != e ? (this._observer = new e(function (e) {
+          t._syncA(), t._syncS(null, e);
+        }), this._observer.observe(this.$element[0], {
+          attributes: !0,
+          childList: !0,
+          subtree: !1
+        })) : this.$element[0].addEventListener && (this.$element[0].addEventListener("DOMAttrModified", t._syncA, !1), this.$element[0].addEventListener("DOMNodeInserted", t._syncS, !1), this.$element[0].addEventListener("DOMNodeRemoved", t._syncS, !1));
+      }, d.prototype._registerDataEvents = function () {
+        var n = this;
+        this.dataAdapter.on("*", function (e, t) {
+          n.trigger(e, t);
+        });
+      }, d.prototype._registerSelectionEvents = function () {
+        var n = this,
+            i = ["toggle", "focus"];
+        this.selection.on("toggle", function () {
+          n.toggleDropdown();
+        }), this.selection.on("focus", function (e) {
+          n.focus(e);
+        }), this.selection.on("*", function (e, t) {
+          -1 === o.inArray(e, i) && n.trigger(e, t);
+        });
+      }, d.prototype._registerDropdownEvents = function () {
+        var n = this;
+        this.dropdown.on("*", function (e, t) {
+          n.trigger(e, t);
+        });
+      }, d.prototype._registerResultsEvents = function () {
+        var n = this;
+        this.results.on("*", function (e, t) {
+          n.trigger(e, t);
+        });
+      }, d.prototype._registerEvents = function () {
+        var n = this;
+        this.on("open", function () {
+          n.$container.addClass("select2-container--open");
+        }), this.on("close", function () {
+          n.$container.removeClass("select2-container--open");
+        }), this.on("enable", function () {
+          n.$container.removeClass("select2-container--disabled");
+        }), this.on("disable", function () {
+          n.$container.addClass("select2-container--disabled");
+        }), this.on("blur", function () {
+          n.$container.removeClass("select2-container--focus");
+        }), this.on("query", function (t) {
+          n.isOpen() || n.trigger("open", {}), this.dataAdapter.query(t, function (e) {
+            n.trigger("results:all", {
+              data: e,
+              query: t
+            });
+          });
+        }), this.on("query:append", function (t) {
+          this.dataAdapter.query(t, function (e) {
+            n.trigger("results:append", {
+              data: e,
+              query: t
+            });
+          });
+        }), this.on("keypress", function (e) {
+          var t = e.which;
+          n.isOpen() ? t === i.ESC || t === i.TAB || t === i.UP && e.altKey ? (n.close(e), e.preventDefault()) : t === i.ENTER ? (n.trigger("results:select", {}), e.preventDefault()) : t === i.SPACE && e.ctrlKey ? (n.trigger("results:toggle", {}), e.preventDefault()) : t === i.UP ? (n.trigger("results:previous", {}), e.preventDefault()) : t === i.DOWN && (n.trigger("results:next", {}), e.preventDefault()) : (t === i.ENTER || t === i.SPACE || t === i.DOWN && e.altKey) && (n.open(), e.preventDefault());
+        });
+      }, d.prototype._syncAttributes = function () {
+        this.options.set("disabled", this.$element.prop("disabled")), this.isDisabled() ? (this.isOpen() && this.close(), this.trigger("disable", {})) : this.trigger("enable", {});
+      }, d.prototype._isChangeMutation = function (e, t) {
+        var n = !1,
+            i = this;
+
+        if (!e || !e.target || "OPTION" === e.target.nodeName || "OPTGROUP" === e.target.nodeName) {
+          if (t) {
+            if (t.addedNodes && 0 < t.addedNodes.length) for (var r = 0; r < t.addedNodes.length; r++) {
+              t.addedNodes[r].selected && (n = !0);
+            } else t.removedNodes && 0 < t.removedNodes.length ? n = !0 : o.isArray(t) && o.each(t, function (e, t) {
+              if (i._isChangeMutation(e, t)) return !(n = !0);
+            });
+          } else n = !0;
+          return n;
+        }
+      }, d.prototype._syncSubtree = function (e, t) {
+        var n = this._isChangeMutation(e, t),
+            i = this;
+
+        n && this.dataAdapter.current(function (e) {
+          i.trigger("selection:update", {
+            data: e
+          });
+        });
+      }, d.prototype.trigger = function (e, t) {
+        var n = d.__super__.trigger,
+            i = {
+          open: "opening",
+          close: "closing",
+          select: "selecting",
+          unselect: "unselecting",
+          clear: "clearing"
+        };
+
+        if (void 0 === t && (t = {}), e in i) {
+          var r = i[e],
+              o = {
+            prevented: !1,
+            name: e,
+            args: t
+          };
+          if (n.call(this, r, o), o.prevented) return void (t.prevented = !0);
+        }
+
+        n.call(this, e, t);
+      }, d.prototype.toggleDropdown = function () {
+        this.isDisabled() || (this.isOpen() ? this.close() : this.open());
+      }, d.prototype.open = function () {
+        this.isOpen() || this.isDisabled() || this.trigger("query", {});
+      }, d.prototype.close = function (e) {
+        this.isOpen() && this.trigger("close", {
+          originalEvent: e
+        });
+      }, d.prototype.isEnabled = function () {
+        return !this.isDisabled();
+      }, d.prototype.isDisabled = function () {
+        return this.options.get("disabled");
+      }, d.prototype.isOpen = function () {
+        return this.$container.hasClass("select2-container--open");
+      }, d.prototype.hasFocus = function () {
+        return this.$container.hasClass("select2-container--focus");
+      }, d.prototype.focus = function (e) {
+        this.hasFocus() || (this.$container.addClass("select2-container--focus"), this.trigger("focus", {}));
+      }, d.prototype.enable = function (e) {
+        this.options.get("debug") && window.console && console.warn && console.warn('Select2: The `select2("enable")` method has been deprecated and will be removed in later Select2 versions. Use $element.prop("disabled") instead.'), null != e && 0 !== e.length || (e = [!0]);
+        var t = !e[0];
+        this.$element.prop("disabled", t);
+      }, d.prototype.data = function () {
+        this.options.get("debug") && 0 < arguments.length && window.console && console.warn && console.warn('Select2: Data can no longer be set using `select2("data")`. You should consider setting the value instead using `$element.val()`.');
+        var t = [];
+        return this.dataAdapter.current(function (e) {
+          t = e;
+        }), t;
+      }, d.prototype.val = function (e) {
+        if (this.options.get("debug") && window.console && console.warn && console.warn('Select2: The `select2("val")` method has been deprecated and will be removed in later Select2 versions. Use $element.val() instead.'), null == e || 0 === e.length) return this.$element.val();
+        var t = e[0];
+        o.isArray(t) && (t = o.map(t, function (e) {
+          return e.toString();
+        })), this.$element.val(t).trigger("input").trigger("change");
+      }, d.prototype.destroy = function () {
+        this.$container.remove(), this.$element[0].detachEvent && this.$element[0].detachEvent("onpropertychange", this._syncA), null != this._observer ? (this._observer.disconnect(), this._observer = null) : this.$element[0].removeEventListener && (this.$element[0].removeEventListener("DOMAttrModified", this._syncA, !1), this.$element[0].removeEventListener("DOMNodeInserted", this._syncS, !1), this.$element[0].removeEventListener("DOMNodeRemoved", this._syncS, !1)), this._syncA = null, this._syncS = null, this.$element.off(".select2"), this.$element.attr("tabindex", u.GetData(this.$element[0], "old-tabindex")), this.$element.removeClass("select2-hidden-accessible"), this.$element.attr("aria-hidden", "false"), u.RemoveData(this.$element[0]), this.$element.removeData("select2"), this.dataAdapter.destroy(), this.selection.destroy(), this.dropdown.destroy(), this.results.destroy(), this.dataAdapter = null, this.selection = null, this.dropdown = null, this.results = null;
+      }, d.prototype.render = function () {
+        var e = o('<span class="select2 select2-container"><span class="selection"></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>');
+        return e.attr("dir", this.options.get("dir")), this.$container = e, this.$container.addClass("select2-container--" + this.options.get("theme")), u.StoreData(e[0], "element", this.$element), e;
+      }, d;
+    }), e.define("select2/compat/utils", ["jquery"], function (s) {
+      return {
+        syncCssClasses: function syncCssClasses(e, t, n) {
+          var i,
+              r,
+              o = [];
+          (i = s.trim(e.attr("class"))) && s((i = "" + i).split(/\s+/)).each(function () {
+            0 === this.indexOf("select2-") && o.push(this);
+          }), (i = s.trim(t.attr("class"))) && s((i = "" + i).split(/\s+/)).each(function () {
+            0 !== this.indexOf("select2-") && null != (r = n(this)) && o.push(r);
+          }), e.attr("class", o.join(" "));
+        }
+      };
+    }), e.define("select2/compat/containerCss", ["jquery", "./utils"], function (s, a) {
+      function l(e) {
+        return null;
+      }
+
+      function e() {}
+
+      return e.prototype.render = function (e) {
+        var t = e.call(this),
+            n = this.options.get("containerCssClass") || "";
+        s.isFunction(n) && (n = n(this.$element));
+        var i = this.options.get("adaptContainerCssClass");
+
+        if (i = i || l, -1 !== n.indexOf(":all:")) {
+          n = n.replace(":all:", "");
+          var r = i;
+
+          i = function i(e) {
+            var t = r(e);
+            return null != t ? t + " " + e : e;
+          };
+        }
+
+        var o = this.options.get("containerCss") || {};
+        return s.isFunction(o) && (o = o(this.$element)), a.syncCssClasses(t, this.$element, i), t.css(o), t.addClass(n), t;
+      }, e;
+    }), e.define("select2/compat/dropdownCss", ["jquery", "./utils"], function (s, a) {
+      function l(e) {
+        return null;
+      }
+
+      function e() {}
+
+      return e.prototype.render = function (e) {
+        var t = e.call(this),
+            n = this.options.get("dropdownCssClass") || "";
+        s.isFunction(n) && (n = n(this.$element));
+        var i = this.options.get("adaptDropdownCssClass");
+
+        if (i = i || l, -1 !== n.indexOf(":all:")) {
+          n = n.replace(":all:", "");
+          var r = i;
+
+          i = function i(e) {
+            var t = r(e);
+            return null != t ? t + " " + e : e;
+          };
+        }
+
+        var o = this.options.get("dropdownCss") || {};
+        return s.isFunction(o) && (o = o(this.$element)), a.syncCssClasses(t, this.$element, i), t.css(o), t.addClass(n), t;
+      }, e;
+    }), e.define("select2/compat/initSelection", ["jquery"], function (i) {
+      function e(e, t, n) {
+        n.get("debug") && window.console && console.warn && console.warn("Select2: The `initSelection` option has been deprecated in favor of a custom data adapter that overrides the `current` method. This method is now called multiple times instead of a single time when the instance is initialized. Support will be removed for the `initSelection` option in future versions of Select2"), this.initSelection = n.get("initSelection"), this._isInitialized = !1, e.call(this, t, n);
+      }
+
+      return e.prototype.current = function (e, t) {
+        var n = this;
+        this._isInitialized ? e.call(this, t) : this.initSelection.call(null, this.$element, function (e) {
+          n._isInitialized = !0, i.isArray(e) || (e = [e]), t(e);
+        });
+      }, e;
+    }), e.define("select2/compat/inputData", ["jquery", "../utils"], function (s, i) {
+      function e(e, t, n) {
+        this._currentData = [], this._valueSeparator = n.get("valueSeparator") || ",", "hidden" === t.prop("type") && n.get("debug") && console && console.warn && console.warn("Select2: Using a hidden input with Select2 is no longer supported and may stop working in the future. It is recommended to use a `<select>` element instead."), e.call(this, t, n);
+      }
+
+      return e.prototype.current = function (e, t) {
+        function i(e, t) {
+          var n = [];
+          return e.selected || -1 !== s.inArray(e.id, t) ? (e.selected = !0, n.push(e)) : e.selected = !1, e.children && n.push.apply(n, i(e.children, t)), n;
+        }
+
+        for (var n = [], r = 0; r < this._currentData.length; r++) {
+          var o = this._currentData[r];
+          n.push.apply(n, i(o, this.$element.val().split(this._valueSeparator)));
+        }
+
+        t(n);
+      }, e.prototype.select = function (e, t) {
+        if (this.options.get("multiple")) {
+          var n = this.$element.val();
+          n += this._valueSeparator + t.id, this.$element.val(n), this.$element.trigger("input").trigger("change");
+        } else this.current(function (e) {
+          s.map(e, function (e) {
+            e.selected = !1;
+          });
+        }), this.$element.val(t.id), this.$element.trigger("input").trigger("change");
+      }, e.prototype.unselect = function (e, r) {
+        var o = this;
+        r.selected = !1, this.current(function (e) {
+          for (var t = [], n = 0; n < e.length; n++) {
+            var i = e[n];
+            r.id != i.id && t.push(i.id);
+          }
+
+          o.$element.val(t.join(o._valueSeparator)), o.$element.trigger("input").trigger("change");
+        });
+      }, e.prototype.query = function (e, t, n) {
+        for (var i = [], r = 0; r < this._currentData.length; r++) {
+          var o = this._currentData[r],
+              s = this.matches(t, o);
+          null !== s && i.push(s);
+        }
+
+        n({
+          results: i
+        });
+      }, e.prototype.addOptions = function (e, t) {
+        var n = s.map(t, function (e) {
+          return i.GetData(e[0], "data");
+        });
+
+        this._currentData.push.apply(this._currentData, n);
+      }, e;
+    }), e.define("select2/compat/matcher", ["jquery"], function (s) {
+      return function (o) {
+        return function (e, t) {
+          var n = s.extend(!0, {}, t);
+          if (null == e.term || "" === s.trim(e.term)) return n;
+
+          if (t.children) {
+            for (var i = t.children.length - 1; 0 <= i; i--) {
+              var r = t.children[i];
+              o(e.term, r.text, r) || n.children.splice(i, 1);
+            }
+
+            if (0 < n.children.length) return n;
+          }
+
+          return o(e.term, t.text, t) ? n : null;
+        };
+      };
+    }), e.define("select2/compat/query", [], function () {
+      function e(e, t, n) {
+        n.get("debug") && window.console && console.warn && console.warn("Select2: The `query` option has been deprecated in favor of a custom data adapter that overrides the `query` method. Support will be removed for the `query` option in future versions of Select2."), e.call(this, t, n);
+      }
+
+      return e.prototype.query = function (e, t, n) {
+        t.callback = n, this.options.get("query").call(null, t);
+      }, e;
+    }), e.define("select2/dropdown/attachContainer", [], function () {
+      function e(e, t, n) {
+        e.call(this, t, n);
+      }
+
+      return e.prototype.position = function (e, t, n) {
+        n.find(".dropdown-wrapper").append(t), t.addClass("select2-dropdown--below"), n.addClass("select2-container--below");
+      }, e;
+    }), e.define("select2/dropdown/stopPropagation", [], function () {
+      function e() {}
+
+      return e.prototype.bind = function (e, t, n) {
+        e.call(this, t, n);
+        this.$dropdown.on(["blur", "change", "click", "dblclick", "focus", "focusin", "focusout", "input", "keydown", "keyup", "keypress", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup", "search", "touchend", "touchstart"].join(" "), function (e) {
+          e.stopPropagation();
+        });
+      }, e;
+    }), e.define("select2/selection/stopPropagation", [], function () {
+      function e() {}
+
+      return e.prototype.bind = function (e, t, n) {
+        e.call(this, t, n);
+        this.$selection.on(["blur", "change", "click", "dblclick", "focus", "focusin", "focusout", "input", "keydown", "keyup", "keypress", "mousedown", "mouseenter", "mouseleave", "mousemove", "mouseover", "mouseup", "search", "touchend", "touchstart"].join(" "), function (e) {
+          e.stopPropagation();
+        });
+      }, e;
+    }), l = function l(p) {
+      var h,
+          f,
+          e = ["wheel", "mousewheel", "DOMMouseScroll", "MozMousePixelScroll"],
+          t = "onwheel" in document || 9 <= document.documentMode ? ["wheel"] : ["mousewheel", "DomMouseScroll", "MozMousePixelScroll"],
+          g = Array.prototype.slice;
+      if (p.event.fixHooks) for (var n = e.length; n;) {
+        p.event.fixHooks[e[--n]] = p.event.mouseHooks;
+      }
+      var m = p.event.special.mousewheel = {
+        version: "3.1.12",
+        setup: function setup() {
+          if (this.addEventListener) for (var e = t.length; e;) {
+            this.addEventListener(t[--e], i, !1);
+          } else this.onmousewheel = i;
+          p.data(this, "mousewheel-line-height", m.getLineHeight(this)), p.data(this, "mousewheel-page-height", m.getPageHeight(this));
+        },
+        teardown: function teardown() {
+          if (this.removeEventListener) for (var e = t.length; e;) {
+            this.removeEventListener(t[--e], i, !1);
+          } else this.onmousewheel = null;
+          p.removeData(this, "mousewheel-line-height"), p.removeData(this, "mousewheel-page-height");
+        },
+        getLineHeight: function getLineHeight(e) {
+          var t = p(e),
+              n = t["offsetParent" in p.fn ? "offsetParent" : "parent"]();
+          return n.length || (n = p("body")), parseInt(n.css("fontSize"), 10) || parseInt(t.css("fontSize"), 10) || 16;
+        },
+        getPageHeight: function getPageHeight(e) {
+          return p(e).height();
+        },
+        settings: {
+          adjustOldDeltas: !0,
+          normalizeOffset: !0
+        }
+      };
+
+      function i(e) {
+        var t,
+            n = e || window.event,
+            i = g.call(arguments, 1),
+            r = 0,
+            o = 0,
+            s = 0,
+            a = 0,
+            l = 0;
+
+        if ((e = p.event.fix(n)).type = "mousewheel", "detail" in n && (s = -1 * n.detail), "wheelDelta" in n && (s = n.wheelDelta), "wheelDeltaY" in n && (s = n.wheelDeltaY), "wheelDeltaX" in n && (o = -1 * n.wheelDeltaX), "axis" in n && n.axis === n.HORIZONTAL_AXIS && (o = -1 * s, s = 0), r = 0 === s ? o : s, "deltaY" in n && (r = s = -1 * n.deltaY), "deltaX" in n && (o = n.deltaX, 0 === s && (r = -1 * o)), 0 !== s || 0 !== o) {
+          if (1 === n.deltaMode) {
+            var c = p.data(this, "mousewheel-line-height");
+            r *= c, s *= c, o *= c;
+          } else if (2 === n.deltaMode) {
+            var u = p.data(this, "mousewheel-page-height");
+            r *= u, s *= u, o *= u;
+          }
+
+          if (t = Math.max(Math.abs(s), Math.abs(o)), (!f || t < f) && y(n, f = t) && (f /= 40), y(n, t) && (r /= 40, o /= 40, s /= 40), r = Math[1 <= r ? "floor" : "ceil"](r / f), o = Math[1 <= o ? "floor" : "ceil"](o / f), s = Math[1 <= s ? "floor" : "ceil"](s / f), m.settings.normalizeOffset && this.getBoundingClientRect) {
+            var d = this.getBoundingClientRect();
+            a = e.clientX - d.left, l = e.clientY - d.top;
+          }
+
+          return e.deltaX = o, e.deltaY = s, e.deltaFactor = f, e.offsetX = a, e.offsetY = l, e.deltaMode = 0, i.unshift(e, r, o, s), h && clearTimeout(h), h = setTimeout(v, 200), (p.event.dispatch || p.event.handle).apply(this, i);
+        }
+      }
+
+      function v() {
+        f = null;
+      }
+
+      function y(e, t) {
+        return m.settings.adjustOldDeltas && "mousewheel" === e.type && t % 120 == 0;
+      }
+
+      p.fn.extend({
+        mousewheel: function mousewheel(e) {
+          return e ? this.bind("mousewheel", e) : this.trigger("mousewheel");
+        },
+        unmousewheel: function unmousewheel(e) {
+          return this.unbind("mousewheel", e);
+        }
+      });
+    }, "function" == typeof e.define && e.define.amd ? e.define("jquery-mousewheel", ["jquery"], l) : "object" == ( false ? undefined : _typeof(exports)) ? module.exports = l : l(d), e.define("jquery.select2", ["jquery", "jquery-mousewheel", "./select2/core", "./select2/defaults", "./select2/utils"], function (r, e, o, t, s) {
+      if (null == r.fn.select2) {
+        var a = ["open", "close", "destroy"];
+
+        r.fn.select2 = function (t) {
+          if ("object" == _typeof(t = t || {})) return this.each(function () {
+            var e = r.extend(!0, {}, t);
+            new o(r(this), e);
+          }), this;
+          if ("string" != typeof t) throw new Error("Invalid arguments for Select2: " + t);
+          var n,
+              i = Array.prototype.slice.call(arguments, 1);
+          return this.each(function () {
+            var e = s.GetData(this, "select2");
+            null == e && window.console && console.error && console.error("The select2('" + t + "') method was called on an element that is not using Select2."), n = e[t].apply(e, i);
+          }), -1 < r.inArray(t, a) ? this : n;
+        };
+      }
+
+      return null == r.fn.select2.defaults && (r.fn.select2.defaults = t), o;
+    }), {
+      define: e.define,
+      require: e.require
+    };
+  }(),
+      t = e.require("jquery.select2");
+
+  return d.fn.select2.amd = e, t;
 });
 
 /***/ }),

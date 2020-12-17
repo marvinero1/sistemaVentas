@@ -16,13 +16,16 @@
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  {{-- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css"> --}}
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <link href="images/favicon.png" rel="icon">
-
+  {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap- 
+  datepicker/1.4.1/css/bootstrap-datepicker3.css"/> --}}
+ 
   <!-- Styles -->
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   
 </head>
 </html>
 
@@ -33,8 +36,15 @@
           @yield('content')
       @include('layouts.footer')
     </main>
-      
+      {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>   --}}
+          {{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap- 
+                datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> --}}
+          <script src="{{ asset("css/fullcalendar/moment.main.js") }}"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
+          <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>  
+          <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script> --}}
+
     </div>
-    <script src="{{ asset("css/fullcalendar/moment.main.js") }}"></script> 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>  
+    
+    {{-- 
 </body>

@@ -32,8 +32,8 @@ class CreateArticulosTable extends Migration
             ->references('id')->on('categorias')
             ->onDelete('cascade');
 
-            $table->unsignedBigInteger('proveedors_id')->unsigned();
-            $table->foreign('proveedors_id')
+            $table->unsignedBigInteger('proveedor_id')->unsigned();
+            $table->foreign('proveedor_id')
             ->references('id')->on('proveedors')
             ->onDelete('cascade');
             $table->softDeletes();
