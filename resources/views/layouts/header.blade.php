@@ -236,12 +236,7 @@
                               <p>Ventas</p>
                           </a>
                       </li>
-                      {{-- <li class="nav-item">
-                          <a href="pages/charts/flot.html" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Clientes</p>
-                          </a>
-                      </li> --}} 
+                     
                   </ul>
               </li>
 
@@ -269,16 +264,17 @@
                 </ul>
             </li> --}}
             <li class="nav-item has-treeview">
-                <a class="nav-link">
+                <a class="nav-link" href="/favoritos">
                   <i class="fa fa-heart nav-icon" aria-hidden="true"></i>
                     <p>Favoritos 💥</p>                
                 </a>
             </li>
             <li class="nav-item has-treeview">
-                <a class="nav-link">
+                <a href="/novedades" class="nav-link">
                   <i class="fa fa-star nav-icon" aria-hidden="true"></i>
                     <p>Novedades</p>                
                 </a>
+            </li>
             <li class="nav-item has-treeview">
               <a class="nav-link">
                 <i class="fa fa-th-list nav-icon" aria-hidden="true"></i>
@@ -333,9 +329,9 @@
                     <i class="nav-icon fas fa-door-closed"></i>
                     <p>Cerrar Sesión</p>  
                 </a>
-              </li>
-            </ul>
-        </nav>
+            </li>
+        </ul>
+    </nav>
         <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

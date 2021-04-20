@@ -22,22 +22,21 @@ class CreateFavoritosTable extends Migration
             $table->date('fecha')->nullable();
             $table->string('cantidad');
             $table->string('unidad');
-            
             $table->double('precio_compra', 8, 2);
             $table->double('precio_venta', 8, 2);
-            
             $table->string('descripcion')->nullable();
             $table->string('imagen')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
-            
-            $table->unsignedBigInteger('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')
-            ->onDelete('cascade');
+            $table->enum('novedad', ['true', 'false'])->nullable();          
 
             $table->unsignedBigInteger('articulos_id')->unsigned();
             $table->foreign('articulos_id')->references('id')->on('articulos')
             ->onDelete('cascade');
 
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
+            
             $table->softDeletes();
             $table->timestamps();
         });

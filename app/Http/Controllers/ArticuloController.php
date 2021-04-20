@@ -28,6 +28,17 @@ class ArticuloController extends Controller
         return view('articulo.index', compact('articulo','categoria'));
     }
 
+    public function getNovedades(Request $request){
+        $nombre = $request->get('buscarpor');
+        
+        $producto = Articulo::where('nombre','like',"%$nombre%")
+        ->where('novedad', 'true')
+        ->latest()
+        ->paginate(10);
+        
+        return view('novedad.index', compact('producto'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

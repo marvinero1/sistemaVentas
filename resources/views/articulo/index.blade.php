@@ -51,15 +51,10 @@
                         <img img src="/{{ $articulos->imagen }}" class="img-thumbnail" alt="articulo" height="100px"
                             width="100px" style="display: block;margin: 0 auto;">
                     </a></td>
-
-
                         <td style="text-align:center;">{{ $articulos->nombre }}</td>
                         <td style="text-align:center;">{{ $articulos->descripcion }}</td>
                         <td style="text-align:center;">{{ $articulos->fecha }}</td>
-
-
                         <td style="text-align:center;">
-
                           <div class="card-body">
                                <a class="btn btn-app" data-toggle="modal"
                                    data-target="#modalFavoritos{{$articulos->id}}" class="btn btn-danger btn-sm">
@@ -79,13 +74,61 @@
                                            aria-hidden="true"></i> Eliminar</button>
                                </form>
 
-                               <!-- @if(Auth::user()->role == 'admin')
+                               {{-- @if(Auth::user()->role == 'admin')
                                <a class="btn btn-app" data-toggle="modal"
                                    data-target="#modalNovedades{{$articulos->id}}" class="btn btn-danger btn-sm">
                                    <i class="fas fa-star"></i> Novedad
                                </a>
-                               @endif -->
+                               @endif  --}}
                            </div>
+                        </td>
+                        <td style="text-align:center;">
+                            {{-- MODAL FAVORITOS --}}
+                            <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Administración Favoritos</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <i class="icon-close"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="{{route('favoritos.store')}}" method="POST"
+                                                enctype="multipart/form-data" style="margin-block-end:-1em !important;">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="articulos_id" value="{{$articulos->id}}">
+                                                <input type="hidden" name="nombre" value="{{$articulos->nombre}}">
+                                                <input type="hidden" name="tipo_comprobante" value="{{$articulos->tipo_comprobante}}">
+                                                <input type="hidden" name="num_comprobante" value="{{$articulos->num_comprobante}}">
+                                                <input type="hidden" name="fecha" value="{{$articulos->fecha}}">
+                                                <input type="hidden" name="cantidad" value="{{$articulos->cantidad}}">
+                                                <input type="hidden" name="unidad" value="{{$articulos->unidad}}">
+                                                <input type="hidden" name="precio_compra" value="{{$articulos->precio_compra}}">
+                                                <input type="hidden" name="precio_venta" value="{{$articulos->precio_venta}}">
+                                                <input type="hidden" name="descripcion" value="{{$articulos->descripcion}}">
+                                                <input type="hidden" name="imagen" value="{{$articulos->imagen}}">
+                                                <input type="hidden" name="flag_carrito" value="{{$articulos->flag_carrito}}">
+                                                <input type="hidden" name="novedad" value="{{$articulos->novedad}}">
+                                               
+                                                @if(Auth::user())
+                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                @endif
+                                                <h4>Agregar a Lista de Favoritos</h4>
+                                                <div class="row" style="display: block;">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="width: 100% !important; "><span
+                                                                class="icon-heart"></span>&nbsp; Añadir</button>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </td>
                         <td>
                            {{-- MODAL Novedades --}}

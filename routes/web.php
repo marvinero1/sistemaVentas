@@ -32,5 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('cliente', 'ClienteController');
     Route::resource('proveedor', 'ProveedorController');
     Route::resource('subcategorias', 'SubcategoriaController');
+    Route::resource('favoritos', 'FavoritoController');
     Route::resource('venta', 'VentaController');
+    Route::get('novedades', 'ArticuloController@getNovedades')->name('articulos.getNovedades');
  });

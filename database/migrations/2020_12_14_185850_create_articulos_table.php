@@ -29,6 +29,7 @@ class CreateArticulosTable extends Migration
             $table->string('imagen')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
+            
             $table->unsignedBigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')
             ->references('id')->on('categorias')
