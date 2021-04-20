@@ -50,8 +50,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <a type="button" class="btn btn-secondary float-right" href="{{url('/sub-categoria')}}">Cerrar</a>
-                                <button type="submit" class="btn btn-primary float-right mr-2"><i class="fa fas fa-save"></i> Guardar</button>
+                                <a type="button" class="btn btn-secondary float-right" href="{{url('/sub-categoria')}}">Cerrar</a>&nbsp;
+                                <button type="submit" class="btn btn-primary float-right"><i class="fa fas fa-save"></i> Guardar</button>
                             </div>
                         </form>
                     </div>

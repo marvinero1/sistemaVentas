@@ -10,17 +10,23 @@
     @if (Session::has('error'))
     <div class="alert alert-danger">{{ Session::get('error') }}</div>
     @endif
-    <div class="float-left">
-        <a href="{{ route('categorias.create')}}"><button class="btn btn-primary" >
-            <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Categorias</button></a>
+    
+    <div class="col-md-6 float-left">
+        <div class="input-group col-md-8 float-left">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"><i class="fa fas fa-search"></i></span>
+            </div>
+            <form style="display: contents !important;margin-top: 0em !important;margin-block-end: 0em !important">
+                <input type="text" aria-describedby="basic-addon1" name="buscarpor" class="form-control " type="search"
+                placeholder="Buscador Nombre Sub-Categoria" aria-label="Search" style="width: 60% !important;">&nbsp;&nbsp;
+                <button class="btn btn-outline-success " type="submit" style="border: 1px #3097D1 solid;">
+                    <span class="search"></span>&nbsp;Buscar</button>
+            </form>
+          </div>
     </div>
     <div class="float-right">
-        <form class="form-inline my-2 my-lg-0">
-            <input name="buscarpor" class="form-control mr-sm-2" type="search" placeholder="Buscador Nombre Categoria"
-                aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="border: 1px #3097D1 solid;">
-                <span class="search"></span>&nbsp;Buscar</button>
-        </form>
+        <a href="{{ route('categorias.create')}}"><button class="btn btn-primary">
+                <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Categorias</button></a>
     </div><br><br><br>
     <div class="table-responsive">
         <table class="table table-striped table-hover">

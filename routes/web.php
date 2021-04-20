@@ -25,6 +25,8 @@ Route::middleware(['auth'])->group(function () {
         return view('index');
     });
 
+    Route::put('articulo/{articulo}/addNovedad','ArticuloController@addNovedad')->name('articulo.addNovedad'); 
+
     Route::resource('articulos', 'ArticuloController');
     Route::resource('categorias', 'CategoriaController');
     Route::resource('cliente', 'ClienteController');

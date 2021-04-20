@@ -17,7 +17,7 @@ class Articulo extends Model
         'restored',
         'updated'
     ];
-    
+
     protected $fillable = ['nombre',
                             'tipo_comprobante',
                             'num_comprobante',
@@ -29,15 +29,10 @@ class Articulo extends Model
                             'imagen',
                             'categoria_id',
                             'proveedor_id',
-                            'descripcion',
-                            'user'];
-    
+                            'descripcion',];
+
     public function categoria(){
         return $this->hasOne(Categoria::class,'id');
-    }
-
-    public function proveedor(){
-        return $this->hasOne(Proveedor::class,'id','proveedor_id');
     }
 
     public function subcategoria(){

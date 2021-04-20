@@ -28,7 +28,8 @@
 
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" name="user" hidden="true" value="{{Auth::user()->name}}">
+                                            <input type="text" class="form-control" name="user" hidden="true"
+                                                value="{{Auth::user()->name}}">
                                         </div>
                                     </div>
                                 </div>
@@ -42,8 +43,10 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <button class="btn btn-danger float-right"><a href="{{url('/categorias')}}">Cancelar</a></button>&nbsp; 
-                                <button type="submit" class="btn btn-primary float-right">Guardar</button>
+                                <a type="button" class="btn btn-secondary float-right"
+                                    href="{{url('/categorias')}}">Cerrar</a>&nbsp;
+                                <button type="submit" class="btn btn-primary float-right"><i class="fa fas fa-save"></i>
+                                    Guardar</button>
                             </div>
                         </form>
                     </div>
@@ -61,5 +64,6 @@
         padding: 6px 12px;
         cursor: pointer;
     }
+
 </style>
 @endsection

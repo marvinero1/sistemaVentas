@@ -34,9 +34,9 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                    </div>  
                                     </div>
-                                    
+                                    </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -49,7 +49,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="tipo_comprobante">Tipo Comprobante</label>
-                                         
+
                                                 <select class="form-control" id="tipo_comprobante" name="tipo_comprobante"
                                                 placeholder="Tipo Comprobante" required>
                                                     <option value="factura">Factura</option>
@@ -142,9 +142,11 @@
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{url('/articulos')}}"><button class="btn btn-danger float-right">Cancelar</a>
+                                <a href="{{url('/articulos')}}"><button class="btn btn-secondary float-right"> <i class="fas fa-window-close"></i>
+                                  Cancelar</a>
 
-                                <button type="submit" class="btn btn-primary float-right">Guardar</button>
+                                <button type="submit" class="btn btn-primary float-right"><i class="fas fa-save"></i>
+                                   Guardar</button>
                             </div>
                         </form>
                     </div>

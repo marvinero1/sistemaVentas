@@ -22,9 +22,10 @@ class ArticuloController extends Controller
     public function index(Request $request){
 
         $nombre = $request->get('buscarpor');
-        $articulo = Articulo::where('nombre','like',"%$nombre%")->latest()->get();
-        
-        return view('articulo.index', compact('articulo'));
+        $categoria = Categoria::all()->sortBy('nombre');
+        $articulo = Articulo::where('nombre','like',"%$nombre%")->latest()->paginate(10);
+
+        return view('articulo.index', compact('articulo','categoria'));
     }
 
     /**
@@ -35,7 +36,6 @@ class ArticuloController extends Controller
     public function create(){
         $categoria = Categoria::all()->sortBy('nombre');
         $subcategoria = Subcategoria::all()->sortBy('nombre');
-        $proveedor = Proveedor::all()->sortBy('nombre');
         return view('articulo.create', compact('categoria','proveedor','subcategoria'));
     }
 
@@ -47,8 +47,8 @@ class ArticuloController extends Controller
      */
     public function store(Request $request)
     {
-        $mensaje = "Articulo Registrado correctamente"; 
-        
+        $mensaje = "Articulo Registrado correctamente";
+
         $request->validate([
              'nombre' => 'required',
              'tipo_comprobante'=> 'required',
@@ -56,36 +56,35 @@ class ArticuloController extends Controller
              'fecha' => 'required',
              'cantidad' => 'required',
              'unidad' => 'required',
-             'precio_compra' => 'required', 
+             'precio_compra' => 'required',
              'precio_venta' => 'required',
-             'imagen' => 'nullable', 
-             'descripcion' => 'nullable', 
-             'categoria_id' => 'nullable', 
+             'imagen' => 'nullable',
+             'descripcion' => 'nullable',
+             'categoria_id' => 'nullable',
              'proveedors_id' => 'nullable',
-             'user' => 'nullable',
          ]);
 
 
         DB::beginTransaction();
         $requestData = $request->all();
-    
+
         if($request->imagen){
-           
+
             $data = $request->imagen;
-            
+
             $file = file_get_contents($request->imagen);
-            $info = $data->getClientOriginalExtension(); 
+            $info = $data->getClientOriginalExtension();
             $extension = explode('images/articulos', mime_content_type('images/articulos'))[0];
             $image = Image::make($file);
-            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info;
             $path  = 'images/articulos';
             if (!file_exists($path)) {
                 mkdir($path, 0777, true);
             }
-            $img = $path.'/'.$fileName; 
+            $img = $path.'/'.$fileName;
             if($image->save($img)) {
                 $requestData['imagen'] = $img;
-                $mensaje; 
+                $mensaje;
             }else{
                 $mensaje = "Error al guardar la imagen";
             }
@@ -100,8 +99,8 @@ class ArticuloController extends Controller
         }
 
         Session::flash('message',$mensaje);
-            return redirect()->route('articulos.index'); 
-        
+            return redirect()->route('articulos.index');
+
     }
 
     /**
@@ -148,8 +147,29 @@ class ArticuloController extends Controller
      * @param  \App\Articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Articulo $articulo)
+    public function destroy($id)
     {
-        //
+      $articulo = Articulo::find($id);
+
+      $articulo->delete();
+
+      Session::flash('message','Articulo eliminado exitosamente!');
+      return redirect()->route('articulos.index');
     }
+
+    public function addNovedad(Request $request, $id){
+
+       $articulo = Articulo::find($id);
+
+       $request->validate([
+           'novedad' => 'required',
+       ]);
+
+       $articulo->novedad = $request->get('novedad');
+
+       $articulo->update();
+
+       Session::flash('message','Novedad Agregada Exisitosamente!');
+       return redirect()->route('articulos.index');
+   }
 }
