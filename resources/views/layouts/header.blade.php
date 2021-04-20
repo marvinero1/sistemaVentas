@@ -13,7 +13,49 @@
         </li> --}}
     </ul>
 
+    {{-- Datos Usuario --}}
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left Side Of Navbar -->
+        <ul class="navbar-nav mr-auto">
   
+        </ul>
+  
+        <!-- Right Side Of Navbar -->
+        <ul class="navbar-nav ml-auto">
+            <!-- Authentication Links -->
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+  
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      {{-- <a class="dropdown-item" href="{{ route('profile')}}"><p>Mi Perfil</p></a>  --}}
+                      <hr>
+                      <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                         document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+                <li></li>
+            @endguest
+        </ul>
+    </div>
     <!-- <form class="form-inline ml-3">
         <div class="input-group input-group-sm">
             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
@@ -128,10 +170,14 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-                <img src="/images/default-person.jpg" class="img-circle elevation-2" alt="User Image">
-            </div>
+                @if( Auth::user()->imagen == '')
+                <img img src="images/default-person.jpg" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px">
+              @else
+                <img src="/{{ Auth::user()->imagen }}" class="img-circle elevation-2" alt="Usuario" height="250px" width="250px"
+                    style="display: block;margin: 0 auto;">
+              @endif            </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
 
@@ -166,27 +212,10 @@
                                 <p>Categorias</p>
                             </a>
                         </li>
-                       
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-users"></i>
-                        <p>Personas
-                            <i class="right fas fa-angle-left"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="/cliente" class="nav-link">
+                            <a href="/subcategorias" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Clientes</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/proveedor" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Provedores</p>
+                                <p>Sub-Categorias</p>
                             </a>
                         </li>
                        
@@ -216,7 +245,7 @@
                   </ul>
               </li>
 
-              <li class="nav-item has-treeview">
+              {{-- <li class="nav-item has-treeview">
                 <a class="nav-link">
                   <i class="fa fa-file nav-icon" aria-hidden="true"></i>
                     <p>Facturación
@@ -238,8 +267,18 @@
                     </li>
                    
                 </ul>
+            </li> --}}
+            <li class="nav-item has-treeview">
+                <a class="nav-link">
+                  <i class="fa fa-heart nav-icon" aria-hidden="true"></i>
+                    <p>Favoritos 💥</p>                
+                </a>
             </li>
-
+            <li class="nav-item has-treeview">
+                <a class="nav-link">
+                  <i class="fa fa-star nav-icon" aria-hidden="true"></i>
+                    <p>Novedades</p>                
+                </a>
             <li class="nav-item has-treeview">
               <a class="nav-link">
                 <i class="fa fa-th-list nav-icon" aria-hidden="true"></i>
@@ -260,20 +299,41 @@
                   </li>       
               </ul> --}}
             </li>
-
             <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                    <i class="nav-icon fas fa-users"></i>
+                    <p>Usuarios
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="/cliente" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Clientes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/proveedor" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Provedores</p>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+            {{-- <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-compress"></i>
                   <p>Anulación</p>  
               </a>
-            </li>
+            </li> --}}
             <li class="nav-item has-treeview">
-              <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-user"></i>
-                  <p>Usuarios</p>  
-              </a>
-            </li>
-
+                <a href="/logout" class="nav-link">
+                    <i class="nav-icon fas fa-door-closed"></i>
+                    <p>Cerrar Sesión</p>  
+                </a>
+              </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

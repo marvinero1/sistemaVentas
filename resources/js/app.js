@@ -27,6 +27,7 @@ require('../template/plugins/select2/js/select2.full.min.js');
 require('../template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js');
 require('../template/plugins/inputmask/min/jquery.inputmask.bundle.min.js');
 require('../template/plugins/bootstrap-switch/js/bootstrap-switch.min.js');
+require('../js/select2/select2.full');
 
 window.Vue = require('vue');
 
@@ -51,4 +52,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+});
+
+$(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
 });

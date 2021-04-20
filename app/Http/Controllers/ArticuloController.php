@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Articulo;
 use App\Categoria;
+use App\Subcategoria;
 use App\Proveedor;
 use File;
 use Session;
@@ -33,8 +34,9 @@ class ArticuloController extends Controller
      */
     public function create(){
         $categoria = Categoria::all()->sortBy('nombre');
+        $subcategoria = Subcategoria::all()->sortBy('nombre');
         $proveedor = Proveedor::all()->sortBy('nombre');
-        return view('articulo.create', compact('categoria','proveedor'));
+        return view('articulo.create', compact('categoria','proveedor','subcategoria'));
     }
 
     /**
@@ -108,9 +110,13 @@ class ArticuloController extends Controller
      * @param  \App\Articulo  $articulo
      * @return \Illuminate\Http\Response
      */
-    public function show(Articulo $articulo)
+    public function show($id)
     {
-        //
+        $articulo = Articulo::findOrFail($id);
+        $categoria = Categoria::all();
+        $subcategoria = Subcategoria::all()->sortBy('nombre');
+
+        return view('articulo.show', compact('articulo','categoria','subcategoria'));
     }
 
     /**

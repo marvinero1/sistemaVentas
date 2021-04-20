@@ -31,7 +31,7 @@
                     <th style="text-align:center;">Descripción</th>
                     <th style="text-align:center;">Fecha</th>
                     <th style="text-align:center;">Categoria</th>
-                    <th style="text-align:center;">Proveedor</th>
+                    {{-- <th style="text-align:center;">Proveedor</th> --}}
                     <th style="text-align:center;">Acciones</th>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@
                         <td style="text-align:center;">{{ $articulos->descripcion }}</td>
                         <td style="text-align:center;">{{ $articulos->fecha }}</td>
                         <td style="text-align:center;">{{ $articulos->categoria->nombre }}</td>
-                        <td style="text-align:center;">{{ $articulos->proveedor->nombre }}</td>
+                        {{-- <td style="text-align:center;">{{ $articulos->proveedor->nombre }}</td> --}}
                         <td style="text-align:center;">
                             <a href="{{ route('articulos.show',$articulos->id ) }}">
                                 <button class="btn btn-sm"><i class="fa fa-eye" aria-hidden="true"></i>Ver

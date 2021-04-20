@@ -13,17 +13,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('articulos', 'ArticuloController');
-Route::resource('categorias', 'CategoriaController');
-Route::resource('cliente', 'ClienteController');
-Route::resource('proveedor', 'ProveedorController');
-Route::resource('venta', 'VentaController');
+Route::middleware(['auth'])->group(function () {
 
+    Route::get('/', function () {
+        return view('index');
+    });
+
+    Route::resource('articulos', 'ArticuloController');
+    Route::resource('categorias', 'CategoriaController');
+    Route::resource('cliente', 'ClienteController');
+    Route::resource('proveedor', 'ProveedorController');
+    Route::resource('subcategorias', 'SubcategoriaController');
+    Route::resource('venta', 'VentaController');
+ });

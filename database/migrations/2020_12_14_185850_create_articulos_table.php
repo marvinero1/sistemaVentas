@@ -21,21 +21,23 @@ class CreateArticulosTable extends Migration
             $table->date('fecha')->nullable();
             $table->string('cantidad');
             $table->string('unidad');
-            $table->string('precio_compra')->nullable();
-            $table->string('precio_venta')->nullable();
+            
+            $table->double('precio_compra', 8, 2);
+            $table->double('precio_venta', 8, 2);
+            
             $table->string('descripcion')->nullable();
             $table->string('imagen')->nullable();
-            $table->string('user')->nullable();
-
+            $table->enum('flag_carrito', ['true', 'false']);
+            
             $table->unsignedBigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')
             ->references('id')->on('categorias')
             ->onDelete('cascade');
+            
+            // $table->unsignedBigInteger('favoritos_id')->nullable();
+            // $table->foreign('favoritos_id')->references('id')->on('favoritos')
+            // ->onDelete('cascade');
 
-            $table->unsignedBigInteger('proveedor_id')->unsigned();
-            $table->foreign('proveedor_id')
-            ->references('id')->on('proveedors')
-            ->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

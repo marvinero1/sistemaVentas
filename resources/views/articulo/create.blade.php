@@ -25,15 +25,18 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Proveedor</label>
-                                            <select name="proveedors_id" class="form-control select2" style="width: 100%;" required>
-                                                @foreach ($proveedor as $proveedors)
-                                                <option value="{{ $proveedors->id }}">{{$proveedors->nombre}}</option>
-                                                @endforeach
-                                            </select>
-                                          </div>
+                                      <div class="form-group">
+                                        <label><strong>Sub Categoria *</strong> </label>
+                                        <select name="categorias_id" class="select2" style="width: 100% !important"
+                                            data-live-search="true" required>
+                                            @foreach ($subcategoria as $subcategorias)
+                                            <option value="{{ $subcategorias->id }}">{{$subcategorias->nombre}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>  
                                     </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
