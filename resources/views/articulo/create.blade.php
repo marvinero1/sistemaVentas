@@ -6,15 +6,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-dark">
+                    <div class="card card-dark p-3">
                         <div class="card-header">
                             <h3 class="card-title">Registro Artículo</h3>
                         </div>
                         <form action="{{route('articulos.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
+                                <div class="row" style="border: outset;margin-bottom:23px;">
+                                <br><div class="col-md-6">
                                         <div class="form-group">
                                             <label for="nombre">Categoria</label>
                                             <select name="categoria_id" class="form-control select2" style="width: 100%;" required>
@@ -34,10 +34,26 @@
                                             </option>
                                             @endforeach
                                         </select>
+                                        </div>  
                                     </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="codigo"><strong>Código</strong></label>
+                                        <label>*El codigo tiene que tener almenos 12 caracteres numericos</label>
+                                        <input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barra">  
+                                        <br>   <br>                                   
+                                        <button class="btn btn-success" type="button" onclick="bar();"><i class="fas fa-barcode"></i> Generar</button>
+                                        {{-- <button class="btn btn-info" onclick="imprimir()"type="button"><i class="fas fa-print"></i> Imprimir</button> --}}
                                     </div>
-
+                                </div> 
+                                <div class="col-md-6">
+                                    <label><strong>Codigo de Barras:</strong></label>
+                                    <svg id="barcode"></svg>
                                 </div>
+                            </div>
+
+
+                            </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -142,7 +158,7 @@
                             </div>
 
                             <div class="card-footer">
-                                <a href="{{url('/articulos')}}"><button class="btn btn-secondary float-right"> <i class="fas fa-window-close"></i>
+                                <a href="{{url('/articulos')}}"><button class="btn  float-right" style="color: white"> <i class="fas fa-window-close"></i>
                                   Cancelar</a>
 
                                 <button type="submit" class="btn btn-primary float-right"><i class="fas fa-save"></i>
@@ -151,8 +167,33 @@
                         </form>
                     </div>
     </section>
-</div>
-<style>
+</div>      
+
+<h1>asdasdasdas</h1>
+
+<script>
+
+   
+
+    function bar(){
+
+        var valor = document.getElementById("barcodeValue").value;
+        console.log(valor);  
+
+        JsBarcode("#barcode", valor, {
+            format: "EAN13",
+            lineColor: "#000",
+            width: 2,
+            height: 50,
+            displayValue: true
+        });  
+     }
+     
+</script>
+
+
+
+<style type="text/javascript">
     input[type="file"] {
         display: none;
     }

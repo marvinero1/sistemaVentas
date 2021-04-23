@@ -38,7 +38,7 @@
                     <th style="text-align:center;">Nombre</th>
                     <th style="text-align:center;">Descripción</th>
                     <th style="text-align:center;">Fecha</th>
-                    <!-- <th style="text-align:center;">Categoria</th> -->
+                    <th style="text-align:center;">Categoria</th>
                     <!-- <th style="text-align:center;">Proveedor</th>  -->
                     <th style="text-align:center;">Acciones</th>
                 </tr>
@@ -54,6 +54,7 @@
                         <td style="text-align:center;">{{ $articulos->nombre }}</td>
                         <td style="text-align:center;">{{ $articulos->descripcion }}</td>
                         <td style="text-align:center;">{{ $articulos->fecha }}</td>
+                        <td style="text-align:center;">{{ $articulos->categoria->nombre }}</td>
                         <td style="text-align:center;">
                           <div class="card-body">
                                <a class="btn btn-app" data-toggle="modal"

@@ -28,6 +28,7 @@ require('../template/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox
 require('../template/plugins/inputmask/min/jquery.inputmask.bundle.min.js');
 require('../template/plugins/bootstrap-switch/js/bootstrap-switch.min.js');
 require('../js/select2/select2.full');
+require('../template/dist/js/JsBarcode.all.min.js');
 
 window.Vue = require('vue');
 
@@ -61,5 +62,16 @@ $(function () {
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
-    })
+    });
+
+   
+
+    // JsBarcode("#barcode", "1234", {
+    //   format: "pharmacode",
+    //   lineColor: "#0aa",
+    //   width: 4,
+    //   height: 40,
+    //   displayValue: false
+    // });
+
 });
