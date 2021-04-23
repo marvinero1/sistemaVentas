@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
         return view('index');
     });
 
-    Route::put('articulo/{articulo}/addNovedad','ArticuloController@addNovedad')->name('articulo.addNovedad'); 
+    Route::put('articulo/{articulo}/addNovedad','ArticuloController@addNovedad')->name('articulo.addNovedad');
 
     Route::resource('articulos', 'ArticuloController');
     Route::resource('categorias', 'CategoriaController');
@@ -34,5 +34,6 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('subcategorias', 'SubcategoriaController');
     Route::resource('favoritos', 'FavoritoController');
     Route::resource('venta', 'VentaController');
+    Route::resource('user', 'UserController');
     Route::get('novedades', 'ArticuloController@getNovedades')->name('articulos.getNovedades');
  });

@@ -30,12 +30,12 @@ class ArticuloController extends Controller
 
     public function getNovedades(Request $request){
         $nombre = $request->get('buscarpor');
-        
+
         $producto = Articulo::where('nombre','like',"%$nombre%")
         ->where('novedad', 'true')
         ->latest()
         ->paginate(10);
-        
+
         return view('novedad.index', compact('producto'));
     }
 
@@ -70,6 +70,8 @@ class ArticuloController extends Controller
              'precio_compra' => 'required',
              'precio_venta' => 'required',
              'imagen' => 'nullable',
+             'codigo_barras' => 'nullable',
+             'codigo_barras'=>'nullable',
              'descripcion' => 'nullable',
              'categoria_id' => 'nullable',
              'proveedors_id' => 'nullable',

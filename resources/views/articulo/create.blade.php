@@ -34,18 +34,18 @@
                                             </option>
                                             @endforeach
                                         </select>
-                                        </div>  
+                                        </div>
                                     </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="codigo"><strong>Código</strong></label>
-                                        <label>*El codigo tiene que tener almenos 12 caracteres numericos</label>
-                                        <input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barra">  
-                                        <br>   <br>                                   
+                                        <label>*El codigo tiene que tener al menos 12 caracteres numericos</label>
+                                        <input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barras">
+                                        <br>   <br>
                                         <button class="btn btn-success" type="button" onclick="bar();"><i class="fas fa-barcode"></i> Generar</button>
                                         {{-- <button class="btn btn-info" onclick="imprimir()"type="button"><i class="fas fa-print"></i> Imprimir</button> --}}
                                     </div>
-                                </div> 
+                                </div>
                                 <div class="col-md-6">
                                     <label><strong>Codigo de Barras:</strong></label>
                                     <svg id="barcode"></svg>
@@ -167,18 +167,18 @@
                         </form>
                     </div>
     </section>
-</div>      
+</div>
 
 <h1>asdasdasdas</h1>
 
 <script>
 
-   
+
 
     function bar(){
 
         var valor = document.getElementById("barcodeValue").value;
-        console.log(valor);  
+        console.log(valor);
 
         JsBarcode("#barcode", valor, {
             format: "EAN13",
@@ -186,9 +186,9 @@
             width: 2,
             height: 50,
             displayValue: true
-        });  
+        });
      }
-     
+
 </script>
 
 

@@ -21,6 +21,7 @@ class CreateArticulosTable extends Migration
             $table->date('fecha')->nullable();
             $table->string('cantidad');
             $table->string('unidad');
+            $table->string('codigo_barras');
 
             $table->double('precio_compra', 8, 2);
             $table->double('precio_venta', 8, 2);
@@ -29,7 +30,7 @@ class CreateArticulosTable extends Migration
             $table->string('imagen')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
-            
+
             $table->unsignedBigInteger('categoria_id')->unsigned();
             $table->foreign('categoria_id')
             ->references('id')->on('categorias')

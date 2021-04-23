@@ -23,6 +23,7 @@ class Articulo extends Model
                             'num_comprobante',
                             'fecha',
                             'cantidad',
+                            'codigo_barras',
                             'unidad',
                             'precio_compra',
                             'precio_venta',
