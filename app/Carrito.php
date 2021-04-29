@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Articulo extends Model
+class Carrito extends Model
 {
     protected $auditTimestamps = true;
     protected $auditStrict = true;
@@ -32,14 +32,6 @@ class Articulo extends Model
                             'flag_carrito',
                             'categoria_id',
                             'proveedor_id',
-                            'descripcion',];
-
-    public function categoria(){
-        return $this->hasOne(Categoria::class,'id','categoria_id');
-    }
-
-    public function subcategoria(){
-        return $this->hasOne(Subcategoria::class,
-            'id','subcategoria_id');
-    }
+                            'descripcion',
+                            'user_id'];
 }

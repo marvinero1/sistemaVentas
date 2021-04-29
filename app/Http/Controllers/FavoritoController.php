@@ -44,7 +44,7 @@ class FavoritoController extends Controller
        ->get();
        if(count($exit) == 0){
            Favorito::create([
-                'id'=>$request->id,
+               'id'=>$request->id,
                'nombre' => $request->nombre,
                'tipo_comprobante' => $request->tipo_comprobante,
                'num_comprobante' => $request->num_comprobante,
@@ -59,6 +59,7 @@ class FavoritoController extends Controller
                'imagen_novedad' => $request->imagen_novedad,
                'flag_carrito' => $request->flag_carrito,
                'categoria_id' => $request->categoria_id,
+               'articulos_id' => $request->id,
                'user_id' => $request->user_id,
 
            ]);

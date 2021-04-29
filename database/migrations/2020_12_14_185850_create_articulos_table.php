@@ -31,11 +31,19 @@ class CreateArticulosTable extends Migration
             $table->string('imagen_novedad')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
+            $table->string('categoria_nombre')->nullable();
 
-            $table->unsignedBigInteger('categoria_id')->unsigned();
-            $table->foreign('categoria_id')
-            ->references('id')->on('categorias')
+            $table->unsignedBigInteger('categorias_id')->unsigned();
+            $table->unsignedBigInteger('subcategorias_id')->unsigned();
+
+            $table->foreign('categorias_id')
+                    ->references('id')->on('categorias')
+                    ->onDelete('cascade');
+
+            $table->foreign('subcategorias_id')->references('id')->on('subcategorias')
             ->onDelete('cascade');
+
+            
 
             // $table->unsignedBigInteger('favoritos_id')->nullable();
             // $table->foreign('favoritos_id')->references('id')->on('favoritos')

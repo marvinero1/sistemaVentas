@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVentasTable extends Migration
+class CreateCarritosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateVentasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ventas', function (Blueprint $table) {
+        Schema::create('carritos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre');
             $table->enum('tipo_comprobante', ['factura','recibo','nota']);
@@ -32,11 +32,23 @@ class CreateVentasTable extends Migration
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
             $table->string('categoria_nombre')->nullable();
-          
-            $table->unsignedBigInteger('articulos_id')->unsigned();
-            $table->foreign('articulos_id')
-            ->references('id')->on('articulos')
+
+            $table->unsignedBigInteger('categorias_id')->unsigned();
+            $table->unsignedBigInteger('subcategorias_id')->unsigned();
+
+            $table->foreign('categorias_id')
+                    ->references('id')->on('categorias')
+                    ->onDelete('cascade');
+
+            $table->foreign('subcategorias_id')->references('id')->on('subcategorias')
             ->onDelete('cascade');
+
+            
+
+            // $table->unsignedBigInteger('favoritos_id')->nullable();
+            // $table->foreign('favoritos_id')->references('id')->on('favoritos')
+            // ->onDelete('cascade');
+
             $table->softDeletes();
             $table->timestamps();
         });
@@ -49,6 +61,6 @@ class CreateVentasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ventas');
+        Schema::dropIfExists('carritos');
     }
 }

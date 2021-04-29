@@ -22,15 +22,15 @@
                     <h5>{{ $articulo->nombre }}</h5>
                     <!-- Precios -->
                     <div class="col-md-6">
-                        {{-- <div class="col-md">
+                         <div class="col-md">
                             <h4><strong>Categoria</strong></h4>
                             <h5> {{ $articulo->categoria->nombre }}</h5>
-                        </div> --}}
+                        </div> 
 
-                        {{-- <div class="col-md">
+                        <div class="col-md">
                             <h4><strong>Sub-Categoria</strong></h4>
                             <h5> {{ $articulo->subcategoria->nombre }}</h5>
-                        </div> --}}
+                        </div> 
                     </div>
                     <!-- Detalles especificos del producto -->
                     <div class="section">

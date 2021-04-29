@@ -86,104 +86,106 @@
                                @endif 
                            </div>
                         </td>
-                        <td style="text-align:center;">
-                            {{-- MODAL FAVORITOS --}}
-                            <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"
-                                aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="max-width: 337px !important;">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Administración Favoritos</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <i class="icon-close"></i>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form action="{{route('favoritos.store')}}" method="POST"
-                                                enctype="multipart/form-data" style="margin-block-end:-1em !important;">
-                                                {{ csrf_field() }}
-                                                <input type="hidden" name="articulos_id" value="{{$articulos->id}}">
-                                                <input type="hidden" name="nombre" value="{{$articulos->nombre}}">
-                                                <input type="hidden" name="tipo_comprobante" value="{{$articulos->tipo_comprobante}}">
-                                                <input type="hidden" name="num_comprobante" value="{{$articulos->num_comprobante}}">
-                                                <input type="hidden" name="fecha" value="{{$articulos->fecha}}">
-                                                <input type="hidden" name="cantidad" value="{{$articulos->cantidad}}">
-                                                <input type="hidden" name="unidad" value="{{$articulos->unidad}}">
-                                                <input type="hidden" name="precio_compra" value="{{$articulos->precio_compra}}">
-                                                <input type="hidden" name="precio_venta" value="{{$articulos->precio_venta}}">
-                                                <input type="hidden" name="descripcion" value="{{$articulos->descripcion}}">
-                                                <input type="hidden" name="imagen" value="{{$articulos->imagen}}">
-                                                <input type="hidden" name="flag_carrito" value="{{$articulos->flag_carrito}}">
-                                                <input type="hidden" name="novedad" value="{{$articulos->novedad}}">
+                        
+                        {{-- MODAL FAVORITOS --}}
+                        <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Administración Favoritos</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <i class="icon-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{route('favoritos.store')}}" method="POST"
+                                            enctype="multipart/form-data" style="margin-block-end:-1em !important;">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" name="articulos_id" value="{{$articulos->id}}">
+                                            <input type="hidden" name="nombre" value="{{$articulos->nombre}}">
+                                            <input type="hidden" name="tipo_comprobante" value="{{$articulos->tipo_comprobante}}">
+                                            <input type="hidden" name="num_comprobante" value="{{$articulos->num_comprobante}}">
+                                            <input type="hidden" name="fecha" value="{{$articulos->fecha}}">
+                                            <input type="hidden" name="cantidad" value="{{$articulos->cantidad}}">
+                                            <input type="hidden" name="unidad" value="{{$articulos->unidad}}">
+                                            <input type="hidden" name="precio_compra" value="{{$articulos->precio_compra}}">
+                                            <input type="hidden" name="precio_venta" value="{{$articulos->precio_venta}}">
+                                            <input type="hidden" name="descripcion" value="{{$articulos->descripcion}}">
+                                            <input type="hidden" name="imagen" value="{{$articulos->imagen}}">
+                                            <input type="hidden" name="flag_carrito" value="{{$articulos->flag_carrito}}">
+                                            <input type="hidden" name="novedad" value="{{$articulos->novedad}}">
 
-                                                @if(Auth::user())
-                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                                @endif
-                                                <h4>Agregar a Lista de Favoritos</h4>
-                                                <div class="row" style="display: block;">
-                                                    <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-primary"
-                                                            style="width: 100% !important; "><span
-                                                                class="icon-heart"></span>&nbsp; Añadir</button>
-                                                    </div>
-                                            </form>
-                                        </div>
+                                            @if(Auth::user())
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            @endif
+                                            <h4>Agregar a Lista de Favoritos</h4>
+                                            <div class="row" style="display: block;">
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary"
+                                                        style="width: 100% !important; "><span
+                                                            class="icon-heart"></span>&nbsp; Añadir</button>
+                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                     style="width: 100% !important; ">Cerrar</button>
+                                                </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
-
-
-                        </td>
+                        </div>
                         <td>
                            {{-- MODAL Novedades --}}
-                           <div class="modal fade" id="modalNovedades{{$articulos->id}}" tabindex="-1" role="dialog"
-                               aria-labelledby="exampleModalLabel" aria-hidden="true">
-                               <div class="modal-dialog" role="document" style="max-width: 337px !important;">
-                                   <div class="modal-content">
-                                       <div class="modal-header">
-                                           <h5 class="modal-title" id="exampleModalLabel">Administración Novedades</h5>
-                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                               <i class="icon-close"></i>
-                                           </button>
-                                       </div>
-                                       <div class="modal-body">
-                                           <form action="{{route('articulo.addNovedad', $articulos->id)}}"
-                                               method="POST" enctype="multipart/form-data"
-                                               style="margin-block-end:-1em !important;">
-                                               {{ csrf_field() }}
-                                               {{ method_field('PUT') }}
-                                               <input type="hidden" name="novedad" value="true">
+                         <div class="modal fade" id="modalNovedades{{$articulos->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                             <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                 <div class="modal-content">
+                                     <div class="modal-header">
+                                         <h5 class="modal-title" id="exampleModalLabel">Administración Novedades</h5>
+                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                             <i class="icon-close"></i>
+                                         </button>
+                                     </div>
+                                     <div class="modal-body" style="text-align: center;">
+                                         <form action="{{route('articulo.addNovedad', $articulos->id)}}"
+                                             method="POST" enctype="multipart/form-data"
+                                             style="margin-block-end:-1em !important;">
+                                             {{ csrf_field() }}
+                                             {{ method_field('PUT') }}
+                                             <input type="hidden" name="novedad" value="true">
 
-                                               @if(Auth::user())
-                                               <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                               @endif
-                                               <h4>Agregar a Lista de Novedad</h4>
-                                               <div class="row">
-                                                <div class="col-md-10">
-                                                    <div class="form-group">
-                                                        <label for="imagen">Imagen Promocional</label>
-                                                        <label for="file-upload" class="custom-file-upload"
-                                                            style="text-align: center;">
-                                                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
-                                                        </label>
-                                                        <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
-                                                            recomienda<strong> 500 × 250 pixels</strong></p>
-                                                        <input id="file-upload" type="file" name="imagen_novedad">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                               <div class="row" style="display: block;">
-                                                   <div class="modal-footer">
-                                                       <button type="submit" class="btn btn-primary"
-                                                           style="width: 100% !important; "><span
-                                                               class="icon-star"></span>&nbsp; Añadir</button>
-                                                   </div>
-                                           </form>
-                                       </div>
-                                   </div>
-                               </div>
-                           </div>
-                       </td>
+                                             @if(Auth::user())
+                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                             @endif
+                                             <h4>Agregar a Lista de Novedad</h4>
+                                             <div class="row">
+                                              <div class="col-md-10">
+                                                  <div class="form-group">
+                                                      <label for="imagen">Imagen Promocional</label>
+                                                      <label for="file-upload" class="custom-file-upload"
+                                                          style="text-align: center;">
+                                                          <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
+                                                      </label>
+                                                      <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
+                                                          recomienda<strong> 500 × 250 pixels</strong></p>
+                                                      <input id="file-upload" type="file" name="imagen_novedad">
+                                                  </div>
+                                              </div>
+                                          </div>
+                                             <div class="row" style="display: block;">
+                                                 <div class="modal-footer">
+                                                     <button type="submit" class="btn btn-primary"
+                                                         style="width: 100% !important; "><span
+                                                             class="icon-star"></span>&nbsp; Añadir</button>
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                     style="width: 100% !important; ">Cerrar</button>
+                                                 </div>
+                                         </form>
+                                     </div>
+                                 </div>
+                             </div>
+                         </div>
+                        </td>
+                        
                     </tr>
                 @endforeach
             </tbody>
@@ -192,9 +194,6 @@
 
 </div>
 </div>
-
-
-
 
 
 @endsection

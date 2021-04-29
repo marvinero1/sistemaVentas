@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Articulo;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\FavoritoController;
+use App\Http\Controllers\CarritoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::get('articulos',[ArticuloController::class, 'getArticulos']);
 
 
 Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
+Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
+
+
 
 Route::get('images/{filename}', function ($filename)
 {

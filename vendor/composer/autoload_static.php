@@ -512,6 +512,7 @@ class ComposerStaticInit4bac74ac6b610dd2b62f634294da4052
 
     public static $classMap = array (
         'App\\Articulo' => __DIR__ . '/../..' . '/app/Articulo.php',
+        'App\\Carrito' => __DIR__ . '/../..' . '/app/Carrito.php',
         'App\\Categoria' => __DIR__ . '/../..' . '/app/Categoria.php',
         'App\\Cliente' => __DIR__ . '/../..' . '/app/Cliente.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
@@ -524,6 +525,7 @@ class ComposerStaticInit4bac74ac6b610dd2b62f634294da4052
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CarritoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CarritoController.php',
         'App\\Http\\Controllers\\CategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoriaController.php',
         'App\\Http\\Controllers\\ClienteController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClienteController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
@@ -531,6 +533,7 @@ class ComposerStaticInit4bac74ac6b610dd2b62f634294da4052
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Controllers\\ProveedorController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProveedorController.php',
         'App\\Http\\Controllers\\SubcategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubcategoriaController.php',
+        'App\\Http\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserController.php',
         'App\\Http\\Controllers\\VentaController' => __DIR__ . '/../..' . '/app/Http/Controllers/VentaController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -541,6 +544,7 @@ class ComposerStaticInit4bac74ac6b610dd2b62f634294da4052
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Pedido' => __DIR__ . '/../..' . '/app/Pedido.php',
         'App\\Proveedor' => __DIR__ . '/../..' . '/app/Proveedor.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',

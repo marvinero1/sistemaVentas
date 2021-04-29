@@ -19,9 +19,7 @@ class Favorito extends Model
         'updated'
     ];
 
-    protected $fillable = [
-                        'articulos_id',
-                        'nombre',
+    protected $fillable = ['nombre',
                         'tipo_comprobante',
                         'num_comprobante',
                         'fecha',
@@ -33,7 +31,9 @@ class Favorito extends Model
                         'imagen',
                         'imagen_novedad',
                         'flag_carrito',
-                        'user_id'];
+                        'user_id',
+                        'articulos_id'
+                    ];
 
 
     public function articulos(){
