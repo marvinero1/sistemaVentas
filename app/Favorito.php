@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Favorito extends Model
 {
-    
+
     protected $auditTimestamps = true;
     protected $auditStrict = true;
     protected $auditThreshold = 100;
@@ -19,7 +19,9 @@ class Favorito extends Model
         'updated'
     ];
 
-    protected $fillable = ['nombre',
+    protected $fillable = [
+                        'articulos_id',
+                        'nombre',
                         'tipo_comprobante',
                         'num_comprobante',
                         'fecha',
@@ -29,10 +31,9 @@ class Favorito extends Model
                         'precio_venta',
                         'descripcion',
                         'imagen',
+                        'imagen_novedad',
                         'flag_carrito',
-                        'user_id',
-                        'articulos_id',
-                        ];
+                        'user_id'];
 
 
     public function articulos(){

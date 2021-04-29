@@ -28,6 +28,8 @@ class Articulo extends Model
                             'precio_compra',
                             'precio_venta',
                             'imagen',
+                            'imagen_novedad',
+                            'flag_carrito',
                             'categoria_id',
                             'proveedor_id',
                             'descripcion',];

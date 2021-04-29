@@ -39,14 +39,14 @@
                     <th style="text-align:center;">Descripción</th>
                     <th style="text-align:center;">Fecha</th>
                     {{-- <th style="text-align:center;">Categoria</th> --}}
-                     <th style="text-align:center;">Codigo Barras</th>
+                    <th style="text-align:center;">Codigo Barras</th>
+                    <th style="text-align:center;">Cantidad </th>
                     <th style="text-align:center;">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($articulo as $articulos)
-                    <tr>
-
+                <tr>
                     <td><a class="image-popup-vertical-fit" href="/{{  $articulos->imagen }}">
                         <img img src="/{{ $articulos->imagen }}" class="img-thumbnail" alt="articulo" height="100px"
                             width="100px" style="display: block;margin: 0 auto;">
@@ -56,6 +56,7 @@
                         <td style="text-align:center;">{{ $articulos->fecha }}</td>
                         {{-- <td style="text-align:center;">{{ $articulos->categoria->nombre }}</td> --}}
                         <td style="text-align:center;"> {{ $articulos->codigo_barras }}</td>
+                        <td style="text-align:center;"> {{ $articulos->cantidad }}</td>
 
                         <td style="text-align:center;">
                           <div class="card-body">
@@ -77,12 +78,12 @@
                                            aria-hidden="true"></i> Eliminar</button>
                                </form>
 
-                               {{-- @if(Auth::user()->role == 'admin')
+                               @if(Auth::user()->rol == 'admin')
                                <a class="btn btn-app" data-toggle="modal"
                                    data-target="#modalNovedades{{$articulos->id}}" class="btn btn-danger btn-sm">
                                    <i class="fas fa-star"></i> Novedad
                                </a>
-                               @endif  --}}
+                               @endif 
                            </div>
                         </td>
                         <td style="text-align:center;">
@@ -157,6 +158,20 @@
                                                <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                                @endif
                                                <h4>Agregar a Lista de Novedad</h4>
+                                               <div class="row">
+                                                <div class="col-md-10">
+                                                    <div class="form-group">
+                                                        <label for="imagen">Imagen Promocional</label>
+                                                        <label for="file-upload" class="custom-file-upload"
+                                                            style="text-align: center;">
+                                                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
+                                                        </label>
+                                                        <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
+                                                            recomienda<strong> 500 × 250 pixels</strong></p>
+                                                        <input id="file-upload" type="file" name="imagen_novedad">
+                                                    </div>
+                                                </div>
+                                            </div>
                                                <div class="row" style="display: block;">
                                                    <div class="modal-footer">
                                                        <button type="submit" class="btn btn-primary"

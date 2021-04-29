@@ -19,8 +19,56 @@ class FavoritoController extends Controller
         $buscar = $request->get('buscarpor');
 
         $favorito = Favorito::where('id','like',"%$buscar%")->latest()->paginate(10);
-        return view('favoritos.index', ['favorito' => $favorito]); 
+        return view('favoritos.index', ['favorito' => $favorito]);
     }
+
+    public function guardarFavorito(Request $request){
+
+       $favorito = Favorito::create($request->all());
+       $exit = Favorito::where(function($q1)use($request){
+           if($request->productos_id){
+               $q1->where('user_id',$request->user_id)->where('articulos_id',$request->articulos_id);
+           }
+       })
+       // ->orWhere(function($q1)use($request){
+       //     if($request->bono_id){
+       //     $q1->where('user_id',$request->user_id)->where('bono_id',$request->bono_id);
+       //     }
+
+       // })
+       // ->orWhere(function($q1)use($request){
+       //     if($request->titulo_id){
+       //     $q1->where('user_id',$request->user_id)->where('titulo_id',$request->titulo_id);
+       //     }
+       //})
+       ->get();
+       if(count($exit) == 0){
+           Favorito::create([
+                'id'=>$request->id,
+               'nombre' => $request->nombre,
+               'tipo_comprobante' => $request->tipo_comprobante,
+               'num_comprobante' => $request->num_comprobante,
+               'fecha' => $request->fecha,
+               'cantidad' => $request->cantidad,
+               'unidad' => $request->unidad,
+               'precio_compra' => $request->precio_compra,
+               'precio_venta' => $request->precio_venta,
+               'descripcion' => $request->descripcion,
+               'codigo_barras' => $request->codigo_barras,
+               'imagen' => $request->imagen,
+               'imagen_novedad' => $request->imagen_novedad,
+               'flag_carrito' => $request->flag_carrito,
+               'categoria_id' => $request->categoria_id,
+               'user_id' => $request->user_id,
+
+           ]);
+           Session::flash('message','Agregado a Favoritos!');
+       }else{
+           Session::flash('message','Ya esta agregado a Favoritos!');
+       }
+       //return redirect()->route('productos.index');
+       return response()->json($favorito, 201);
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -41,7 +89,7 @@ class FavoritoController extends Controller
     public function store(Request $request)
     {
         // $request->all();
-       
+
         $exit = Favorito::where(function($q1)use($request){
             if($request->articulos_id){
                 $q1->where('user_id',$request->user_id)->where('articulos_id',$request->articulos_id);
@@ -51,7 +99,7 @@ class FavoritoController extends Controller
         //     if($request->bono_id){
         //     $q1->where('user_id',$request->user_id)->where('bono_id',$request->bono_id);
         //     }
-            
+
         // })
         // ->orWhere(function($q1)use($request){
         //     if($request->titulo_id){
@@ -76,8 +124,8 @@ class FavoritoController extends Controller
 
                 'articulos_id' => $request->articulos_id,
                 'user_id' => $request->user_id,
-                
-            ]);  
+
+            ]);
             Session::flash('message','Agregado a Favoritos!');
         }else{
             Session::flash('message','Ya esta agregado a Favoritos!');
@@ -132,6 +180,6 @@ class FavoritoController extends Controller
         $favorito->delete();
 
         Session::flash('message','Favorito eliminado exitosamente!');
-        return redirect()->route('favoritos.index'); 
+        return redirect()->route('favoritos.index');
     }
 }

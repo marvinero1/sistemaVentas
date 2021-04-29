@@ -27,17 +27,15 @@ class ArticuloController extends Controller
 
         return view('articulo.index', compact('articulo','categoria'));
     }
+    public function getArticulos(){
+      return Articulo::latest()->get();
+    }
 
     public function getNovedades(Request $request){
-        $nombre = $request->get('buscarpor');
-
-        $producto = Articulo::where('nombre','like',"%$nombre%")
-        ->where('novedad', 'true')
-        ->latest()
-        ->paginate(10);
-
-        return view('novedad.index', compact('producto'));
+        return Articulo::all()->where('novedad', 'true');
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -49,7 +47,7 @@ class ArticuloController extends Controller
         $subcategoria = Subcategoria::all()->sortBy('nombre');
         return view('articulo.create', compact('categoria','proveedor','subcategoria'));
     }
-
+  
     /**
      * Store a newly created resource in storage.
      *
@@ -60,22 +58,22 @@ class ArticuloController extends Controller
     {
         $mensaje = "Articulo Registrado correctamente";
 
-        $request->validate([
-             'nombre' => 'required',
-             'tipo_comprobante'=> 'required',
-             'num_comprobante' => 'required',
-             'fecha' => 'required',
-             'cantidad' => 'required',
-             'unidad' => 'required',
-             'precio_compra' => 'required',
-             'precio_venta' => 'required',
-             'imagen' => 'nullable',
-             'codigo_barras' => 'nullable',
-             'codigo_barras'=>'nullable',
-             'descripcion' => 'nullable',
-             'categoria_id' => 'nullable',
-             'proveedors_id' => 'nullable',
-         ]);
+        // $request->validate([
+        //      'nombre' => 'required',
+        //      'tipo_comprobante'=> 'required',
+        //      'num_comprobante' => 'required',
+        //      'fecha' => 'required',
+        //      'cantidad' => 'required',
+        //      'unidad' => 'required',
+        //      'precio_compra' => 'required',
+        //      'precio_venta' => 'required',
+        //      'codigo_barras' => 'nullable',
+        //      'imagen' => 'nullable',
+        //      'flag_carrito' => 'nullable'
+        //      'descripcion' => 'nullable',
+        //      'categoria_id' => 'nullable',
+        //      'proveedors_id' => 'nullable',
+        // ]);
 
 
         DB::beginTransaction();
@@ -97,6 +95,8 @@ class ArticuloController extends Controller
             $img = $path.'/'.$fileName;
             if($image->save($img)) {
                 $requestData['imagen'] = $img;
+                $requestData['flag_carrito'] = 'false';
+
                 $mensaje;
             }else{
                 $mensaje = "Error al guardar la imagen";
@@ -130,6 +130,10 @@ class ArticuloController extends Controller
 
         return view('articulo.show', compact('articulo','categoria','subcategoria'));
     }
+
+    public function showArticulo($id){
+       return Articulo::findOrFail($id);
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -172,17 +176,55 @@ class ArticuloController extends Controller
 
     public function addNovedad(Request $request, $id){
 
-       $articulo = Articulo::find($id);
+        $imagen = null;
+        $articulo = Articulo::find($id);
+        $mensaje = 'Articulo Creado Exitosamente!!!';
 
-       $request->validate([
-           'novedad' => 'required',
-       ]);
+        $request->validate([
+            'novedad' => 'required',
+            'imagen_novedad' => 'nullable',
+         ]);
 
-       $articulo->novedad = $request->get('novedad');
+        DB::beginTransaction();
+        $requestData = $request->all();
 
-       $articulo->update();
+        if($request->imagen_novedad == ''){
+            unset($requestData['imagen_novedad']);
+        }
 
-       Session::flash('message','Novedad Agregada Exisitosamente!');
-       return redirect()->route('articulos.index');
+        $mensaje = "Articulo Actualizado correctamente :3";
+        if($request->imagen_novedad){
+            $data = $request->imagen_novedad;
+            $file = file_get_contents($request->imagen_novedad);
+            $info = $data->getClientOriginalExtension();
+            $extension = explode('images/articulos', mime_content_type('images/articulos'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info;
+            $path  = 'images/articulos';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName;
+            if($image->save($img)) {
+                $archivo_antiguo = $articulo->imagen_novedad;
+                $requestData['imagen_novedad'] = $img;
+                $mensaje = "Articulo Actualizado correctamente :3";
+                if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
+                    $mensaje = "Articulo Actualizado. error al eliminar la imagen";
+                }
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
+
+        if($articulo->update($requestData)){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message','Articulo Agregado a Novedad Exisitosamente!');
+        return redirect()->route('articulos.index');
+
    }
 }

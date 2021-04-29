@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('whatsapp')->nullable();
             $table->string('nit')->nullable();
             $table->string('imagen')->nullable();
-            $table->enum('subscripcion', ['true','false'])->nullable();
+            // $table->enum('subscripcion', ['true','false'])->nullable();
             $table->enum('rol', ['admin','cliente'])->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

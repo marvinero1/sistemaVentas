@@ -135,7 +135,6 @@
                                             <label for="file-upload" class="custom-file-upload"
                                                 style="text-align: center;">
                                                 <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
-                                                <strong>Imagen</strong>
                                             </label>
                                             <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
                                                 recomienda<strong> 500 × 250 pixels</strong></p>
@@ -143,7 +142,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -172,11 +170,7 @@
 <h1>asdasdasdas</h1>
 
 <script>
-
-
-
     function bar(){
-
         var valor = document.getElementById("barcodeValue").value;
         console.log(valor);
 
@@ -188,10 +182,7 @@
             displayValue: true
         });
      }
-
 </script>
-
-
 
 <style type="text/javascript">
     input[type="file"] {

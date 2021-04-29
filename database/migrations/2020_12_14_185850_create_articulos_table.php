@@ -28,6 +28,7 @@ class CreateArticulosTable extends Migration
 
             $table->string('descripcion')->nullable();
             $table->string('imagen')->nullable();
+            $table->string('imagen_novedad')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
 
