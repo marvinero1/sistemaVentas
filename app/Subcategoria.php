@@ -17,12 +17,12 @@ class Subcategoria extends Model
         'restored',
         'updated'
     ];
-    
+
     protected $fillable = ['nombre',
                         'descripcion',
-                        'categorias_id'];
+                        'categoria_id'];
 
     public function categoria(){
-        return $this->hasOne(Categoria::class,'id','categorias_id');
+        return $this->hasOne(Categoria::class,'id');
     }
 }

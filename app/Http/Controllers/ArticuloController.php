@@ -32,7 +32,7 @@ class ArticuloController extends Controller
     }
 
     public function getNovedades(Request $request){
-        return Articulo::all()->where('novedad', 'true');
+        return Articulo::where('novedad', 'true')->get();
     }
 
 
@@ -78,6 +78,7 @@ class ArticuloController extends Controller
 
         DB::beginTransaction();
         $requestData = $request->all();
+        //dd($requestData);
 
         if($request->imagen){
 
@@ -96,7 +97,7 @@ class ArticuloController extends Controller
             if($image->save($img)) {
                 $requestData['imagen'] = $img;
                 $requestData['flag_carrito'] = 'false';
-
+                
                 $mensaje;
             }else{
                 $mensaje = "Error al guardar la imagen";
@@ -187,6 +188,7 @@ class ArticuloController extends Controller
 
         DB::beginTransaction();
         $requestData = $request->all();
+        dd($request);
 
         if($request->imagen_novedad == ''){
             unset($requestData['imagen_novedad']);
@@ -208,6 +210,7 @@ class ArticuloController extends Controller
             if($image->save($img)) {
                 $archivo_antiguo = $articulo->imagen_novedad;
                 $requestData['imagen_novedad'] = $img;
+                $requestData['novedad'] = 'true';
                 $mensaje = "Articulo Actualizado correctamente :3";
                 if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
                     $mensaje = "Articulo Actualizado. error al eliminar la imagen";

@@ -25,9 +25,11 @@ class FavoritoController extends Controller
     public function guardarFavorito(Request $request){
 
        $favorito = Favorito::create($request->all());
+
+
        $exit = Favorito::where(function($q1)use($request){
-           if($request->productos_id){
-               $q1->where('user_id',$request->user_id)->where('articulos_id',$request->articulos_id);
+           if($request->articulo_id){
+               $q1->where('user_id',$request->user_id)->where('articulo_id',$request->articulo_id);
            }
        })
        // ->orWhere(function($q1)use($request){
@@ -59,7 +61,7 @@ class FavoritoController extends Controller
                'imagen_novedad' => $request->imagen_novedad,
                'flag_carrito' => $request->flag_carrito,
                'categoria_id' => $request->categoria_id,
-               'articulos_id' => $request->id,
+               'articulo_id' => $request->id,
                'user_id' => $request->user_id,
 
            ]);
@@ -92,8 +94,8 @@ class FavoritoController extends Controller
         // $request->all();
 
         $exit = Favorito::where(function($q1)use($request){
-            if($request->articulos_id){
-                $q1->where('user_id',$request->user_id)->where('articulos_id',$request->articulos_id);
+            if($request->articulo_id){
+                $q1->where('user_id',$request->user_id)->where('articulo_id',$request->articulo_id);
             }
         })
         // ->orWhere(function($q1)use($request){
@@ -123,7 +125,7 @@ class FavoritoController extends Controller
                 'descripcion' => $request->descripcion,
                 'flag_carrito' => $request->flag_carrito,
 
-                'articulos_id' => $request->articulos_id,
+                'articulo_id' => $request->articulo_id,
                 'user_id' => $request->user_id,
 
             ]);

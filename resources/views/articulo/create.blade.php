@@ -10,16 +10,17 @@
                         <div class="card-header">
                             <h3 class="card-title">Registro Artículo</h3>
                         </div>
+
                         <form action="{{route('articulos.store')}}" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="card-body">
                                 <div class="row" style="border: outset;margin-bottom:23px;">
                                 <br><div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="nombre">Categoria</label>
+                                            <label>Categoria</label>
                                             <select name="categoria_id" class="form-control select2" style="width: 100%;" required>
                                                 @foreach ($categoria as $categorias)
-                                                    <option value="{{ $categorias->id }}">{{$categorias->nombre}}</option>
+                                                    <option value="{{ $categorias->nombre }}">{{$categorias->nombre}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -27,10 +28,10 @@
                                     <div class="col-md-6">
                                       <div class="form-group">
                                         <label><strong>Sub Categoria *</strong> </label>
-                                        <select name="categorias_id" class="select2" style="width: 100% !important"
+                                       <select name="subcategoria_id" class="select2" style="width: 100% !important"
                                             data-live-search="true" required>
                                             @foreach ($subcategoria as $subcategorias)
-                                            <option value="{{ $subcategorias->id }}">{{$subcategorias->nombre}}
+                                            <option value="{{ $subcategorias->nombre }}">{{$subcategorias->nombre}}
                                             </option>
                                             @endforeach
                                         </select>
@@ -50,21 +51,22 @@
                                     <label><strong>Codigo de Barras:</strong></label>
                                     <svg id="barcode"></svg>
                                 </div>
-                            </div>
+                            <p class="p-2"><strong> Los campos marcados con (*) son requeridos</strong> </p>
 
+                            </div>
 
                             </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="nombre">Nombre Artículo</label>
+                                            <label for="nombre">Nombre Artículo *</label>
                                             <input type="text" class="form-control" id="nombre" name="nombre"
                                                 placeholder="Nombre Artículo" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="tipo_comprobante">Tipo Comprobante</label>
+                                            <label for="tipo_comprobante">Tipo Comprobante *</label>
 
                                                 <select class="form-control" id="tipo_comprobante" name="tipo_comprobante"
                                                 placeholder="Tipo Comprobante" required>
@@ -77,7 +79,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="num_comprobante">Número Comprobante</label>
+                                            <label for="num_comprobante">Número Comprobante *</label>
                                             <input type="text" class="form-control" id="num_comprobante" name="num_comprobante"
                                                 placeholder="Numero Comprobante" required>
                                         </div>
@@ -94,7 +96,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label for="cantidad">Cantidad</label>
+                                            <label for="cantidad">Cantidad *</label>
                                             <input type="number" class="form-control" id="cantidad" name="cantidad"
                                                 placeholder="Cantidad">
                                         </div>
@@ -103,45 +105,50 @@
                                         <div class="form-group">
                                             <label for="unidad">Unidad</label>
                                             <select class="form-control" id="unidad" name="unidad">
-                                                <option value="unidad">Unidad</option>
-                                                <option value="qq">Quintal</option>
-                                                <option value="kg">Kilogramos</option>
+                                                <option value="piezas">Pieza</option>
+                                                <option value="caja">Caja</option>
+                                                <!-- <option value="kg"></option>
                                                 <option value="gr">Gramos</option>
                                                 <option value="mg">Miligramos</option>
-                                                <option value="litro">Litros</option>
+                                                <option value="litro">Litros</option> -->
                                             </select>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="nombre">Precio Compra</label>
-                                            <input type="number" class="form-control" id="precio_compra" name="precio_compra"
-                                                placeholder="Precio Compra">
+                                  <div class="col-md-4">
+                                      <label for="nombre">Precio Compra</label>
+                                      <div class="input-group form-group">
+                                        <input type="double" class="form-control" id="precio_compra" name="precio_compra"
+                                        placeholder="Precio Compra">
+                                        <div class="input-group-append">
+                                          <span class="input-group-text">Bs.</span>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="precio_venta">Precio Venta</label>
-                                            <input type="number" class="form-control" id="precio_venta" name="precio_venta"
-                                                placeholder="Precio Venta">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="imagen">Imagen</label>
-                                            <label for="file-upload" class="custom-file-upload"
-                                                style="text-align: center;">
-                                                <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
-                                            </label>
-                                            <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
-                                                recomienda<strong> 500 × 250 pixels</strong></p>
-                                            <input id="file-upload" type="file" name="imagen">
-                                        </div>
-                                    </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      <label for="precio_venta">Precio Venta</label>
+                                      <div class="input-group form-group">
+                                          <input placeholder="Precio Venta" type="double" class="form-control" id="precio_venta" name="precio_venta">
+                                          <div class="input-group-append">
+                                            <span class="input-group-text">Bs.</span>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                      
+                                      <label for="imagen">Imagen</label>
+                                      <label for="file-upload" class="custom-file-upload"
+                                          style="text-align: center;">
+                                          <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
+                                      </label>
+                                      <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
+                                          recomienda<strong> 500 × 250 pixels</strong></p>
+                                      <input id="file-upload" type="file" name="imagen">
+                                  </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">

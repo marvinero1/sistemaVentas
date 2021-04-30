@@ -5,8 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Articulo;
 use App\Http\Controllers\ArticuloController;
-use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\FavoritoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +29,7 @@ Auth::routes();
 Route::get('getNovedades',[ArticuloController::class, 'getNovedades']);
 Route::get('articulo/{id}',[ArticuloController::class, 'showArticulo']);
 Route::get('articulos',[ArticuloController::class, 'getArticulos']);
-
+Route::get('getPedido',[CarritoController::class, 'getPedido']);
 
 Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
 Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);

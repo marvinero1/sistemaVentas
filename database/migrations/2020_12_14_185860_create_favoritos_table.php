@@ -27,16 +27,16 @@ class CreateFavoritosTable extends Migration
             $table->string('descripcion')->nullable();
             $table->string('imagen')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
-            $table->enum('novedad', ['true', 'false'])->nullable();          
+            $table->enum('novedad', ['true', 'false'])->nullable();
 
-            $table->unsignedBigInteger('articulos_id')->unsigned();
-            $table->foreign('articulos_id')->references('id')->on('articulos')
+            $table->unsignedBigInteger('articulo_id')->unsigned();
+            $table->foreign('articulo_id')->references('id')->on('articulos')
             ->onDelete('cascade');
 
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')
             ->onDelete('cascade');
-            
+
             $table->softDeletes();
             $table->timestamps();
         });

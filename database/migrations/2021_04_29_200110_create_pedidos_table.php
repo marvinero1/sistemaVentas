@@ -31,6 +31,7 @@ class CreatePedidosTable extends Migration
             $table->string('imagen_novedad')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
+            $table->enum('flag_confirmado', ['true', 'false'])->nullable();
             $table->string('categoria_nombre')->nullable();
 
             $table->unsignedBigInteger('categorias_id')->unsigned();

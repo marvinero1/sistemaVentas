@@ -21,7 +21,7 @@ class SubcategoriaController extends Controller
         $categoria = Categoria::all();
         $subcategoria = subcategoria::where('nombre','like',"%$nombre%")
         ->latest()->paginate(10);
-        
+
         return view('subcategoria.index', compact('categoria','subcategoria'));
     }
 
@@ -47,15 +47,15 @@ class SubcategoriaController extends Controller
         $request->validate([
             'nombre' => 'required',
             'descripcion' => 'nullable',
-            
+
         ]);
-        
+
         subcategoria::create([
             'nombre' => $request->nombre,
             'descripcion' => $request->descripcion,
-            'categorias_id' => $request->categorias_id,
+            'categoria_id' => $request->categoria_id,
         ]);
-        
+
         Session::flash('message','Sub-Categoria creado exisitosamente!');
         return redirect()->route('subcategorias.index');
     }
@@ -95,14 +95,14 @@ class SubcategoriaController extends Controller
         $categoria = Categoria::all();
 
         $request->all();
-        
+
         $subcategoria = subcategoria::find($id);
 
         $subcategoria->nombre = $request->get('nombre');
         $subcategoria->descripcion = $request->get('descripcion');
 
-        $subcategoria->update(); 
-        
+        $subcategoria->update();
+
         Session::flash('message','Sub-Categoria Editado Exisitosamente!');
         return redirect()->route('subcategorias.index');
     }

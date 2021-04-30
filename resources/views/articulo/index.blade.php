@@ -42,6 +42,7 @@
                     <th style="text-align:center;">Codigo Barras</th>
                     <th style="text-align:center;">Cantidad </th>
                     <th style="text-align:center;">Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -93,16 +94,16 @@
                             <div class="modal-dialog" role="document" style="max-width: 337px !important;">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Administración Favoritos</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <i class="icon-close"></i>
+                                        <h5 class="modal-title" id="exampleModalLabel">Agregar a Lista de Favoritos</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: black">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
                                         </button>
                                     </div>
-                                    <div class="modal-body">
+                                    <div class="modal-body" >
                                         <form action="{{route('favoritos.store')}}" method="POST"
-                                            enctype="multipart/form-data" style="margin-block-end:-1em !important;">
+                                            enctype="multipart/form-data" style="margin-block-end:-1em !important;display: none">
                                             {{ csrf_field() }}
-                                            <input type="hidden" name="articulos_id" value="{{$articulos->id}}">
+                                            <input type="hidden" name="articulo_id" value="{{$articulos->id}}">
                                             <input type="hidden" name="nombre" value="{{$articulos->nombre}}">
                                             <input type="hidden" name="tipo_comprobante" value="{{$articulos->tipo_comprobante}}">
                                             <input type="hidden" name="num_comprobante" value="{{$articulos->num_comprobante}}">
@@ -119,14 +120,13 @@
                                             @if(Auth::user())
                                             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                             @endif
-                                            <h4>Agregar a Lista de Favoritos</h4>
+                                            
                                             <div class="row" style="display: block;">
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-primary"
-                                                        style="width: 100% !important; "><span
-                                                            class="icon-heart"></span>&nbsp; Añadir</button>
-                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                                     style="width: 100% !important; ">Cerrar</button>
+                                                        style="width: 100% !important; "><i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Añadir</button>
+                                                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                     style="width: 100% !important; "><i class="fa fa-times" aria-hidden="true"></i>&nbsp;Cerrar</button> -->
                                                 </div>
                                         </form>
                                     </div>
@@ -142,7 +142,7 @@
                                      <div class="modal-header">
                                          <h5 class="modal-title" id="exampleModalLabel">Administración Novedades</h5>
                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                             <i class="icon-close"></i>
+                                              <i class="fa fa-times" aria-hidden="true"></i>
                                          </button>
                                      </div>
                                      <div class="modal-body" style="text-align: center;">
@@ -158,7 +158,7 @@
                                              @endif
                                              <h4>Agregar a Lista de Novedad</h4>
                                              <div class="row">
-                                              <div class="col-md-10">
+                                              <div class="col-md-12">
                                                   <div class="form-group">
                                                       <label for="imagen">Imagen Promocional</label>
                                                       <label for="file-upload" class="custom-file-upload"
@@ -176,8 +176,7 @@
                                                      <button type="submit" class="btn btn-primary"
                                                          style="width: 100% !important; "><span
                                                              class="icon-star"></span>&nbsp; Añadir</button>
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                                     style="width: 100% !important; ">Cerrar</button>
+                                                  
                                                  </div>
                                          </form>
                                      </div>

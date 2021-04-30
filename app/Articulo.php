@@ -30,16 +30,16 @@ class Articulo extends Model
                             'imagen',
                             'imagen_novedad',
                             'flag_carrito',
+                            'categoria_nombre',
                             'categoria_id',
-                            'proveedor_id',
-                            'descripcion',];
+                            'subcategoria_id',
+                            'descripcion'];
 
     public function categoria(){
-        return $this->hasOne(Categoria::class,'id','categoria_id');
+        return $this->hasOne(Categoria::class,'id');
     }
 
     public function subcategoria(){
-        return $this->hasOne(Subcategoria::class,
-            'id','subcategoria_id');
+        return $this->hasOne(Subcategoria::class,'id');
     }
 }

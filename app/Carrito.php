@@ -30,8 +30,10 @@ class Carrito extends Model
                             'imagen',
                             'imagen_novedad',
                             'flag_carrito',
+                            'confirmacion',
                             'categoria_id',
-                            'proveedor_id',
+                            'categoria_nombre',
                             'descripcion',
+                            'subcategoria_id',
                             'user_id'];
 }

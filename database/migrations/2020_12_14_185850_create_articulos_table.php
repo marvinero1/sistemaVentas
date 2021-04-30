@@ -22,10 +22,8 @@ class CreateArticulosTable extends Migration
             $table->string('cantidad');
             $table->string('unidad');
             $table->string('codigo_barras');
-
             $table->double('precio_compra', 8, 2);
             $table->double('precio_venta', 8, 2);
-
             $table->string('descripcion')->nullable();
             $table->string('imagen')->nullable();
             $table->string('imagen_novedad')->nullable();
@@ -33,22 +31,14 @@ class CreateArticulosTable extends Migration
             $table->enum('novedad', ['true', 'false'])->nullable();
             $table->string('categoria_nombre')->nullable();
 
-            $table->unsignedBigInteger('categorias_id')->unsigned();
-            $table->unsignedBigInteger('subcategorias_id')->unsigned();
+            $table->unsignedBigInteger('categoria_id')->unsigned();
+            $table->unsignedBigInteger('subcategoria_id')->unsigned();
 
-            $table->foreign('categorias_id')
-                    ->references('id')->on('categorias')
-                    ->onDelete('cascade');
-
-            $table->foreign('subcategorias_id')->references('id')->on('subcategorias')
+            $table->foreign('categoria_id')->references('id')->on('categorias')
             ->onDelete('cascade');
 
-            
-
-            // $table->unsignedBigInteger('favoritos_id')->nullable();
-            // $table->foreign('favoritos_id')->references('id')->on('favoritos')
-            // ->onDelete('cascade');
-
+            $table->foreign('subcategoria_id')->references('id')->on('subcategorias')
+            ->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

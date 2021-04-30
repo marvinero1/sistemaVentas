@@ -33,17 +33,16 @@ class CreateCarritosTable extends Migration
             $table->enum('novedad', ['true', 'false'])->nullable();
             $table->string('categoria_nombre')->nullable();
 
-            $table->unsignedBigInteger('categorias_id')->unsigned();
-            $table->unsignedBigInteger('subcategorias_id')->unsigned();
+            $table->unsignedBigInteger('categoria_id')->unsigned();
+            $table->unsignedBigInteger('subcategoria_id')->unsigned();
 
-            $table->foreign('categorias_id')
-                    ->references('id')->on('categorias')
-                    ->onDelete('cascade');
-
-            $table->foreign('subcategorias_id')->references('id')->on('subcategorias')
+            $table->foreign('categoria_id')->references('id')->on('categorias')
             ->onDelete('cascade');
 
-            
+            $table->foreign('subcategoria_id')->references('id')->on('subcategorias')
+            ->onDelete('cascade');
+
+
 
             // $table->unsignedBigInteger('favoritos_id')->nullable();
             // $table->foreign('favoritos_id')->references('id')->on('favoritos')

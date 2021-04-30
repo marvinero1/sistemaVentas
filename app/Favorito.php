@@ -30,13 +30,14 @@ class Favorito extends Model
                         'descripcion',
                         'imagen',
                         'imagen_novedad',
+                        'categoria_nombre',
                         'flag_carrito',
                         'user_id',
-                        'articulos_id'
+                        'articulo_id'
                     ];
 
 
     public function articulos(){
-        return $this->belongsTo(Articulo::class);
+        return $this->belongsTo(Articulo::class,'id');
     }
 }

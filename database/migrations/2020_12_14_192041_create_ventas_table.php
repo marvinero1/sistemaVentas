@@ -32,11 +32,11 @@ class CreateVentasTable extends Migration
             $table->enum('flag_carrito', ['true', 'false']);
             $table->enum('novedad', ['true', 'false'])->nullable();
             $table->string('categoria_nombre')->nullable();
-          
-            $table->unsignedBigInteger('articulos_id')->unsigned();
-            $table->foreign('articulos_id')
-            ->references('id')->on('articulos')
+
+            $table->unsignedBigInteger('articulo_id')->unsigned();
+            $table->foreign('articulo_id')->references('id')->on('articulos')
             ->onDelete('cascade');
+            
             $table->softDeletes();
             $table->timestamps();
         });

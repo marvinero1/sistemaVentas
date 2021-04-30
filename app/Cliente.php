@@ -17,13 +17,13 @@ class Cliente extends Model
         'restored',
         'updated'
     ];
-    
+
     protected $fillable = ['nombre',
                            'num_carnet',
                            'direccion',
                            'telefono',
                            'whatsapp',
                            'email',
-                        'descripcion',
-                        'user'];
+                           'descripcion',
+                           'user'];
 }
