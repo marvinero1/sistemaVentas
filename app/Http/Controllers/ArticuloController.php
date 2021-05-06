@@ -188,7 +188,7 @@ class ArticuloController extends Controller
 
         DB::beginTransaction();
         $requestData = $request->all();
-        dd($request);
+        //dd($request);
 
         if($request->imagen_novedad == ''){
             unset($requestData['imagen_novedad']);
@@ -210,7 +210,7 @@ class ArticuloController extends Controller
             if($image->save($img)) {
                 $archivo_antiguo = $articulo->imagen_novedad;
                 $requestData['imagen_novedad'] = $img;
-                $requestData['novedad'] = 'true';
+                $requestDataNovedad['novedad'] = true;
                 $mensaje = "Articulo Actualizado correctamente :3";
                 if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
                     $mensaje = "Articulo Actualizado. error al eliminar la imagen";
@@ -219,8 +219,9 @@ class ArticuloController extends Controller
                 $mensaje = "Error al guardar la imagen";
             }
         }
+        //dd($requestData);
 
-        if($articulo->update($requestData)){
+        if($articulo->update($requestData, $requestDataNovedad)){
             DB::commit();
         }else{
             DB::rollback();

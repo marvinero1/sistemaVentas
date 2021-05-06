@@ -24,7 +24,7 @@ class CreateArticulosTable extends Migration
             $table->string('codigo_barras');
             $table->double('precio_compra', 8, 2);
             $table->double('precio_venta', 8, 2);
-            $table->string('descripcion')->nullable();
+            $table->longText('descripcion')->nullable();
             $table->string('imagen')->nullable();
             $table->string('imagen_novedad')->nullable();
             $table->enum('flag_carrito', ['true', 'false']);

@@ -15,15 +15,27 @@ class CarritoController extends Controller
 
   	public function guardarPedido(Request $request){
 
-        $carrito = Carrito::create($request->all());
         
-        return response()->json($carrito, 201);
+        $cant_inventario - $request->cantidad;
+        if($cant_inventario > 0){
+
+            $carrito = Carrito::create($request->all()); 
+
+            }else{
+                return 0;
+            }
+           
+
+            return response()->json($carrito, 201);
+            //Verificar inventario
+        }
     }
 
     public function getPedido(Request $request){
         return Carrito::orderBy('created_at', 'asc')->where('confirmacion','false')->get();
 		
 	}
+    //para admi visualizar todos los pedidos y despacho solo los que faltan 
 	
 	public function delete($id){
         $carrito = Carrito::findOrFail($id);

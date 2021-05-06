@@ -56,8 +56,8 @@
                         <td style="text-align:center;">{{ $articulos->descripcion }}</td>
                         <td style="text-align:center;">{{ $articulos->fecha }}</td>
                         {{-- <td style="text-align:center;">{{ $articulos->categoria->nombre }}</td> --}}
-                        <td style="text-align:center;"> {{ $articulos->codigo_barras }}</td>
-                        <td style="text-align:center;"> {{ $articulos->cantidad }}</td>
+                        <td style="text-align:center;"> <svg id="barcode">{{ $articulos->cantidad }}</svg>{{ $articulos->codigo_barras }}</td>
+                        <td style="text-align:center;"> </td>
 
                         <td style="text-align:center;">
                           <div class="card-body">
