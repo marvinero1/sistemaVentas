@@ -26,8 +26,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Auth::routes();
 
+Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
 Route::get('getNovedades',[ArticuloController::class, 'getNovedades']);
 Route::get('articulo/{id}',[ArticuloController::class, 'showArticulo']);
+Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
+Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
 Route::get('articulos',[ArticuloController::class, 'getArticulos']);
 Route::get('getPedido',[CarritoController::class, 'getPedido']);
 

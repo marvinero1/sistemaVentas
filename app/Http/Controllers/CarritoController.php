@@ -24,4 +24,12 @@ class CarritoController extends Controller
         return Carrito::orderBy('created_at', 'asc')->where('confirmacion','false')->get();
 		
 	}
+	
+	public function delete($id){
+        $carrito = Carrito::findOrFail($id);
+
+        $carrito->delete();
+
+        return response()->json($carrito, 200); 
+    }
 }
