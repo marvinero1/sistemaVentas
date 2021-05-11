@@ -67,13 +67,11 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label for="tipo_comprobante">Tipo Comprobante *</label>
-
                                                 <select class="form-control" id="tipo_comprobante" name="tipo_comprobante"
                                                 placeholder="Tipo Comprobante" required>
                                                     <option value="factura">Factura</option>
                                                     <option value="recibo">Recibo</option>
                                                     <option value="nota">Nota de venta</option>
-
                                                 </select>
                                         </div>
                                     </div>

@@ -7,6 +7,7 @@ use App\Articulo;
 use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\FavoritoController;
+use App\Http\Controllers\VentaController;
 
 
 /*
@@ -36,6 +37,7 @@ Route::get('getPedido',[CarritoController::class, 'getPedido']);
 
 Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
 Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
+Route::post('guardarPedidoRealizado',[VentaController::class, 'guardarPedidoRealizado']);
 
 
 

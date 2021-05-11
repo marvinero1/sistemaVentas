@@ -23,6 +23,7 @@ class Carrito extends Model
                             'num_comprobante',
                             'fecha',
                             'cantidad',
+                            'cantidad_pedido',
                             'codigo_barras',
                             'unidad',
                             'precio_compra',
@@ -31,9 +32,13 @@ class Carrito extends Model
                             'imagen_novedad',
                             'flag_carrito',
                             'confirmacion',
+                            'articulo_id',
+                            'user_name',
                             'categoria_id',
                             'categoria_nombre',
                             'descripcion',
+                            'articulo_id',
                             'subcategoria_id',
-                            'user_id'];
+                            'user_id',
+                        ];
 }

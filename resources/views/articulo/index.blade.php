@@ -28,6 +28,9 @@
         <div class="float-right">
             <a href="{{ route('articulos.create')}}"><button class="btn btn-primary">
                     <i class="fa fa-plus">&nbsp;&nbsp;</i>Crear Articulo</button></a>
+        </div>&nbsp;
+        <div class="float-right mr-3">
+          <button class="btn btn-primary" onclick="bar();"><i class="fas fa-barcode"></i>&nbsp; Codigo Barra</button>
         </div>
         <br><br><br>
     <div class="table-responsive">
@@ -38,7 +41,7 @@
                     <th style="text-align:center;">Nombre</th>
                     <th style="text-align:center;">Descripción</th>
                     <th style="text-align:center;">Fecha</th>
-                    {{-- <th style="text-align:center;">Categoria</th> --}}
+                    <th style="text-align:center;">Categoria</th> 
                     <th style="text-align:center;">Codigo Barras</th>
                     <th style="text-align:center;">Cantidad </th>
                     <th style="text-align:center;">Acciones</th>
@@ -55,8 +58,9 @@
                         <td style="text-align:center;">{{ $articulos->nombre }}</td>
                         <td style="text-align:center;">{{ $articulos->descripcion }}</td>
                         <td style="text-align:center;">{{ $articulos->fecha }}</td>
-                        {{-- <td style="text-align:center;">{{ $articulos->categoria->nombre }}</td> --}}
-                        <td style="text-align:center;"> <svg id="barcode">{{ $articulos->cantidad }}</svg>{{ $articulos->codigo_barras }}</td>
+                        <td style="text-align:center;">{{ $articulos->categoria_id }}</td>
+                        <td style="text-align: center;"><input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barras" value="{{ $articulos->codigo_barras }}" disabled="true" hidden="true"> <svg id="barcode"></svg></td>
+                        <td style="text-align:center;"> {{ $articulos->cantidad }}</td>
                         <td style="text-align:center;"> </td>
 
                         <td style="text-align:center;">
@@ -193,7 +197,20 @@
 
 </div>
 </div>
+<script type="text/javascript">
+    function bar(){
+        var valor = document.getElementById("barcodeValue").value;
+        console.log(valor);
 
+        JsBarcode("#barcode", valor, {
+            format: "EAN13",
+            lineColor: "#000",
+            width: 2,
+            height: 50,
+            displayValue: true
+        });
+     }
+</script>
 
 @endsection
 <style>

@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
 
 class UserController extends Controller
 {   
@@ -34,5 +35,11 @@ class UserController extends Controller
         
         session::flash('message','Usuario Registrado Exisitosamente!');
         return redirect('/login')->with("message", "Usuario creado exitosamente!");  
+    }
+
+    public function getCliente(Request $request){
+
+        $user = User::where('rol', 'cliente')->get();
+        return view('users.clientes', compact('user'));
     }
 }

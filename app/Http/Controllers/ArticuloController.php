@@ -32,7 +32,8 @@ class ArticuloController extends Controller
     }
 
     public function getNovedades(Request $request){
-        return Articulo::where('novedad', 'true')->get();
+        $articulo = Articulo::where('novedad', 'true')->get();
+        return view('novedad.index', compact('articulo'));
     }
 
 

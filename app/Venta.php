@@ -23,15 +23,18 @@ class Venta extends Model
                       'num_comprobante',
                       'fecha',
                       'cantidad',
+                      'cantidad_pedido',
                       'unidad',
+                      'codigo_barras',
                       'precio_compra',
                       'precio_venta',
                       'descripcion',
                       'imagen',
                       'imagen_novedad',
-                      'categoria_nombre',
+                      'categoria_id',
                       'flag_carrito',
                       'user_id',
-                      'articulo_id'
-                  ];
+                      'articulo_id',
+                      'user_name',
+                      ];
 }

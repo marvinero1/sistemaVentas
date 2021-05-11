@@ -155,10 +155,10 @@
 <!-- /.navbar -->
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(121,9,82,1) 33%, rgba(57,157,177,1) 100%) !important;">
     <!-- Brand Logo -->
     <a href="/" class="pt-3">
-        <img src="/images/AdminVentas.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        <img src="/images/logo_original.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
             style="display: block;opacity: .8;width: 64%;margin: auto;">
 
 
@@ -192,6 +192,7 @@
                         <p>Escritorio</p>  
                     </a>
                 </li>
+                
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cube"></i>
@@ -206,6 +207,7 @@
                                 <p>Artículo</p>
                             </a>
                         </li>
+                        @if(Auth::user()->rol == 'admin')
                         <li class="nav-item">
                             <a href="/categorias" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
@@ -218,10 +220,10 @@
                                 <p>Sub-Categorias</p>
                             </a>
                         </li>
-                       
+                       @endif
                     </ul>
                 </li>
-
+                
                 <li class="nav-item has-treeview">
                   <a class="nav-link">
                     <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
@@ -231,7 +233,7 @@
                   </a>
                   <ul class="nav nav-treeview">
                       <li class="nav-item">
-                          <a href="pages/charts/chartjs.html" class="nav-link">
+                          <a href="/venta" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
                               <p>Ventas</p>
                           </a>
@@ -275,12 +277,12 @@
                     <p>Novedades</p>                
                 </a>
             </li>
-            <li class="nav-item has-treeview">
+            <!-- <li class="nav-item has-treeview">
               <a class="nav-link">
                 <i class="fa fa-th-list nav-icon" aria-hidden="true"></i>
                   <p>Reportes</p>                
               </a>
-              {{-- <ul class="nav nav-treeview">
+                <ul class="nav nav-treeview">
                   <li class="nav-item">
                       <a href="pages/charts/chartjs.html" class="nav-link">
                           <i class="far fa-circle nav-icon"></i>
@@ -293,8 +295,8 @@
                           <p>Datos</p>
                       </a>
                   </li>       
-              </ul> --}}
-            </li>
+                </ul> 
+            </li> -->
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
@@ -304,17 +306,17 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="/cliente" class="nav-link">
+                        <a href="/cliente_get" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Clientes</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                   <!--  <li class="nav-item">
                         <a href="/proveedor" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Provedores</p>
                         </a>
-                    </li>
+                    </li> -->
                    
                 </ul>
             </li>
@@ -324,12 +326,12 @@
                   <p>Anulación</p>  
               </a>
             </li> --}}
-            <li class="nav-item has-treeview">
+            <!-- <li class="nav-item has-treeview">
                 <a href="/logout" class="nav-link">
                     <i class="nav-icon fas fa-door-closed"></i>
                     <p>Cerrar Sesión</p>  
                 </a>
-            </li>
+            </li> -->
         </ul>
     </nav>
         <!-- /.sidebar-menu -->

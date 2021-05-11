@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Venta;
+use App\User;
 use Illuminate\Http\Request;
 
 class VentaController extends Controller
@@ -12,9 +13,10 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $venta =Venta::latest()->get(); 
+        return view('ventas.index', compact('venta'));
     }
 
     /**
@@ -26,6 +28,12 @@ class VentaController extends Controller
     {
         //
     }
+
+     public function guardarPedidoRealizado(Request $request){
+
+        $venta = Venta::create($request->all());
+        return response()->json($venta, 201);
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -44,9 +52,12 @@ class VentaController extends Controller
      * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function show(Venta $venta)
+    public function show($id)
     {
-        //
+        $venta = Venta::findOrFail($id);
+        $user = User::all()->sortBy('nombre');
+        
+        return view('ventas.show', compact('venta', 'user')); 
     }
 
     /**

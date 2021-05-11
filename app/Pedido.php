@@ -32,6 +32,7 @@ class Pedido extends Model
                       'categoria_nombre',
                       'flag_carrito',
                       'user_id',
-                      'articulo_id'
+                      'articulo_id',
+                      'user_name'
                   ];
 }
