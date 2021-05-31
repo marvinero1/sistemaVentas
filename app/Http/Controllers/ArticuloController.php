@@ -19,6 +19,18 @@ class ArticuloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function getNovedadesIonic(){
+
+        $articulo = Articulo::where('novedad','true')->get();
+       
+
+        return response()->json($articulo, 201);
+      
+    }
+
+
     public function index(Request $request){
 
         $nombre = $request->get('buscarpor');
@@ -27,15 +39,11 @@ class ArticuloController extends Controller
 
         return view('articulo.index', compact('articulo','categoria'));
     }
-    public function getArticulos(){
-      return Articulo::latest()->get();
-    }
 
     public function getNovedades(Request $request){
         $articulo = Articulo::where('novedad', 'true')->get();
         return view('novedad.index', compact('articulo'));
     }
-
 
 
     /**
@@ -179,6 +187,7 @@ class ArticuloController extends Controller
     public function addNovedad(Request $request, $id){
 
         $imagen = null;
+        $novedad = "true";
         $articulo = Articulo::find($id);
         $mensaje = 'Articulo Creado Exitosamente!!!';
 
@@ -211,7 +220,8 @@ class ArticuloController extends Controller
             if($image->save($img)) {
                 $archivo_antiguo = $articulo->imagen_novedad;
                 $requestData['imagen_novedad'] = $img;
-                $requestDataNovedad['novedad'] = true;
+                $articulo->novedad = $novedad;
+               
                 $mensaje = "Articulo Actualizado correctamente :3";
                 if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
                     $mensaje = "Articulo Actualizado. error al eliminar la imagen";
@@ -222,7 +232,7 @@ class ArticuloController extends Controller
         }
         //dd($requestData);
 
-        if($articulo->update($requestData, $requestDataNovedad)){
+        if($articulo->update($requestData)){
             DB::commit();
         }else{
             DB::rollback();

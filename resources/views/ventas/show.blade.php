@@ -1,139 +1,204 @@
 @extends('layouts.main')
 
 @section('content')
-<div class="content-wrapper pt-3">
-  <div id="areaImprimir">
-        <div id="page-wrap">
-            <h4 id="header">COTIZACIÓN</h4>
-            <div id="identity">
-                <div style="padding: 6px 28px;">
-                    <img height="150px" width="200px" src="{{url('/images/logo_original.png')}}" alt="Logo" style="float: left;">
-                    <div id="address">
-                        <h5><strong>Dirrecion:</strong>
-                        Full Pro-Ventas</h5>
-                        <h5><strong>Celular:</strong> 70349937</h5>
-                        <h5><strong>Email:</strong> econductores@shebolivia.net</h5>
-                    </div>
-                </div>
-            </div>
-                <div style="clear:both"></div>
-                <div id="customer">
-                    <table id="meta1">
-                        <!-- <tr>
-                            <td style="text-align: center;" class="meta-head">Cotizacion para Usuario</td>
-                        </tr><br> -->
-                        {{-- <tr>
-                            <td style="text-align: center;" class="meta-head">Fecha Inicio Clases</td>
-                            <td><input type="text" class="input"></td>
-                        </tr> --}}
-                    </table>
-                    <table id="productos">
-                        <!-- <tr>z
-                            <td class="meta-head">Comprobante*</td>
-                            <td> <div class="form-group">
-                                    <label for="tipo_comprobante">Tipo Comprobante *</label>
-                                        <select class="form-control" id="tipo_comprobante" name="tipo_comprobante"
-                                        placeholder="Tipo Comprobante" required>
-                                            <option value="factura">Factura</option>
-                                            <option value="recibo">Recibo</option>
-                                            <option value="nota">Nota de venta</option>
-                                        </select>
-                                </div>
-
-                            </td>
-                        </tr> -->
-                        <tr>
-                            <td class="meta-head">Fecha</td>
-                            <td>{{ $venta->created_at }}</td>
-                        </tr>
-                       
-                        <tr>
-                            <td class="meta-head">Copia</td>
-                            <td>
-                                <h5 style="letter-spacing: 23px;"><strong>ORIGINAL</strong></h5>  
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <table id="items" style="padding: 25px;">
-                    <tr>
-                        <th style="text-align: center;">Nombre Producto</th>
-                        <th style="text-align: center;">Detalle *</th>
-                        <th style="text-align: center;">Precio Unidad</th>
-                        <th style="text-align: center;">Cantidad Pedido</th>
-                        <th style="text-align: center;">Sub-Total</th>
-                    </tr>
-                    <tr class="item-row">
-                        <td class="item-name">
-                            <div class="delete-wpr">
-                                <p style="text-align: center;">{{$venta->nombre}}</p> 
-                            </div>
-                        </td>
-                        <td class="description">
-                            <p style="text-align: center;">{{$venta->descripcion}}</p></td>
-
-                        <td><p style="text-align: center;">{{ $venta->precio_venta}}</p></td>
-                        <td><p style="text-align: center;">{{ $venta->cantidad_pedido}}</p></td>
-                        <td><p style="text-align: center;"> {{ $venta->precio_venta * $venta->cantidad_pedido}}</p></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" class="blank"> </td>
-                        <td colspan="2" class="total-line balance">Total:</td>
-                        <td class="total-value">
-                            <div id="items">
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <h6 style="text-align: left;">*Campos Obligatorios</h6>
-               
-            <div style="clear:both">
-                <br>
-                <br>
-                <p style="text-align: center;">-----------------------</p>
-                <h4 style="text-align: center;">Recibido Conforme</h4>
-            </div>
-            <div id="terms">
-                <h5>SUGERENCIA</h5>
-                <textarea>No valido para credito Fiscal.</textarea>
-            </div>
-        </div>
+<br><br>
+<div class="content-wrapper" id="imprimir">
+<div class="container" id="template_invoice">
+  <div class="row">
+    <div class="col-xs-4">
+      <div class="invoice-title">
+            
+            <h2><img height="75px" width="75px" src="/images/logo_original.png" alt="Logo" >&nbsp; Cotización Pro-Ventas</h2>
+      </div>
     </div>
-    <div class="modal-footer">
-        <a type="button" class="btn btn-default" href="{{url('/venta')}}">Cerrar</a>
-        <!-- <button type="button" class="btn btn-success" onclick="printDiv('areaImprimir')" value="imprimir div">
-            <i class="fa fa-print" aria-hidden="true"></i> Imprimir</button> -->
-    </div>  
-</div>
     
+    <div class="col-xs-4">
+      <!-- <button class="btn btn-info pull-right">Download</button> -->
+      
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-6">
+      <address>
+        <img height="150px" width="150px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;">
+        <strong>Nombre Empresa: </strong>{{ Auth::user()->name }}<br>
+            <strong>Dirección: </strong>{{ Auth::user()->direccion }}<br>
+            <strong>Teléfono:</strong> {{ Auth::user()->telefono }}<br>
+            <strong>Whatsapp:</strong> {{ Auth::user()->whatsapp }}<br>
+            <strong>Email:</strong> {{ Auth::user()->email }}<br>
+            <strong>Pais:</strong> {{ Auth::user()->pais }}<br>
+            <strong>Ciudad:</strong>{{ Auth::user()->ciudad }}
+        </address>
+    </div>
+    <!-- <div class="col-xs-6 text-right">
+      <address>
+        <strong>Shipped To:</strong><br>
+            Jane Smith<br>
+            1234 Main<br>
+            Apt. 4B<br>
+            Springfield, ST 54321
+        </address>
+    </div> -->
+  </div>
+  <!-- <div class="row">
+    <div class="col-xs-6">
+      <address>
+            <strong>Payment Method:</strong><br>
+            Visa ending **** 4242<br>
+            jsmith@email.com
+        </address>
+    </div>
+    <div class="col-xs-6 text-right">
+      <address>
+            <strong>Order Date:</strong><br>
+            March 7, 2014<br><br>
+        </address>
+    </div>
+  </div> -->
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Codigo Carrito: {{ $carrito->id}}</strong></h3>
+          <h3 class="panel-title"><strong>Descripción: </strong></h3>
+        <h5>{{ $carrito->descripcion}}</h5> 
+        </div>
+        <div class="panel-body">
+          <div class="table-responsive">
+            <table class="table table-condensed">
+              <thead>
+                <!-- <div class="col-xs-4">
+                  <p class="lead">Order # {{12345}}</p>
+                </div> -->
+                <tr>
+                  <td class="text-center"><strong>Nombre Producto</strong></td>
+                  <td class="text-center"><strong>Descripcion</strong></td>                 
+                  <td class="text-center"><strong>Cantidad de pedido</strong></td>
+                  <td class="text-center"><strong>Precio Unitario</strong></td>
+                  <td class="text-center"><strong>Total</strong></td>
+                </tr>
+              </thead>
+              <tbody>
+               @foreach($carrito_detalle as $carrito_detalles)
+                    <tr class="item-row">
+                        <td class="text-center"><label>{{$carrito_detalles->nombre}}</label></td>
+                        <td class="text-center"><label>{{$carrito_detalles->descripcion}}</td></label>
+                        <td class="text-center"><label>{{$carrito_detalles->cantidad_pedido}}</td></label>
+                        <td class="text-center"><label>{{$carrito_detalles->precio_venta}} Bs.</td></label>
+                        <td class="text-center"><label>{{ number_format($carrito_detalles->cantidad_pedido  * $carrito_detalles->precio_venta , 2) }} Bs.</td>
+                        </label>
+                    </tr>
+                @endforeach 
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><br><br>
+<div class="modal-footer">
+    <a type="button" class="btn btn-default" href="{{url('/pedidoRealizado')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar</a>
+    <a href="javascript:pruebaDivAPdf()" class="button btn-light"><strong><label><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  &nbsp; Pasar a PDF</label> </strong> </a> &nbsp;&nbsp;
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Enviar Cotización
+    </button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enviar Cotización </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{{route('pedido.store')}}" method="POST" enctype="multipart/form-data">
+            {{ csrf_field() }}             
+            <div class="col-md-12 p-2">
+                <div class="form-group">
+                      <div class="col-md-12">
+                        <p><strong>PDF</strong></p>
+                        <label for="file-upload" class="custom-file-upload" style="text-align: center;">
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
+                        <strong>Seleccionar PDF...</strong>
+                        </label>
+                        <input id="file-upload" type="file" name="file">
+                    </div> <br>
+                     <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea class="form-control" name="descripcion" rows="4" cols="4"></textarea>
+                        </div>
+                     </div>
+                    
+
+                    <input type="text" class="form-control" name="estado"
+                        value="{{ $carrito->estado }}" hidden="true">
+                    <input type="text" class="form-control" name="importadora"
+                    value="{{ $carrito->importadora}}" hidden="true">
+
+
+                    <input type="text" class="form-control" name="user_id"
+                        value="{{Auth::user()->id}}" hidden="true">
+                    <input type="text" class="form-control" name="carrito_id"
+                         value="{{ $carrito->id }}" hidden="true">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    <i class="fa fa-close" aria-hidden="true"></i> Cerrar</button>
+                <button type="submit" class="btn btn-primary float-right mr-2"><i class="fa fas fa-save"></i> Enviar</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+@endsection
 <script>
-
-    let total = 0;
-
-    let celdasPrecio = document.querySelectorAll('td + td');
-
-    for(let i = 0; i < celdasPrecio.length; ++i){
-        total += parseFloat(celdasPrecio[i].firstChild.data);
+    function printDiv(nombreDiv) {
+        var contenido = document.getElementById(nombreDiv).innerHTML;
+        var contenidoOriginal = document.body.innerHTML;
+        document.body.innerHTML = contenido;
+        window.print();
+        document.body.innerHTML = contenidoOriginal;
     }
 
-    let nuevaFila = document.createElement('tr');
-
-    let celdaTotal = document.createElement('td');
-    let textoCeldaTotal = document.createTextNode('Total:');
-    celdaTotal.appendChild(textoCeldaTotal);
-    nuevaFila.appendChild(celdaTotal);
-
-    let celdaValorTotal = document.createElement('td');
-    let textoCeldaValorTotal = document.createTextNode(total);
-    celdaValorTotal.appendChild(textoCeldaValorTotal);
-    nuevaFila.appendChild(celdaValorTotal);
-
-    document.getElementById('items').appendChild(nuevaFila)
-    
+    function pruebaDivAPdf() {
+       var doc = new jsPDF("p", "pt", "letter"),
+        source = $("#template_invoice")[0],
+        margins = {
+          top: 10,
+          bottom: 60,
+          left: 40,
+          width: 522
+        };
+    doc.fromHTML(
+      source, // HTML string or DOM elem ref.
+      margins.left, // x coord
+      margins.top,
+      {
+        // y coord
+        width: margins.width // max width of content on PDF
+      },
+      function(dispose) {
+        // dispose: object with X, Y of the last line add to the PDF
+        //          this allow the insertion of new lines after html
+        doc.save("cotizacion_ProVentas.pdf");
+      },
+      margins
+    );
+  }
 </script>
-@endsection
-
 <style>
     .input {
         border: 0 !important;
@@ -167,6 +232,7 @@
     table th {
         border: 1px solid black;
         padding: 5px;
+
     }
     #header {
         width: 100%;
@@ -350,4 +416,5 @@
         font-family: Verdana;
         font-size: 12px;
     }
+
 </style>

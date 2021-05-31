@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -15,7 +17,7 @@ class UserController extends Controller
         
         $request->all();
 
-        dd($request);
+        //dd($request);
       
         User::create([
             'name' => $request->name,
@@ -26,20 +28,38 @@ class UserController extends Controller
             'ciudad' => $request->ciudad,
             'whatsapp' => $request->whatsapp,
             'email' => $request->email,
-            'role' => $request->role,
-            'imagen' => 'images/default-person.jpg',
-            'subscripcion' => $request->subscripcion,
+            'rol' => $request->rol,
+            // 'imagen' => 'images/default-person.jpg',
+            // 'subscripcion' => $request->subscripcion,
             'password' => Hash::make($request->password),
             
         ]); 
         
-        session::flash('message','Usuario Registrado Exisitosamente!');
-        return redirect('/login')->with("message", "Usuario creado exitosamente!");  
+        session::flash('message','Registro Exisitosamente!');
+        return redirect('/cliente_get')->with("message", "Usuario creado exitosamente!");    
     }
 
     public function getCliente(Request $request){
 
-        $user = User::where('rol', 'cliente')->get();
+        $user = User::where('rol', 'cliente')->paginate(10);
         return view('users.clientes', compact('user'));
     }
+
+     public function getDespacho(Request $request){
+
+        $despachos = User::where('rol', 'despacho')->paginate(10);
+        return view('users.despacho', compact('despachos'));
+    }
+
+    public function registerDespacho(){
+
+       return view('users.register');
+    }
+
+    public function registerClient(){
+
+       return view('users.registerClient');
+    }
+
+   
 }

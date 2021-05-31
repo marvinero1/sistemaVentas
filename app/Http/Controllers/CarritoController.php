@@ -13,36 +13,32 @@ class CarritoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-  	public function guardarPedido(Request $request){
+    public function getCartAttribute(Request $request, $id){
+        $carrito = Carrito::where('estado','false')
+        ->where('carritos.user_id', '=', $id)
+        ->first();
 
-        // $cant_inventario = 0; 
-        $cant_inventario = $request->cantidad;
-        $error = "Cantidad insuficiente";
-        if($cant_inventario > 0){
+        return response()->json($carrito, 201);
 
-            $carrito = Carrito::create($request->all()); 
+    }
 
-            }else{
-                return $error;
-            }
+     public function guardarCarrito(Request $request){
 
-            return response()->json($carrito, 201);
-            //Verificar inventario
+        $carrito = Carrito::create($request->all());
+        return response()->json($carrito, 200);
     }
     
 
     public function getPedido(Request $request){
         return Carrito::orderBy('created_at', 'asc')->where('confirmacion','false')->get();
-		
 	}
 
-   
-	
-	public function delete($id){
+     public function updateStatusCart(Request $request, $id){
+        
         $carrito = Carrito::findOrFail($id);
+        $carrito->update($request->all());
 
-        $carrito->delete();
-
-        return response()->json($carrito, 200); 
+        return response()->json($carrito, 200);
     }
+
 }

@@ -8,7 +8,8 @@ use App\Http\Controllers\ArticuloController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\VentaController;
-
+use App\Http\Controllers\CarritoDetalleController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,19 +28,27 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Auth::routes();
 
+
 Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
 Route::get('getNovedades',[ArticuloController::class, 'getNovedades']);
 Route::get('articulo/{id}',[ArticuloController::class, 'showArticulo']);
-Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
-Route::delete('pedidoDelete/{id}/', [CarritoController::class, 'delete']);
 Route::get('articulos',[ArticuloController::class, 'getArticulos']);
 Route::get('getPedido',[CarritoController::class, 'getPedido']);
+Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']);
+Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carritoProductosIonic']);
+Route::get('getMisCotizaciones', [PedidoController::class,'getMisCotizaciones']); 
+Route::get('getNovedadesIonic',[ArticuloController::class, 'getNovedadesIonic']);
+
 
 Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
-Route::post('guardarPedido',[CarritoController::class, 'guardarPedido']);
+Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
 Route::post('guardarPedidoRealizado',[VentaController::class, 'guardarPedidoRealizado']);
+Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);
 
+Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);
 
+Route::delete('favoritoDelete/{id}/', [FavoritoController::class, 'delete']);
+Route::delete('pedidoDelete/{id}/', [CarritoDetalleController::class, 'delete']);
 
 Route::get('images/{filename}', function ($filename)
 {

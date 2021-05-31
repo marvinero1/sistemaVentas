@@ -18,27 +18,9 @@ class Carrito extends Model
         'updated'
     ];
 
-    protected $fillable = ['nombre',
-                            'tipo_comprobante',
-                            'num_comprobante',
-                            'fecha',
-                            'cantidad',
-                            'cantidad_pedido',
-                            'codigo_barras',
-                            'unidad',
-                            'precio_compra',
-                            'precio_venta',
-                            'imagen',
-                            'imagen_novedad',
-                            'flag_carrito',
-                            'confirmacion',
-                            'articulo_id',
-                            'user_name',
-                            'categoria_id',
-                            'categoria_nombre',
+    protected $fillable = ['estado',
                             'descripcion',
-                            'articulo_id',
-                            'subcategoria_id',
+                            
                             'user_id',
                         ];
 }

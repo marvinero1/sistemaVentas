@@ -18,21 +18,10 @@ class Pedido extends Model
       'updated'
   ];
 
-  protected $fillable = ['nombre',
-                      'tipo_comprobante',
-                      'num_comprobante',
-                      'fecha',
-                      'cantidad',
-                      'unidad',
-                      'precio_compra',
-                      'precio_venta',
-                      'descripcion',
-                      'imagen',
-                      'imagen_novedad',
-                      'categoria_nombre',
-                      'flag_carrito',
-                      'user_id',
-                      'articulo_id',
-                      'user_name'
-                  ];
+  protected $fillable = ['estado',
+                        'file',
+                        'descripcion',
+                        'precio',
+                        'carrito_id',
+                        'user_id',];
 }

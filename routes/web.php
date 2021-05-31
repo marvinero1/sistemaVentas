@@ -37,6 +37,14 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('favoritos', 'FavoritoController');
     Route::resource('venta', 'VentaController');
     Route::resource('user', 'UserController');
+    Route::resource('pedido', 'PedidoController');
     Route::get('cliente_get', 'UserController@getCliente')->name("user.getCliente");
+    Route::get('getDespacho', 'UserController@getDespacho')->name("user.getDespacho");
+    
+    
     Route::get('novedades', 'ArticuloController@getNovedades')->name('articulos.getNovedades');
+    Route::get('registerDespacho', 'UserController@registerDespacho');
+    Route::get('registerClient', 'UserController@registerClient');
+    
+    
  });

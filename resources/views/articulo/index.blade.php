@@ -61,10 +61,7 @@
                         <td style="text-align:center;">{{ $articulos->categoria_id }}</td>
                         <td style="text-align: center;"><input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barras" value="{{ $articulos->codigo_barras }}" disabled="true" hidden="true"> <svg id="barcode"></svg></td>
                         <td style="text-align:center;"> {{ $articulos->cantidad }}</td>
-                        <td style="text-align:center;"> </td>
-
-                        <td style="text-align:center;">
-                          <div class="card-body">
+                        <td style="text-align:center;"> <div class="card-body">
                                <a class="btn btn-app" data-toggle="modal"
                                    data-target="#modalFavoritos{{$articulos->id}}" class="btn btn-danger btn-sm">
                                    <i class="fas fa-heart"></i> Favoritos
@@ -89,8 +86,9 @@
                                    <i class="fas fa-star"></i> Novedad
                                </a>
                                @endif 
-                           </div>
-                        </td>
+                           </div></td>
+
+                        
                         
                         {{-- MODAL FAVORITOS --}}
                         <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"

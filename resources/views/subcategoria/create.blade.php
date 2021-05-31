@@ -20,7 +20,7 @@
                                 <div class="row">
                                     <div class="col-md-12 p-2" style="border: outset;">
                                         <div class="form-group">
-                                            <label><strong>Categoria *</strong> </label>
+                                            <label><strong>Categoria *</strong></label>
                                             <select name="categoria_id" class="select2" style="width: 100% !important"
                                                 data-live-search="true" required>
                                                 @foreach ($categoria as $categorias)

@@ -29,7 +29,7 @@
         <table class="table table-striped table-hover">
             <thead class="thead-dark">
                 <tr>
-                    <th style="text-align:center;">Imagen</th>
+                    <!-- <th style="text-align:center;">Imagen</th> -->
                     <th style="text-align:center;">Nombre</th>
                     <th style="text-align:center;">Email</th>
                     <th style="text-align:center;">Telefono</th>
@@ -37,16 +37,16 @@
                     <th style="text-align:center;">Rol</th>
                   
                     <th style="text-align:center;">Acciones</th>
-                    <th></th>
+                    
                 </tr>
             </thead>
             <tbody>
                 @foreach ($user as $articulos)
                 <tr>
-                    <td><a class="image-popup-vertical-fit" href="/{{  $articulos->imagen }}">
+                   <!--  <td><a class="image-popup-vertical-fit" href="/{{  $articulos->imagen }}">
                         <img img src="/{{ $articulos->imagen }}" class="img-thumbnail" alt="articulo" height="100px"
                             width="100px" style="display: block;margin: 0 auto;">
-                    </a></td>
+                    </a></td> -->
                         <td style="text-align:center;">{{ $articulos->name }}</td>
                         <td style="text-align:center;">{{ $articulos->email }}</td>
                         <td style="text-align:center;">{{ $articulos->telefono }}</td>
@@ -70,6 +70,9 @@
                 @endforeach
             </tbody>
         </table><br><br>
+    </div>
+      <div style="text-align: center;">
+        {{ $user->links() }}
     </div>
 </div>
 </div>

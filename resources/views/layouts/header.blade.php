@@ -305,10 +305,29 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    
                     <li class="nav-item">
                         <a href="/cliente_get" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Clientes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/getDespacho" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Despacho</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/registerDespacho" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Registrar Despacho</p>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="/registerClient" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Registrar Cliente</p>
                         </a>
                     </li>
                    <!--  <li class="nav-item">

@@ -80,9 +80,9 @@
                      <p class="mb-1">
                         <a href="forgot-password.html" style="color:black;background-color: white">Olvide mi Contraseña</a>
                     </p>
-                    <p class="mb-0">
+                   <!--  <p class="mb-0">
                         <a href="/register" class="text-center" style="color:black;background-color: white">Registrate</a>
-                    </p>   
+                    </p> -->   
                     </div>
                     
                 </div>

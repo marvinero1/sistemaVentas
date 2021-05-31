@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Venta;
 use App\User;
+use App\Carrito;
+use App\carrito_detalle;
 use Illuminate\Http\Request;
 
 class VentaController extends Controller
@@ -15,8 +17,12 @@ class VentaController extends Controller
      */
     public function index(Request $request)
     {
-        $venta =Venta::latest()->get(); 
-        return view('ventas.index', compact('venta'));
+        $descripcion = $request->get('buscarpor');
+
+        $carrito = Carrito::where('descripcion','like',"%$descripcion%")->paginate(10);
+
+        //dd($carrito_detalle);
+        return view('ventas.index', compact('carrito'));
     }
 
     /**
@@ -54,10 +60,11 @@ class VentaController extends Controller
      */
     public function show($id)
     {
-        $venta = Venta::findOrFail($id);
-        $user = User::all()->sortBy('nombre');
-        
-        return view('ventas.show', compact('venta', 'user')); 
+        $carrito = Carrito::find($id);
+        $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
+
+        //dd($carrito_detalle);
+        return view('ventas.show', compact('carrito_detalle','carrito'));
     }
 
     /**
