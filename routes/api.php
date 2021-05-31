@@ -10,6 +10,7 @@ use App\Http\Controllers\FavoritoController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\CarritoDetalleController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
 Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
 Route::post('guardarPedidoRealizado',[VentaController::class, 'guardarPedidoRealizado']);
 Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);
+Route::post('registerIonic',[UserController::class, 'registerIonic']);
+
 
 Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);
 

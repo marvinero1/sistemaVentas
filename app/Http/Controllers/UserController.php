@@ -61,5 +61,8 @@ class UserController extends Controller
        return view('users.registerClient');
     }
 
-   
+    public function registerIonic(Request $request){
+        $user = User::create($request->all());
+        return response()->json($user, 200);
+    }   
 }

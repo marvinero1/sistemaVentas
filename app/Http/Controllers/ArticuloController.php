@@ -20,14 +20,18 @@ class ArticuloController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function getArticulos(){
+
+        $articulo = Articulo::all();
+
+        return response()->json($articulo, 200); 
+    }
 
     public function getNovedadesIonic(){
 
         $articulo = Articulo::where('novedad','true')->get();
-       
 
-        return response()->json($articulo, 201);
-      
+        return response()->json($articulo, 200);
     }
 
 
