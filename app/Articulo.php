@@ -30,6 +30,7 @@ class Articulo extends Model
                             'imagen',
                             'imagen_novedad',
                             'flag_carrito',
+                            'imagen_promocion',
                             'categoria_nombre',
                             'categoria_id',
                             'subcategoria_id',

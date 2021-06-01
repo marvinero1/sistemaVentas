@@ -42,14 +42,14 @@
                     @foreach($favorito as $favoritos)
                         @if(Auth::user()->id == $favoritos->user_id)
                         <tr>
-                            <td style="text-align:center;">{{ $favoritos->articulos->nombre }}</td>
+                            <td style="text-align:center;">{{ $favoritos->nombre }}</td>
                             {{-- <td style="text-align:center;">{{ $favoritos->user_id }}</td> --}}
                             <td style="text-align:center;">
                                 {{-- <a href="{{ route('categoria.edit',$categorias->id ) }}">
                                     <button class="btn btn-primary btn-sm"><i class="fa  fa-pencil-alt"
                                             aria-hidden="true"></i> Editar
                                     </button></a> --}}
-                                    <a href="{{ route('articulos.show',$favoritos->articulos->id) }}">
+                                    <a href="{{ route('articulos.show', $favoritos->articulo_id) }}">
                                         <button class="btn btn-secondary btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Ver</button>
                                     </a>
                                 <form action="{{ route('favoritos.destroy',$favoritos->id ) }}" method="POST"

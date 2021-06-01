@@ -46,6 +46,8 @@
                     <th style="text-align:center;">Cantidad </th>
                     <th style="text-align:center;">Acciones</th>
                     <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -85,58 +87,118 @@
                                    data-target="#modalNovedades{{$articulos->id}}" class="btn btn-danger btn-sm">
                                    <i class="fas fa-star"></i> Novedad
                                </a>
+
+                                <a class="btn btn-app" data-toggle="modal"
+                                   data-target="#modalPromocion{{$articulos->id}}" class="btn btn-danger btn-sm">
+                                   <i class="fa fa-bullhorn" aria-hidden="true"></i> Promoción
+                               </a>
                                @endif 
-                           </div></td>
+                           </div>
+                        </td>  
 
-                        
-                        
-                        {{-- MODAL FAVORITOS --}}
-                        <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"
-                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document" style="max-width: 337px !important;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Agregar a Lista de Favoritos</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: black">
-                                            <i class="fa fa-times" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body" >
-                                        <form action="{{route('favoritos.store')}}" method="POST"
-                                            enctype="multipart/form-data" style="margin-block-end:-1em !important;display: none">
-                                            {{ csrf_field() }}
-                                            <input type="hidden" name="articulo_id" value="{{$articulos->id}}">
-                                            <input type="hidden" name="nombre" value="{{$articulos->nombre}}">
-                                            <input type="hidden" name="tipo_comprobante" value="{{$articulos->tipo_comprobante}}">
-                                            <input type="hidden" name="num_comprobante" value="{{$articulos->num_comprobante}}">
-                                            <input type="hidden" name="fecha" value="{{$articulos->fecha}}">
-                                            <input type="hidden" name="cantidad" value="{{$articulos->cantidad}}">
-                                            <input type="hidden" name="unidad" value="{{$articulos->unidad}}">
-                                            <input type="hidden" name="precio_compra" value="{{$articulos->precio_compra}}">
-                                            <input type="hidden" name="precio_venta" value="{{$articulos->precio_venta}}">
-                                            <input type="hidden" name="descripcion" value="{{$articulos->descripcion}}">
-                                            <input type="hidden" name="imagen" value="{{$articulos->imagen}}">
-                                            <input type="hidden" name="flag_carrito" value="{{$articulos->flag_carrito}}">
-                                            <input type="hidden" name="novedad" value="{{$articulos->novedad}}">
+                        {{-- MODAL Promoción --}}
+                        <td>
+                            <div class="modal fade" id="modalPromocion{{$articulos->id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                 <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLabel">Administración Promociones</h5>
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <i class="fa fa-times" aria-hidden="true"></i>
+                                             </button>
+                                         </div>
+                                         <div class="modal-body" style="text-align: center;">
+                                             <form action="{{route('articulo.addPromocion', $articulos->id)}}"
+                                                 method="POST" enctype="multipart/form-data"
+                                                 style="margin-block-end:-1em !important;">
+                                                 {{ csrf_field() }}
+                                                 {{ method_field('PUT') }}
+                                                 <input type="hidden" name="promocion" value="true">
 
-                                            @if(Auth::user())
-                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                            @endif
-                                            
-                                            <div class="row" style="display: block;">
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        style="width: 100% !important; "><i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Añadir</button>
-                                                     <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                                                     style="width: 100% !important; "><i class="fa fa-times" aria-hidden="true"></i>&nbsp;Cerrar</button> -->
-                                                </div>
-                                        </form>
-                                    </div>
+                                                 @if(Auth::user())
+                                                 <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                 @endif
+                                                 <h4>Agregar a Lista de Promoción</h4>
+                                                 <div class="row">
+                                                  <div class="col-md-12">
+                                                      <div class="form-group">
+                                                          <label for="imagen">Imagen Promocional</label>
+                                                          <label for="file-upload" class="custom-file-upload"
+                                                              style="text-align: center;">
+                                                              <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
+                                                          </label>
+                                                          <p><strong>Sugerencia:</strong> Para una mejor visualizacion se
+                                                              recomienda<strong> 500 × 250 pixels</strong></p>
+                                                          <input id="file-upload" type="file" name="imagen_promocion">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                                 <div class="row" style="display: block;">
+                                                     <div class="modal-footer">
+                                                         <button type="submit" class="btn btn-primary"
+                                                             style="width: 100% !important; "><span
+                                                                 class="icon-star"></span>&nbsp; Añadir</button>
+                                                      
+                                                     </div>
+                                             </form>
+                                         </div>
+                                     </div>
+                                 </div>
+                            </div>  
+                        </td>                     
+                        
+                                             
+                    </tr>
+                    {{-- MODAL FAVORITOS --}}
+                       
+                    <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Agregar a Lista de Favoritos</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: black">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body" >
+                                    <form action="{{route('favoritos.store')}}" method="POST"
+                                        enctype="multipart/form-data" style="margin-block-end:-1em !important;display: none">
+                                        {{ csrf_field() }}
+                                        
+                                        <input type="hidden" name="articulo_id" value="{{$articulos->id}}">
+                                        <input type="hidden" name="nombre" value="{{$articulos->nombre}}">
+                                        <input type="hidden" name="tipo_comprobante" value="{{$articulos->tipo_comprobante}}">
+                                        <input type="hidden" name="num_comprobante" value="{{$articulos->num_comprobante}}">
+                                        <input type="hidden" name="fecha" value="{{$articulos->fecha}}">
+                                        <input type="hidden" name="cantidad" value="{{$articulos->cantidad}}">
+                                        <input type="hidden" name="unidad" value="{{$articulos->unidad}}">
+                                        <input type="hidden" name="precio_compra" value="{{$articulos->precio_compra}}">
+                                        <input type="hidden" name="precio_venta" value="{{$articulos->precio_venta}}">
+                                        <input type="hidden" name="descripcion" value="{{$articulos->descripcion}}">
+                                        <input type="hidden" name="imagen" value="{{$articulos->imagen}}">
+                                        <input type="hidden" name="flag_carrito" value="{{$articulos->flag_carrito}}">
+                                        <input type="hidden" name="novedad" value="{{$articulos->novedad}}">
+
+                                        @if(Auth::user())
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        @endif
+                                        
+                                        <div class="row" style="display: block;">
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="width: 100% !important; "><i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Añadir</button>
+                                                 <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                 style="width: 100% !important; "><i class="fa fa-times" aria-hidden="true"></i>&nbsp;Cerrar</button> -->
+                                            </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-                        <td>
-                           {{-- MODAL Novedades --}}
+                    </div>   
+                          
+                    {{-- MODAL Novedades --}}
                          <div class="modal fade" id="modalNovedades{{$articulos->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="exampleModalLabel" aria-hidden="true">
                              <div class="modal-dialog" role="document" style="max-width: 337px !important;">
@@ -162,7 +224,7 @@
                                              <div class="row">
                                               <div class="col-md-12">
                                                   <div class="form-group">
-                                                      <label for="imagen">Imagen Promocional</label>
+                                                      <label for="imagen">Imagen Novedad</label>
                                                       <label for="file-upload" class="custom-file-upload"
                                                           style="text-align: center;">
                                                           <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
@@ -184,15 +246,11 @@
                                      </div>
                                  </div>
                              </div>
-                         </div>
-                        </td>
-                        
-                    </tr>
+                        </div> 
                 @endforeach
             </tbody>
         </table><br><br>
     </div>
-
 </div>
 </div>
 <script type="text/javascript">

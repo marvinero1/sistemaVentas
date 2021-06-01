@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +30,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::put('articulo/{articulo}/addNovedad','ArticuloController@addNovedad')->name('articulo.addNovedad');
 
+    Route::put('articulo/{id}/addPromocion','ArticuloController@addPromocion')->name('articulo.addPromocion');
+
     Route::resource('articulos', 'ArticuloController');
     Route::resource('categorias', 'CategoriaController');
     Route::resource('cliente', 'ClienteController');
@@ -45,6 +48,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('novedades', 'ArticuloController@getNovedades')->name('articulos.getNovedades');
     Route::get('registerDespacho', 'UserController@registerDespacho');
     Route::get('registerClient', 'UserController@registerClient');
-    
-    
+
+       
  });

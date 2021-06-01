@@ -29,7 +29,7 @@ class ArticuloController extends Controller
 
     public function getNovedadesIonic(){
 
-        $articulo = Articulo::where('novedad','true')->get();
+        $articulo = Articulo::where('promocion','true')->get();
 
         return response()->json($articulo, 200);
     }
@@ -243,6 +243,67 @@ class ArticuloController extends Controller
         }
 
         Session::flash('message','Articulo Agregado a Novedad Exisitosamente!');
+        return redirect()->route('articulos.index');
+
+   }
+
+   public function addPromocion(Request $request, $id){
+
+        //dd($request);
+        $imagen = null;
+        $promocion = "true";
+        $articulo = Articulo::find($id);
+        $mensaje = 'Articulo Creado Exitosamente!!!';
+
+        $request->validate([
+            'promocion' => 'nullable',
+            'imagen_promocion' => 'nullable',
+         ]);
+
+        DB::beginTransaction();
+        $requestData = $request->all();
+        
+        
+
+        if($request->imagen_promocion == ''){
+            unset($requestData['imagen_promocion']);
+        }
+
+        $mensaje = "Articulo Actualizado correctamente :3";
+        if($request->imagen_promocion){
+            $data = $request->imagen_promocion;
+            $file = file_get_contents($request->imagen_promocion);
+            $info = $data->getClientOriginalExtension();
+            $extension = explode('images/articulos', mime_content_type('images/articulos'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info;
+            $path  = 'images/articulos';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName;
+            if($image->save($img)) {
+                $archivo_antiguo = $articulo->imagen_promocion;
+                $requestData['imagen_promocion'] = $img;
+                $articulo->promocion = $promocion;
+               
+                $mensaje = "Articulo Actualizado correctamente :3";
+                if ($archivo_antiguo != '' && !File::delete($archivo_antiguo)) {
+                    $mensaje = "Articulo Actualizado. error al eliminar la imagen";
+                }
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
+        //dd($requestData);
+
+        if($articulo->update($requestData)){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message','Articulo Agregado a Promocion Exisitosamente!');
         return redirect()->route('articulos.index');
 
    }
