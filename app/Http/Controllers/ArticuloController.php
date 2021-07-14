@@ -91,8 +91,7 @@ class ArticuloController extends Controller
 
         DB::beginTransaction();
         $requestData = $request->all();
-        //dd($requestData);
-
+        
         if($request->imagen){
 
             $data = $request->imagen;

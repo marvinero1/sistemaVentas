@@ -38,7 +38,6 @@ class CategoriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-
         $request->validate([
             'nombre' => 'required',
             'descripcion' => 'nullable',
