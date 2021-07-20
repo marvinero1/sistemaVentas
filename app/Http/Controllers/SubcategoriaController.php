@@ -113,8 +113,13 @@ class SubcategoriaController extends Controller
      * @param  \App\Subcategoria  $subcategoria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategoria $subcategoria)
-    {
-        //
+    public function destroy($id){
+
+        $subcategoria = subcategoria::findOrFail($id);
+
+        $subcategoria->delete();
+
+        Session::flash('message','Sub-Categoria Eliminado exitosamente!');
+        return redirect()->route('subcategorias.index');
     }
 }

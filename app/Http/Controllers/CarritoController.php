@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Carrito;
+use DB;
+use Session;
 use Illuminate\Http\Request;
 
 class CarritoController extends Controller
@@ -41,4 +43,27 @@ class CarritoController extends Controller
         return response()->json($carrito, 200);
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Carrito  $carrito
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id){
+   
+        $mensaje = "Cotizacion Confirmada Exitosamente!!!";
+
+        $carrito = Carrito::findOrFail($id);
+        $carrito->update($request->all());
+
+        if($carrito){
+            DB::commit();
+        }else{
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+        return redirect()->route('pedido.index'); 
+    }
 }

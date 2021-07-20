@@ -49,6 +49,10 @@ class ArticuloController extends Controller
         return view('novedad.index', compact('articulo'));
     }
 
+    public function getPromocion(Request $request){
+        $articulo = Articulo::where('promocion', 'true')->get();
+        return view('articulo.promocion', compact('articulo'));
+    }
 
     /**
      * Show the form for creating a new resource.

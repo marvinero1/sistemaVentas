@@ -20,7 +20,11 @@ class Carrito extends Model
 
     protected $fillable = ['estado',
                             'descripcion',
-                            
+                            'confirmacion',
                             'user_id',
                         ];
+                        
+    public function user(){
+        return $this->hasOne(User::class,'id','user_id');
+    }
 }

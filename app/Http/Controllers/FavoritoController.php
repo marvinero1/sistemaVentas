@@ -30,51 +30,7 @@ class FavoritoController extends Controller
     public function guardarFavorito(Request $request){
 
        $favorito = Favorito::create($request->all());
-
-
-       $exit = Favorito::where(function($q1)use($request){
-           if($request->articulo_id){
-               $q1->where('user_id',$request->user_id)->where('articulo_id',$request->articulo_id);
-           }
-       })
-       // ->orWhere(function($q1)use($request){
-       //     if($request->bono_id){
-       //     $q1->where('user_id',$request->user_id)->where('bono_id',$request->bono_id);
-       //     }
-
-       // })
-       // ->orWhere(function($q1)use($request){
-       //     if($request->titulo_id){
-       //     $q1->where('user_id',$request->user_id)->where('titulo_id',$request->titulo_id);
-       //     }
-       //})
-       ->get();
-       if(count($exit) == 0){
-           Favorito::create([
-               'id'=>$request->id,
-               'nombre' => $request->nombre,
-               'tipo_comprobante' => $request->tipo_comprobante,
-               'num_comprobante' => $request->num_comprobante,
-               'fecha' => $request->fecha,
-               'cantidad' => $request->cantidad,
-               'unidad' => $request->unidad,
-               'precio_compra' => $request->precio_compra,
-               'precio_venta' => $request->precio_venta,
-               'descripcion' => $request->descripcion,
-               'codigo_barras' => $request->codigo_barras,
-               'imagen' => $request->imagen,
-               'imagen_novedad' => $request->imagen_novedad,
-               'flag_carrito' => $request->flag_carrito,
-               'categoria_id' => $request->categoria_id,
-               'articulo_id' => $request->id,
-               'user_id' => $request->user_id,
-
-           ]);
-           Session::flash('message','Agregado a Favoritos!');
-       }else{
-           Session::flash('message','Ya esta agregado a Favoritos!');
-       }
-       //return redirect()->route('productos.index');
+       
        return response()->json($favorito, 201);
    }
 
@@ -181,7 +137,7 @@ class FavoritoController extends Controller
      * @param  \App\Favorito  $favorito
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Favorito $favorito)
+    public function destroy($id)
     {
         $favorito = Favorito::findOrFail($id);
 

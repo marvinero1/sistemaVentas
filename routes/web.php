@@ -39,13 +39,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('subcategorias', 'SubcategoriaController');
     Route::resource('favoritos', 'FavoritoController');
     Route::resource('venta', 'VentaController');
+    Route::resource('carrito', 'CarritoController');
     Route::resource('user', 'UserController');
     Route::resource('pedido', 'PedidoController');
     Route::get('cliente_get', 'UserController@getCliente')->name("user.getCliente");
     Route::get('getDespacho', 'UserController@getDespacho')->name("user.getDespacho");
-    
-    
+    Route::get('getVentaConfirmada', 'PedidoController@ventaConfirmada');
     Route::get('novedades', 'ArticuloController@getNovedades')->name('articulos.getNovedades');
+    Route::get('promociones', 'ArticuloController@getPromocion')->name("articulos.getPromocion");
+    Route::get('downloads/{file}','PedidoController@download')->name('downloads');
+
     Route::get('registerDespacho', 'UserController@registerDespacho');
     Route::get('registerClient', 'UserController@registerClient');
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content-wrapper pt-3">
-    <h1 style="text-align: center" class="mb-4">Pedidos Pendientes</h1>
+    <h1 style="text-align: center" class="mb-4">Ventas Pendientes</h1>
     <div class="content">
         @if (Session::has('message'))
         <div class="alert alert-success">{{ Session::get('message') }}</div>
@@ -40,7 +40,7 @@
                 <thead>
                     <tr>
                        <!-- <th>Id</th>   -->
-                        <th style="text-align:center;">Estado</th>
+                        <!-- <th style="text-align:center;">Estado</th> -->
                         <th style="text-align:center;">Descripcion</th>
                         <th style="text-align:center;">Cotizacion del Usuario</th>                   
                         <th style="text-align:center;">Enviado en Fecha</th>    
@@ -50,9 +50,9 @@
                 <tbody>
                     @foreach($carrito as $carritos)
                     <tr>
-                        <td style="text-align:center;">{{ $carritos->estado }}</td>
+                        <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
                         <td style="text-align:center;">{{ $carritos->descripcion }}</td>
-                        <td style="text-align:center;">{{ $carritos->user_id }}</td>
+                        <td style="text-align:center;">{{ $carritos->user->name }}</td>
                         <td style="text-align:center;">{{ $carritos->created_at }}</td>              
                         <td style="text-align:center;">
                             <div class="card-body">

@@ -41,7 +41,7 @@
                 <tr>
                     <td style="text-align:center;"> 
                     @if( $productos->imagen == '')
-                        <img img src="images/default-person.jpg" class="img-thumbnail" alt="Producto" height="150px" width="150px">
+                        <img img src="images/logo_original.png" class="img-thumbnail" alt="Producto" height="150px" width="150px">
                     @else
                         <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"
                             style="display: block;margin: 0 auto;">

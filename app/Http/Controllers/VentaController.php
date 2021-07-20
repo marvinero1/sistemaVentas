@@ -58,13 +58,20 @@ class VentaController extends Controller
      * @param  \App\Venta  $venta
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(carrito_detalle $carrito_detalle, $id)
     {
         $carrito = Carrito::find($id);
         $carrito_detalle = carrito_detalle::where('carrito_detalles.carro_id','=', $id)->get();
 
+         $totalTotal = 0;
+        foreach($carrito_detalle as $carrito_detalles){
+            $total = $carrito_detalles->cantidad_pedido * $carrito_detalles->precio_venta;
+            $totalTotal +=  $total;
+        }
+         
+
         //dd($carrito_detalle);
-        return view('ventas.show', compact('carrito_detalle','carrito'));
+        return view('ventas.show', compact('carrito_detalle','carrito','total','totalTotal'));
     }
 
     /**

@@ -224,7 +224,26 @@
                     </ul>
                 </li>
                 
-                <li class="nav-item has-treeview">
+            
+            <li class="nav-item has-treeview">
+                <a class="nav-link" href="/favoritos">
+                  <i class="fa fa-heart nav-icon" aria-hidden="true"></i>
+                    <p>Favoritos 💥</p>                
+                </a>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="/novedades" class="nav-link">
+                  <i class="fa fa-star nav-icon" aria-hidden="true"></i>
+                    <p>Novedades</p>                
+                </a>
+            </li>
+            <li class="nav-item has-treeview">
+                <a href="/promociones" class="nav-link">
+                  <i class="fa fa-thumbs-o-up nav-icon" aria-hidden="true"></i>
+                    <p>Promociones ✨</p>                
+                </a>
+            </li>
+            <li class="nav-item has-treeview">
                   <a class="nav-link">
                     <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
                       <p>Ventas
@@ -235,10 +254,16 @@
                       <li class="nav-item">
                           <a href="/venta" class="nav-link">
                               <i class="far fa-circle nav-icon"></i>
-                              <p>Ventas</p>
+                              <p>Ventas Pendientes</p>
                           </a>
                       </li>
                      
+                     <li class="nav-item">
+                          <a href="/getVentaConfirmada" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Ventas Confirmadas</p>
+                          </a>
+                      </li>
                   </ul>
               </li>
 
@@ -265,18 +290,6 @@
                    
                 </ul>
             </li> --}}
-            <li class="nav-item has-treeview">
-                <a class="nav-link" href="/favoritos">
-                  <i class="fa fa-heart nav-icon" aria-hidden="true"></i>
-                    <p>Favoritos 💥</p>                
-                </a>
-            </li>
-            <li class="nav-item has-treeview">
-                <a href="/novedades" class="nav-link">
-                  <i class="fa fa-star nav-icon" aria-hidden="true"></i>
-                    <p>Novedades</p>                
-                </a>
-            </li>
             <!-- <li class="nav-item has-treeview">
               <a class="nav-link">
                 <i class="fa fa-th-list nav-icon" aria-hidden="true"></i>

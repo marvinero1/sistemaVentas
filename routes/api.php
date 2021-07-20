@@ -37,9 +37,10 @@ Route::get('articulos',[ArticuloController::class, 'getArticulos']);
 Route::get('getPedido',[CarritoController::class, 'getPedido']);
 Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute']);
 Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carritoProductosIonic']);
-Route::get('getMisCotizaciones', [PedidoController::class,'getMisCotizaciones']); 
+Route::get('getMisCotizaciones', [CarritoController::class,'getMisCotizaciones']); 
 Route::get('getNovedadesIonic',[ArticuloController::class, 'getNovedadesIonic']);
-
+Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
+Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 
 Route::post('guardarFavorito',[FavoritoController::class, 'guardarFavorito']);
 Route::post('guardarPedido',[CarritoDetalleController::class, 'guardarPedido']);
