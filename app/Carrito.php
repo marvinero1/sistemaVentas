@@ -20,6 +20,9 @@ class Carrito extends Model
 
     protected $fillable = ['estado',
                             'descripcion',
+                            'destino',
+                            'nit',
+                            'telefono',
                             'confirmacion',
                             'user_id',
                         ];

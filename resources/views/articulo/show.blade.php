@@ -3,19 +3,18 @@
 @section('content')
 
 <div class="content-wrapper pt-3">
-    <section class="container">
-         
+    <section class="container">       
         <div class="card">
-<a class="btn btn-app" data-toggle="modal"
-                                   data-target="#modalPromocion{{$articulo->id}}" class="btn btn-danger btn-sm">
-                                   <i class="fa fa-bullhorn" aria-hidden="true"></i> Promoción
-                               </a>
-
             <div class="row p-3">
-                <div class="col-xs-4 col-md-4 item-photo">
-                    <img style="max-width:100%;" src="/{{ $articulo->imagen }}" style="width: 100%;
-                    height: 100%;"/>
+                <div class="col-xs-4 col-md-4 item-photo" style="display: inline-block;">
+                    <img style="max-width:100%;padding-block-start: 21px;" src="/{{ $articulo->imagen }}"/>
+                    <hr>
+                    <div class="col" style="text-align: center; padding-block-start: 25px;background-color: forestgreen;color: white;">
+                        <a class="btn btn-app" data-toggle="modal" data-target="#modalPromocion{{$articulo->id}}" class="btn btn-danger btn-sm"><i class="fa fa-bullhorn" aria-hidden="true"></i> Promoción
+                        </a>
+                    </div>               
                 </div>
+
 
                 <div class="col-xs-5 col-md-8 p-3" style="border:0px solid gray">
                     <!-- Datos del vendedor y titulo del producto -->
@@ -50,8 +49,7 @@
                         <h4 class="title-attr">Numero Comprobante
                         </h4>
                         <div>
-                            <div class="attr" style="width: 102px !important;
-                            height: 31px !important;">
+                            <div class="attr" style="height: 31px !important;">
                                 <h5 style="text-align: center;">{{ $articulo->num_comprobante }}</h5>
                             </div>
                             {{-- <div class="attr2">32 GB</div> --}}

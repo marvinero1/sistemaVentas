@@ -95,6 +95,7 @@ class ArticuloController extends Controller
 
         DB::beginTransaction();
         $requestData = $request->all();
+        $false = "false";
         
         if($request->imagen){
 
@@ -112,12 +113,16 @@ class ArticuloController extends Controller
             $img = $path.'/'.$fileName;
             if($image->save($img)) {
                 $requestData['imagen'] = $img;
-                $requestData['flag_carrito'] = 'false';
-                
+                $requestData['flag_carrito'] = $false;
+                $requestData['promocion'] = $false;
+                $requestData['novedad'] = $false;
+
                 $mensaje;
             }else{
+
                 $mensaje = "Error al guardar la imagen";
             }
+                
         }
 
         $articulo = Articulo::create($requestData);

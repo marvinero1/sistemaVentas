@@ -29,33 +29,29 @@
             <thead>
                 <tr>
                     {{-- <th>Id</th>  --}}
-                    <th style="text-align:center;">Imagen</th>
-                    <th style="text-align:center;">Nombre</th>
-                    <th style="text-align:center;">Precio</th>
-                    <th style="text-align:center;">Descripción</th>
-                    <th style="text-align:center;">Acciones</th>
+                    <th class="text-center">Imagen</th>
+                    <th class="text-center">Nombre</th>
+                    <th class="text-center">Precio</th>
+                    <th class="text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($articulo as $productos)
                 <tr>
-                    <td style="text-align:center;"> 
+                    <td class="text-center"> 
                     @if( $productos->imagen == '')
                         <img img src="images/logo_original.png" class="img-thumbnail" alt="Producto" height="150px" width="150px">
                     @else
-                        <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"
+                        <img src="/{{$productos->imagen_promocion }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"
                             style="display: block;margin: 0 auto;">
                     @endif</td>
-                    <td style="text-align:center;">{{ $productos->nombre }}</td>
-                    <td style="text-align:center;">{{ $productos->precio_venta }}</td>
-                    <td style="text-align:center;">{{ $productos->importadora }}</td>
-                    <td style="text-align:center;">{{ $productos->descripcion }}</td>
-                        <td>
-                            <a class="btn btn-app " href="{{ route('articulos.show',$productos->id ) }}">
-                                <i class="fas fa-eye"></i> Ver
-                            </a>   
-                        </td>
-          
+                    <td class="text-center">{{ $productos->nombre }}</td>
+                    <td class="text-center">{{ $productos->precio_venta }}</td>
+                    <td class="text-center">
+                        <a class="btn btn-app " href="{{ route('articulos.show',$productos->id ) }}">
+                            <i class="fas fa-eye"></i> Ver
+                        </a>   
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

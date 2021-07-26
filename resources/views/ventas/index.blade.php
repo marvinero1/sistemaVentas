@@ -41,9 +41,13 @@
                     <tr>
                        <!-- <th>Id</th>   -->
                         <!-- <th style="text-align:center;">Estado</th> -->
-                        <th style="text-align:center;">Descripcion</th>
-                        <th style="text-align:center;">Cotizacion del Usuario</th>                   
-                        <th style="text-align:center;">Enviado en Fecha</th>    
+                        
+                        <th style="text-align:center;">Cotizacion del Usuario</th>       
+                        <th style="text-align:center;">Destino</th>           
+                        <th style="text-align:center;">NIT</th>           
+                        <th style="text-align:center;">Teléfono</th>           
+                        <th style="text-align:center;">Enviado en Fecha</th>
+                        <th style="text-align:center;">Descripcion</th>    
                         <th style="text-align:center;">Acciones</th>                      
                     </tr>
                 </thead>
@@ -51,9 +55,13 @@
                     @foreach($carrito as $carritos)
                     <tr>
                         <!-- <td style="text-align:center;">{{ $carritos->estado }}</td> -->
-                        <td style="text-align:center;">{{ $carritos->descripcion }}</td>
+                        
                         <td style="text-align:center;">{{ $carritos->user->name }}</td>
-                        <td style="text-align:center;">{{ $carritos->created_at }}</td>              
+                        <td style="text-align:center;">{{ $carritos->destino }}</td>
+                        <td style="text-align:center;">{{ $carritos->nit }}</td>
+                        <td style="text-align:center;">{{ $carritos->telefono }}</td>
+                        <td style="text-align:center;">{{ $carritos->created_at->format('d/F/Y')  }}</td> 
+                        <td style="text-align:center;">{{ $carritos->descripcion }}</td>             
                         <td style="text-align:center;">
                             <div class="card-body">
                                 <a class="btn btn-app " href="{{ route('venta.show',$carritos->id ) }}">
