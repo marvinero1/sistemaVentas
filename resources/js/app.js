@@ -64,7 +64,7 @@ $(function () {
       theme: 'bootstrap4'
     });
 
-   
+
 
     // JsBarcode("#barcode", "1234", {
     //   format: "pharmacode",

@@ -135,7 +135,7 @@
                                       </div>
                                   </div>
                                   <div class="col-md-4">
-                                      
+
                                       <label for="imagen">Imagen</label>
                                       <label for="file-upload" class="custom-file-upload"
                                           style="text-align: center;">
@@ -171,9 +171,6 @@
                     </div>
     </section>
 </div>
-
-<h1>asdasdasdas</h1>
-
 <script>
     function bar(){
         var valor = document.getElementById("barcodeValue").value;

@@ -50,7 +50,15 @@
                     <td class="text-center">
                         <a class="btn btn-app " href="{{ route('articulos.show',$productos->id ) }}">
                             <i class="fas fa-eye"></i> Ver
-                        </a>   
+                        </a> 
+                        <form action="{{ route('articulos.destroy',$productos->id ) }}" method="POST"
+                                accept-charset="UTF-8" style="display:inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Image"
+                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
+                                        aria-hidden="true"></i> Eliminar</button>
+                            </form>   
                     </td>
                 </tr>
                 @endforeach

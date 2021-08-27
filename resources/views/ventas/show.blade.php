@@ -119,11 +119,11 @@
 
     <!-- Button trigger Confirmacion -->
     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalConfirmacion">
-      <i class="fa fa-check" aria-hidden="true"></i>&nbsp; Confirmar Cotización
+      <i class="fa fa-check" aria-hidden="true"></i>&nbsp; Confirmar Pedido
     </button>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Enviar Cotización
+      <i class="fa fa-save" aria-hidden="true"></i>&nbsp; Enviar Detalle Pedido
     </button>
 </div>
 
