@@ -59,7 +59,7 @@ class PedidoController extends Controller{
         if($request->hasFile('file')) {
             $file = $request->file('file');
             $requestData['file'] = auth()->id() .'_'. time() .'_'. $request->file('file')->getClientOriginalName();
-            $request->file('file')->storeAs('files', $requestData['file']);
+            $request->file('file')->storeAs('public/files', $requestData['file']);
         }
         $pedido = Pedido::create($requestData);
 
