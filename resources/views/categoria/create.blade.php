@@ -44,7 +44,7 @@
                             </div>
                             <div class="card-footer">
                                 <a type="button" class="btn btn-secondary float-right"
-                                    href="{{url('/categorias')}}">Cerrar</a>&nbsp;
+                                    href="{{url('/categorias')}}"><i class="fa fas fa-close"></i> Cerrar</a>&nbsp;
                                 <button type="submit" class="btn btn-primary float-right"><i class="fa fas fa-save"></i>
                                     Guardar</button>
                             </div>

@@ -4,11 +4,11 @@
 <div class="content-wrapper pt-3">
     <section class="content">
         <div class="container-fluid">
-            <div class="container" style="padding-block-start: 72px;">
+            <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">{{ __('Register') }} Despacho</div>
+                            <div class="card-header">{{ __('Register') }} Cliente</div>
 
                             <div class="card-body">
                                 <form action="{{route('user.store')}}" method="POST">

@@ -11,22 +11,25 @@
 @endif    
 <div class="container" id="template_invoice">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col">
       <div class="invoice-title">
-            <h2><img height="55px" width="55px" src="/images/logo_original.png" alt="Logo" >&nbsp; Cotización Pro-Ventas</h2>
+            <h2><img height="55px" width="55px" src="/images/logo_original.png" alt="Logo" >&nbsp;Cotización Pro-Ventas</h2>
       </div>
+    </div>    
+    <div class="col" style="text-align:right;padding-top: 5px;">
+        <div>
+            <div class="panel-heading" >
+                <h5 class="panel-title"><strong>Cod. Carrito: {{ $carrito->id }} </strong></h5>
+            </div>
+        </div>
     </div>
-    
-    <div class="col-xs-4">
-      <!-- <button class="btn btn-info pull-right">Download</button> -->
-    </div>
-  </div>
-  <hr>
+  </div><hr>
+
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-6 p-3">
       <address>
-        <img height="50px" width="50px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;">
-        <strong>Nombre Empresa: </strong>{{ Auth::user()->name }}<br>
+        <!-- <img height="50px" width="50px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;"> -->
+            <strong>Nombre Empresa: </strong>{{ Auth::user()->name }}<br>
             <strong>Dirección: </strong>{{ Auth::user()->direccion }}<br>
             <strong>Teléfono:</strong> {{ Auth::user()->telefono }}<br>
             <strong>Whatsapp:</strong> {{ Auth::user()->whatsapp }}<br>
@@ -64,18 +67,10 @@
   <div class="row">
     <div class="col-md-12">
       <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title"><strong>Codigo Carrito: {{ $carrito->id}}</strong></h3>
-          <h3 class="panel-title"><strong>Descripción: </strong></h3>
-        <h5>{{ $carrito->descripcion}}</h5> 
-        </div>
         <div class="panel-body">
           <div class="table-responsive">
             <table class="table table-condensed">
               <thead>
-                <!-- <div class="col-xs-4">
-                  <p class="lead">Order # {{12345}}</p>
-                </div> -->
                 <tr>
                   <td class="text-center"><strong>Nombre Producto</strong></td>
                   <td class="text-center"><strong>Descripcion</strong></td>                 
@@ -109,9 +104,9 @@
       </div>
     </div>
   </div>
-</div><br><br>
+</div><br>
 <div class="modal-footer">
-    <a type="button" class="btn btn-default" href="{{url('/venta')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>  Cerrar
+    <a type="button" class="btn btn-default" href="{{url('/venta')}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>Cerrar
     </a>
 
     <a href="javascript:pruebaDivAPdf()" class="button btn-danger"><strong><label><i class="fa fa-file-pdf-o" aria-hidden="true"></i>  &nbsp; Pasar a PDF</label> </strong></a> &nbsp;&nbsp;

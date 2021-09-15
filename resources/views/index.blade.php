@@ -12,7 +12,7 @@
                     <hr> Pro-Ventas</h1>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4">
                 <div class="card hovercard2">
                     <div class="cardheader2">
@@ -66,7 +66,7 @@
                     </div><br>
                 </div>
             </div>    
-        </div>
+        </div> -->
     </div>
 </div>
 @endsection
