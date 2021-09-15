@@ -77,7 +77,7 @@ class PedidoController extends Controller{
         //dd(json_encode($request->file));
         $file = $request->file;
 
-        $path = storage_path("app/files/". $file);
+        $path = storage_path("app/public/files/". $file);
 
         return response()->download($path);
 

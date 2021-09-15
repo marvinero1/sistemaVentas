@@ -9,7 +9,7 @@
 @if (Session::has('error'))
 <div class="alert alert-danger">{{ Session::get('error') }}</div>
 @endif    
-<div class="container" id="template_invoice">
+<div class="content" id="template_invoice">
   <div class="row">
     <div class="col">
       <div class="invoice-title">
