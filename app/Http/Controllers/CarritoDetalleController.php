@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\carrito_detalle;
 use App\Carrito;
+use App\Articulo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,41 @@ class CarritoDetalleController extends Controller
 
             return response()->json($carrito_detalle, 201);
             //Verificar inventario
+    }
+
+
+     public function controlInventario(Request $request, $id){
+
+        $articulo = Articulo::findOrFail($id);
+        $cantidadArt = $request->get('cantidad');
+        $cantidadPedido =  $request->get('cantidad_pedido');
+
+
+        #descuento
+        $descuento = $cantidadArt - $cantidadPedido;
+
+        $articulo->cantidad = $descuento;
+        
+        $articulo->update(); 
+
+        return response()->json($articulo, 200);
+            
+    }
+
+    public function controlInventarioDevolver(Request $request, $id, $cantidadPedido){
+
+
+        $articulo = Articulo::findOrFail($id);
+        $cantidadArt = $articulo->cantidad;
+        
+        #descuento
+        $descuento = $cantidadPedido + $cantidadArt;
+
+        $articulo->cantidad = $descuento;
+        
+        $articulo->update(); 
+
+        return response()->json($articulo, 200);
     }
 
     /**

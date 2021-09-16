@@ -34,6 +34,7 @@ class Articulo extends Model
                             'categoria_nombre',
                             'categoria_id',
                             'subcategoria_id',
+                            'articulo_id',
                             'descripcion'];
 
     public function categoria(){

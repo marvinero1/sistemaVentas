@@ -48,6 +48,8 @@ Route::post('guardarPedidoRealizado',[VentaController::class, 'guardarPedidoReal
 Route::post('guardarCarrito',[CarritoController::class, 'guardarCarrito']);
 Route::post('registerIonic',[UserController::class, 'registerIonic']);
 
+Route::put('controlInventario/{id}', [CarritoDetalleController::class,'controlInventario']);
+Route::put('controlInventarioDevolver/{id}/{cantidadPedido}', [CarritoDetalleController::class,'controlInventarioDevolver']);
 
 Route::put('updateStatusCart/{id}', [CarritoController::class,'updateStatusCart']);
 

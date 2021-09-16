@@ -29,5 +29,6 @@ class carrito_detalle extends Model
                             'imagen_novedad',
                             'carro_id',
                             'categoria_id',
+                            'articulo_id',
                         ];
 }
