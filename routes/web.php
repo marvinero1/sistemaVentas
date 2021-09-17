@@ -52,5 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('registerDespacho', 'UserController@registerDespacho');
     Route::get('registerClient', 'UserController@registerClient');
 
-       
+
+    Route::put('addStock/{id}','ArticuloController@addStock')->name('articulo.addStock');       
  });

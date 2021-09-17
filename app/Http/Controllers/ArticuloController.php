@@ -27,9 +27,9 @@ class ArticuloController extends Controller
         return response()->json($articulo, 200); 
     }
 
-    public function getNovedadesIonic(){
+    public function getNovedadesIonic(Request $request){
 
-        $articulo = Articulo::where('promocion','true')->get();
+        $articulo = Articulo::where('novedad', 'true')->get();
 
         return response()->json($articulo, 200);
     }
@@ -156,6 +156,21 @@ class ArticuloController extends Controller
     public function showArticulo($id){
        return Articulo::findOrFail($id);
    }
+
+    public function addStock(Request $request, $id){
+
+
+        $request->all();
+
+        $articulo = Articulo::find($id);
+
+        $articulo->cantidad = $request->get('cantidad');
+        
+        $articulo->update();
+
+        Session::flash('message','Articulo con stock Añadido Exisitosamente!');
+        return redirect()->route('articulos.index');
+    }
 
     /**
      * Show the form for editing the specified resource.

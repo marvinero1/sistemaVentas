@@ -66,7 +66,7 @@
                                    <i class="fas fa-heart"></i> Favoritos
                                </a>
 
-                               <a class="btn btn-app " href="{{ route('articulos.show',$articulos->id ) }}">
+                               <a class="btn btn-app " href="{{ route('articulos.show', $articulos->id ) }}">
                                    <i class="fas fa-eye"></i> Ver
                                </a>
                                <form action="{{ route('articulos.destroy', $articulos->id ) }}" method="POST"
@@ -87,6 +87,7 @@
 
                                
                                @endif 
+                                
                            </div>
                         </td>        
                      
@@ -137,6 +138,8 @@
                                     </div>
                                 </div>
                             </div> 
+
+                           
                                                       
                     </tr>
                    
@@ -191,6 +194,9 @@
                                  </div>
                              </div>
                     </div> 
+
+                
+                                     
                 @endforeach
             </tbody>
         </table><br><br>

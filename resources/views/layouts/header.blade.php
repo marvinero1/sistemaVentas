@@ -192,7 +192,7 @@
                         <p>Escritorio</p>  
                     </a>
                 </li>
-                
+                @if(Auth::user()->rol == 'admin' || Auth::user()->rol == 'cliente')
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cube"></i>
@@ -243,29 +243,7 @@
                     <p>Promociones ✨</p>                
                 </a>
             </li>
-            <li class="nav-item has-treeview">
-                  <a class="nav-link">
-                    <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
-                      <p>Ventas
-                          <i class="right fas fa-angle-left"></i>
-                      </p>
-                  </a>
-                  <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                          <a href="/venta" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Ventas Pendientes</p>
-                          </a>
-                      </li>
-                     
-                     <li class="nav-item">
-                          <a href="/getVentaConfirmada" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Ventas Confirmadas</p>
-                          </a>
-                      </li>
-                  </ul>
-              </li>
+            
 
               {{-- <li class="nav-item has-treeview">
                 <a class="nav-link">
@@ -352,6 +330,32 @@
                    
                 </ul>
             </li>
+            @endif
+            <li class="nav-item has-treeview">
+                @if(Auth::user()->rol == 'despacho' || Auth::user()->rol == 'admin' || Auth::user()->rol == 'cliente')
+                  <a class="nav-link">
+                    <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
+                      <p>Ventas
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                    @endif
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="/venta" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Ventas Pendientes</p>
+                          </a>
+                      </li>
+                     
+                     <li class="nav-item">
+                          <a href="/getVentaConfirmada" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Ventas Confirmadas</p>
+                          </a>
+                      </li>
+                  </ul>
+              </li>
             {{-- <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-compress"></i>

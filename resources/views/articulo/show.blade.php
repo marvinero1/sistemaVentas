@@ -12,6 +12,11 @@
                     <div class="col" style="text-align: center; padding-block-start: 25px;background-color: forestgreen;color: white;">
                         <a class="btn btn-app" data-toggle="modal" data-target="#modalPromocion{{$articulo->id}}" class="btn btn-danger btn-sm"><i class="fa fa-bullhorn" aria-hidden="true"></i> Promoción
                         </a>
+
+                        <a class="btn btn-app" data-toggle="modal"
+                                   data-target="#modalStock{{$articulo->id}}" class="btn btn-danger btn-sm">
+                                   <i class="fas fa-spinner"></i> Actualizar Stock
+                               </a>
                     </div>               
                 </div>
 
@@ -201,7 +206,40 @@
                              </div>
                         </div> 
 </div>
-
+{{-- MODAL Modal Stock --}}
+                            <div class="modal fade" id="modalStock{{$articulo->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document" style="max-width: 337px !important;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><strong>Agregar Stock</strong> </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: black">
+                                                <i class="fa fa-times" aria-hidden="true"></i>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body" >
+                                            <h5 class="text-center">¿Cantidad a Añadir?</h5>
+                                            <form action="{{route('articulo.addStock', $articulo->id)}}" method="POST"
+                                                enctype="multipart/form-data">
+                                                {{ csrf_field() }}
+                                                {{ method_field('PUT') }}
+                                                
+                                                <input name="cantidad" type="number" class="form-control" placeholder="Cantidad">
+                                                
+                                                                                             
+                                                      <br>                                         
+                                                <div class="row" style="display: block;">
+                                                    <div class="modal-footer">
+                                                        <button type="submit" class="btn btn-primary"
+                                                            style="width: 100% !important; "><i class="fa fa-spinner" aria-hidden="true"></i>&nbsp; Actualizar</button>
+                                                         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                                         style="width: 100% !important; "><i class="fa fa-times" aria-hidden="true"></i>&nbsp;Cerrar</button> -->
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
 @endsection
 <style>
     ul > li{margin-right:25px;font-weight:lighter;cursor:pointer}
