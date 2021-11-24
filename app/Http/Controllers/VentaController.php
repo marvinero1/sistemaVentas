@@ -19,7 +19,7 @@ class VentaController extends Controller
     {
         $descripcion = $request->get('buscarpor');
 
-        $carrito = Carrito::where('descripcion','like',"%$descripcion%")->paginate(10);
+        $carrito = Carrito::where('descripcion','like',"%$descripcion%")->where('estado','false')->paginate(10);
 
         //dd($carrito_detalle);
         return view('ventas.index', compact('carrito'));

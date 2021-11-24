@@ -39,6 +39,9 @@ Route::get('getCartAttribute/{id}', [CarritoController::class,'getCartAttribute'
 Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carritoProductosIonic']);
 Route::get('getMisCotizaciones', [CarritoController::class,'getMisCotizaciones']); 
 Route::get('getNovedadesIonic',[ArticuloController::class, 'getNovedadesIonic']);
+Route::get('getNovedadesIonicBuscador',[ArticuloController::class, 'getNovedadesIonicBuscador']);
+
+
 Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
 Route::get('downloads/{file}','PedidoController@download')->name('downloads');
 

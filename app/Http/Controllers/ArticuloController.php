@@ -34,6 +34,13 @@ class ArticuloController extends Controller
         return response()->json($articulo, 200);
     }
 
+     public function getNovedadesIonicBuscador(Request $request){
+
+        $articulo = Articulo::where('promocion', 'true')->get();
+
+        return response()->json($articulo, 200);
+    }
+
 
     public function index(Request $request){
 
