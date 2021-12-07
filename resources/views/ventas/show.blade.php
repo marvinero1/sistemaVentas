@@ -13,7 +13,7 @@
   <div class="row">
     <div class="col">
       <div class="invoice-title">
-            <h2><img height="55px" width="55px" src="/images/logo_original.png" alt="Logo" >&nbsp;Cotización Pro-Ventas</h2>
+            <h2><img height="55px" width="55px" src="/images/logo_original.png" alt="Logo" >&nbsp;Pedidos Pro-Ventas</h2>
       </div>
     </div>    
     <div class="col" style="text-align:right;padding-top: 5px;">
@@ -29,13 +29,10 @@
     <div class="col-xs-6 p-3">
       <address>
         <!-- <img height="50px" width="50px" src="{{url(Auth::user()->imagen)}}" alt="Logo" style="float: left;margin-right:  20px;"> -->
-            <strong>Nombre Empresa: </strong>{{ Auth::user()->name }}<br>
-            <strong>Dirección: </strong>{{ Auth::user()->direccion }}<br>
-            <strong>Teléfono:</strong> {{ Auth::user()->telefono }}<br>
-            <strong>Whatsapp:</strong> {{ Auth::user()->whatsapp }}<br>
-            <strong>Email:</strong> {{ Auth::user()->email }}<br>
-            <strong>Pais:</strong> {{ Auth::user()->pais }}<br>
-            <strong>Ciudad:</strong>{{ Auth::user()->ciudad }}
+            <strong>Usuario:</strong> {{ Auth::user()->name }}<br>
+         
+            <strong>Dirección: </strong>{{ $direccion }}<br>
+            <strong>Teléfono:</strong> {{ $telefono }}<br>
         </address>
     </div>
     <!-- <div class="col-xs-6 text-right">

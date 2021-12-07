@@ -29,6 +29,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Auth::routes();
 
+Route::post('login', 'UserController@login'); //ESTE FUNCIONA
+Route::get("logout", 'UserController@logout');
+
 
 Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
 Route::get('getNovedades',[ArticuloController::class, 'getNovedades']);
@@ -40,7 +43,7 @@ Route::get('carritoProductosIonic/{id}',[CarritoDetalleController::class, 'carri
 Route::get('getMisCotizaciones', [CarritoController::class,'getMisCotizaciones']); 
 Route::get('getNovedadesIonic',[ArticuloController::class, 'getNovedadesIonic']);
 Route::get('getNovedadesIonicBuscador',[ArticuloController::class, 'getNovedadesIonicBuscador']);
-
+Route::get('usuariosStorage/{id}',[UserController::class, 'usuariosStorage']);
 
 Route::get('getMisCotizaciones/{id}', [PedidoController::class,'getMisCotizaciones']); 
 Route::get('downloads/{file}','PedidoController@download')->name('downloads');

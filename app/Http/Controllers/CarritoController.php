@@ -50,7 +50,7 @@ class CarritoController extends Controller
      * @param  \App\Carrito  $carrito
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id){ 
    
         $mensaje = "Cotizacion Confirmada Exitosamente!!!";
 

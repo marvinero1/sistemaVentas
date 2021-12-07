@@ -18,12 +18,12 @@ class PedidoController extends Controller{
         $importadora = $request->get('buscarpor');
         $user = User::all()->sortBy('name');
 
-        $carrito = Carrito::where('carritos.confirmacion', '=', 'false')
+        $carrito = Carrito::where('carritos.confirmacion', '=', 'false')->where('carritos.estado', '=', 'true')
         ->orderBy('created_at', 'desc')
         ->paginate(10);
          
         //dd( $producto );
-        return view('pedidos.index', compact('carrito', 'user'));
+        return view('ventas.index', compact('carrito', 'user'));
     }
 
     public function ventaConfirmada(Request $request){
@@ -71,16 +71,10 @@ class PedidoController extends Controller{
    }
 
    public function download(Request $request, $file){
-
-        //dd($request->all());
-       
-        //dd(json_encode($request->file));
         $file = $request->file;
 
-        $path = storage_path("app/public/files/". $file);
+        $path = storage_path("app/files/". $file);
 
         return response()->download($path);
-
-      
     }
 }

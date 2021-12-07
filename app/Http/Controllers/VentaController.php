@@ -19,7 +19,7 @@ class VentaController extends Controller
     {
         $descripcion = $request->get('buscarpor');
 
-        $carrito = Carrito::where('descripcion','like',"%$descripcion%")->where('estado','false')->paginate(10);
+        $carrito = Carrito::where('descripcion','like',"%$descripcion%")->where('confirmacion','false')->paginate(10);
 
         //dd($carrito_detalle);
         return view('ventas.index', compact('carrito'));
@@ -69,9 +69,11 @@ class VentaController extends Controller
             $totalTotal +=  $total;
         }
          
+        $direccion = $carrito->destino;
+        $telefono = $carrito->telefono;
 
         //dd($carrito_detalle);
-        return view('ventas.show', compact('carrito_detalle','carrito','total','totalTotal'));
+        return view('ventas.show', compact('carrito_detalle','carrito','total','totalTotal','direccion','telefono'));
     }
 
     /**

@@ -18,7 +18,7 @@
                 <form style="display: contents !important;margin-top: 0em !important;margin-block-end: 0em !important">
                     <input type="text" aria-describedby="basic-addon1" name="buscarpor" class="form-control "
                         type="search" placeholder="Buscador Nombre Articulo" aria-label="Search"
-                        style="width: 55% !important;">&nbsp;&nbsp;
+                        style="width: 60% !important;">&nbsp;&nbsp;
                     <button class="btn btn-outline-success " type="submit" style="border: 1px #3097D1 solid;">
                         <span class="search"></span>&nbsp;Buscar</button>
                 </form>
@@ -34,16 +34,18 @@
         </div>
         <br><br><br>
     <div class="table-responsive">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover table-sm">
             <thead class="thead-dark">
                 <tr>
                     <th style="text-align:center;">Imagen</th>
                     <th style="text-align:center;">Nombre</th>
-                    <th style="text-align:center;">Descripción</th>
-                    <th style="text-align:center;">Fecha</th>
-                    <th style="text-align:center;">Categoria</th> 
+                    <!-- <th style="text-align:center;">Fecha</th> -->
+                    <th style="text-align:center;">Categoria</th>
+                    <th style="text-align:center;">Cantidad </th> 
                     <th style="text-align:center;">Codigo Barras</th>
-                    <th style="text-align:center;">Cantidad </th>
+                    <!-- <th style="text-align:center;">Descripción</th> -->
+
+                    
                     <th style="text-align:center;">Acciones</th>
                 </tr>
             </thead>
@@ -51,45 +53,44 @@
                 @foreach ($articulo as $articulos)
                 <tr>
                     <td><a class="image-popup-vertical-fit" href="/{{  $articulos->imagen }}">
-                        <img img src="/{{ $articulos->imagen }}" class="img-thumbnail" alt="articulo" height="100px"
-                            width="100px" style="display: block;margin: 0 auto;">
+                        <img img src="/{{ $articulos->imagen }}" class="img-thumbnail" alt="articulo" height="80px"
+                            width="80px" style="display: block;margin: 0 auto;">
                     </a></td>
                         <td style="text-align:center;">{{ $articulos->nombre }}</td>
-                        <td style="text-align:center;">{{ $articulos->descripcion }}</td>
-                        <td style="text-align:center;">{{ $articulos->fecha }}</td>
+                        <!-- <td style="text-align:center;">{{ $articulos->fecha }}</td> -->
                         <td style="text-align:center;">{{ $articulos->categoria_id }}</td>
-                        <td style="text-align: center;"><input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barras" value="{{ $articulos->codigo_barras }}" disabled="true" hidden="true"> <svg id="barcode"></svg></td>
                         <td style="text-align:center;"> {{ $articulos->cantidad }}</td>
-                        <td style="text-align:center;"> <div class="card-body">
-                               <a class="btn btn-app" data-toggle="modal"
-                                   data-target="#modalFavoritos{{$articulos->id}}" class="btn btn-danger btn-sm">
-                                   <i class="fas fa-heart"></i> Favoritos
-                               </a>
+                        <td style="text-align: center;"><input placeholder="000000-000000" type="text" class="form-control" id="barcodeValue" name="codigo_barras" value="{{ $articulos->codigo_barras }}" disabled="true" hidden="true"> <svg id="barcode"></svg></td>
+                        <!-- <td style="text-align:center;">{{ $articulos->descripcion }}</td> -->
 
-                               <a class="btn btn-app " href="{{ route('articulos.show', $articulos->id ) }}">
-                                   <i class="fas fa-eye"></i> Ver
-                               </a>
-                               <form action="{{ route('articulos.destroy', $articulos->id ) }}" method="POST"
-                                   accept-charset="UTF-8" style="display:inline">
-                                   @csrf
-                                   @method('DELETE')
-                                   <button type="submit" class="btn btn-app" title="Delete Image"
-                                   class="btn btn-danger btn-sm"
-                                   title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
-                                           aria-hidden="true"></i> Eliminar</button>
-                               </form>
+                       <td style="text-align:center;"> 
+                            <div class="row">
+                                <a class="btn btn-app btn-md" data-toggle="modal"
+                                       data-target="#modalFavoritos{{$articulos->id}}" class="btn btn-danger btn-sm">
+                                       <i class="fas fa-heart"></i> Favoritos
+                                   </a>
 
-                               @if(Auth::user()->rol == 'admin')
-                               <a class="btn btn-app" data-toggle="modal"
-                                   data-target="#modalNovedades{{$articulos->id}}" class="btn btn-danger btn-sm">
-                                   <i class="fas fa-star"></i> Novedad
-                               </a>
+                                   <a class="btn btn-app " href="{{ route('articulos.show', $articulos->id ) }}">
+                                       <i class="fas fa-eye"></i> Ver
+                                   </a>
+                                   <form action="{{ route('articulos.destroy', $articulos->id ) }}" method="POST"
+                                       accept-charset="UTF-8" style="display:inline">
+                                       @csrf
+                                       @method('DELETE')
+                                       <button type="submit" class="btn btn-app" title="Delete Image"
+                                       class="btn btn-danger btn-sm"
+                                       title="Delete Image" onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
+                                               aria-hidden="true"></i> Eliminar</button>
+                                   </form>
 
-                               
-                               @endif 
-                                
-                           </div>
-                        </td>        
+                                   @if(Auth::user()->rol == 'admin')
+                                   <a class="btn btn-app" data-toggle="modal"
+                                       data-target="#modalNovedades{{$articulos->id}}" class="btn btn-danger btn-sm">
+                                       <i class="fas fa-star"></i> Novedad
+                                   </a>
+                                   @endif 
+                            </div>  
+                        </td>         
                      
                             {{-- MODAL FAVORITOS --}}
                             <div class="modal fade" id="modalFavoritos{{$articulos->id}}" tabindex="-1" role="dialog"

@@ -65,4 +65,37 @@ class UserController extends Controller
         $user = User::create($request->all());
         return response()->json($user, 200);
     }   
+     public function usuariosStorage(Request $request, $id){
+        $user = User::where('email', '=', $id)->first();
+
+        return response()->json($user, 200);
+    }
+
+    public function login(Request $request){
+        
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+            // 'username' => 'required|exists:users,username',
+            'password' => 'required'
+        ]);
+
+        $user = User::whereEmail($request->email)->first();
+
+        if (!is_null($user)) {
+           
+           if(Hash::check($request->password, $user->password)){
+            $token = $user->createToken('personal')->accessToken;
+       
+            return response()->json(['res' => true, 'token' => $token, 'message' => "Bienvenido al sistema"]);  
+            } 
+        } 
+    }
+
+    public function logout(){
+        $user = auth()->user();
+        $user->tokens->each(function ($token, $key){
+            $token->delete();
+        });
+        return response()->json(['res' => true, 'message' => "Adios"]);
+    }
 }
