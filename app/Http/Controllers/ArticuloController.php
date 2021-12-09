@@ -166,12 +166,12 @@ class ArticuloController extends Controller
 
     public function addStock(Request $request, $id){
 
-
         $request->all();
 
         $articulo = Articulo::find($id);
 
         $articulo->cantidad = $request->get('cantidad');
+        $articulo->precio_venta = $request->get('precio_venta');
         
         $articulo->update();
 

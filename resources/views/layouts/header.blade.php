@@ -288,6 +288,34 @@
                   </li>       
                 </ul> 
             </li> -->
+
+            <li class="nav-item has-treeview">
+                
+                  <a class="nav-link">
+                    <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
+                      <p>Ventas
+                          <i class="right fas fa-angle-left"></i>
+                      </p>
+                  </a>
+                    
+                  <ul class="nav nav-treeview">
+                      <li class="nav-item">
+                          <a href="/venta" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Ventas Pendientes</p>
+                          </a>
+                      </li>
+                     
+                     <li class="nav-item">
+                          <a href="/getVentaConfirmada" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Ventas Confirmadas</p>
+                          </a>
+                      </li>
+                  </ul>
+                  
+              </li>
+
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
@@ -331,32 +359,7 @@
                 </ul>
             </li>
            
-            <li class="nav-item has-treeview">
-                
-                  <a class="nav-link">
-                    <i class="nav-icon fa fa-shopping-cart" aria-hidden="true"></i>
-                      <p>Ventas
-                          <i class="right fas fa-angle-left"></i>
-                      </p>
-                  </a>
-                    
-                  <ul class="nav nav-treeview">
-                      <li class="nav-item">
-                          <a href="/venta" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Ventas Pendientes</p>
-                          </a>
-                      </li>
-                     
-                     <li class="nav-item">
-                          <a href="/getVentaConfirmada" class="nav-link">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Ventas Confirmadas</p>
-                          </a>
-                      </li>
-                  </ul>
-                  
-              </li>
+            
             {{-- <li class="nav-item has-treeview">
               <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-compress"></i>

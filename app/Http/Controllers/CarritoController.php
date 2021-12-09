@@ -64,6 +64,6 @@ class CarritoController extends Controller
         }
 
         Session::flash('message',$mensaje);
-        return redirect()->back(); 
+        return redirect()->back();    
     }
 }

@@ -19,6 +19,13 @@ class FavoritoController extends Controller
         return Favorito::all();
     }
 
+    public function getMisFavoritos(Request $request, $id){
+        $favorito = Favorito::where('favoritos.user_id', '=', $id)->orderBy('created_at', 'desc')
+        ->get();
+
+        return response()->json($favorito, 200);
+    }
+
     public function index(Request $request){
 
         $buscar = $request->get('buscarpor');

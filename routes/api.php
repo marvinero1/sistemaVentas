@@ -34,6 +34,8 @@ Route::get("logout", 'UserController@logout');
 
 
 Route::get('favoritos',[FavoritoController::class, 'getFavoritos']);
+Route::get('getMisFavoritos/{id}', [FavoritoController::class,'getMisFavoritos']); 
+
 Route::get('getNovedades',[ArticuloController::class, 'getNovedades']);
 Route::get('articulo/{id}',[ArticuloController::class, 'showArticulo']);
 Route::get('articulos',[ArticuloController::class, 'getArticulos']);

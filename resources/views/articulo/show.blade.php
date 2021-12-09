@@ -206,7 +206,7 @@
                              </div>
                         </div> 
 </div>
-{{-- MODAL Modal Stock --}}
+                    {{-- MODAL Modal Stock --}}
                             <div class="modal fade" id="modalStock{{$articulo->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document" style="max-width: 337px !important;">
@@ -224,8 +224,9 @@
                                                 {{ csrf_field() }}
                                                 {{ method_field('PUT') }}
                                                 
-                                                <input name="cantidad" type="number" class="form-control" placeholder="Cantidad">
-                                                
+                                                <input name="cantidad" type="number" class="form-control" placeholder="Cantidad"><br>
+                                                <input name="precio_venta" type="number" class="form-control" placeholder="Precio Venta">
+                                                 
                                                                                              
                                                       <br>                                         
                                                 <div class="row" style="display: block;">
