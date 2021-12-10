@@ -28,17 +28,16 @@ class Articulo extends Model
                             'precio_compra',
                             'precio_venta',
                             'imagen',
-                            'imagen_novedad',
                             'flag_carrito',
                             'imagen_promocion',
                             'categoria_nombre',
-                            'imagen_novedad',
                             'categoria_id',
                             'novedad',
                             'promocion',
                             'subcategoria_id',
                             'articulo_id',
-                            'descripcion'];
+                            'descripcion',
+                        'imagen_novedad',];
 
     public function categoria(){
         return $this->hasOne(Categoria::class,'id');

@@ -39,7 +39,7 @@
                 @foreach($articulo as $productos)
                 <tr>
                     <td class="text-center"> 
-                    @if( $productos->imagen == '')
+                    @if( $productos->imagen_novedad == '')
                         <img img src="/images/logo_original.png" class="img-thumbnail" alt="Producto" height="150px" width="150px">
                     @else
                         <img src="/{{$productos->imagen_novedad }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"

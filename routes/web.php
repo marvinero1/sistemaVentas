@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
         return view('index');
     });
 
-    Route::put('articulo/{articulo}/addNovedad','ArticuloController@addNovedad')->name('articulo.addNovedad');
+    Route::put('articulo/{id}/addNovedad','ArticuloController@addNovedad')->name('articulo.addNovedad');
 
     Route::put('articulo/{id}/addPromocion','ArticuloController@addPromocion')->name('articulo.addPromocion');
 
@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('registerDespacho', 'UserController@registerDespacho');
     Route::get('registerClient', 'UserController@registerClient');
+    Route::get('viewNovedad/{id}', 'ArticuloController@viewNovedad')->name('articulo.viewNovedad');
 
     Route::put('outNovedad/{id}','ArticuloController@outNovedad')->name('articulo.outNovedad'); 
     Route::put('outPromocion/{id}','ArticuloController@outPromocion')->name('articulo.outPromocion');  

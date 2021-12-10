@@ -128,4 +128,13 @@ class UserController extends Controller
         });
         return response()->json(['res' => true, 'message' => "Adios"]);
     }
+
+     public function destroy($id){
+        
+        $user = User::find($id);
+        $user->delete();
+
+        Session::flash('message','Usuario Eliminado Exitosamente!');
+        return redirect()->back();
+    }
 }

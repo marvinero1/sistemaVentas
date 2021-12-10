@@ -55,7 +55,7 @@
 
                         <td style="text-align:center;">
                           <div class="card-body">
-                               <form action="{{ route('articulos.destroy', $articulos->id ) }}" method="POST"
+                               <form action="{{ route('user.destroy', $articulos->id ) }}" method="POST"
                                    accept-charset="UTF-8" style="display:inline">
                                    @csrf
                                    @method('DELETE')

@@ -218,21 +218,28 @@ class ArticuloController extends Controller
       return redirect()->route('articulos.index');
     }
 
+    public function viewNovedad(Request $request, $id){
+        return view('articulo.addNovedad', ['articulo' =>Articulo::findOrFail($id)]);
+    }
+
     public function addNovedad(Request $request, $id){
 
         $imagen = null;
         $novedad = "true"; 
-        $articulo = Articulo::find($id);
+        $articulo = Articulo::findOrFail($id);
         $mensaje = 'Articulo Creado Exitosamente!!!';
 
-        $request->validate([
-            'novedad' => 'required',
-            'imagen_novedad' => 'nullable',
-         ]);
-
-        DB::beginTransaction();
         $requestData = $request->all();
-        //dd($request);
+        // dd($requestData);
+
+        // $requestData = $request->validate([
+        //     'novedad' => 'required',
+        //     'imagen_novedad' => 'required',
+        //  ]);
+        // dd($requestData);
+        // DB::beginTransaction();
+        
+        
 
         if($request->imagen_novedad == ''){
             unset($requestData['imagen_novedad']);
