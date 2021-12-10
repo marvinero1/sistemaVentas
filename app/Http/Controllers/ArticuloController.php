@@ -29,14 +29,14 @@ class ArticuloController extends Controller
 
     public function getNovedadesIonic(Request $request){
 
-        $articulo = Articulo::where('novedad', 'true')->get();
+        $articulo = Articulo::where('novedad', '=', 'true')->get();
 
         return response()->json($articulo, 200);
     }
 
      public function getNovedadesIonicBuscador(Request $request){
 
-        $articulo = Articulo::where('promocion', 'true')->get();
+        $articulo = Articulo::where('promocion', '=','true')->get();
 
         return response()->json($articulo, 200);
     }
@@ -69,7 +69,7 @@ class ArticuloController extends Controller
     public function create(){
         $categoria = Categoria::all()->sortBy('nombre');
         $subcategoria = Subcategoria::all()->sortBy('nombre');
-        return view('articulo.create', compact('categoria','proveedor','subcategoria'));
+        return view('articulo.create', compact('categoria','subcategoria'));
     }
   
     /**

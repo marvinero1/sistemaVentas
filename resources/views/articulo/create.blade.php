@@ -96,7 +96,7 @@
                                         <div class="form-group">
                                             <label for="cantidad">Cantidad *</label>
                                             <input type="number" class="form-control" id="cantidad" name="cantidad"
-                                                placeholder="Cantidad">
+                                                placeholder="Cantidad" required>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -105,10 +105,6 @@
                                             <select class="form-control" id="unidad" name="unidad">
                                                 <option value="piezas">Pieza</option>
                                                 <option value="caja">Caja</option>
-                                                <!-- <option value="kg"></option>
-                                                <option value="gr">Gramos</option>
-                                                <option value="mg">Miligramos</option>
-                                                <option value="litro">Litros</option> -->
                                             </select>
                                         </div>
                                     </div>
@@ -119,7 +115,7 @@
                                       <label for="nombre">Precio Compra</label>
                                       <div class="input-group form-group">
                                         <input type="double" class="form-control" id="precio_compra" name="precio_compra"
-                                        placeholder="Precio Compra">
+                                        placeholder="Precio Compra" required>
                                         <div class="input-group-append">
                                           <span class="input-group-text">Bs.</span>
                                         </div>
@@ -128,7 +124,7 @@
                                   <div class="col-md-4">
                                       <label for="precio_venta">Precio Venta</label>
                                       <div class="input-group form-group">
-                                          <input placeholder="Precio Venta" type="double" class="form-control" id="precio_venta" name="precio_venta">
+                                          <input placeholder="Precio Venta" type="double" class="form-control" id="precio_venta" name="precio_venta" required>
                                           <div class="input-group-append">
                                             <span class="input-group-text">Bs.</span>
                                           </div>

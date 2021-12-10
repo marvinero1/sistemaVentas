@@ -32,7 +32,10 @@ class Articulo extends Model
                             'flag_carrito',
                             'imagen_promocion',
                             'categoria_nombre',
+                            'imagen_novedad',
                             'categoria_id',
+                            'novedad',
+                            'promocion',
                             'subcategoria_id',
                             'articulo_id',
                             'descripcion'];
