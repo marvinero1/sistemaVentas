@@ -40,20 +40,18 @@
                 <tr>
                     <td class="text-center"> 
                     @if( $productos->imagen == '')
-                        <img img src="images/logo_original.png" class="img-thumbnail" alt="Producto" height="150px" width="150px">
+                        <img img src="/images/logo_original.png" class="img-thumbnail" alt="Producto" height="150px" width="150px">
                     @else
-                        <img src="/{{$productos->imagen }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"
+                        <img src="/{{$productos->imagen_novedad }}" class="img-thumbnail" alt="Producto" height="150px" width="150px"
                             style="display: block;margin: 0 auto;">
                     @endif</td>
                     <td class="text-center">{{ $productos->nombre }}</td>
                     <td class="text-center">{{ $productos->precio_venta }}</td>
                         <td class="text-center">
                             <a class="btn btn-app " href="{{ route('articulos.show',$productos->id ) }}">
-                                <i class="fas fa-eye"></i> Ver
-                            </a>  
-                           
-
-                            <!-- Button trigger modal -->
+                                <i class="fas fa-eye"></i> Ver</a>  
+                
+                        <!-- Button trigger modal -->
                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $productos->id}}">
                           <i class="fas fa-trash"></i>Quitar Novedad
                         </button>
@@ -83,7 +81,7 @@
                             </div>
                           </div>
                         </div> 
-                        </td>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

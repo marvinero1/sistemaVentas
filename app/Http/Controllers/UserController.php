@@ -12,12 +12,9 @@ class UserController extends Controller
 {   
     
    
-    public function store(Request $request)
-    {   
+    public function store(Request $request){   
         
         $request->all();
-
-        //dd($request);
       
         User::create([
             'name' => $request->name,
@@ -62,10 +59,43 @@ class UserController extends Controller
     }
 
     public function registerIonic(Request $request){
-        $user = User::create($request->all());
+       
+        $imagen = "false";
+
+        $request->validate([
+            'name' => 'nullable',
+            'apellido' => 'nullable', 
+            'direccion' => 'nullable',
+            'telefono' => 'nullable',
+            'pais' => 'nullable',
+            'ciudad' => 'nullable',
+            'whatsapp' => 'nullable',
+            'email' => 'required',
+            'nit' => 'nullable',
+            'imagen' => 'nullable',
+            'password' => 'required|string|min:6',
+            'rol'=>'required',
+        ]);
+      
+        $user = User::create([
+            'name' => $request->name,
+            'apellido' => $request->apellido,
+            'direccion' => $request->direccion,
+            'telefono' => $request->telefono,
+            'pais' => $request->pais,
+            'ciudad' => $request->ciudad,
+            'whatsapp' => $request->whatsapp,
+            'email' => $request->email,
+            'rol' => $request->rol,
+            'imagen'=> $imagen,
+            'nit' => $request->nit,
+            'password' => Hash::make($request->password),
+            
+        ]);
         return response()->json($user, 200);
     }   
-     public function usuariosStorage(Request $request, $id){
+    
+    public function usuariosStorage(Request $request, $id){
         $user = User::where('email', '=', $id)->first();
 
         return response()->json($user, 200);

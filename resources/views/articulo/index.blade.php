@@ -200,8 +200,11 @@
                                      
                 @endforeach
             </tbody>
-        </table><br><br>
-    </div>
+        </table><br>
+    </div><br>
+    <div style="text-align: center;">
+            {{ $articulo->links() }}
+        </div>
 </div>
 </div>
 <script type="text/javascript">
