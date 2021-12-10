@@ -180,19 +180,21 @@
                 <a href="#" class="d-block">{{ Auth::user()->name }}</a>
             </div>
         </div>
+       
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+                @if(Auth::user()->rol != 'despacho') 
                 <li class="nav-item has-treeview menu-open">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>Escritorio</p>  
                     </a>
                 </li>
-              
+                
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-cube"></i>
@@ -223,14 +225,17 @@
                        @endif
                     </ul>
                 </li>
-                
+                @endif
             
+            
+         
             <li class="nav-item has-treeview">
                 <a class="nav-link" href="/favoritos">
                   <i class="fa fa-heart nav-icon" aria-hidden="true"></i>
                     <p>Favoritos 💥</p>                
                 </a>
             </li>
+         @if(Auth::user()->rol != 'despacho') 
             <li class="nav-item has-treeview">
                 <a href="/novedades" class="nav-link">
                   <i class="fa fa-star nav-icon" aria-hidden="true"></i>
@@ -244,7 +249,7 @@
                 </a>
             </li>
             
-
+            @endif
               {{-- <li class="nav-item has-treeview">
                 <a class="nav-link">
                   <i class="fa fa-file nav-icon" aria-hidden="true"></i>
@@ -288,7 +293,7 @@
                   </li>       
                 </ul> 
             </li> -->
-
+            @if(Auth::user()->rol == 'admin' || Auth::user()->rol == 'despacho')
             <li class="nav-item has-treeview">
                 
                   <a class="nav-link">
@@ -315,7 +320,10 @@
                   </ul>
                   
               </li>
+            @endif
 
+            
+                   
             <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-users"></i>
@@ -337,6 +345,8 @@
                             <p>Despacho</p>
                         </a>
                     </li>
+                
+                @if(Auth::user()->rol != 'despacho') 
                     <li class="nav-item">
                         <a href="/registerDespacho" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
@@ -355,7 +365,7 @@
                             <p>Provedores</p>
                         </a>
                     </li> -->
-                   
+                 @endif  
                 </ul>
             </li>
            

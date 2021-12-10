@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 
 Auth::routes();
 
@@ -52,6 +49,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('registerDespacho', 'UserController@registerDespacho');
     Route::get('registerClient', 'UserController@registerClient');
 
+    Route::put('outNovedad/{id}','ArticuloController@outNovedad')->name('articulo.outNovedad'); 
+    Route::put('outPromocion/{id}','ArticuloController@outPromocion')->name('articulo.outPromocion');  
 
-    Route::put('addStock/{id}','ArticuloController@addStock')->name('articulo.addStock');       
+    Route::put('addStock/{id}','ArticuloController@addStock')->name('articulo.addStock');
  });

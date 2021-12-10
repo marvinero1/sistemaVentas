@@ -51,21 +51,44 @@
                             <a class="btn btn-app " href="{{ route('articulos.show',$productos->id ) }}">
                                 <i class="fas fa-eye"></i> Ver
                             </a>  
-                            <form action="{{ route('articulos.destroy',$productos->id ) }}" method="POST"
-                                accept-charset="UTF-8" style="display:inline">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Image"
-                                    onclick="return confirm(&quot;¿Desea eliminar?&quot;)"><i class="fa fas fa-trash"
-                                        aria-hidden="true"></i> Eliminar</button>
-                            </form> 
+                           
+
+                            <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $productos->id}}">
+                          <i class="fas fa-trash"></i>Quitar Novedad
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{ $productos->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Novedad</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h3><strong>Quitar Novedad</strong></h3>
+                                    <form action="{{route('articulo.outNovedad',$productos->id)}}" method="POST">
+                                        {{ csrf_field() }}
+                                        @method('PUT')
+                                        <input type="text" name="novedad" value="false" hidden="true">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="submit" class="btn btn-primary">Quitar</button>
+                                </div>
+                                </form>
+                            </div>
+                          </div>
+                        </div> 
                         </td>
                 </tr>
                 @endforeach
             </tbody>
           </table>
         </div>
-           
     </div>
 </div>
 @endsection

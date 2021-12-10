@@ -221,7 +221,7 @@ class ArticuloController extends Controller
     public function addNovedad(Request $request, $id){
 
         $imagen = null;
-        $novedad = "true";
+        $novedad = "true"; 
         $articulo = Articulo::find($id);
         $mensaje = 'Articulo Creado Exitosamente!!!';
 
@@ -276,6 +276,33 @@ class ArticuloController extends Controller
         return redirect()->route('articulos.index');
 
    }
+
+    public function outNovedad(Request $request, $id){
+        $novedad = "false";
+
+        $articulo = Articulo::findOrFail($id);
+        $novedad = $request->get('novedad');
+
+        $articulo->novedad = $novedad;
+        
+        $articulo->update(); 
+
+        return redirect()->route('articulos.getNovedades');
+    }
+
+    public function outPromocion(Request $request, $id){
+        $promocion = "false";
+
+        $articulo = Articulo::findOrFail($id);
+        $promocion = $request->get('promocion');
+
+        $articulo->promocion = $promocion;
+        
+        $articulo->update(); 
+
+        return redirect()->route('articulos.getPromocion');
+    }
+
 
    public function addPromocion(Request $request, $id){
 

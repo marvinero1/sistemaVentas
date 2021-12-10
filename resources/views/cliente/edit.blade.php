@@ -10,7 +10,7 @@
                         <div class="card-header">
                             <h3 class="card-title">Editar Cliente</h3>
                         </div>
-                        <form action="{{route('cliente.update',$cliente->id)}}" method="POST">
+                        <form action="{{route('cliente.update', $cliente->id)}}" method="POST">
                             {{ csrf_field() }}
                             @method('PATCH')
                             <div class="card-body">
